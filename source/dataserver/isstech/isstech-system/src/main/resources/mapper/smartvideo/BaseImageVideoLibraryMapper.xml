@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseImageVideoLibraryMapper">
+
+    <resultMap type="BaseImageVideoLibrary" id="BaseImageVideoLibraryResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="filePath" column="file_path"/>
+        <result property="fileType" column="file_type"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="fileSource" column="file_source"/>
+        <result property="libsId" column="libs_id"/>
+        <result property="libsType" column="libs_type"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseImageVideoLibraryVo">
+        select id, name, device_id, file_path, file_type, file_size, file_source, libs_id, libs_type, create_by, create_time, update_by, update_time, remark, del_flag from base_image_video_library
+    </sql>
+
+    <select id="selectBaseImageVideoLibraryList" parameterType="BaseImageVideoLibrary"
+            resultMap="BaseImageVideoLibraryResult">
+        <include refid="selectBaseImageVideoLibraryVo"/>
+        <where>
+            del_flag = '0'
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="deviceId != null  and deviceId != ''">and device_id = #{deviceId}</if>
+            <if test="filePath != null  and filePath != ''">and file_path like concat('%', #{filePath}, '%')</if>
+            <if test="fileType != null  and fileType != ''">and file_type = #{fileType}</if>
+            <if test="fileSize != null ">and file_size = #{fileSize}</if>
+            <if test="fileSource != null  and fileSource != ''">and file_source like concat('%', #{fileSource}, '%')
+            </if>
+            <if test="libsId != null  and libsId != ''">and libs_id = #{libsId}</if>
+            <if test="libsType != null  and libsType != ''">and libs_type = #{libsType}</if>
+        </where>
+    </select>
+
+    <select id="selectBaseImageVideoLibraryById" parameterType="String" resultMap="BaseImageVideoLibraryResult">
+        <include refid="selectBaseImageVideoLibraryVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseImageVideoLibrary" parameterType="BaseImageVideoLibrary">
+        insert into base_image_video_library
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="filePath != null">file_path,</if>
+            <if test="fileType != null">file_type,</if>
+            <if test="fileSize != null">file_size,</if>
+            <if test="fileSource != null">file_source,</if>
+            <if test="libsId != null">libs_id,</if>
+            <if test="libsType != null">libs_type,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="filePath != null">#{filePath},</if>
+            <if test="fileType != null">#{fileType},</if>
+            <if test="fileSize != null">#{fileSize},</if>
+            <if test="fileSource != null">#{fileSource},</if>
+            <if test="libsId != null">#{libsId},</if>
+            <if test="libsType != null">#{libsType},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseImageVideoLibrary" parameterType="BaseImageVideoLibrary">
+        update base_image_video_library
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="filePath != null">file_path = #{filePath},</if>
+            <if test="fileType != null">file_type = #{fileType},</if>
+            <if test="fileSize != null">file_size = #{fileSize},</if>
+            <if test="fileSource != null">file_source = #{fileSource},</if>
+            <if test="libsId != null">libs_id = #{libsId},</if>
+            <if test="libsType != null">libs_type = #{libsType},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseImageVideoLibraryById" parameterType="String">
+        delete from base_image_video_library where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseImageVideoLibraryByIds" parameterType="String">
+        delete from base_image_video_library where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseImageVideoLibraryByIds" parameterType="String">
+        update base_image_video_library set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

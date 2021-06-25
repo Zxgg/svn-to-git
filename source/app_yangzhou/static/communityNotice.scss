@@ -1,0 +1,63 @@
+.main{
+	width: 100%;
+	font-size: 30rpx;
+}
+.title{
+	margin-right: 50rpx !important;
+}
+input{
+	border: 1px solid #dcdfe6;
+	padding-left: 35rpx;
+	border-radius: 8rpx;
+}
+button{
+	margin-bottom: 50rpx;
+	line-height: 50rpx;
+	font-size: 25rpx;
+}
+.btn{
+	margin-bottom:50rpx;
+	display: flex;
+}
+.tit1{
+	margin-bottom: 15rpx;
+}
+.tit2{
+	margin-bottom: 25rpx;
+}
+.tr_td{
+	width: 90%;
+	padding-top: 30rpx;
+	padding-bottom: 30rpx;
+	box-shadow:5rpx 5rpx 5rpx 5rpx #F5F5F5;
+	border-radius: 20rpx;
+	margin: 60rpx auto;
+	display: flex;
+	flex-direction: row;
+}
+.type{
+	background: #7FA3AC;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	color: white;
+	text-align: center;
+	line-height: 100rpx;
+}
+.type2{
+	background: #FFD662;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	color: white;
+	text-align: center;
+	line-height: 100rpx;
+}
+.td{
+	margin-left: 10%;
+}
+.noticeDetailmain{
+	padding: 45rpx;
+	padding-top: 100rpx;
+	text-indent: 70rpx;
+}

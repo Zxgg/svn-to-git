@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TTaskVehicleRelationMapper">
+
+    <resultMap type="TTaskVehicleRelation" id="TTaskVehicleRelationResult">
+        <result property="plateId" column="plate_id"/>
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="suspectId" column="suspect_id"/>
+        <result property="groupId" column="group_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="rosterType" column="roster_type"/>
+        <result property="plate" column="plate"/>
+    </resultMap>
+
+    <sql id="selectTTaskVehicleRelationVo">
+        select plate_id, vehicle_id, community_id, community_child_id, task_id, suspect_id, group_id, source_type, roster_type,plate from t_task_vehicle_relation
+    </sql>
+
+    <select id="selectTTaskVehicleRelationList" parameterType="TTaskVehicleRelation"
+            resultMap="TTaskVehicleRelationResult">
+        <include refid="selectTTaskVehicleRelationVo"/>
+        <where>
+            <if test="plateId != null  and plateId != ''">and plate_id = #{plateId}</if>
+            <if test="vehicleId != null  and vehicleId != ''">and vehicle_id = #{vehicleId}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="taskId != null  and taskId != ''">and task_id = #{taskId}</if>
+            <if test="suspectId != null  and suspectId != ''">and suspect_id = #{suspectId}</if>
+            <if test="groupId != null  and groupId != ''">and group_id = #{groupId}</if>
+            <if test="sourceType != null  and sourceType != ''">and source_type = #{sourceType}</if>
+            <if test="rosterType != null  and rosterType != ''">and roster_type = #{rosterType}</if>
+            <if test="plate != null  and plate != ''">and plate = #{plate}</if>
+        </where>
+    </select>
+
+    <select id="selectTTaskVehicleRelationById" parameterType="String" resultMap="TTaskVehicleRelationResult">
+        <include refid="selectTTaskVehicleRelationVo"/>
+        where plate_id = #{plateId}
+    </select>
+
+    <insert id="insertTTaskVehicleRelation" parameterType="TTaskVehicleRelation">
+        insert into t_task_vehicle_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="plateId != null and plateId != ''">plate_id,</if>
+            <if test="vehicleId != null and vehicleId != ''">vehicle_id,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="taskId != null">task_id,</if>
+            <if test="suspectId != null and suspectId != ''">suspect_id,</if>
+            <if test="groupId != null and groupId != ''">group_id,</if>
+            <if test="sourceType != null and sourceType != ''">source_type,</if>
+            <if test="rosterType != null and rosterType != ''">roster_type,</if>
+            <if test="plate != null and plate != ''">plate,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="plateId != null and plateId != ''">#{plateId},</if>
+            <if test="vehicleId != null and vehicleId != ''">#{vehicleId},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="taskId != null">#{taskId},</if>
+            <if test="suspectId != null and suspectId != ''">#{suspectId},</if>
+            <if test="groupId != null and groupId != ''">#{groupId},</if>
+            <if test="sourceType != null and sourceType != ''">#{sourceType},</if>
+            <if test="rosterType != null and rosterType != ''">#{rosterType},</if>
+            <if test="plate != null and plate != ''">#{plate},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTTaskVehicleRelation" parameterType="TTaskVehicleRelation">
+        update t_task_vehicle_relation
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="vehicleId != null and vehicleId != ''">vehicle_id = #{vehicleId},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="taskId != null">task_id = #{taskId},</if>
+            <if test="suspectId != null and suspectId != ''">suspect_id = #{suspectId},</if>
+            <if test="groupId != null and groupId != ''">group_id = #{groupId},</if>
+            <if test="sourceType != null and sourceType != ''">source_type = #{sourceType},</if>
+            <if test="rosterType != null and rosterType != ''">roster_type = #{rosterType},</if>
+            <if test="plate != null and plate != ''">roster_type = #{plate},</if>
+        </trim>
+        where plate_id = #{plateId}
+    </update>
+
+    <delete id="deleteTTaskVehicleRelationById" parameterType="String">
+        delete from t_task_vehicle_relation where plate_id = #{plateId}
+    </delete>
+
+    <delete id="deleteTTaskVehicleRelationByIds" parameterType="String">
+        delete from t_task_vehicle_relation where plate_id in
+        <foreach item="plateId" collection="array" open="(" separator="," close=")">
+            #{plateId}
+        </foreach>
+    </delete>
+
+
+
+</mapper>

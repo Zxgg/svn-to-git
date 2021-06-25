@@ -1,0 +1,5 @@
+{
+	"DBRestAPIEndPointUri":"http://10.112.253.4:7090",
+	"vcmImageUrl":"http://10.16.123.156:10086",
+	"imageUrl":"http://10.112.253.4:7090/upload/image/sample"
+}

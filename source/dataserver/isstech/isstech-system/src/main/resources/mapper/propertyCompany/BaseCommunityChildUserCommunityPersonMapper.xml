@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityChildUserCommunityPersonMapper">
+
+    <resultMap type="BaseCommunityChildUserCommunityPerson" id="BaseCommunityChildUserCommunityPersonResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="personId"    column="person_id"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="communityHousesId"    column="community_houses_id"    />
+                    <result property="userId"    column="user_id"    />
+                    <result property="credentials"    column="credentials"    />
+                    <result property="type"    column="type"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseCommunityChildUserCommunityPersonVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, person_id, community_id, community_child_id, community_houses_id, user_id, credentials, type from base_community_child_user_community_person
+    </sql>
+
+    <select id="selectBaseCommunityChildUserCommunityPersonList" parameterType="BaseCommunityChildUserCommunityPerson" resultMap="BaseCommunityChildUserCommunityPersonResult">
+        <include refid="selectBaseCommunityChildUserCommunityPersonVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="personId != null  and personId != ''"> and person_id = #{personId}</if>
+                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="communityHousesId != null  and communityHousesId != ''"> and community_houses_id = #{communityHousesId}</if>
+                                                                                                            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+                                                                                                            <if test="credentials != null  and credentials != ''"> and credentials = #{credentials}</if>
+                                                                                                            <if test="type != null  and type != ''"> and type = #{type}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                    </where>
+    </select>
+
+    <select id="selectBaseCommunityChildUserCommunityPersonById" parameterType="String" resultMap="BaseCommunityChildUserCommunityPersonResult">
+        <include refid="selectBaseCommunityChildUserCommunityPersonVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseCommunityChildUserCommunityPerson" parameterType="BaseCommunityChildUserCommunityPerson">
+        insert into base_community_child_user_community_person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag,</if>
+                                                                <if test="personId != null and personId != ''">person_id,</if>
+                                                                <if test="communityId != null and communityId != ''">community_id,</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id,</if>
+                                                                <if test="communityHousesId != null">community_houses_id,</if>
+                                                                <if test="userId != null and userId != ''">user_id,</if>
+                                                                <if test="credentials != null">credentials,</if>
+                                                                <if test="type != null">type,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+                                                                <if test="personId != null and personId != ''">#{personId},</if>
+                                                                <if test="communityId != null and communityId != ''">#{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">#{communityChildId},</if>
+                                                                <if test="communityHousesId != null">#{communityHousesId},</if>
+                                                                <if test="userId != null and userId != ''">#{userId},</if>
+                                                                <if test="credentials != null">#{credentials},</if>
+                                                                <if test="type != null">#{type},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseCommunityChildUserCommunityPerson" parameterType="BaseCommunityChildUserCommunityPerson">
+        update base_community_child_user_community_person
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+                                                                <if test="personId != null and personId != ''">person_id = #{personId},</if>
+                                                                <if test="communityId != null and communityId != ''">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id = #{communityChildId},</if>
+                                                                <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+                                                                <if test="userId != null and userId != ''">user_id = #{userId},</if>
+                                                                <if test="credentials != null">credentials = #{credentials},</if>
+                                                                <if test="type != null">type = #{type},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityChildUserCommunityPersonById" parameterType="String">
+        delete from base_community_child_user_community_person where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityChildUserCommunityPersonByIds" parameterType="String">
+        delete from base_community_child_user_community_person where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityChildUserCommunityPersonByIds" parameterType="String">
+        update base_community_child_user_community_person set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

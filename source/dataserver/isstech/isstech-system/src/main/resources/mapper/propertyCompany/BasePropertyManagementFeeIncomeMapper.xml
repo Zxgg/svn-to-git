@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePropertyManagementFeeIncomeMapper">
+
+    <resultMap type="BasePropertyManagementFeeIncome" id="BasePropertyManagementFeeIncomeResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="communityHousesId"    column="community_houses_id"    />
+                    <result property="shouldPay"    column="should_pay"    />
+                    <result property="realityPay"    column="reality_pay"    />
+                    <result property="payCostRange"    column="pay_cost_range"    />
+                    <result property="area"    column="area"    />
+                    <result property="price"    column="price"    />
+                    <result property="payerName"    column="payer_name"    />
+                    <result property="payerPhoneNumber"    column="payer_phone_number"    />
+                    <result property="ownerName"    column="owner_name"    />
+                    <result property="ownerIdentificationNumber"    column="owner_identification_number"    />
+                    <result property="cashierName"    column="cashier_name"    />
+                    <result property="strategy"    column="strategy"    />
+                    <result property="payWay"    column="pay_way"    />
+                    <result property="pics"    column="pics"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBasePropertyManagementFeeIncomeVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, community_houses_id, should_pay, reality_pay, pay_cost_range, area, price, payer_name, payer_phone_number, owner_name, owner_identification_number, cashier_name, strategy, pay_way, pics from base_property_management_fee_income
+    </sql>
+
+    <select id="selectBasePropertyManagementFeeIncomeList" parameterType="BasePropertyManagementFeeIncome" resultMap="BasePropertyManagementFeeIncomeResult">
+        <include refid="selectBasePropertyManagementFeeIncomeVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="remark != null  and remark != ''"> and remark = #{remark}</if>
+                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="communityHousesId != null  and communityHousesId != ''"> and community_houses_id = #{communityHousesId}</if>
+                                                                                                            <if test="shouldPay != null "> and should_pay = #{shouldPay}</if>
+                                                                                                            <if test="realityPay != null "> and reality_pay = #{realityPay}</if>
+                                                                                                            <if test="payCostRange != null  and payCostRange != ''"> and pay_cost_range = #{payCostRange}</if>
+                                                                                                            <if test="area != null "> and area = #{area}</if>
+                                                                                                            <if test="price != null "> and price = #{price}</if>
+                                                                                                            <if test="payerName != null  and payerName != ''"> and payer_name like concat('%', #{payerName}, '%')</if>
+                                                                                                            <if test="payerPhoneNumber != null  and payerPhoneNumber != ''"> and payer_phone_number like concat('%', #{payerPhoneNumber}, '%')</if>
+                                                                                                            <if test="ownerName != null  and ownerName != ''"> and owner_name like concat('%', #{ownerName}, '%')</if>
+                                                                                                            <if test="ownerIdentificationNumber != null  and ownerIdentificationNumber != ''"> and owner_identification_number like concat('%', #{ownerIdentificationNumber}, '%')</if>
+                                                                                                            <if test="cashierName != null  and cashierName != ''"> and cashier_name like concat('%', #{cashierName}, '%')</if>
+                                                                                                            <if test="strategy != null  and strategy != ''"> and strategy = #{strategy}</if>
+                                                                                                            <if test="payWay != null  and payWay != ''"> and pay_way = #{payWay}</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </where>
+    </select>
+
+    <select id="selectBasePropertyManagementFeeIncomeById" parameterType="String" resultMap="BasePropertyManagementFeeIncomeResult">
+        <include refid="selectBasePropertyManagementFeeIncomeVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBasePropertyManagementFeeIncome" parameterType="BasePropertyManagementFeeIncome">
+        insert into base_property_management_fee_income
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null and communityId != ''">community_id,</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id,</if>
+                                                                <if test="communityHousesId != null">community_houses_id,</if>
+                                                                <if test="shouldPay != null">should_pay,</if>
+                                                                <if test="realityPay != null">reality_pay,</if>
+                                                                <if test="payCostRange != null">pay_cost_range,</if>
+                                                                <if test="area != null">area,</if>
+                                                                <if test="price != null">price,</if>
+                                                                <if test="payerName != null">payer_name,</if>
+                                                                <if test="payerPhoneNumber != null">payer_phone_number,</if>
+                                                                <if test="ownerName != null">owner_name,</if>
+                                                                <if test="ownerIdentificationNumber != null">owner_identification_number,</if>
+                                                                <if test="cashierName != null and cashierName != ''">cashier_name,</if>
+                                                                <if test="strategy != null">strategy,</if>
+                                                                <if test="payWay != null and payWay != ''">pay_way,</if>
+                                                                <if test="pics != null">pics,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null and communityId != ''">#{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">#{communityChildId},</if>
+                                                                <if test="communityHousesId != null">#{communityHousesId},</if>
+                                                                <if test="shouldPay != null">#{shouldPay},</if>
+                                                                <if test="realityPay != null">#{realityPay},</if>
+                                                                <if test="payCostRange != null">#{payCostRange},</if>
+                                                                <if test="area != null">#{area},</if>
+                                                                <if test="price != null">#{price},</if>
+                                                                <if test="payerName != null">#{payerName},</if>
+                                                                <if test="payerPhoneNumber != null">#{payerPhoneNumber},</if>
+                                                                <if test="ownerName != null">#{ownerName},</if>
+                                                                <if test="ownerIdentificationNumber != null">#{ownerIdentificationNumber},</if>
+                                                                <if test="cashierName != null and cashierName != ''">#{cashierName},</if>
+                                                                <if test="strategy != null">#{strategy},</if>
+                                                                <if test="payWay != null and payWay != ''">#{payWay},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBasePropertyManagementFeeIncome" parameterType="BasePropertyManagementFeeIncome">
+        update base_property_management_fee_income
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null and communityId != ''">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id = #{communityChildId},</if>
+                                                                <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+                                                                <if test="shouldPay != null">should_pay = #{shouldPay},</if>
+                                                                <if test="realityPay != null">reality_pay = #{realityPay},</if>
+                                                                <if test="payCostRange != null">pay_cost_range = #{payCostRange},</if>
+                                                                <if test="area != null">area = #{area},</if>
+                                                                <if test="price != null">price = #{price},</if>
+                                                                <if test="payerName != null">payer_name = #{payerName},</if>
+                                                                <if test="payerPhoneNumber != null">payer_phone_number = #{payerPhoneNumber},</if>
+                                                                <if test="ownerName != null">owner_name = #{ownerName},</if>
+                                                                <if test="ownerIdentificationNumber != null">owner_identification_number = #{ownerIdentificationNumber},</if>
+                                                                <if test="cashierName != null and cashierName != ''">cashier_name = #{cashierName},</if>
+                                                                <if test="strategy != null">strategy = #{strategy},</if>
+                                                                <if test="payWay != null and payWay != ''">pay_way = #{payWay},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePropertyManagementFeeIncomeById" parameterType="String">
+        delete from base_property_management_fee_income where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePropertyManagementFeeIncomeByIds" parameterType="String">
+        delete from base_property_management_fee_income where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePropertyManagementFeeIncomeByIds" parameterType="String">
+        update base_property_management_fee_income set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

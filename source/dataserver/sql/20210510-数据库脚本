@@ -1,0 +1,11 @@
+ALTER TABLE base_event_info 
+MODIFY COLUMN `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间' AFTER `update_by`;
+
+ALTER TABLE base_event_info 
+MODIFY COLUMN `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间' AFTER `create_by`;
+
+ALTER TABLE base_event_info 
+MODIFY COLUMN `remarks` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT  '备注';
+
+ALTER TABLE base_event_info 
+MODIFY COLUMN `file_id` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '附件id'

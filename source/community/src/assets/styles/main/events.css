@@ -1,0 +1,141 @@
+.mainContent {
+  padding-top: 10px;
+}
+.mainContent > div {
+  width: 450px;
+  height: 800px;
+  position: absolute;
+}
+.numberOf {
+  height: 34%;
+  margin-top: 1%;
+}
+.category {
+  height: 37%;
+  margin-top: 1%;
+}
+.abnormal {
+  height: 26%;
+  margin-top: 1%;
+}
+.vehicle {
+  height: 49%;
+  margin-top: 1%;
+}
+.eventRightBox {
+  height: 49%;
+  margin-top: 1%;
+}
+.trafficLeftBox {
+  left: 10px;
+  padding-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+.trafficRightBox {
+  right: 10px;
+  padding-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+.event-boxTitle {
+  color: #fff;
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  background: url("../../images/car/title.png") no-repeat;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  height: 25px;
+}
+.event-boxTitle span:first-child{
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 6%;
+}
+.event-boxTitle span:last-child {
+  color: #9aa9bf;
+  font-size: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 4%;
+}
+.events-content {
+  height: calc(100% - 25px);
+  box-sizing: border-box;
+  padding-top: 1%;
+}
+.topCenterBox {
+  margin-left: 650px;
+  margin-top: 10px;
+  position: fixed;
+  text-align: center;
+}
+.topCenterBox span {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-right: 5px;
+  padding-top: 25px;
+}
+.topCenterBox > span div:first-child {
+  font-size: 28px;
+  color: #fff;
+}
+
+.vehicleVideoAndImage_image_last {
+  width: 49%;
+  height: 90%;
+  margin-left: 2%;
+  margin-top: 10px;
+  border: 1px solid #00d9ff;
+}
+.vehicleImage {
+  width: 90%;
+  height: 55%;
+  margin: 5%;
+  margin-bottom: 0%;
+  border: 1px solid black;
+}
+.vehiclePlate {
+  color: #f7b500;
+  font-size: 14px;
+  margin-left: 5%;
+}
+.vehicleDetails {
+  color: #ffffff;
+  font-size: 12px;
+  margin-left: 5%;
+}
+.outer-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.inner-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: -17px;
+  bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.text {
+  color: #dbeff5;
+  background: linear-gradient(
+    180deg,
+    #47a7fc 0.9765625%,
+    #add8fd 48.7548828125%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.topxianshi {
+  position: absolute;
+  width: 800px;
+  top: 1%;
+  left: -192%;
+}

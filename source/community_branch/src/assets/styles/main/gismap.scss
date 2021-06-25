@@ -1,0 +1,347 @@
+#mapBox {
+  height: 100%;
+  width: 100%;
+
+  #map {
+    width: 100%;
+    height: 100%;
+    // background-color: #011a3e;
+    // background-color: #011a3e;
+    // -webkit-filter: hue-rotate(30deg);
+    background:url("../../../assets/images/home/bg.png");
+    // background: -webkit-linear-gradient(top,hsla(0,0%,59%,.15),hsla(0,0%,59%,0),blueviolet) no-repeat;;
+    // background: -webkit-gradient(linear, 50% 50%, 50% 50%,from(#001538), to(#092463));
+    // background: linear-gradient(0deg, #030000 0%, #126ED6 100%);
+    // .ol-viewport,.ol-unselectable .ol-layers,.ol-layer canvas{
+    //   -webkit-filter:  contrast(130%);
+      
+    // }
+    .ol-layer-gaode{
+      -webkit-filter:  contrast(200%) saturate(0%);
+    }
+    .ol-areaHigh{
+      -webkit-filter:  contrast(100%) blur(8px);                  
+    }
+    .ol-areaDark{
+      -webkit-filter:  contrast(300%);
+    }
+  }
+  #map:after{
+    background:url("../../../assets/images/home/bgg.png") no-repeat center center;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    // background: url(../images/mapcover.png) ;
+    pointer-events: none;
+  }
+  .ol-custom-overviewmap,
+  .ol-custom-overviewmap.ol-uncollapsible {
+    bottom: 0;
+    left: auto;
+    right: 0;
+    top: auto;
+  }
+  .ol-custom-overviewmap .ol-overviewmap-map {
+    border: none;
+    width: 200px;
+  }
+  .ol-custom-overviewmap .ol-overviewmap-box {
+    border: 2px dashed blueviolet;
+  }
+  .ol-custom-overviewmap:not(.ol-collapsed) button {
+    bottom: 1px;
+    left: auto;
+    right: 1px;
+    top: auto;
+  }
+  .toolbar {
+    position: absolute;
+    bottom: 5%;
+    left: 35%;
+    background: url("../../../assets/images/IntelligentSearch/maptoorbal.png")
+      no-repeat center center / 100% 100%;
+    width: 30%;
+    height: 5%;
+  }
+  .toolbar_firstdiv {
+    float: left;
+    text-align: center;
+    width: 50%;
+    margin-top: 5px;
+  }
+  .toolbar_lastdiv {
+    float: left;
+    text-align: center;
+    width: 50%;
+    margin-top: 8px;
+  }
+  .toolbar_lastdiv div:hover {
+    cursor: pointer;
+  }
+  // 临时为了演示调整
+  .toolbar_lastdivTemp{
+    width:100%;
+    padding-left: 30%;
+    padding-top: 10px;
+    text-align: center;
+  }
+  .deviceIconName{
+    display: inline-block;
+    cursor: pointer;
+    color: #00ffe0;
+    margin-left: 1%;
+    font-size: 14px;
+  }
+  .deviceIcon {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    color: #00ffe0;
+    border: 1px solid #00ffe0;
+    border-radius: 100%;
+    margin-left: 30%;
+    background-color: transparent !important;
+    // margin-right: 30px;
+    // margin-left: 50%;
+    margin-top: 1% !important;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .deviceIcon span{
+    font-style: normal;
+  }
+  .gridmemberIcon{
+    cursor: pointer;
+    display: inline-block;
+    font-size: 24px;
+    color: #00ffe0;
+    border: 1px solid #00ffe0;
+    border-radius: 100%;
+    margin-left: 10%;
+    background-color: transparent !important;
+    // margin-right: 30px;
+    // margin-left: 50%;
+    margin-top: 1.5% !important;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .alarmIcon {
+    float: left;
+    font-size: 18px;
+    color: #ff001f;
+    border: 1px solid #ff001f;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .doorIcon {
+    float: left;
+    font-size: 16px;
+    color: #00d9ff;
+    border: 1px solid #00d9ff;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .faceIcon {
+    float: left;
+    font-size: 18px;
+    color: #f7b500;
+    border: 1px solid #f7b500;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .carIcon {
+    float: left;
+    font-size: 20px;
+    color: #fa6400;
+    border: 1px solid #fa6400;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .select_layer button {
+    width: 30px;
+
+    margin-left: 10px;
+  }
+  .el-button {
+    // margin-top: 2px !important;
+    height: 30px !important;
+    width: 30px !important;
+    line-height: 0px !important;
+    padding: 6px 6px !important;
+    font-size: 14px !important;
+    // background: linear-gradient(180deg, #3b4aff 0%, #00d9ff 100%);
+    // border-color: #32376d;
+    border-radius: 50%;
+    // color: #fff;
+  }
+  .toolbar_button_clear {
+    margin-left: 10px !important;
+    width: 30px;
+
+  }
+  .tooltip {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+  .tooltip-measure {
+    opacity: 1;
+    font-weight: bold;
+  }
+  .tooltip-static {
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+  }
+  .tooltip-measure::before,
+  .tooltip-static::before {
+    border-top: 6px solid #00000080;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+  }
+  .tooltip-static::before {
+    border-top-color: #ffcc33;
+  }
+}
+.alarmEvent{
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  right: 28%;
+  top: 10%;
+  cursor:pointer;
+}
+.alarmEvent span{
+  font-family: Impact;
+  color: #E02020;
+}
+.alarmEvent span:first-child{
+  font-size: 36px;
+  margin-left: 40%;
+  height: 44px;
+  
+}
+.alarmEvent div{
+  width: 70%;
+  border-top: 2px solid red;
+  margin-left: 20%;
+}
+.alarmEvent div span:first-child{
+  font-size: 24px !important;
+  margin-left: 0% !important;
+}
+.alarmEvent div span:last-child{
+  color:#E02020;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.alarmEventNew
+{
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  right: 28%;
+  top: 10%;
+  cursor:pointer;
+  // width: 200px;
+}
+
+.alarmNumberTitle
+{
+  width: 100%;
+  font-size: 17px;
+  font-family: YouSheBiaoTiHei;
+  font-weight: 400;
+  color: #D0E3E6;
+  background: linear-gradient(180deg, #ACD0DE 0.146484375%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.alarmNumberDiv
+{
+  text-align: center;
+  width: 100%;
+  height: 48px;
+  margin-top: 14px;
+  // margin:0 auto;
+}
+
+.alarmNumber
+{
+  
+  text-align: center;
+  float: left;
+  width: 32px;
+  height: 48px;
+}
+.alarmNumberAloneBG
+{
+  background: url("../../../assets/images/events/数字bg.png");
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  width: 32px;
+  height: 48px;
+  line-height: 48px;
+}
+
+.alarmNumberAlone
+{
+  
+  font-size: 38px;
+  font-family: DINCondensed-Bold;
+  font-weight: bold;
+  color: #D0E3E6;
+  text-shadow: 0px 9px 9px rgba(28, 158, 159, 0.55);
+  background: linear-gradient(180deg, #93A9B9 0%, #FECF9E 0%, #FFFEFB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+.el-dialog{
+  border: 1px solid #005982;
+  background-color:rgba(34, 39, 81, 1);
+  margin-top: 5%;
+}
+.el-dialog:not(.is-fullscreen) {
+  margin-top: 5% !important;
+}
+.el-dialog__header {
+  background-color:rgba(34, 39, 81, 1);
+}
+.el-dialog__title{
+  color: #07caf8;
+}
+.el-dialog__header{
+  border-bottom: 1px solid #005982;
+}

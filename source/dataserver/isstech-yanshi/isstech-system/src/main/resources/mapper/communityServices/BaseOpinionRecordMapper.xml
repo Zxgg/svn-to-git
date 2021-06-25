@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseOpinionRecordMapper">
+
+    <resultMap type="BaseOpinionRecord" id="BaseOpinionRecordResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="opinionPersonName" column="opinion_person_name"/>
+        <result property="opinionContent" column="opinion_content"/>
+        <result property="deal" column="deal"/>
+        <result property="dealPersonName" column="deal_person_name"/>
+    </resultMap>
+
+    <sql id="selectBaseOpinionRecordVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, opinion_person_name, opinion_content, deal, deal_person_name from base_opinion_record
+    </sql>
+
+    <select id="selectBaseOpinionRecordList" parameterType="BaseOpinionRecord" resultMap="BaseOpinionRecordResult">
+        <include refid="selectBaseOpinionRecordVo"/>
+        <where>
+            del_flag = '0'
+            <if test="opinionPersonName != null  and opinionPersonName != ''">
+                and opinion_person_name like concat('%', #{opinionPersonName}, '%')
+            </if>
+            <if test="opinionContent != null  and opinionContent != ''">
+                and opinion_content = #{opinionContent}
+            </if>
+            <if test="deal != null  and deal != ''">
+                and deal = #{deal}
+            </if>
+            <if test="dealPersonName != null  and dealPersonName != ''">
+                and deal_person_name like concat('%', #{dealPersonName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseOpinionRecordById" parameterType="String" resultMap="BaseOpinionRecordResult">
+        <include refid="selectBaseOpinionRecordVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseOpinionRecord" parameterType="BaseOpinionRecord">
+        insert into base_opinion_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="opinionPersonName != null">opinion_person_name,
+            </if>
+            <if test="opinionContent != null">opinion_content,
+            </if>
+            <if test="deal != null and deal != ''">deal,
+            </if>
+            <if test="dealPersonName != null">deal_person_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="opinionPersonName != null">#{opinionPersonName},
+            </if>
+            <if test="opinionContent != null">#{opinionContent},
+            </if>
+            <if test="deal != null and deal != ''">#{deal},
+            </if>
+            <if test="dealPersonName != null">#{dealPersonName},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseOpinionRecord" parameterType="BaseOpinionRecord">
+        update base_opinion_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="opinionPersonName != null">opinion_person_name =
+                #{opinionPersonName},
+            </if>
+            <if test="opinionContent != null">opinion_content =
+                #{opinionContent},
+            </if>
+            <if test="deal != null and deal != ''">deal =
+                #{deal},
+            </if>
+            <if test="dealPersonName != null">deal_person_name =
+                #{dealPersonName},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseOpinionRecordById" parameterType="String">
+        delete from base_opinion_record where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseOpinionRecordByIds" parameterType="String">
+        delete from base_opinion_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseOpinionRecordByIds" parameterType="String">
+        update base_opinion_record set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

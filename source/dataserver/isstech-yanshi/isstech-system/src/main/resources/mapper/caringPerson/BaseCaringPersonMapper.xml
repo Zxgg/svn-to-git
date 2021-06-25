@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCaringPersonMapper">
+
+    <resultMap type="BaseCaringPerson" id="BaseCaringPersonResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="personId" column="person_id"/>
+        <result property="type" column="type"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <resultMap type="CaringPerson" id="CaringPersonResult">
+        <result property="id" column="id"/>
+        <result property="personId" column="person_id"/>
+        <result property="personName" column="person_name"/>
+        <result property="sex" column="sex"/>
+        <result property="idType" column="id_type"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="identificationNumber" column="identification_number"/>
+        <result property="type" column="type"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityName" column="community_name"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityChildName" column="community_child_name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="pics" column="pics"/>
+        <result property="typeName" column="type_name"/>
+    </resultMap>
+
+
+
+    <sql id="selectBaseCaringPersonVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, person_id, type, community_id, community_child_id from base_caring_person
+    </sql>
+
+    <sql id="addCaringPerson">
+        SELECT bcp.id, bcp.person_id, bcp.type,sdd.dict_label type_name, bcp.community_id, bcp.community_child_id, bcp.create_by, bcp.create_time, bcp.update_by, bcp.update_time,
+	    bcp.remark, bcp.del_flag, bpi.name person_name, bpi.sex, YEAR (now()) - YEAR (substring(bpi.identification_number, 7, 8)) as age, bpi.id_type, bpi.address_detail, bpi.phone_number, bpi.identification_number , bc.name community_name ,
+	    bcc.name community_child_name,bpi.img_url,bpi.pics  FROM base_caring_person bcp, base_personnel_information bpi , base_community bc , base_community_child bcc, sys_dict_data sdd
+    </sql>
+
+    <select id="selectBaseCaringAddPersonList" parameterType="CaringPerson" resultMap="CaringPersonResult">
+        <include refid="addCaringPerson"/>
+        <where>
+            bpi.id = bcp.person_id
+            and bcp.community_id = bc.id
+            and bcp.community_child_id = bcc.id
+            and bcp.del_flag = '0'
+            and bpi.del_flag = '0'
+            and bc.del_flag = '0'
+            and bcc.del_flag = '0'
+            and sdd.dict_type='base_type_of_caring'  and sdd.dict_value = bcp.type
+            <if test="personId != null  and personId != ''">
+                and bcp.person_id = #{personId}
+            </if>
+            <if test="personName != null  and personName != ''">
+                and bpi.name like concat('%', #{personName}, '%')
+            </if>
+            <if test="type != null  and type != ''">
+                and bcp.type = #{type}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bcp.community_id = #{communityId}
+            </if>
+            <if test="communityName != null  and communityName != ''">
+                and bc.name like concat('%', #{communityName}, '%')
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bcp.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityChildName != null  and communityChildName != ''">
+                and bcc.name like concat('%', #{communityChildName}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bcp.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bcp.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseCaringPersonList" parameterType="BaseCaringPerson" resultMap="BaseCaringPersonResult">
+        <include refid="selectBaseCaringPersonVo"/>
+        <where>
+            del_flag = '0'
+            <if test="personId != null  and personId != ''">
+                and person_id = #{personId}
+            </if>
+            <if test="type != null  and type != ''">
+                and type = #{type}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseCaringPersonById" parameterType="String" resultMap="BaseCaringPersonResult">
+        <include refid="selectBaseCaringPersonVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseCaringPerson" parameterType="BaseCaringPerson">
+        insert into base_caring_person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="personId != null and personId != ''">person_id,
+            </if>
+            <if test="type != null">type,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="personId != null and personId != ''">#{personId},
+            </if>
+            <if test="type != null">#{type},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCaringPerson" parameterType="BaseCaringPerson">
+        update base_caring_person
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="personId != null and personId != ''">person_id =
+                #{personId},
+            </if>
+            <if test="type != null">type =
+                #{type},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCaringPersonById" parameterType="String">
+        delete from base_caring_person where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCaringPersonByIds" parameterType="String">
+        delete from base_caring_person where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCaringPersonByIds" parameterType="String">
+        update base_caring_person set del_flag = '1'
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+    <select id="getByPersonId" parameterType="String" resultMap="BaseCaringPersonResult">
+        <include refid="selectBaseCaringPersonVo"/>
+        where person_id = #{personId}
+    </select>
+</mapper>

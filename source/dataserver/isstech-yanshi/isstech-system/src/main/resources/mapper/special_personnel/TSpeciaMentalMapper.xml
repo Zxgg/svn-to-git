@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpeciaMentalMapper">
+
+    <resultMap type="TSpeciaMental" id="TSpeciaMentalResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="economicSituation" column="economic_situation"/>
+        <result property="isEnjoySubsidy" column="is_enjoy_subsidy"/>
+        <result property="custodyIdCard" column="custody_id_card"/>
+        <result property="custodyName" column="custody_name"/>
+        <result property="custodyPhone" column="custody_phone"/>
+        <result property="firstIllnessDate" column="first_illness_date"/>
+        <result property="diagnosisType" column="diagnosis_type"/>
+        <result property="isHaveTrouble" column="is_have_trouble"/>
+        <result property="troubleCount" column="trouble_count"/>
+        <result property="upTroubleDate" column="up_trouble_date"/>
+        <result property="dangerLevel" column="danger_level"/>
+        <result property="treatmentSituation" column="treatment_situation"/>
+        <result property="hospitalName" column="hospital_name"/>
+        <result property="hospitalizationReason" column="hospitalization_reason"/>
+        <result property="recoveryName" column="recovery_name"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="helpSituation" column="help_situation"/>
+        <result property="controlSituation" column="control_situation"/>
+        <result property="isAsylum" column="is_asylum"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectTSpeciaMentalVo">
+        select id, create_by, dept_id, create_time, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, economic_situation, is_enjoy_subsidy, custody_id_card, custody_name, custody_phone, first_illness_date, diagnosis_type, is_have_trouble, trouble_count, up_trouble_date, danger_level, treatment_situation, hospital_name, hospitalization_reason, recovery_name, admin_name, help_situation, control_situation, is_asylum, community_id, community_child_id from t_specia_mental
+    </sql>
+
+    <select id="selectTSpeciaMentalList" parameterType="TSpeciaMental" resultMap="TSpeciaMentalResult">
+        <include refid="selectTSpeciaMentalVo"/>
+        <where>
+            del_flag = '0'
+            <if test="createBy != null  and createBy != ''">and create_by = #{createBy}</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by = #{updateBy}</if>
+            <if test="personnelId != null  and personnelId != ''">and personnel_id = #{personnelId}</if>
+            <if test="sourceType != null  and sourceType != ''">and source_type = #{sourceType}</if>
+            <if test="enable != null  and enable != ''">and enable = #{enable}</if>
+            <if test="remark != null  and remark != ''">and remark = #{remark}</if>
+            <if test="economicSituation != null  and economicSituation != ''">and economic_situation =
+                #{economicSituation}
+            </if>
+            <if test="isEnjoySubsidy != null  and isEnjoySubsidy != ''">and is_enjoy_subsidy = #{isEnjoySubsidy}</if>
+            <if test="custodyIdCard != null  and custodyIdCard != ''">and custody_id_card = #{custodyIdCard}</if>
+            <if test="custodyName != null  and custodyName != ''">and custody_name like concat('%', #{custodyName},
+                '%')
+            </if>
+            <if test="custodyPhone != null  and custodyPhone != ''">and custody_phone = #{custodyPhone}</if>
+            <if test="firstIllnessDate != null ">and first_illness_date = #{firstIllnessDate}</if>
+            <if test="diagnosisType != null  and diagnosisType != ''">and diagnosis_type = #{diagnosisType}</if>
+            <if test="isHaveTrouble != null  and isHaveTrouble != ''">and is_have_trouble = #{isHaveTrouble}</if>
+            <if test="troubleCount != null  and troubleCount != ''">and trouble_count = #{troubleCount}</if>
+            <if test="upTroubleDate != null ">and up_trouble_date = #{upTroubleDate}</if>
+            <if test="dangerLevel != null  and dangerLevel != ''">and danger_level = #{dangerLevel}</if>
+            <if test="treatmentSituation != null  and treatmentSituation != ''">and treatment_situation =
+                #{treatmentSituation}
+            </if>
+            <if test="hospitalName != null  and hospitalName != ''">and hospital_name like concat('%', #{hospitalName},
+                '%')
+            </if>
+            <if test="hospitalizationReason != null  and hospitalizationReason != ''">and hospitalization_reason like
+                concat('%', #{hospitalizationReason}, '%')
+            </if>
+            <if test="recoveryName != null  and recoveryName != ''">and recovery_name like concat('%', #{recoveryName},
+                '%')
+            </if>
+            <if test="adminName != null  and adminName != ''">and admin_name like concat('%', #{adminName}, '%')</if>
+            <if test="helpSituation != null  and helpSituation != ''">and help_situation like concat('%',
+                #{helpSituation}, '%')
+            </if>
+            <if test="controlSituation != null  and controlSituation != ''">and control_situation =
+                #{controlSituation}
+            </if>
+            <if test="isAsylum != null  and isAsylum != ''">and is_asylum = #{isAsylum}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpeciaMentalById" parameterType="String" resultMap="TSpeciaMentalResult">
+        <include refid="selectTSpeciaMentalVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTSpeciaMental" parameterType="TSpeciaMental">
+        insert into t_specia_mental
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateDeptId != null">update_dept_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="enable != null and enable != ''">enable,</if>
+            <if test="remark != null">remark,</if>
+            <if test="economicSituation != null">economic_situation,</if>
+            <if test="isEnjoySubsidy != null and isEnjoySubsidy != ''">is_enjoy_subsidy,</if>
+            <if test="custodyIdCard != null">custody_id_card,</if>
+            <if test="custodyName != null and custodyName != ''">custody_name,</if>
+            <if test="custodyPhone != null and custodyPhone != ''">custody_phone,</if>
+            <if test="firstIllnessDate != null">first_illness_date,</if>
+            <if test="diagnosisType != null and diagnosisType != ''">diagnosis_type,</if>
+            <if test="isHaveTrouble != null and isHaveTrouble != ''">is_have_trouble,</if>
+            <if test="troubleCount != null">trouble_count,</if>
+            <if test="upTroubleDate != null">up_trouble_date,</if>
+            <if test="dangerLevel != null and dangerLevel != ''">danger_level,</if>
+            <if test="treatmentSituation != null and treatmentSituation != ''">treatment_situation,</if>
+            <if test="hospitalName != null">hospital_name,</if>
+            <if test="hospitalizationReason != null">hospitalization_reason,</if>
+            <if test="recoveryName != null">recovery_name,</if>
+            <if test="adminName != null">admin_name,</if>
+            <if test="helpSituation != null">help_situation,</if>
+            <if test="controlSituation != null">control_situation,</if>
+            <if test="isAsylum != null">is_asylum,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateDeptId != null">#{updateDeptId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="enable != null and enable != ''">#{enable},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="economicSituation != null">#{economicSituation},</if>
+            <if test="isEnjoySubsidy != null and isEnjoySubsidy != ''">#{isEnjoySubsidy},</if>
+            <if test="custodyIdCard != null">#{custodyIdCard},</if>
+            <if test="custodyName != null and custodyName != ''">#{custodyName},</if>
+            <if test="custodyPhone != null and custodyPhone != ''">#{custodyPhone},</if>
+            <if test="firstIllnessDate != null">#{firstIllnessDate},</if>
+            <if test="diagnosisType != null and diagnosisType != ''">#{diagnosisType},</if>
+            <if test="isHaveTrouble != null and isHaveTrouble != ''">#{isHaveTrouble},</if>
+            <if test="troubleCount != null">#{troubleCount},</if>
+            <if test="upTroubleDate != null">#{upTroubleDate},</if>
+            <if test="dangerLevel != null and dangerLevel != ''">#{dangerLevel},</if>
+            <if test="treatmentSituation != null and treatmentSituation != ''">#{treatmentSituation},</if>
+            <if test="hospitalName != null">#{hospitalName},</if>
+            <if test="hospitalizationReason != null">#{hospitalizationReason},</if>
+            <if test="recoveryName != null">#{recoveryName},</if>
+            <if test="adminName != null">#{adminName},</if>
+            <if test="helpSituation != null">#{helpSituation},</if>
+            <if test="controlSituation != null">#{controlSituation},</if>
+            <if test="isAsylum != null">#{isAsylum},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpeciaMental" parameterType="TSpeciaMental">
+        update t_specia_mental
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateDeptId != null">update_dept_id = #{updateDeptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id = #{personnelId},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="economicSituation != null">economic_situation = #{economicSituation},</if>
+            <if test="isEnjoySubsidy != null and isEnjoySubsidy != ''">is_enjoy_subsidy = #{isEnjoySubsidy},</if>
+            <if test="custodyIdCard != null">custody_id_card = #{custodyIdCard},</if>
+            <if test="custodyName != null and custodyName != ''">custody_name = #{custodyName},</if>
+            <if test="custodyPhone != null and custodyPhone != ''">custody_phone = #{custodyPhone},</if>
+            <if test="firstIllnessDate != null">first_illness_date = #{firstIllnessDate},</if>
+            <if test="diagnosisType != null and diagnosisType != ''">diagnosis_type = #{diagnosisType},</if>
+            <if test="isHaveTrouble != null and isHaveTrouble != ''">is_have_trouble = #{isHaveTrouble},</if>
+            <if test="troubleCount != null">trouble_count = #{troubleCount},</if>
+            <if test="upTroubleDate != null">up_trouble_date = #{upTroubleDate},</if>
+            <if test="dangerLevel != null and dangerLevel != ''">danger_level = #{dangerLevel},</if>
+            <if test="treatmentSituation != null and treatmentSituation != ''">treatment_situation =
+                #{treatmentSituation},
+            </if>
+            <if test="hospitalName != null">hospital_name = #{hospitalName},</if>
+            <if test="hospitalizationReason != null">hospitalization_reason = #{hospitalizationReason},</if>
+            <if test="recoveryName != null">recovery_name = #{recoveryName},</if>
+            <if test="adminName != null">admin_name = #{adminName},</if>
+            <if test="helpSituation != null">help_situation = #{helpSituation},</if>
+            <if test="controlSituation != null">control_situation = #{controlSituation},</if>
+            <if test="isAsylum != null">is_asylum = #{isAsylum},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpeciaMentalById" parameterType="String">
+        delete from t_specia_mental where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpeciaMentalByIds" parameterType="String">
+        delete from t_specia_mental where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTSpeciaMentalByIds" parameterType="String">
+        update t_specia_mental set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateTSpeciaMentalByPersonIds" parameterType="String">
+        update t_specia_mental set del_flag = '1'  where personnel_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

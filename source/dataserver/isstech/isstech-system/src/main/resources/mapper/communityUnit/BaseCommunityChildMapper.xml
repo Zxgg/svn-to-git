@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityChildMapper">
+
+    <resultMap type="BaseCommunityChild" id="BaseCommunityChildResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="communityId" column="community_id"/>
+        <result property="type" column="type"/>
+        <result property="buildingNum" column="building_num"/>
+        <result property="houseNum" column="house_num"/>
+        <result property="detailedAddress" column="detailed_address"/>
+        <result property="code" column="code"/>
+        <result property="registeredTime" column="registered_time"/>
+        <result property="buildTime" column="build_time"/>
+        <result property="buildEndTime" column="build_end_time"/>
+        <result property="buildUnit" column="build_unit"/>
+        <result property="constructionUnit" column="construction_unit"/>
+        <result property="supervisionUnit" column="supervision_unit"/>
+    </resultMap>
+
+    <sql id="selectBaseCommunityChildVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, name, community_id, type, building_num, house_num, detailed_address, code, registered_time, build_time, build_end_time, build_unit, construction_unit, supervision_unit,(select d.dept_ip from base_dept_community_child d where d.community_child_id = id) as deptId from base_community_child
+    </sql>
+
+    <select id="selectBaseCommunityChildList" parameterType="BaseCommunityChild" resultMap="BaseCommunityChildResult">
+        <include refid="selectBaseCommunityChildVo"/>
+        <where>
+            del_flag = '0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="type != null  and type != ''">
+                and type = #{type}
+            </if>
+            <if test="buildingNum != null ">
+                and building_num &gt;= #{buildingNum}
+            </if>
+            <if test="houseNum != null ">
+                and house_num &gt;= #{houseNum}
+            </if>
+            <if test="detailedAddress != null  and detailedAddress != ''">
+                and detailed_address like concat('%', #{detailedAddress}, '%')
+            </if>
+            <if test="code != null  and code != ''">
+                and code like concat('%', #{code}, '%')
+            </if>
+            <if test="buildEndTime != null ">
+                and build_end_time &gt;= #{buildEndTime}
+            </if>
+            <if test="buildUnit != null  and buildUnit != ''">
+                and build_unit like concat('%', #{buildUnit}, '%')
+            </if>
+            <if test="constructionUnit != null  and constructionUnit != ''">
+                and construction_unit like concat('%', #{constructionUnit}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                and community_id in
+                <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                    #{dataAccess.communityId}
+                </foreach>
+                and id in
+                <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                    #{dataAccess.communityChildId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseCommunityChildById" parameterType="String" resultMap="BaseCommunityChildResult">
+        <include refid="selectBaseCommunityChildVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseCommunityChild" parameterType="BaseCommunityChild">
+        insert into base_community_child
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="type != null and type != ''">type,
+            </if>
+            <if test="buildingNum != null">building_num,
+            </if>
+            <if test="houseNum != null">house_num,
+            </if>
+            <if test="detailedAddress != null">detailed_address,
+            </if>
+            <if test="code != null">code,
+            </if>
+            <if test="registeredTime != null">registered_time,
+            </if>
+            <if test="buildTime != null">build_time,
+            </if>
+            <if test="buildEndTime != null">build_end_time,
+            </if>
+            <if test="buildUnit != null">build_unit,
+            </if>
+            <if test="constructionUnit != null">construction_unit,
+            </if>
+            <if test="supervisionUnit != null">supervision_unit,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="type != null and type != ''">#{type},
+            </if>
+            <if test="buildingNum != null">#{buildingNum},
+            </if>
+            <if test="houseNum != null">#{houseNum},
+            </if>
+            <if test="detailedAddress != null">#{detailedAddress},
+            </if>
+            <if test="code != null">#{code},
+            </if>
+            <if test="registeredTime != null">#{registeredTime},
+            </if>
+            <if test="buildTime != null">#{buildTime},
+            </if>
+            <if test="buildEndTime != null">#{buildEndTime},
+            </if>
+            <if test="buildUnit != null">#{buildUnit},
+            </if>
+            <if test="constructionUnit != null">#{constructionUnit},
+            </if>
+            <if test="supervisionUnit != null">#{supervisionUnit},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCommunityChild" parameterType="BaseCommunityChild">
+        update base_community_child
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="type != null and type != ''">type =
+                #{type},
+            </if>
+            <if test="buildingNum != null">building_num =
+                #{buildingNum},
+            </if>
+            <if test="houseNum != null">house_num =
+                #{houseNum},
+            </if>
+            <if test="detailedAddress != null">detailed_address =
+                #{detailedAddress},
+            </if>
+            <if test="code != null">code =
+                #{code},
+            </if>
+            <if test="registeredTime != null">registered_time =
+                #{registeredTime},
+            </if>
+            <if test="buildTime != null">build_time =
+                #{buildTime},
+            </if>
+            <if test="buildEndTime != null">build_end_time =
+                #{buildEndTime},
+            </if>
+            <if test="buildUnit != null">build_unit =
+                #{buildUnit},
+            </if>
+            <if test="constructionUnit != null">construction_unit =
+                #{constructionUnit},
+            </if>
+            <if test="supervisionUnit != null">supervision_unit =
+                #{supervisionUnit},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityChildById" parameterType="String">
+        delete from base_community_child where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityChildByIds" parameterType="String">
+        delete from base_community_child where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityChildByIds" parameterType="String">
+        update base_community_child set del_flag = '1'
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <insert id="insertBaseDeptCommunityChilds">
+        insert into base_dept_community_child
+        (dept_ip,community_id,community_child_id)
+        VALUES
+        (#{deptId},#{communityId},#{id})
+    </insert>
+
+    <insert id="insertBaseDeptCommunityChild" parameterType="BaseDeptCommunityChild">
+        insert into base_dept_community_child
+        (dept_ip,community_id,community_child_id)
+        VALUES
+        (    #{deptIp},    #{communityId},    #{communityChildId})
+    </insert>
+
+    <delete id="deleteBaseDeptCommunityChildById" parameterType="String">
+        delete from base_dept_community_child where community_child_id = #{id}
+    </delete>
+
+    <delete id="deleteBaseDeptCommunityChildByIds" parameterType="String">
+        delete from base_dept_community_child where community_child_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

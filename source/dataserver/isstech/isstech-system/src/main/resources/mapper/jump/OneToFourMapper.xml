@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.OneToFourMapper">
+
+    <resultMap type="OneToFour" id="OneToFourResult">
+        <result property="rowguid" column="rowguid"/>
+        <result property="lasthandlestep" column="lasthandlestep"/>
+        <result property="rqstcontent" column="rqstcontent"/>
+        <result property="rqstsource" column="rqstsource"/>
+        <result property="reportFile" column="report_file"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="rqsttitle" column="rqsttitle"/>
+        <result property="accordType" column="accord_type"/>
+        <result property="rqstname" column="rqstname"/>
+        <result property="registertime" column="registertime"/>
+        <result property="rqstaddress" column="rqstaddress"/>
+        <result property="handleFile" column="handle_file"/>
+        <result property="rqstnumber" column="rqstnumber"/>
+        <result property="urgentlevel" column="urgentlevel"/>
+        <result property="checkFile" column="check_file"/>
+        <result property="scsmart" column="scsmart"/>
+    </resultMap>
+
+    <sql id="selectOneToFourVo">
+        select rowguid, lasthandlestep, rqstcontent, rqstsource, report_file, del_flag, remark, rqsttitle, accord_type,
+        rqstname, registertime, rqstaddress, handle_file, rqstnumber, urgentlevel, check_file, scsmart from one_to_four
+    </sql>
+
+
+    <select id="selectOneToFourList" parameterType="OneToFour" resultMap="OneToFourResult">
+        <include refid="selectOneToFourVo"/>
+        <where>
+            del_flag = '0'
+            <if test="lasthandlestep != null  and lasthandlestep != ''">
+                and lasthandlestep = #{lasthandlestep}
+            </if>
+            <if test="rqstcontent != null  and rqstcontent != ''">
+                and rqstcontent = #{rqstcontent}
+            </if>
+            <if test="rqstsource != null  and rqstsource != ''">
+                and rqstsource = #{rqstsource}
+            </if>
+            <if test="reportFile != null  and reportFile != ''">
+                and report_file = #{reportFile}
+            </if>
+            <if test="remark != null  and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="rqsttitle != null  and rqsttitle != ''">
+                and rqsttitle = #{rqsttitle}
+            </if>
+            <if test="accordType != null  and accordType != ''">
+                and accord_type = #{accordType}
+            </if>
+            <if test="rqstname != null  and rqstname != ''">
+                and rqstname = #{rqstname}
+            </if>
+            <if test="registertime != null  and registertime != ''">
+                and registertime = #{registertime}
+            </if>
+            <if test="rqstaddress != null  and rqstaddress != ''">
+                and rqstaddress = #{rqstaddress}
+            </if>
+            <if test="handleFile != null  and handleFile != ''">
+                and handle_file = #{handleFile}
+            </if>
+            <if test="rqstnumber != null  and rqstnumber != ''">
+                and rqstnumber = #{rqstnumber}
+            </if>
+            <if test="urgentlevel != null  and urgentlevel != ''">
+                and urgentlevel = #{urgentlevel}
+            </if>
+            <if test="checkFile != null  and checkFile != ''">
+                and check_file = #{checkFile}
+            </if>
+            <if test="scsmart != null  and scsmart != ''">
+                and scsmart = #{scsmart}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOneToFourById" parameterType="String" resultMap="OneToFourResult">
+        <include refid="selectOneToFourVo"/>
+        where rowguid = #{rowguid}
+    </select>
+
+    <insert id="insertOneToFour" parameterType="OneToFour">
+        insert into one_to_four
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rowguid != null">rowguid,
+            </if>
+            <if test="lasthandlestep != null  and lasthandlestep != ''"> lasthandlestep,
+            </if>
+            <if test="rqstcontent != null  and rqstcontent != ''"> rqstcontent,
+            </if>
+            <if test="rqstsource != null  and rqstsource != ''"> rqstsource,
+            </if>
+            <if test="reportFile != null  and reportFile != ''"> report_file,
+            </if>
+            <if test="remark != null  and remark != ''"> remark,
+            </if>
+            <if test="rqsttitle != null  and rqsttitle != ''"> rqsttitle,
+            </if>
+            <if test="accordType != null  and accordType != ''"> accord_type,
+            </if>
+            <if test="rqstname != null  and rqstname != ''"> rqstname,
+            </if>
+            <if test="registertime != null  and registertime != ''"> registertime,
+            </if>
+            <if test="rqstaddress != null  and rqstaddress != ''"> rqstaddress,
+            </if>
+            <if test="handleFile != null  and handleFile != ''"> handle_file,
+            </if>
+            <if test="rqstnumber != null  and rqstnumber != ''"> rqstnumber,
+            </if>
+            <if test="urgentlevel != null  and urgentlevel != ''"> urgentlevel,
+            </if>
+            <if test="checkFile != null  and checkFile != ''"> check_file,
+            </if>
+            <if test="scsmart != null  and scsmart != ''"> scsmart,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rowguid != null">#{rowguid},
+            </if>
+            <if test="lasthandlestep != null  and lasthandlestep != ''"> #{lasthandlestep},
+            </if>
+            <if test="rqstcontent != null  and rqstcontent != ''"> #{rqstcontent},
+            </if>
+            <if test="rqstsource != null  and rqstsource != ''"> #{rqstsource},
+            </if>
+            <if test="reportFile != null  and reportFile != ''"> #{reportFile},
+            </if>
+            <if test="remark != null  and remark != ''"> #{remark},
+            </if>
+            <if test="rqsttitle != null  and rqsttitle != ''"> #{rqsttitle},
+            </if>
+            <if test="accordType != null  and accordType != ''"> #{accordType},
+            </if>
+            <if test="rqstname != null  and rqstname != ''"> #{rqstname},
+            </if>
+            <if test="registertime != null  and registertime != ''"> #{registertime},
+            </if>
+            <if test="rqstaddress != null  and rqstaddress != ''"> #{rqstaddress},
+            </if>
+            <if test="handleFile != null  and handleFile != ''"> #{handleFile},
+            </if>
+            <if test="rqstnumber != null  and rqstnumber != ''"> #{rqstnumber},
+            </if>
+            <if test="urgentlevel != null  and urgentlevel != ''"> #{urgentlevel},
+            </if>
+            <if test="checkFile != null  and checkFile != ''"> #{checkFile},
+            </if>
+            <if test="scsmart != null  and scsmart != ''"> #{scsmart},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertOneToFourList" parameterType="java.util.ArrayList">
+        insert into one_to_four
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rowguid != null">rowguid,
+            </if>
+            <if test="lasthandlestep != null  and lasthandlestep != ''"> lasthandlestep,
+            </if>
+            <if test="rqstcontent != null  and rqstcontent != ''"> rqstcontent,
+            </if>
+            <if test="rqstsource != null  and rqstsource != ''"> rqstsource,
+            </if>
+            <if test="reportFile != null  and reportFile != ''"> report_file,
+            </if>
+            <if test="remark != null  and remark != ''"> remark,
+            </if>
+            <if test="rqsttitle != null  and rqsttitle != ''"> rqsttitle,
+            </if>
+            <if test="accordType != null  and accordType != ''"> accord_type,
+            </if>
+            <if test="rqstname != null  and rqstname != ''"> rqstname,
+            </if>
+            <if test="registertime != null  and registertime != ''"> registertime,
+            </if>
+            <if test="rqstaddress != null  and rqstaddress != ''"> rqstaddress,
+            </if>
+            <if test="handleFile != null  and handleFile != ''"> handle_file,
+            </if>
+            <if test="rqstnumber != null  and rqstnumber != ''"> rqstnumber,
+            </if>
+            <if test="urgentlevel != null  and urgentlevel != ''"> urgentlevel,
+            </if>
+            <if test="checkFile != null  and checkFile != ''"> check_file,
+            </if>
+            <if test="scsmart != null  and scsmart != ''"> scsmart,
+            </if>
+        </trim>
+            values
+            <foreach collection="list" index="index" separator="," item="item">
+                (
+                <if test="item.rowguid != null">#{item.rowguid},
+                </if>
+                <if test="item.lasthandlestep != null  and item.lasthandlestep != ''"> #{item.lasthandlestep},
+                </if>
+                <if test="item.rqstcontent != null  and item.rqstcontent != ''"> #{item.rqstcontent},
+                </if>
+                <if test="item.rqstsource != null  and item.rqstsource != ''"> #{item.rqstsource},
+                </if>
+                <if test="item.reportFile != null  item.and reportFile != ''"> #{item.reportFile},
+                </if>
+                <if test="item.remark != null  and item.remark != ''"> #{item.remark},
+                </if>
+                <if test="item.rqsttitle != null  and item.rqsttitle != ''"> #{item.rqsttitle},
+                </if>
+                <if test="item.accordType != null  and item.accordType != ''"> #{item.accordType},
+                </if>
+                <if test="item.rqstname != null  and item.rqstname != ''"> #{item.rqstname},
+                </if>
+                <if test="item.registertime != null  and item.registertime != ''"> #{item.registertime},
+                </if>
+                <if test="item.rqstaddress != null  and item.rqstaddress != ''"> #{item.rqstaddress},
+                </if>
+                <if test="item.handleFile != null  and item.handleFile != ''"> #{item.handleFile},
+                </if>
+                <if test="item.rqstnumber != null  and item.rqstnumber != ''"> #{item.rqstnumber},
+                </if>
+                <if test="item.urgentlevel != null  and item.urgentlevel != ''"> #{item.urgentlevel},
+                </if>
+                <if test="item.checkFile != null  and item.checkFile != ''"> #{item.checkFile},
+                </if>
+                <if test="item.scsmart != null  and item.scsmart != ''"> #{item.scsmart},
+                </if>
+                )
+            </foreach>
+
+    </insert>
+
+    <update id="updateOneToFour" parameterType="OneToFour">
+        update one_to_four
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lasthandlestep != null  and lasthandlestep != ''">
+                and lasthandlestep = #{lasthandlestep}
+            </if>
+            <if test="rqstcontent != null  and rqstcontent != ''">
+                and rqstcontent = #{rqstcontent}
+            </if>
+            <if test="rqstsource != null  and rqstsource != ''">
+                and rqstsource = #{rqstsource}
+            </if>
+            <if test="reportFile != null  and reportFile != ''">
+                and report_file = #{reportFile}
+            </if>
+            <if test="remark != null  and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="rqsttitle != null  and rqsttitle != ''">
+                and rqsttitle = #{rqsttitle}
+            </if>
+            <if test="accordType != null  and accordType != ''">
+                and accord_type = #{accordType}
+            </if>
+            <if test="rqstname != null  and rqstname != ''">
+                and rqstname = #{rqstname}
+            </if>
+            <if test="registertime != null  and registertime != ''">
+                and registertime = #{registertime}
+            </if>
+            <if test="rqstaddress != null  and rqstaddress != ''">
+                and rqstaddress = #{rqstaddress}
+            </if>
+            <if test="handleFile != null  and handleFile != ''">
+                and handle_file = #{handleFile}
+            </if>
+            <if test="rqstnumber != null  and rqstnumber != ''">
+                and rqstnumber = #{rqstnumber}
+            </if>
+            <if test="urgentlevel != null  and urgentlevel != ''">
+                and urgentlevel = #{urgentlevel}
+            </if>
+            <if test="checkFile != null  and checkFile != ''">
+                and check_file = #{checkFile}
+            </if>
+            <if test="scsmart != null  and scsmart != ''">
+                and scsmart = #{scsmart}
+            </if>
+        </trim>
+        where rowguid = #{rowguid}
+    </update>
+
+    <delete id="deleteOneToFourById" parameterType="String">
+        delete from one_to_four where rowguid = #{rowguid}
+    </delete>
+
+    <delete id="deleteOneToFourByIds" parameterType="String">
+        delete from one_to_four where rowguid in
+        <foreach item="rowguid" collection="array" open="(" separator="," close=")">
+            #{rowguid}
+        </foreach>
+    </delete>
+
+    <update id="updateOneToFourByIds" parameterType="String">
+        update one_to_four set del_flag = '1'
+        where rowguid in
+        <foreach item="rowguid" collection="array" open="(" separator="," close=")">
+            #{rowguid}
+        </foreach>
+    </update>
+
+</mapper>

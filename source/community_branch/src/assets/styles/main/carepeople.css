@@ -1,0 +1,96 @@
+.main {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.searchBox{
+  height: 100%;
+}
+.personEvent{
+  background-color: rgba(34, 39, 81, 0.8);
+  height: 27%;
+  margin-bottom: 5px;
+}
+.personNum{
+  background-color: rgba(34, 39, 81, 0.8);
+  height: 27%;
+}
+.caresearch{
+  /* height: 40% !important; */
+  background-color: rgba(34, 39, 81, 0.8);
+  margin-top: 5px;
+  overflow: auto;
+}
+.care-boxTitle span:nth-child(1) {
+  display: inline-block;
+  width: 2px;
+  height: 13px;
+  background-color: #fff;
+  margin-right: 5px;
+}
+.carePeople /deep/.el-table{
+  background-color: transparent;
+  margin-top: 10px;
+}
+.carePeople /deep/ .el-table__empty-text{
+  background-color:transparent !important;
+}
+.care-boxTitle{
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.care-boxTitle span:last-child {
+  color: #fff;
+}
+.el-autocomplete{
+  line-height: 36px;
+  height: 36px !important;
+}
+.el-select{
+  margin-top: 20px;
+  display: inline;
+}
+.careleft{
+  height: 100%;
+  width: 100%;
+  padding-top: 10px;
+}
+.careright{
+  height: 100%;
+  background-color: rgba(34, 39, 81, 0.8);
+  margin-top: 10px;
+}
+/* .el-table-column{
+  background:#182751 !important;
+} */
+.searchBot{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  height: 20%;
+}
+.botBut{
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 3%;
+}
+.botBut .el-button{
+  border-radius: 15px;
+}
+.botInp,.botSel{
+  width:25%;
+  margin-top: 5%;
+  margin-right: 2%;
+}
+.botList /deep/.el-table{
+  background-color:transparent ;
+}
+.botList .el-table-column{
+ text-align: center;
+}
+ul li{
+  list-style: none;
+  color: white;
+  font-size: 16px;
+}

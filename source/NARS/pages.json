@@ -1,0 +1,32 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/NARS/NARS"
+		}
+        ,{
+            "path" : "pages/success/success",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "疫情防控",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom"
+	},
+	"easycom": { //组件化配置
+			"autoscan": true, //是否开启自动扫描，开启后将会自动扫描符合components/组件名称/组件名称.vue目录结构的组件
+			"custom": {
+				// "uni-(.*)": "@/components/uni-$1.vue", // 匹配components目录内的vue文件
+				"uni-(.*)": "@/components/uni-$1/uni-$1.vue", // 匹配components目录下组件名称/组件名称内的vue文件
+				"vue-file-(.*)": "packageName/path/to/vue-file-$1.vue" // 匹配node_modules内的vue文件
+			}
+		}
+}

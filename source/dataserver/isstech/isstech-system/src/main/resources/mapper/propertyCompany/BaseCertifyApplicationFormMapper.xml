@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCertifyApplicationFormMapper">
+
+    <resultMap type="BaseCertifyApplicationForm" id="BaseCertifyApplicationFormResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="personId"    column="person_id"    />
+                    <result property="certificateType"    column="certificate_type"    />
+                    <result property="requiredMaterial"    column="required_material"    />
+                    <result property="pics"    column="pics"    />
+                    <result property="transactionStatus"    column="transaction_status"    />
+                    <result property="applyDate"    column="apply_date"    />
+                    <result property="receiveDate"    column="receive_date"    />
+                    <result property="auditBy"    column="audit_by"    />
+                    <result property="auditDate"    column="audit_date"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseCertifyApplicationFormVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, person_id, certificate_type, required_material, pics, transaction_status, apply_date, receive_date, audit_by, audit_date from base_certify_application_form
+    </sql>
+
+    <select id="selectBaseCertifyApplicationFormList" parameterType="BaseCertifyApplicationForm" resultMap="BaseCertifyApplicationFormResult">
+        <include refid="selectBaseCertifyApplicationFormVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="personId != null  and personId != ''"> and person_id = #{personId}</if>
+                                                                                                            <if test="certificateType != null  and certificateType != ''"> and certificate_type = #{certificateType}</if>
+                                                                                                            <if test="requiredMaterial != null  and requiredMaterial != ''"> and required_material like concat('%', #{requiredMaterial}, '%')</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                            <if test="transactionStatus != null  and transactionStatus != ''"> and transaction_status = #{transactionStatus}</if>
+                                                                                                            <if test="applyDate != null "> and apply_date = #{applyDate}</if>
+                                                                                                            <if test="receiveDate != null "> and receive_date = #{receiveDate}</if>
+                                                                                                            <if test="auditBy != null  and auditBy != ''"> and audit_by = #{auditBy}</if>
+                                                                                                            <if test="auditDate != null "> and audit_date = #{auditDate}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </where>
+    </select>
+
+    <select id="selectBaseCertifyApplicationFormById" parameterType="String" resultMap="BaseCertifyApplicationFormResult">
+        <include refid="selectBaseCertifyApplicationFormVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseCertifyApplicationForm" parameterType="BaseCertifyApplicationForm">
+        insert into base_certify_application_form
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null">community_id,</if>
+                                                                <if test="communityChildId != null">community_child_id,</if>
+                                                                <if test="personId != null">person_id,</if>
+                                                                <if test="certificateType != null">certificate_type,</if>
+                                                                <if test="requiredMaterial != null">required_material,</if>
+                                                                <if test="pics != null">pics,</if>
+                                                                <if test="transactionStatus != null">transaction_status,</if>
+                                                                <if test="applyDate != null">apply_date,</if>
+                                                                <if test="receiveDate != null">receive_date,</if>
+                                                                <if test="auditBy != null">audit_by,</if>
+                                                                <if test="auditDate != null">audit_date,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null">#{communityId},</if>
+                                                                <if test="communityChildId != null">#{communityChildId},</if>
+                                                                <if test="personId != null">#{personId},</if>
+                                                                <if test="certificateType != null">#{certificateType},</if>
+                                                                <if test="requiredMaterial != null">#{requiredMaterial},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                                                <if test="transactionStatus != null">#{transactionStatus},</if>
+                                                                <if test="applyDate != null">#{applyDate},</if>
+                                                                <if test="receiveDate != null">#{receiveDate},</if>
+                                                                <if test="auditBy != null">#{auditBy},</if>
+                                                                <if test="auditDate != null">#{auditDate},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseCertifyApplicationForm" parameterType="BaseCertifyApplicationForm">
+        update base_certify_application_form
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+                                                                <if test="personId != null">person_id = #{personId},</if>
+                                                                <if test="certificateType != null">certificate_type = #{certificateType},</if>
+                                                                <if test="requiredMaterial != null">required_material = #{requiredMaterial},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                                                <if test="transactionStatus != null">transaction_status = #{transactionStatus},</if>
+                                                                <if test="applyDate != null">apply_date = #{applyDate},</if>
+                                                                <if test="receiveDate != null">receive_date = #{receiveDate},</if>
+                                                                <if test="auditBy != null">audit_by = #{auditBy},</if>
+                                                                <if test="auditDate != null">audit_date = #{auditDate},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCertifyApplicationFormById" parameterType="String">
+        delete from base_certify_application_form where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCertifyApplicationFormByIds" parameterType="String">
+        delete from base_certify_application_form where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCertifyApplicationFormByIds" parameterType="String">
+        update base_certify_application_form set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

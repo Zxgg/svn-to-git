@@ -1,0 +1,123 @@
+@import './variables.scss';
+$systemBackground: $titleC;
+$menuBackgroundColor: #20345D;
+$menuBackgroundActiveColor: #1373FB;
+$menuOpenColor: #213054;
+
+.menuList {
+  width: 100%;
+  background-color: transparent;
+  color: $fontC !important;
+  .el-menu-item.is-active {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-menu-item:hover {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title:hover {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title.is-active {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title:hover,
+  .el-submenu__title:focus {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  // menuList el-submenu is-active is-opened
+  .el-submenu.is-active.is-opened {
+    // background-color: $menuOpenColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu.is-opened {
+    background-color: $menuOpenColor !important;
+    color: $fontC !important;
+  }
+}
+.el-submenu:hover .is-opened {
+  // background-color: $menuBackgroundActiveColor !important;
+  color: $fontC !important;
+}
+.menuList .el-submenu.is-active.is-opened:hover {
+  color: $fontC !important;
+  // background-color: $menuOpenColor !important;
+  
+}
+.menuList .el-submenu.is-active.is-opened:focus {
+  color: $fontC !important;
+  // background-color: $menuOpenColor !important;
+}
+.menuList .el-submenu {
+  color: $fontC !important;
+}
+.el-menu--popup {
+  padding: 0px;
+  margin: 0px;
+  color: $fontC !important;
+  background-color: $menuBackgroundColor !important;
+  &:active {
+    background-color: $menuBackgroundActiveColor !important;
+  }
+}
+.el-menu--popup.is-active {
+  color: $fontC !important;
+}
+.el-menu--vertical {
+  .nest-menu .el-submenu > .el-submenu__title,
+  .el-menu-item {
+    color: $fontC !important;
+    background-color: $menuBackgroundColor;
+    &:hover {
+      background-color: $menuBackgroundActiveColor !important;
+    }
+  }
+}
+.el-menu-item.is-active {
+  background: $menuBackgroundActiveColor;
+}
+.el-submenu-item.is-active {
+  background: $menuBackgroundActiveColor;
+}
+
+// 菜单背景色
+.el-menu {
+ background: transparent;
+}
+// 菜单图标
+.el-submenu__title i {
+  color: $fontC;
+}
+// 子菜单图标
+.el-menu-item i {
+  color: $fontC;
+}
+
+.menuList .el-menu--collapse .el-menu{
+  color: $fontC !important;
+}
+// 菜单收起时二级标题颜色
+.menuList .el-submenu__title {
+  color: $fontC !important;
+}
+// 菜单右白框
+.el-menu {
+  border-right: 0;
+}
+// 收缩按钮
+.el-icon-s-unfold {
+  &:hover {
+    color: $menuBackgroundActiveColor;
+  }
+  color: $fontC;
+}
+.el-icon-s-fold {
+  &:hover {
+    color: $menuBackgroundActiveColor;
+  }
+  color: $fontC;
+}

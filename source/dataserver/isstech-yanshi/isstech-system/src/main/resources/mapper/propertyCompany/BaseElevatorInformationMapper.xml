@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseElevatorInformationMapper">
+
+    <resultMap type="BaseElevatorInformation" id="BaseElevatorInformationResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="communityBuildingId"    column="community_building_id"    />
+                    <result property="unit"    column="unit"    />
+                    <result property="elevatorNumber"    column="elevator_number"    />
+                    <result property="elevatorModel"    column="elevator_model"    />
+                    <result property="elevatorInstallDate"    column="elevator_install_date"    />
+                    <result property="checkRecord"    column="check_record"    />
+                    <result property="lastCheckData"    column="last_check_data"    />
+                    <result property="lastCheckBy"    column="last_check_by"    />
+                    <result property="lastCheckByPhone"    column="last_check_by_phone"    />
+                    <result property="lastCheckByNumber"    column="last_check_by_number"    />
+                    <result property="lastCheckResult"    column="last_check_result"    />
+                    <result property="checkInterval"    column="check_interval"    />
+                    <result property="elevatorFactoryName"    column="elevator_factory_name"    />
+                    <result property="elevatorFactoryBy"    column="elevator_factory_by"    />
+                    <result property="elevatorFactoryPhone"    column="elevator_factory_phone"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseElevatorInformationVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, community_building_id, unit, elevator_number, elevator_model, elevator_install_date, check_record, last_check_data, last_check_by, last_check_by_phone, last_check_by_number, last_check_result, check_interval, elevator_factory_name, elevator_factory_by, elevator_factory_phone from base_elevator_information
+    </sql>
+
+    <select id="selectBaseElevatorInformationList" parameterType="BaseElevatorInformation" resultMap="BaseElevatorInformationResult">
+        <include refid="selectBaseElevatorInformationVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="communityBuildingId != null  and communityBuildingId != ''"> and community_building_id = #{communityBuildingId}</if>
+                                                                                                            <if test="unit != null  and unit != ''"> and unit = #{unit}</if>
+                                                                                                            <if test="elevatorNumber != null  and elevatorNumber != ''"> and elevator_number like concat('%', #{elevatorNumber}, '%')</if>
+                                                                                                            <if test="elevatorModel != null  and elevatorModel != ''"> and elevator_model like concat('%', #{elevatorModel}, '%')</if>
+                                                                                                            <if test="elevatorInstallDate != null "> and elevator_install_date = #{elevatorInstallDate}</if>
+                                                                                                            <if test="checkRecord != null  and checkRecord != ''"> and check_record = #{checkRecord}</if>
+                                                                                                            <if test="lastCheckData != null "> and last_check_data = #{lastCheckData}</if>
+                                                                                                            <if test="lastCheckBy != null  and lastCheckBy != ''"> and last_check_by like concat('%', #{lastCheckBy}, '%')</if>
+                                                                                                            <if test="lastCheckByPhone != null  and lastCheckByPhone != ''"> and last_check_by_phone like concat('%', #{lastCheckByPhone}, '%')</if>
+                                                                                                            <if test="lastCheckByNumber != null  and lastCheckByNumber != ''"> and last_check_by_number like concat('%', #{lastCheckByNumber}, '%')</if>
+                                                                                                            <if test="lastCheckResult != null  and lastCheckResult != ''"> and last_check_result = #{lastCheckResult}</if>
+                                                                                                            <if test="checkInterval != null  and checkInterval != ''"> and check_interval = #{checkInterval}</if>
+                                                                                                            <if test="elevatorFactoryName != null  and elevatorFactoryName != ''"> and elevator_factory_name like concat('%', #{elevatorFactoryName}, '%')</if>
+                                                                                                            <if test="elevatorFactoryBy != null  and elevatorFactoryBy != ''"> and elevator_factory_by like concat('%', #{elevatorFactoryBy}, '%')</if>
+                                                                                                            <if test="elevatorFactoryPhone != null  and elevatorFactoryPhone != ''"> and elevator_factory_phone like concat('%', #{elevatorFactoryPhone}, '%')</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </where>
+    </select>
+
+    <select id="selectBaseElevatorInformationById" parameterType="String" resultMap="BaseElevatorInformationResult">
+        <include refid="selectBaseElevatorInformationVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseElevatorInformation" parameterType="BaseElevatorInformation">
+        insert into base_elevator_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null">community_id,</if>
+                                                                <if test="communityChildId != null">community_child_id,</if>
+                                                                <if test="communityBuildingId != null">community_building_id,</if>
+                                                                <if test="unit != null">unit,</if>
+                                                                <if test="elevatorNumber != null">elevator_number,</if>
+                                                                <if test="elevatorModel != null">elevator_model,</if>
+                                                                <if test="elevatorInstallDate != null">elevator_install_date,</if>
+                                                                <if test="checkRecord != null">check_record,</if>
+                                                                <if test="lastCheckData != null">last_check_data,</if>
+                                                                <if test="lastCheckBy != null">last_check_by,</if>
+                                                                <if test="lastCheckByPhone != null">last_check_by_phone,</if>
+                                                                <if test="lastCheckByNumber != null">last_check_by_number,</if>
+                                                                <if test="lastCheckResult != null">last_check_result,</if>
+                                                                <if test="checkInterval != null">check_interval,</if>
+                                                                <if test="elevatorFactoryName != null">elevator_factory_name,</if>
+                                                                <if test="elevatorFactoryBy != null">elevator_factory_by,</if>
+                                                                <if test="elevatorFactoryPhone != null">elevator_factory_phone,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null">#{communityId},</if>
+                                                                <if test="communityChildId != null">#{communityChildId},</if>
+                                                                <if test="communityBuildingId != null">#{communityBuildingId},</if>
+                                                                <if test="unit != null">#{unit},</if>
+                                                                <if test="elevatorNumber != null">#{elevatorNumber},</if>
+                                                                <if test="elevatorModel != null">#{elevatorModel},</if>
+                                                                <if test="elevatorInstallDate != null">#{elevatorInstallDate},</if>
+                                                                <if test="checkRecord != null">#{checkRecord},</if>
+                                                                <if test="lastCheckData != null">#{lastCheckData},</if>
+                                                                <if test="lastCheckBy != null">#{lastCheckBy},</if>
+                                                                <if test="lastCheckByPhone != null">#{lastCheckByPhone},</if>
+                                                                <if test="lastCheckByNumber != null">#{lastCheckByNumber},</if>
+                                                                <if test="lastCheckResult != null">#{lastCheckResult},</if>
+                                                                <if test="checkInterval != null">#{checkInterval},</if>
+                                                                <if test="elevatorFactoryName != null">#{elevatorFactoryName},</if>
+                                                                <if test="elevatorFactoryBy != null">#{elevatorFactoryBy},</if>
+                                                                <if test="elevatorFactoryPhone != null">#{elevatorFactoryPhone},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseElevatorInformation" parameterType="BaseElevatorInformation">
+        update base_elevator_information
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+                                                                <if test="communityBuildingId != null">community_building_id = #{communityBuildingId},</if>
+                                                                <if test="unit != null">unit = #{unit},</if>
+                                                                <if test="elevatorNumber != null">elevator_number = #{elevatorNumber},</if>
+                                                                <if test="elevatorModel != null">elevator_model = #{elevatorModel},</if>
+                                                                <if test="elevatorInstallDate != null">elevator_install_date = #{elevatorInstallDate},</if>
+                                                                <if test="checkRecord != null">check_record = #{checkRecord},</if>
+                                                                <if test="lastCheckData != null">last_check_data = #{lastCheckData},</if>
+                                                                <if test="lastCheckBy != null">last_check_by = #{lastCheckBy},</if>
+                                                                <if test="lastCheckByPhone != null">last_check_by_phone = #{lastCheckByPhone},</if>
+                                                                <if test="lastCheckByNumber != null">last_check_by_number = #{lastCheckByNumber},</if>
+                                                                <if test="lastCheckResult != null">last_check_result = #{lastCheckResult},</if>
+                                                                <if test="checkInterval != null">check_interval = #{checkInterval},</if>
+                                                                <if test="elevatorFactoryName != null">elevator_factory_name = #{elevatorFactoryName},</if>
+                                                                <if test="elevatorFactoryBy != null">elevator_factory_by = #{elevatorFactoryBy},</if>
+                                                                <if test="elevatorFactoryPhone != null">elevator_factory_phone = #{elevatorFactoryPhone},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseElevatorInformationById" parameterType="String">
+        delete from base_elevator_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseElevatorInformationByIds" parameterType="String">
+        delete from base_elevator_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseElevatorInformationByIds" parameterType="String">
+        update base_elevator_information set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

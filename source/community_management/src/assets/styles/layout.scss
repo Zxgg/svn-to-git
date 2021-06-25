@@ -1,0 +1,120 @@
+$topHeaderHeight:64px;
+$bottomHeight:10px;
+$middleContainerheight:calc(100% - 64px - 10px);//中间主区域（包含菜单和数据区）=100% - 顶层横幅 -10px冗余
+$chartTitieColor: #00D7FD;
+@import './variables.scss';
+
+.SystemTitleRow {
+  // background-image: url(TitleBackgroundImage);
+  width: 100%;
+  height: $topHeaderHeight;
+  box-shadow: 2px 0px 6px 0px rgba(0, 21, 41, 0.35);
+  margin: 0 auto;
+  // background-image: url(../../assets/images/home/TitleBackground.png);
+  // background-repeat: no-repeat;
+  background-repeat: repeat;
+  background-size: cover; /* 重点二 */
+  overflow: auto;
+  // overflow-y: hidden;
+}
+.mainContainerLimitWidth{
+  min-width: 1200px;
+  
+}
+.mainContainerLimitHeight{
+  min-height: 400px;
+}
+.middleContainer{
+  color: $chartTitieColor;
+  width: 100%;
+  height: $middleContainerheight;
+  // background-color: #F0F2F5;
+  background-color: #ffffff;
+  // background-image: url("../../assets/image/bg.png");
+  background-size:cover;
+  background-position:center;
+  background-size: 100% 100%;//100% $middleContainerheight
+  // background:gray;
+}
+//菜单区
+.container_leftBar{
+  // width: 200px;
+  height: 100%;
+}
+//数据区
+.container_rightContent{
+  // width: calc(100% - 200px);
+  height: 100%;
+  border-top: 1px solid $background1;
+  background: #F0F2F5;
+}
+.data_top{
+  width: 100%;
+  height: auto;
+  // max-height: 100px;
+  // background: hotpink;
+}
+.data_ContentPanel{
+  width: 100%;
+  // height: $middleContainerheight;
+  // background:black;
+}
+.data_left{
+  height: 100%;
+  width: 200px;
+  // background: burlywood;
+}
+.data_middle{
+  height: 100%;
+  width: calc(100% - 200px - 200px);
+  // background: green;
+}
+.data_right{
+  height: 100%;
+  width: 200px;
+  // background: goldenrod;
+}
+
+
+
+
+
+// 另一套布局方案
+.main-el-container{
+  width: 100%;
+  height: 100%;
+  background: hotpink;
+}
+.main-el-header{
+  width: 100%;
+  height: 100px;
+  background: green;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+.main-el-main{
+  width: 100%;
+  height: 100%;
+  padding:0px;
+}
+.main-el-footer{
+  width: 100%;
+  height: 10px;
+  background: gray;
+}
+.main-el-aside {
+  background: gold;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 2px;
+  display: block;
+  line-height: 32px;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

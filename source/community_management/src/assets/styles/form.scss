@@ -1,0 +1,284 @@
+@import './variables.scss';
+
+// 表格label
+.el-form-item__label {
+  // width: 56px;
+  height: 22px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  // color: $fontC;
+  line-height: 22px;
+}
+
+/* --------输入框--------- */
+// 表格输入框
+.el-input--medium .el-input__inner {
+  // &:hover{
+  //   background: rgba($color: $baseC, $alpha: 0.6);
+  // }
+  // width: 160px;
+  // color: $fontC;
+  height:32px;
+  // background: rgba($color: $baseC, $alpha: 0.1);
+  // border: 1px solid rgba($color: $baseC, $alpha: 0.6) !important;
+}
+// 表格输入框
+// .el-input--small .el-input__inner {
+//   &:hover{
+//     background: rgba($color: $baseC, $alpha: 0.6);
+//   }
+//   // width: 160px;
+//   color: $fontC;
+//   // height: 24px;
+//   background: rgba($color: $baseC, $alpha: 0.1);
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+// }
+// 表格输入框
+.el-input--mini .el-input__inner {
+  // &:hover{
+  //   background: rgba($color: $baseC, $alpha: 0.6);
+  // }
+  // width: 160px;
+  // color: $fontC;
+  height: 32px;
+  // background: rgba($color: $baseC, $alpha: 0.1);
+  // border: 1px solid rgba($color: $baseC, $alpha: 0.6) !important;
+}
+// 文本框
+// .el-textarea__inner {
+//   &:hover{
+//     background: rgba($color: $baseC, $alpha: 0.6);
+//   }
+//   color: $fontC;
+//   background-color: rgba($color: $baseC, $alpha: 0.1);
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+// }
+
+
+/* --------选择器--------- */
+// select弹窗有数据
+// .el-select-dropdown__list {
+//   background: $selectC;
+// }
+// select弹窗无数据
+// .el-select-dropdown__empty {
+//   color: $fontC;
+//   background: $selectC;
+// }
+// select弹窗三角
+// .el-popper[x-placement^="bottom"] .popper__arrow {
+//   border-bottom-color: $selectC !important;
+// }
+// .el-popper[x-placement^="bottom"] .popper__arrow::after {
+//   border-bottom-color: $selectC;
+// }
+
+
+/* --------时间选择器--------- */
+// 时间范围选择框
+// .el-range-editor.el-input__inner {
+//   background: rgba($color: $baseC, $alpha: 0.1);
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+// }
+.el-range-editor .el-range-input {
+  background: transparent;
+}
+// .el-date-editor .el-range-separator {
+//   color: $fontC;
+// }
+// 弹窗尾部
+// .el-picker-panel__footer {
+//   background: $dialogC;
+// }
+// .el-icon-arrow-right:before {
+//   color: $fontC;
+// }
+// 范围
+// .el-date-table td.in-range div {
+//   background: rgba($color: $baseC, $alpha: 0.6);
+// }
+// .el-input.is-disabled .el-input__inner {
+//   background: rgba($color: $baseC, $alpha: 0.6);
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC;
+// }
+.el-date-picker__time-header .el-input {
+  width: auto;
+}
+// 确定按钮
+// .el-button.is-disabled.is-plain, .el-button.is-disabled.is-plain:hover, .el-button.is-disabled.is-plain:focus {
+//   &:hover {
+//     background: rgba($color: $baseC, $alpha: 0.6);
+//   }
+//   background: transparent;
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC;
+// }
+
+// 时间选择器弹窗
+// .el-picker-panel {
+//   color: $fontC;
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+//   background: $dialogC;
+// }
+// 时间选择器 星期
+// .el-date-table th {
+//   color: $fontC;
+//   border-bottom: solid 1px #e6ebf5;
+// }
+// 时间选择器 年份月份
+// .el-date-picker__header-label {
+//   &:hover{
+//     // color: $baseC;
+//   }
+//   color: $fontC;
+// }
+// 时间选择器 年份月份
+// .el-date-editor .el-range-input {
+//   &:hover{
+//     color: $fontC;
+//   }
+//   color: $fontC;
+// }
+//时间范围选择器  时分秒
+// .el-time-spinner__item{
+//   color: $fontC;
+// }
+// .el-time-spinner__item.active:not(.disabled){
+//   &:hover{
+//     color: $fontC;
+//   }
+//   background: rgba($color: $baseC, $alpha: 0.1);
+//   color: $fontC;
+// }
+// .el-time-spinner__item:hover:not(.disabled):not(.active){
+//   background: rgba($color: $baseC, $alpha: 0.1);
+//   color: $baseC;
+// }
+// // 今天日期
+// .el-date-table td.today span {
+//   color: $baseC;
+// }
+// .el-date-table td.current span {
+//   color: $baseC;
+// }
+// .el-date-table td.current:not(.disabled) span {
+//   color: $fontC;
+//   background-color: $baseC;
+// }
+
+
+/* --------穿梭框--------- */
+// .el-transfer-panel {
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+//   background: transparent;
+// }
+// 头部
+// .el-transfer-panel .el-transfer-panel__header {
+//   // border-bottom: 1px solid #e6ebf5;
+//   background-color: transparent;
+//   border-color: rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC;
+// }
+// 全部
+// .el-transfer-panel .el-transfer-panel__header .el-checkbox .el-checkbox__label {
+//   color: $fontC;
+// }
+// 项
+// .el-transfer-panel__item.el-checkbox {
+//   color: $fontC;
+// }
+// 箭头
+// .el-button--primary.is-disabled, .el-button--primary.is-disabled:hover, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:active {
+//   background-color: transparent;
+//   border-color: rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC;
+// }
+// .el-icon-arrow-left:before {
+//   color: $fontC;
+// }
+
+
+/* --------穿梭框--------- */
+// tag标签
+// .el-tag.el-tag--info {
+//   &:hover {
+//     background-color: rgba($color: $baseC, $alpha: 0.6);
+//   }
+//   background-color: transparent;
+//   border-color: rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC;
+// }
+// .el-tag.el-tag--info .el-tag__close {
+//   color: $fontC;
+// }
+// .el-select .el-tag__close.el-icon-close::before {
+//   background-color: transparent;
+// }
+// .el-select-group__title {
+//   color: $fontC;
+// }
+// .el-select-dropdown.is-multiple .el-select-dropdown__item {
+//   background-color: $selectC !important;
+// }
+// .el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover {
+//   background: rgba($color: $baseC, $alpha: 0.6) !important;
+// }
+// .el-select-group {
+//   background-color: $selectC;
+// }
+
+/* --------滑块--------- */
+// 条
+// .el-slider__bar {
+//   background-color: rgba($color: $baseC, $alpha: 0.6);
+// }
+// 圆扭
+// .el-slider__button {
+//   border-color: rgba($color: $baseC, $alpha: 0.6);
+// }
+
+/* --------计数器--------- */
+.el-input-number__decrease, .el-input-number__increase {
+  // &:hover {
+  //   background-color: $selectC;
+  // }
+  // background-color: transparent;
+  line-height: 0px;
+  // border-left: 0;
+}
+.el-input-number.is-controls-right[class*=medium] [class*=increase], .el-input-number.is-controls-right[class*=medium] [class*=decrease] {
+  line-height: 15px;
+}
+.el-input-number.is-controls-right .el-input-number__increase, .el-input-number.is-controls-right .el-input-number__decrease {
+  height: 13px;
+  // color: $fontC;
+  // border: 1px solid rgba($color: $baseC, $alpha: 0.6);
+}
+.el-input-number__increase {
+  top: 5px;
+  // border-left: rgba($color: $baseC, $alpha: 0.6);
+}
+.el-input-number.is-controls-right .el-input-number__decrease {
+  bottom: 5px;
+  // border-left: rgba($color: $baseC, $alpha: 0.6);
+}
+.el-icon-arrow-down:before, .el-icon-arrow-up:before {
+  // color: $fontC;
+}
+// .el-input--medium .el-input__inner {
+//   border-color: rgba($color: $baseC, $alpha: 0.6) !important;
+// }
+// .el-input-number .el-input--medium .el-input__inner {
+//   border: 1px solid rgba($color: $baseC, $alpha: 0.6) !important;
+// }
+
+.el-input-group__append{
+  background: transparent;
+  // border: 1px solid $tiffany;
+}
+
+.el-form-item {
+	// display: inline-block;
+}

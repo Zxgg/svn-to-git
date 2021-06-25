@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.utils.mapper.SysDataSynchronizationMapper">
+
+    <resultMap type="SysDataSynchronization" id="SysDataSynchronizationResult">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="deptid" column="deptId"/>
+        <result property="code" column="code"/>
+        <result property="synName" column="syn_name"/>
+        <result property="port" column="port"/>
+        <result property="synIp" column="syn_ip"/>
+        <result property="synData" column="syn_data"/>
+        <result property="synFlag" column="syn_flag"/>
+        <result property="synDeptid" column="syn_deptId"/>
+        <result property="synEndDeptid" column="syn_end_deptId"/>
+        <result property="createTime" column="create_time"/>
+        <result property="sendTime" column="send_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectSysDataSynchronizationVo">
+        select id, type, name, deptId, code, syn_name, port, syn_ip, syn_data, syn_flag, syn_deptId, syn_end_deptId, create_time, send_time, del_flag from sys_data_synchronization
+    </sql>
+
+    <select id="selectSysDataSynchronizationList" parameterType="SysDataSynchronization"
+            resultMap="SysDataSynchronizationResult">
+        <include refid="selectSysDataSynchronizationVo"/>
+        <where>
+            del_flag = '0'
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="deptid != null  and deptid != ''">and deptId = #{deptid}</if>
+            <if test="code != null  and code != ''">and code = #{code}</if>
+            <if test="synName != null  and synName != ''">and syn_name like concat('%', #{synName}, '%')</if>
+            <if test="port != null  and port != ''">and port = #{port}</if>
+            <if test="synIp != null  and synIp != ''">and syn_ip = #{synIp}</if>
+            <if test="synData != null  and synData != ''">and syn_data = #{synData}</if>
+            <if test="synFlag != null  and synFlag != ''">and syn_flag = #{synFlag}</if>
+            <if test="synDeptid != null  and synDeptid != ''">and syn_deptId = #{synDeptid}</if>
+            <if test="synEndDeptid != null  and synEndDeptid != ''">and syn_end_deptId = #{synEndDeptid}</if>
+            <if test="sendTime != null ">and ( send_time &lt;= #{sendTime} or send_time is null)</if>
+        </where>
+        order by create_time LIMIT 100
+    </select>
+
+    <select id="selectSysDataSynchronizationById" parameterType="String" resultMap="SysDataSynchronizationResult">
+        <include refid="selectSysDataSynchronizationVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertSysDataSynchronization" parameterType="SysDataSynchronization">
+        insert into sys_data_synchronization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="type != null">type,</if>
+            <if test="name != null">name,</if>
+            <if test="deptid != null">deptId,</if>
+            <if test="code != null">code,</if>
+            <if test="synName != null">syn_name,</if>
+            <if test="port != null">port,</if>
+            <if test="synIp != null">syn_ip,</if>
+            <if test="synData != null">syn_data,</if>
+            <if test="synFlag != null">syn_flag,</if>
+            <if test="synDeptid != null">syn_deptId,</if>
+            <if test="synEndDeptid != null">syn_end_deptId,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="sendTime != null">send_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="type != null">#{type},</if>
+            <if test="name != null">#{name},</if>
+            <if test="deptid != null">#{deptid},</if>
+            <if test="code != null">#{code},</if>
+            <if test="synName != null">#{synName},</if>
+            <if test="port != null">#{port},</if>
+            <if test="synIp != null">#{synIp},</if>
+            <if test="synData != null">#{synData},</if>
+            <if test="synFlag != null">#{synFlag},</if>
+            <if test="synDeptid != null">#{synDeptid},</if>
+            <if test="synEndDeptid != null">#{synEndDeptid},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="sendTime != null">#{sendTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysDataSynchronization" parameterType="SysDataSynchronization">
+        update sys_data_synchronization
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type != null">type = #{type},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="deptid != null">deptId = #{deptid},</if>
+            <if test="code != null">code = #{code},</if>
+            <if test="synName != null">syn_name = #{synName},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="synIp != null">syn_ip = #{synIp},</if>
+            <if test="synData != null">syn_data = #{synData},</if>
+            <if test="synFlag != null">syn_flag = #{synFlag},</if>
+            <if test="synDeptid != null">syn_deptId = #{synDeptid},</if>
+            <if test="synEndDeptid != null">syn_end_deptId = #{synEndDeptid},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="sendTime != null">send_time = #{sendTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysDataSynchronizationById" parameterType="String">
+        delete from sys_data_synchronization where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDataSynchronizationByIds" parameterType="String">
+        delete from sys_data_synchronization where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateSysDataSynchronizationByIds" parameterType="String">
+        update sys_data_synchronization set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="executeSelect" resultType="java.util.Map">
+        ${value}
+    </select>
+
+    <update id="executeUpdate">${value}</update>
+
+    <insert id="executeInsert">${value}</insert>
+
+    <delete id="executeDelete">${value}</delete>
+
+</mapper>

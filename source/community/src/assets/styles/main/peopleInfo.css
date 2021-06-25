@@ -1,0 +1,483 @@
+.personnelInformationStatistics {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.levelOfEducation {
+  height: 30%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.ageStatistics {
+  height: 22%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.nationalStatistics {
+  height: 20%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.personnelHousingInformation {
+  height: 100%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+}
+.numberCommunity {
+  height: 100%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+}
+.carePeopleInfo {
+  height: 20%;  
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.specialPeople {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.populationMobility {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.peopleLeftBox {
+  padding-top: 10px;
+  left: 10px;
+  height: 100%;
+  width: 100%;
+}
+.peopleRightBox {
+  padding-top: 10px;
+  right: 10px;
+  height: 100%;
+  width: 100%;
+}
+.switchImg {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  background-color: #32376d;
+  color: #fff;
+  position: absolute;
+  left: 480px;
+  top: 10px;
+}
+.switchImg:hover {
+  cursor: pointer;
+  color: #29cbc0;
+}
+.switchImg img {
+  width: 100%;
+  height: 100%;
+}
+* 模块标题 */
+.people-boxTitle, .people-boxTitleM, .people-boxTitleL {
+  /* padding: 10px 0px 0px 27px; */
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* width: 460px; */
+  height: 25px;
+  margin-left: 18px;
+}
+.people-boxTitle {
+  background-image: url("~@/assets/images/car/title.png");
+  background-repeat: no-repeat;
+  margin-left: 18px;
+}
+.people-boxTitleM {
+  background-image: url("~@/assets/images/car/title-mid.png");
+  background-repeat: no-repeat;
+  margin-left: 18px;
+}
+.people-boxTitleL {
+  background-image: url("~@/assets/images/car/title-long.png");
+  background-repeat: no-repeat;
+  margin-left: 18px;
+}
+.people-boxTitle span:first-child {
+  width: 90px;
+}
+.people-boxTitleM span:first-child {
+  width: 162px;
+}
+.people-boxTitle span:first-child, .people-boxTitleM span:first-child, .people-boxTitleL span:first-child {
+  display: inline-block;
+  /* width: 90px; */
+  height: 20px;
+  color: #fff;
+  margin-left: 30px;
+  font-size: 16px;
+}
+.people-boxTitle span:last-child, .people-boxTitleM span:last-child, .people-boxTitleL span:last-child {
+  color: #9AA9BF;
+  font-size: 8px;
+  /* height: 10px; */ 
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+.people-sex div:nth-child(1){
+  position: absolute;
+  top:-19%;
+  left: 12%;
+  font-size: 14px;
+  font-family: AlibabaPuHuiTi;
+  font-weight: 400;
+  color: #D4E1E8;
+  line-height: 72px;
+  background: url("~@/assets/images/peopleinfo/man.png") no-repeat center left;
+}
+.people-sex div:nth-child(2){
+  position: absolute;
+  top:-19%;
+  right: -10%;
+  font-size: 14px;
+  font-family: AlibabaPuHuiTi;
+  font-weight: 400;
+  color: #D4E1E8;
+  line-height: 72px;
+  background: url("~@/assets/images/peopleinfo/vu.png") no-repeat left center;
+}
+.people-sex div:nth-child(3){
+  height: 50%;
+  background: url("~@/assets/images/peopleinfo/boy.png") no-repeat center center;
+  background-size: 100% 100%;
+  display: inline-block;
+  margin-left: 10%;
+  /* background-repeat: no-repeat; */
+}
+.people-sex div:nth-child(4){
+  height: 60px;
+  position: absolute;
+  /* top:-3%; */
+  bottom: 50%;
+  right: -10%;
+  /* display: inline-block; */
+  background: url("~@/assets/images/peopleinfo/girl.png") no-repeat ;
+  background-size: 100% 100%;
+  /* background-repeat: no-repeat; */
+}
+.people-sex div:nth-child(5){
+  height: 50%;
+  text-align: center;
+  /* background-size: 100% 100%; */
+  /* display: inline-block; */
+  /* margin-left: 13%; */
+  font-size: 14px;
+  font-family: AlibabaPuHuiTi;
+  font-weight: 400;
+  color: #D4E1E8;
+  line-height: 30px;
+  /* background-repeat: no-repeat; */
+}
+.people-sex div:nth-child(6){
+  height: 50%;
+  text-align: right;
+  /* background-size: 100% 100%; */
+  /* display: inline-block; */
+  /* position: relative; */
+  /* margin-left: 15%; */
+  font-size: 14px;
+  font-family: AlibabaPuHuiTi;
+  font-weight: 400;
+  color: #D4E1E8;
+  line-height: 30px;
+  /* background-repeat: no-repeat; */
+}
+.people-count{
+  height:25%;
+  width:100%;
+  text-align: center;
+}
+
+.people-countTotal
+{
+  font-family: DINCondensed-Bold !important;
+  font-size: 26px !important;
+}
+
+.people-countTotalText
+{
+  font-family: YouSheBiaoTiHei;
+font-weight: 600;
+font-style:oblique;
+color: #D4E1E8;
+  background: linear-gradient(180deg, #9EC8E5 0.146484375%, #FFFFFF 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.peopleManAndWomanIcon
+{
+  background: url("~@/assets/images/peopleinfo/男女.png") no-repeat center center;
+  background-size: 100% 100%;
+  height: 15px;
+  width: 14px;
+  display:inline-block;
+  margin-right: 10px;
+
+}
+
+
+.people-count div:nth-child(2){
+  font-size: 20px;
+  font-family: "YouSheBiaoTiHei";
+  font-weight: bold;
+  color: #D4E1E8;
+  line-height: 50px;
+  display: inline-block;
+  background: linear-gradient(180deg, #9EC8E5 0.146484375%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.people-count div:nth-child(3){
+  /* margin-left: 10px; */
+  font-size: 20px;
+  font-family: Oswald;
+  font-weight: bold;
+  color: #D4E1E8;
+  line-height: 50px;
+  display: inline-block;
+  background: linear-gradient(180deg, #92A9BA 0%, #FFD09B 0%, #FFFEFB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.people-count div:nth-child(4){
+  font-size: 14px;
+  font-family: AlibabaPuHuiTi;
+  font-weight: 400;
+  color: #D4E1E8;
+  line-height: 50px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.carePeopleTable {
+  padding: 5px 5px 0px 5px;
+}
+.carePeopleTable /deep/ .el-table,
+.el-table__expanded-cell {
+  background-color: transparent;
+}
+
+.carePeopleTable /deep/ .el-table tr {
+  background-color: transparent !important;
+  color: #fff;
+}
+.carePeopleTable /deep/ .el-table--enable-row-transition .el-table__body td,
+.el-table .cell {
+  background-color: transparent;
+}
+.controlperson{
+  width:100%;
+  height:100%;
+}
+.controlperson div:first-child{
+  height: 100%;
+}
+.controlperson-carousel{
+  background: transparent;
+  opacity: 1;
+}
+.controlperson-img{
+  width: 70%;
+  height: 50%;
+  margin-top: 10%;
+  margin-left: 15%;
+}
+.controlperson-name{
+  font-size: 12px;
+  color: #F7B500;
+  /* color: #fff; */
+  /* margin-left: 5%; */
+ 
+}
+
+.controlperson-nametext
+{
+  color: white;
+  font-size: 12px;
+}
+.controlperson-box{
+  background: url("../../images/peopleinfo/controlperson.png")
+  no-repeat center center / 100% 100%;
+  height: 100%;
+  width: 100%;
+}
+.controlperson .is-active {
+  background-color: transparent !important;
+  opacity: 1 !important;
+}
+.controlperson .el-carousel__item {
+  background-color: transparent;
+  opacity: 0.2;
+}
+.controlperson .el-carousel__item:nth-child(2n) {
+  /* background-color: transparent; */
+}
+
+.controlperson .el-carousel__item:nth-child(2n+1) {
+  /* background-color: transparent; */
+}
+.el-carousel__mask{
+  background-color: transparent;
+}
+.controlperson-box .medium{
+  width: 70%;
+  /* height:30.2%; */
+  margin-left: 15%;
+  /* background-color: #0C0F2A; */
+  opacity: 0.8;
+  margin-top: -2.5%;
+}
+.controlperson-carousel{
+  background: transparent;
+}
+.controlperson-box .medium div:first-child{
+  width: 100%;
+  height: 50%;
+}
+.controlperson-box .medium div:last-child{
+  width: 100%;
+  height: 50%;
+}
+.controlperson-bliack{
+  position: absolute;
+  top: 9%;
+  left: 13%;
+  width: 15%;
+  height: 30% !important;
+  background: url("../../../assets/images/peopleinfo/black.png")
+}
+.person-table{
+  height: 90%;
+  width: 100%;
+  background: url("../../../assets/images/peopleinfo/person_table.png")
+  no-repeat center center / 100% 100%;
+}
+/* 表格样式 */
+.person-table .el-table{
+  background: transparent;
+}
+.person-table .el-table__body-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.person-table .el-table__body-wrapper::-webkit-scrollbar-thumb {
+  background-color: #2571C6;
+}
+
+.person-table .el-table tr {
+  /* background-color: #1f234a !important; */
+  background-color: transparent;
+} 
+.person-table .el-table .el-table__header-wrapper th,
+.person-table .el-table .el-table__fixed-header-wrapper th {
+  background: none;
+}
+.person-table .el-table--enable-row-hover .el-table__body tr:hover > td {
+  background: none;
+}
+.person-table .el-table th.is-leaf,
+.person-table .el-table td {
+  border-bottom: 0;
+  color: #fff;
+  text-align: center !important;
+}
+.person-table .el-table--group::after,
+.person-table .el-table--border::after,
+.person-table .el-table::before {
+  /* background-color: #182751; */
+  background: none;
+}
+.dialogPeopleInfoClass .el-dialog{
+  background-image: url("../../images/peopleinfo/frame2bg.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  /* height: 600px; */
+  border: 0;
+}
+.dialogPeopleInfoClass .el-dialog__body {
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #D3E3ED;
+  padding: 10px 45px;
+  height: 550px;
+}
+.dialogPeopleInfoClass .el-dialog__header {
+  /* background-color:rgba(34, 39, 81, 1); */
+  padding: 6px 75px;
+  background-color: transparent;
+  border: 0;
+}
+.dialogPeopleInfoClass .el-dialog__title{
+  color: #E2EFF9;
+}
+.dialogPeopleInfoClass .el-dialog__headerbtn {
+  top: 9px;
+  right: 66px;
+}
+.dialogPeopleInfoClass .el-dialog__headerbtn .el-dialog__close {
+  color: #E2EFF9;
+}
+.dialogPeopleInfoClass .el-dialog:not(.is-fullscreen) {
+  margin-top: 8% !important;
+}
+.dialogPeopleInfoClass .el-divider {
+  background-color: #D3E3ED !important;
+}
+.dialog_title{
+  width: 100%;
+  height: 7%;
+}
+.dialog_title div:nth-child(1){
+  text-align: center;
+  font-size: 24px;
+  /* font-family: PangMenZhengDao;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-shadow: 0px 2px 2px rgba(1, 90, 166, 0.68);
+
+  background: linear-gradient(180deg, #FFFCFF 0%, #7BC6F7 99.365234375%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+
+
+    font-family: YouSheBiaoTiHei;
+font-weight: 600;
+/* font-style:oblique; */
+color: #D4E1E8;
+  background: linear-gradient(180deg, #9EC8E5 0.146484375%, #FFFFFF 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.dialog_title div:nth-child(2){
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+.dialogPeopleInfoClass_pic{
+  margin-top: 15%;
+  width: 297px;
+  height: 219px;
+  background: url("../../../assets/images/peopleinfo/picbg.png")
+  no-repeat center center / 100% 100%; 
+}
+.dialogPeopleInfoClass_info{
+  width: 433px;
+  height: 318px;
+  background: url("../../../assets/images/peopleinfo/nr-bg.png")
+  no-repeat center center / 100% 100%;
+}
+.dialogPeopleInfoClass_info .el-form .el-form-item {
+  margin-bottom: 0px !important;
+}
+.dialogPeopleInfoClass_info .el-form .el-form-item .el-form-item__label{
+  color: #B4CFFA;
+}

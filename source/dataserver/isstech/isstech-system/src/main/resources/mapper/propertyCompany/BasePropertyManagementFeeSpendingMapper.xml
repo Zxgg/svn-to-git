@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePropertyManagementFeeSpendingMapper">
+
+    <resultMap type="BasePropertyManagementFeeSpending" id="BasePropertyManagementFeeSpendingResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="type"    column="type"    />
+                    <result property="amountOfMoney"    column="amount_of_money"    />
+                    <result property="payerName"    column="payer_name"    />
+                    <result property="pics"    column="pics"    />
+                    <result property="relatedPerson"    column="related_person"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBasePropertyManagementFeeSpendingVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, type, amount_of_money, payer_name, pics, related_person from base_property_management_fee_spending
+    </sql>
+
+    <select id="selectBasePropertyManagementFeeSpendingList" parameterType="BasePropertyManagementFeeSpending" resultMap="BasePropertyManagementFeeSpendingResult">
+        <include refid="selectBasePropertyManagementFeeSpendingVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="remark != null  and remark != ''"> and remark = #{remark}</if>
+                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="type != null  and type != ''"> and type = #{type}</if>
+                                                                                                            <if test="amountOfMoney != null  and amountOfMoney != ''"> and amount_of_money = #{amountOfMoney}</if>
+                                                                                                            <if test="payerName != null  and payerName != ''"> and payer_name like concat('%', #{payerName}, '%')</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                            <if test="relatedPerson != null  and relatedPerson != ''"> and related_person = #{relatedPerson}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                </where>
+    </select>
+
+    <select id="selectBasePropertyManagementFeeSpendingById" parameterType="String" resultMap="BasePropertyManagementFeeSpendingResult">
+        <include refid="selectBasePropertyManagementFeeSpendingVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBasePropertyManagementFeeSpending" parameterType="BasePropertyManagementFeeSpending">
+        insert into base_property_management_fee_spending
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null and communityId != ''">community_id,</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id,</if>
+                                                                <if test="type != null and type != ''">type,</if>
+                                                                <if test="amountOfMoney != null and amountOfMoney != ''">amount_of_money,</if>
+                                                                <if test="payerName != null and payerName != ''">payer_name,</if>
+                                                                <if test="pics != null">pics,</if>
+                                                                <if test="relatedPerson != null">related_person,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null and communityId != ''">#{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">#{communityChildId},</if>
+                                                                <if test="type != null and type != ''">#{type},</if>
+                                                                <if test="amountOfMoney != null and amountOfMoney != ''">#{amountOfMoney},</if>
+                                                                <if test="payerName != null and payerName != ''">#{payerName},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                                                <if test="relatedPerson != null">#{relatedPerson},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBasePropertyManagementFeeSpending" parameterType="BasePropertyManagementFeeSpending">
+        update base_property_management_fee_spending
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null and communityId != ''">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id = #{communityChildId},</if>
+                                                                <if test="type != null and type != ''">type = #{type},</if>
+                                                                <if test="amountOfMoney != null and amountOfMoney != ''">amount_of_money = #{amountOfMoney},</if>
+                                                                <if test="payerName != null and payerName != ''">payer_name = #{payerName},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                                                <if test="relatedPerson != null">related_person = #{relatedPerson},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePropertyManagementFeeSpendingById" parameterType="String">
+        delete from base_property_management_fee_spending where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePropertyManagementFeeSpendingByIds" parameterType="String">
+        delete from base_property_management_fee_spending where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePropertyManagementFeeSpendingByIds" parameterType="String">
+        update base_property_management_fee_spending set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

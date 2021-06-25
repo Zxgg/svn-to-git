@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseDataRequestNotificationMapper">
+
+    <resultMap type="BaseDataRequestNotification" id="BaseDataRequestNotificationResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="personId"    column="person_id"    />
+                    <result property="materialType"    column="material_type"    />
+                    <result property="getStatus"    column="get_status"    />
+                    <result property="getTime"    column="get_time"    />
+                    <result property="getLocation"    column="get_location"    />
+                    <result property="getByCertificate"    column="get_by_certificate"    />
+                    <result property="getThe"    column="get_the"    />
+                    <result property="getReplaceByCertificate"    column="get_replace_by_certificate"    />
+                    <result property="getTheName"    column="get_the_name"    />
+                    <result property="pics"    column="pics"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseDataRequestNotificationVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, person_id, material_type, get_status, get_time, get_location, get_by_certificate, get_the, get_replace_by_certificate, get_the_name, pics from base_data_request_notification
+    </sql>
+
+    <select id="selectBaseDataRequestNotificationList" parameterType="BaseDataRequestNotification" resultMap="BaseDataRequestNotificationResult">
+        <include refid="selectBaseDataRequestNotificationVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="remark != null  and remark != ''"> and remark = #{remark}</if>
+                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="personId != null  and personId != ''"> and person_id = #{personId}</if>
+                                                                                                            <if test="materialType != null  and materialType != ''"> and material_type = #{materialType}</if>
+                                                                                                            <if test="getStatus != null  and getStatus != ''"> and get_status = #{getStatus}</if>
+                                                                                                            <if test="getTime != null  and getTime != ''"> and get_time = #{getTime}</if>
+                                                                                                            <if test="getLocation != null  and getLocation != ''"> and get_location = #{getLocation}</if>
+                                                                                                            <if test="getByCertificate != null  and getByCertificate != ''"> and get_by_certificate like concat('%', #{getByCertificate}, '%')</if>
+                                                                                                            <if test="getThe != null  and getThe != ''"> and get_the = #{getThe}</if>
+                                                                                                            <if test="getReplaceByCertificate != null  and getReplaceByCertificate != ''"> and get_replace_by_certificate like concat('%', #{getReplaceByCertificate}, '%')</if>
+                                                                                                            <if test="getTheName != null  and getTheName != ''"> and get_the_name like concat('%', #{getTheName}, '%')</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </where>
+    </select>
+
+    <select id="selectBaseDataRequestNotificationById" parameterType="String" resultMap="BaseDataRequestNotificationResult">
+        <include refid="selectBaseDataRequestNotificationVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseDataRequestNotification" parameterType="BaseDataRequestNotification">
+        insert into base_data_request_notification
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null">community_id,</if>
+                                                                <if test="communityChildId != null">community_child_id,</if>
+                                                                <if test="personId != null">person_id,</if>
+                                                                <if test="materialType != null">material_type,</if>
+                                                                <if test="getStatus != null">get_status,</if>
+                                                                <if test="getTime != null">get_time,</if>
+                                                                <if test="getLocation != null">get_location,</if>
+                                                                <if test="getByCertificate != null">get_by_certificate,</if>
+                                                                <if test="getThe != null">get_the,</if>
+                                                                <if test="getReplaceByCertificate != null">get_replace_by_certificate,</if>
+                                                                <if test="getTheName != null">get_the_name,</if>
+                                                                <if test="pics != null">pics,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null">#{communityId},</if>
+                                                                <if test="communityChildId != null">#{communityChildId},</if>
+                                                                <if test="personId != null">#{personId},</if>
+                                                                <if test="materialType != null">#{materialType},</if>
+                                                                <if test="getStatus != null">#{getStatus},</if>
+                                                                <if test="getTime != null">#{getTime},</if>
+                                                                <if test="getLocation != null">#{getLocation},</if>
+                                                                <if test="getByCertificate != null">#{getByCertificate},</if>
+                                                                <if test="getThe != null">#{getThe},</if>
+                                                                <if test="getReplaceByCertificate != null">#{getReplaceByCertificate},</if>
+                                                                <if test="getTheName != null">#{getTheName},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseDataRequestNotification" parameterType="BaseDataRequestNotification">
+        update base_data_request_notification
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+                                                                <if test="personId != null">person_id = #{personId},</if>
+                                                                <if test="materialType != null">material_type = #{materialType},</if>
+                                                                <if test="getStatus != null">get_status = #{getStatus},</if>
+                                                                <if test="getTime != null">get_time = #{getTime},</if>
+                                                                <if test="getLocation != null">get_location = #{getLocation},</if>
+                                                                <if test="getByCertificate != null">get_by_certificate = #{getByCertificate},</if>
+                                                                <if test="getThe != null">get_the = #{getThe},</if>
+                                                                <if test="getReplaceByCertificate != null">get_replace_by_certificate = #{getReplaceByCertificate},</if>
+                                                                <if test="getTheName != null">get_the_name = #{getTheName},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseDataRequestNotificationById" parameterType="String">
+        delete from base_data_request_notification where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseDataRequestNotificationByIds" parameterType="String">
+        delete from base_data_request_notification where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseDataRequestNotificationByIds" parameterType="String">
+        update base_data_request_notification set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

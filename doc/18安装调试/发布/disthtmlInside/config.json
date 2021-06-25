@@ -1,0 +1,15 @@
+{
+  "DBRestAPIEndPointUri": "http://10.112.253.4:7089",
+  "VideoBasicsRestAPIEndPointUri": "http://10.112.253.3:10089/api/open/V1.0.0/vss/",
+  "DBHuaWeiVcmRestAPIEndPointUri": "http://10.112.253.3:10089/api/open/V1.0.0/vcm/",
+  "SmartNetworkRestAPIEndPointUri": "http://10.112.253.4:7089/",
+  "gisServer": {
+    "mapUrl": "http://10.112.253.2:8090/iserver/services/map-China4326/rest/maps/China4326",
+    "dataUrl": "http://10.112.253.2:8890/iserver/services/data-map_data6/rest/data",
+    "routeUrl": "http://10.112.253.2:8890/iserver/services/transportationAnalyst-map_data/rest/networkanalyst/data_Network@data",
+    "mapType": "iserver",
+    "projection": "EPSG:4326"
+  },
+  "isUseImageProxy": true,
+  "vcmImageUrl": "http://10.112.253.3:10089/api/open/V1.0.0/vcm/intelligent_analysis/image_Download?imageUrl="
+}

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TPersonEpidemicStateMapper">
+
+    <resultMap type="TPersonEpidemicState" id="TPersonEpidemicStateResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="idCard" column="id_card"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="addressJobDetail" column="address_job_detail"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityChildName" column="community_child_name"/>
+        <result property="epidemicGreenCode" column="epidemic_green_code"/>
+        <result property="roommates" column="roommates"/>
+        <result property="roommatesSuspectedSymptoms" column="roommates_suspected_symptoms"/>
+        <result property="roommatesPatientExposureHistory" column="roommates_patient_exposure_history"/>
+        <result property="leaveLocal" column="leave_local"/>
+        <result property="leaveInformation" column="leave_information"/>
+        <result property="havaBeenRiskArea" column="hava_been_risk_area"/>
+        <result property="havaBeenRiskAreaInformation" column="hava_been_risk_area_information"/>
+        <result property="roommatesHavaBeenRiskArea" column="roommates_hava_been_risk_area"/>
+        <result property="roommatesHavaBeenRiskAreaInformation" column="roommates_hava_been_risk_area_information"/>
+        <result property="backHome" column="back_home"/>
+        <result property="roommatesBackHome" column="roommates_back_home"/>
+        <result property="medicalWatch" column="medical_watch"/>
+        <result property="nucleicAcidTesting" column="nucleic_acid_testing"/>
+        <result property="injectionVaccineOne" column="injection_vaccine_one"/>
+        <result property="injectionVaccineOneTime" column="injection_vaccine_one_time"/>
+        <result property="injectionVaccineTwo" column="injection_vaccine_two"/>
+        <result property="injectionVaccineTwoTime" column="injection_vaccine_two_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="addressArea" column="address_area"/>
+        <result property="addressJobArea" column="address_job_area"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityName" column="community_name"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectTPersonEpidemicStateVo">
+        select id, name, sex, phone, id_card, address_detail, address_job_detail, community_child_id, community_child_name, epidemic_green_code, roommates, roommates_suspected_symptoms, roommates_patient_exposure_history, leave_local, leave_information, hava_been_risk_area, hava_been_risk_area_information, roommates_hava_been_risk_area, roommates_hava_been_risk_area_information, back_home, roommates_back_home, medical_watch, nucleic_acid_testing, injection_vaccine_one, injection_vaccine_one_time, injection_vaccine_two, injection_vaccine_two_time, create_by, create_time, update_by, update_time, del_flag, remark, address_area, address_job_area, community_id, community_name from t_person_epidemic_state
+    </sql>
+
+    <select id="selectTPersonEpidemicStateList" parameterType="TPersonEpidemicState"
+            resultMap="TPersonEpidemicStateResult">
+        <include refid="selectTPersonEpidemicStateVo"/>
+        <where>
+            del_flag = '0'
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="sex != null  and sex != ''">and sex = #{sex}</if>
+            <if test="phone != null  and phone != ''">and phone like concat('%', #{phone}, '%')</if>
+            <if test="idCard != null  and idCard != ''">and id_card = #{idCard}</if>
+            <if test="addressDetail != null  and addressDetail != ''">
+            and ( address_detail like concat('%',#{addressDetail}, '%') or address_area like concat('%', #{addressDetail}, '%') )
+            </if>
+            <if test="addressJobDetail != null  and addressJobDetail != ''">
+            and ( address_job_detail like concat('%',#{addressJobDetail}, '%') or address_job_area like concat('%', #{addressJobDetail}, '%') )
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="communityChildName != null  and communityChildName != ''">and community_child_name like
+                concat('%', #{communityChildName}, '%')
+            </if>
+            <if test="epidemicGreenCode != null  and epidemicGreenCode != ''">and epidemic_green_code =
+                #{epidemicGreenCode}
+            </if>
+            <if test="roommates != null  and roommates != ''">and roommates = #{roommates}</if>
+            <if test="roommatesSuspectedSymptoms != null  and roommatesSuspectedSymptoms != ''">and
+                roommates_suspected_symptoms = #{roommatesSuspectedSymptoms}
+            </if>
+            <if test="roommatesPatientExposureHistory != null  and roommatesPatientExposureHistory != ''">and
+                roommates_patient_exposure_history = #{roommatesPatientExposureHistory}
+            </if>
+            <if test="leaveLocal != null  and leaveLocal != ''">and leave_local = #{leaveLocal}</if>
+            <if test="leaveInformation != null  and leaveInformation != ''">and leave_information like concat('%',
+                #{leaveInformation}, '%')
+            </if>
+            <if test="havaBeenRiskArea != null  and havaBeenRiskArea != ''">and hava_been_risk_area =
+                #{havaBeenRiskArea}
+            </if>
+            <if test="havaBeenRiskAreaInformation != null  and havaBeenRiskAreaInformation != ''">and
+                hava_been_risk_area_information like concat('%', #{havaBeenRiskAreaInformation}, '%')
+            </if>
+            <if test="roommatesHavaBeenRiskArea != null  and roommatesHavaBeenRiskArea != ''">and
+                roommates_hava_been_risk_area = #{roommatesHavaBeenRiskArea}
+            </if>
+            <if test="roommatesHavaBeenRiskAreaInformation != null  and roommatesHavaBeenRiskAreaInformation != ''">and
+                roommates_hava_been_risk_area_information like concat('%', #{roommatesHavaBeenRiskAreaInformation}, '%')
+            </if>
+            <if test="backHome != null  and backHome != ''">and back_home = #{backHome}</if>
+            <if test="roommatesBackHome != null  and roommatesBackHome != ''">and roommates_back_home =
+                #{roommatesBackHome}
+            </if>
+            <if test="medicalWatch != null  and medicalWatch != ''">and medical_watch = #{medicalWatch}</if>
+            <if test="nucleicAcidTesting != null  and nucleicAcidTesting != ''">and nucleic_acid_testing =
+                #{nucleicAcidTesting}
+            </if>
+            <if test="injectionVaccineOne != null  and injectionVaccineOne != ''">and injection_vaccine_one =
+                #{injectionVaccineOne}
+            </if>
+            <if test="injectionVaccineOneTime != null ">and injection_vaccine_one_time = #{injectionVaccineOneTime}</if>
+            <if test="injectionVaccineTwo != null  and injectionVaccineTwo != ''">and injection_vaccine_two =
+                #{injectionVaccineTwo}
+            </if>
+            <if test="injectionVaccineTwoTime != null ">and injection_vaccine_two_time = #{injectionVaccineTwoTime}</if>
+            <if test="addressArea != null  and addressArea != ''">and address_area like concat('%', #{addressArea},
+                '%')
+            </if>
+            <if test="addressJobArea != null  and addressJobArea != ''">and address_job_area like concat('%',
+                #{addressJobArea}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityName != null  and communityName != ''">and community_name like concat('%',
+                #{communityName}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTPersonEpidemicStateById" parameterType="String" resultMap="TPersonEpidemicStateResult">
+        <include refid="selectTPersonEpidemicStateVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTPersonEpidemicState" parameterType="TPersonEpidemicState">
+        insert into t_person_epidemic_state
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="sex != null and sex != ''">sex,</if>
+            <if test="phone != null and phone != ''">phone,</if>
+            <if test="idCard != null and idCard != ''">id_card,</if>
+            <if test="addressDetail != null and addressDetail != ''">address_detail,</if>
+            <if test="addressJobDetail != null">address_job_detail,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="communityChildName != null">community_child_name,</if>
+            <if test="epidemicGreenCode != null and epidemicGreenCode != ''">epidemic_green_code,</if>
+            <if test="roommates != null and roommates != ''">roommates,</if>
+            <if test="roommatesSuspectedSymptoms != null and roommatesSuspectedSymptoms != ''">
+                roommates_suspected_symptoms,
+            </if>
+            <if test="roommatesPatientExposureHistory != null and roommatesPatientExposureHistory != ''">
+                roommates_patient_exposure_history,
+            </if>
+            <if test="leaveLocal != null and leaveLocal != ''">leave_local,</if>
+            <if test="leaveInformation != null and leaveInformation != ''">leave_information,</if>
+            <if test="havaBeenRiskArea != null and havaBeenRiskArea != ''">hava_been_risk_area,</if>
+            <if test="havaBeenRiskAreaInformation != null and havaBeenRiskAreaInformation != ''">
+                hava_been_risk_area_information,
+            </if>
+            <if test="roommatesHavaBeenRiskArea != null and roommatesHavaBeenRiskArea != ''">
+                roommates_hava_been_risk_area,
+            </if>
+            <if test="roommatesHavaBeenRiskAreaInformation != null and roommatesHavaBeenRiskAreaInformation != ''">
+                roommates_hava_been_risk_area_information,
+            </if>
+            <if test="backHome != null and backHome != ''">back_home,</if>
+            <if test="roommatesBackHome != null and roommatesBackHome != ''">roommates_back_home,</if>
+            <if test="medicalWatch != null and medicalWatch != ''">medical_watch,</if>
+            <if test="nucleicAcidTesting != null and nucleicAcidTesting != ''">nucleic_acid_testing,</if>
+            <if test="injectionVaccineOne != null and injectionVaccineOne != ''">injection_vaccine_one,</if>
+            <if test="injectionVaccineOneTime != null">injection_vaccine_one_time,</if>
+            <if test="injectionVaccineTwo != null and injectionVaccineTwo != ''">injection_vaccine_two,</if>
+            <if test="injectionVaccineTwoTime != null">injection_vaccine_two_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="addressArea != null and addressArea != ''">address_area,</if>
+            <if test="addressJobArea != null and addressJobArea != ''">address_job_area,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityName != null">community_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="sex != null and sex != ''">#{sex},</if>
+            <if test="phone != null and phone != ''">#{phone},</if>
+            <if test="idCard != null and idCard != ''">#{idCard},</if>
+            <if test="addressDetail != null and addressDetail != ''">#{addressDetail},</if>
+            <if test="addressJobDetail != null">#{addressJobDetail},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="communityChildName != null">#{communityChildName},</if>
+            <if test="epidemicGreenCode != null and epidemicGreenCode != ''">#{epidemicGreenCode},</if>
+            <if test="roommates != null and roommates != ''">#{roommates},</if>
+            <if test="roommatesSuspectedSymptoms != null and roommatesSuspectedSymptoms != ''">
+                #{roommatesSuspectedSymptoms},
+            </if>
+            <if test="roommatesPatientExposureHistory != null and roommatesPatientExposureHistory != ''">
+                #{roommatesPatientExposureHistory},
+            </if>
+            <if test="leaveLocal != null and leaveLocal != ''">#{leaveLocal},</if>
+            <if test="leaveInformation != null and leaveInformation != ''">#{leaveInformation},</if>
+            <if test="havaBeenRiskArea != null and havaBeenRiskArea != ''">#{havaBeenRiskArea},</if>
+            <if test="havaBeenRiskAreaInformation != null and havaBeenRiskAreaInformation != ''">
+                #{havaBeenRiskAreaInformation},
+            </if>
+            <if test="roommatesHavaBeenRiskArea != null and roommatesHavaBeenRiskArea != ''">
+                #{roommatesHavaBeenRiskArea},
+            </if>
+            <if test="roommatesHavaBeenRiskAreaInformation != null and roommatesHavaBeenRiskAreaInformation != ''">
+                #{roommatesHavaBeenRiskAreaInformation},
+            </if>
+            <if test="backHome != null and backHome != ''">#{backHome},</if>
+            <if test="roommatesBackHome != null and roommatesBackHome != ''">#{roommatesBackHome},</if>
+            <if test="medicalWatch != null and medicalWatch != ''">#{medicalWatch},</if>
+            <if test="nucleicAcidTesting != null and nucleicAcidTesting != ''">#{nucleicAcidTesting},</if>
+            <if test="injectionVaccineOne != null and injectionVaccineOne != ''">#{injectionVaccineOne},</if>
+            <if test="injectionVaccineOneTime != null">#{injectionVaccineOneTime},</if>
+            <if test="injectionVaccineTwo != null and injectionVaccineTwo != ''">#{injectionVaccineTwo},</if>
+            <if test="injectionVaccineTwoTime != null">#{injectionVaccineTwoTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="addressArea != null and addressArea != ''">#{addressArea},</if>
+            <if test="addressJobArea != null and addressJobArea != ''">#{addressJobArea},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityName != null">#{communityName},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTPersonEpidemicState" parameterType="TPersonEpidemicState">
+        update t_person_epidemic_state
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="idCard != null and idCard != ''">id_card = #{idCard},</if>
+            <if test="addressDetail != null and addressDetail != ''">address_detail = #{addressDetail},</if>
+            <if test="addressJobDetail != null">address_job_detail = #{addressJobDetail},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="communityChildName != null">community_child_name = #{communityChildName},</if>
+            <if test="epidemicGreenCode != null and epidemicGreenCode != ''">epidemic_green_code =
+                #{epidemicGreenCode},
+            </if>
+            <if test="roommates != null and roommates != ''">roommates = #{roommates},</if>
+            <if test="roommatesSuspectedSymptoms != null and roommatesSuspectedSymptoms != ''">
+                roommates_suspected_symptoms = #{roommatesSuspectedSymptoms},
+            </if>
+            <if test="roommatesPatientExposureHistory != null and roommatesPatientExposureHistory != ''">
+                roommates_patient_exposure_history = #{roommatesPatientExposureHistory},
+            </if>
+            <if test="leaveLocal != null and leaveLocal != ''">leave_local = #{leaveLocal},</if>
+            <if test="leaveInformation != null and leaveInformation != ''">leave_information = #{leaveInformation},</if>
+            <if test="havaBeenRiskArea != null and havaBeenRiskArea != ''">hava_been_risk_area = #{havaBeenRiskArea},
+            </if>
+            <if test="havaBeenRiskAreaInformation != null and havaBeenRiskAreaInformation != ''">
+                hava_been_risk_area_information = #{havaBeenRiskAreaInformation},
+            </if>
+            <if test="roommatesHavaBeenRiskArea != null and roommatesHavaBeenRiskArea != ''">
+                roommates_hava_been_risk_area = #{roommatesHavaBeenRiskArea},
+            </if>
+            <if test="roommatesHavaBeenRiskAreaInformation != null and roommatesHavaBeenRiskAreaInformation != ''">
+                roommates_hava_been_risk_area_information = #{roommatesHavaBeenRiskAreaInformation},
+            </if>
+            <if test="backHome != null and backHome != ''">back_home = #{backHome},</if>
+            <if test="roommatesBackHome != null and roommatesBackHome != ''">roommates_back_home =
+                #{roommatesBackHome},
+            </if>
+            <if test="medicalWatch != null and medicalWatch != ''">medical_watch = #{medicalWatch},</if>
+            <if test="nucleicAcidTesting != null and nucleicAcidTesting != ''">nucleic_acid_testing =
+                #{nucleicAcidTesting},
+            </if>
+            <if test="injectionVaccineOne != null and injectionVaccineOne != ''">injection_vaccine_one =
+                #{injectionVaccineOne},
+            </if>
+            <if test="injectionVaccineOneTime != null">injection_vaccine_one_time = #{injectionVaccineOneTime},</if>
+            <if test="injectionVaccineTwo != null and injectionVaccineTwo != ''">injection_vaccine_two =
+                #{injectionVaccineTwo},
+            </if>
+            <if test="injectionVaccineTwoTime != null">injection_vaccine_two_time = #{injectionVaccineTwoTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="addressArea != null and addressArea != ''">address_area = #{addressArea},</if>
+            <if test="addressJobArea != null and addressJobArea != ''">address_job_area = #{addressJobArea},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityName != null">community_name = #{communityName},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTPersonEpidemicStateById" parameterType="String">
+        delete from t_person_epidemic_state where id = #{id}
+    </delete>
+
+    <delete id="deleteTPersonEpidemicStateByIds" parameterType="String">
+        delete from t_person_epidemic_state where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTPersonEpidemicStateByIds" parameterType="String">
+        update t_person_epidemic_state set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

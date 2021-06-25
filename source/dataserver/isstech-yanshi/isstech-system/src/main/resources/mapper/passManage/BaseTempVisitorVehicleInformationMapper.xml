@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseTempVisitorVehicleInformationMapper">
+
+    <resultMap type="BaseTempVisitorVehicleInformation" id="BaseTempVisitorVehicleInformationResult">
+        <result property="id" column="id"/>
+        <result property="plate" column="plate"/>
+        <result property="model" column="model"/>
+        <result property="brand" column="brand"/>
+        <result property="specificBrand" column="specific_brand"/>
+        <result property="numberOfSeats" column="number_of_seats"/>
+        <result property="driverName" column="driver_name"/>
+        <result property="driverIdentificationNumber" column="driver_identification_number"/>
+        <result property="driverSex" column="driver_sex"/>
+        <result property="driverPhoneNumber" column="driver_phone_number"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="checked" column="checked"/>
+    </resultMap>
+
+    <sql id="selectBaseTempVisitorVehicleInformationVo">
+        select id, plate, model, brand, specific_brand, number_of_seats, driver_name, driver_identification_number, driver_sex, driver_phone_number, create_by, create_time, update_by, update_time, del_flag, checked from base_temp_visitor_vehicle_information
+    </sql>
+
+    <select id="selectBaseTempVisitorVehicleInformationList" parameterType="BaseTempVisitorVehicleInformation"
+            resultMap="BaseTempVisitorVehicleInformationResult">
+        <include refid="selectBaseTempVisitorVehicleInformationVo"/>
+        <where>
+                del_flag = '0'
+            <if test="plate != null  and plate != ''">
+                and plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="model != null  and model != ''">
+                and model = #{model}
+            </if>
+            <if test="brand != null  and brand != ''">
+                and brand like concat('%', #{brand}, '%')
+            </if>
+            <if test="specificBrand != null  and specificBrand != ''">
+                and specific_brand like concat('%', #{specificBrand}, '%')
+            </if>
+            <if test="numberOfSeats != null ">
+                and number_of_seats = #{numberOfSeats}
+            </if>
+            <if test="driverName != null  and driverName != ''">
+                and driver_name like concat('%', #{driverName}, '%')
+            </if>
+            <if test="driverIdentificationNumber != null  and driverIdentificationNumber != ''">
+                and driver_identification_number like concat('%', #{driverIdentificationNumber}, '%')
+            </if>
+            <if test="driverSex != null  and driverSex != ''">
+                and driver_sex = #{driverSex}
+            </if>
+            <if test="driverPhoneNumber != null  and driverPhoneNumber != ''">
+                and driver_phone_number like concat('%', #{driverPhoneNumber}, '%')
+            </if>
+            <if test="checked != null  and checked != ''">
+                and checked = #{checked}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseTempVisitorVehicleInformationById" parameterType="String"
+            resultMap="BaseTempVisitorVehicleInformationResult">
+        <include refid="selectBaseTempVisitorVehicleInformationVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseTempVisitorVehicleInformation" parameterType="BaseTempVisitorVehicleInformation">
+        insert into base_temp_visitor_vehicle_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="plate != null">plate,
+            </if>
+            <if test="model != null">model,
+            </if>
+            <if test="brand != null">brand,
+            </if>
+            <if test="specificBrand != null">specific_brand,
+            </if>
+            <if test="numberOfSeats != null">number_of_seats,
+            </if>
+            <if test="driverName != null">driver_name,
+            </if>
+            <if test="driverIdentificationNumber != null">driver_identification_number,
+            </if>
+            <if test="driverSex != null">driver_sex,
+            </if>
+            <if test="driverPhoneNumber != null">driver_phone_number,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="checked != null">checked,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="plate != null">#{plate},
+            </if>
+            <if test="model != null">#{model},
+            </if>
+            <if test="brand != null">#{brand},
+            </if>
+            <if test="specificBrand != null">#{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">#{numberOfSeats},
+            </if>
+            <if test="driverName != null">#{driverName},
+            </if>
+            <if test="driverIdentificationNumber != null">#{driverIdentificationNumber},
+            </if>
+            <if test="driverSex != null">#{driverSex},
+            </if>
+            <if test="driverPhoneNumber != null">#{driverPhoneNumber},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="checked != null">#{checked},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseTempVisitorVehicleInformation" parameterType="BaseTempVisitorVehicleInformation">
+        update base_temp_visitor_vehicle_information
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="plate != null">plate =
+                #{plate},
+            </if>
+            <if test="model != null">model =
+                #{model},
+            </if>
+            <if test="brand != null">brand =
+                #{brand},
+            </if>
+            <if test="specificBrand != null">specific_brand =
+                #{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">number_of_seats =
+                #{numberOfSeats},
+            </if>
+            <if test="driverName != null">driver_name =
+                #{driverName},
+            </if>
+            <if test="driverIdentificationNumber != null">driver_identification_number =
+                #{driverIdentificationNumber},
+            </if>
+            <if test="driverSex != null">driver_sex =
+                #{driverSex},
+            </if>
+            <if test="driverPhoneNumber != null">driver_phone_number =
+                #{driverPhoneNumber},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="checked != null">checked =
+                #{checked},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseTempVisitorVehicleInformationById" parameterType="String">
+        delete from base_temp_visitor_vehicle_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseTempVisitorVehicleInformationByIds" parameterType="String">
+        delete from base_temp_visitor_vehicle_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseTempVisitorVehicleInformationByIds" parameterType="String">
+        update base_temp_visitor_vehicle_information set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

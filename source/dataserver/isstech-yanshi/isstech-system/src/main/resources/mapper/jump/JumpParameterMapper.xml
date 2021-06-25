@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.JumpParameterMapper">
+
+    <resultMap type="JumpParameter" id="JumpParameterResult">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="parameterVal" column="parameter_val"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="category" column="category"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectJumpParameterVo">
+        select id, type, parameter_val, creator_id, category, remark from jump_parameter
+    </sql>
+
+    <select id="selectJumpParameterList" parameterType="JumpParameter" resultMap="JumpParameterResult">
+        <include refid="selectJumpParameterVo"/>
+        <where>
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="parameterVal != null  and parameterVal != ''">and parameter_val = #{parameterVal}</if>
+            <if test="creatorId != null  and creatorId != ''">and creator_id = #{creatorId}</if>
+            <if test="category != null  and category != ''">and category = #{category}</if>
+        </where>
+    </select>
+
+    <select id="selectJumpParameterById" parameterType="String" resultMap="JumpParameterResult">
+        <include refid="selectJumpParameterVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertJumpParameter" parameterType="JumpParameter">
+        insert into jump_parameter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="type != null">type,</if>
+            <if test="parameterVal != null">parameter_val,</if>
+            <if test="creatorId != null">creator_id,</if>
+            <if test="category != null">category,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="type != null">#{type},</if>
+            <if test="parameterVal != null">#{parameterVal},</if>
+            <if test="creatorId != null">#{creatorId},</if>
+            <if test="category != null">#{category},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateJumpParameter" parameterType="JumpParameter">
+        update jump_parameter
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type != null">type = #{type},</if>
+            <if test="parameterVal != null">parameter_val = #{parameterVal},</if>
+            <if test="creatorId != null">creator_id = #{creatorId},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJumpParameterById" parameterType="String">
+        delete from jump_parameter where id = #{id}
+    </delete>
+
+    <delete id="deleteJumpParameterByIds" parameterType="String">
+        delete from jump_parameter where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+</mapper>

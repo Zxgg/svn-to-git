@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+.el-dialog__header{
+  border-bottom: 0.5px solid #E8E8E8;
+}
+// // 弹窗遮罩
+// .el-dialog__wrapper {
+//   // background: $dialogMaskC;
+// }
+// // 弹窗
+// .el-dialog {
+//   background: $dialogC;
+//   box-shadow: 0px 10px 10px 0px $dialogShadowC;
+//   border: 1px solid $baseC;
+// }
+// // 弹窗标题
+// .el-dialog__title {
+//   color: $fontC;
+// }
+// .el-dialog {
+//   // dialog内表单输入框
+//   .el-form-item--medium .el-form-item__content > .el-input .el-input__inner {
+//     border: 1px solid rgba($color: $baseC, $alpha: 0.6) !important;
+//   }
+//   // dialog内表单选择器
+//   .el-form-item--medium .el-form-item__content > .el-select > .el-input .el-input__inner {
+//     border: 1px solid rgba($color: $baseC, $alpha: 0.6) !important;
+//   }
+// }
+// // 提示窗口
+// .el-message-box {
+//   background-color: $dialogC;
+//   border: 1px solid $baseC;
+//   // -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+//   box-shadow: 0px 10px 10px 0px $dialogShadowC;
+// }
+// // 提示语
+// .el-message-box__title,
+// .el-message-box__message p {
+//   color: $fontC;
+// }

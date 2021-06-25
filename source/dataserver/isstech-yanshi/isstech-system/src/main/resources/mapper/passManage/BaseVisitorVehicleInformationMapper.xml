@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseVisitorVehicleInformationMapper">
+
+    <resultMap type="BaseVisitorVehicleInformation" id="BaseVisitorVehicleInformationResult">
+        <result property="id" column="id"/>
+        <result property="plate" column="plate"/>
+        <result property="model" column="model"/>
+        <result property="brand" column="brand"/>
+        <result property="specificBrand" column="specific_brand"/>
+        <result property="numberOfSeats" column="number_of_seats"/>
+        <result property="driverName" column="driver_name"/>
+        <result property="driverSex" column="driver_sex"/>
+        <result property="driverIdentificationNumber" column="driver_identification_number"/>
+        <result property="driverPhoneNumber" column="driver_phone_number"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="checked" column="checked"/>
+        <result property="pics" column="pics"/>
+        <result property="checkedPersonId" column="checked_person_id"/>
+        <result property="checkedPersonName" column="checked_person_name"/>
+        <result property="checkedTime" column="checked_time"/>
+        <result property="targetPersonId" column="target_person_id"/>
+        <result property="targetPersonName" column="target_person_name"/>
+        <result property="targetPersonCommunityId" column="target_person_community_id"/>
+        <result property="targetPersonCommunityChildId" column="target_person_community_child_id"/>
+        <result property="targetPersonHouseId" column="target_person_house_id"/>
+        <result property="targetPersonHouseAddress" column="target_person_house_address"/>
+        <result property="visitStartTime" column="visit_start_time"/>
+        <result property="visitEndTime" column="visit_end_time"/>
+        <result property="visitorPicPermit" column="visitor_pic_permit"/>
+        <result property="visitorPlatePermit" column="visitor_plate_permit"/>
+        <result property="vehicleType" column="vehicle_type"/>
+    </resultMap>
+
+    <sql id="selectBaseVisitorVehicleInformationVo">
+        select id, plate, model, brand, specific_brand, number_of_seats, driver_name, driver_sex, driver_identification_number, driver_phone_number, create_by, create_time, update_by, update_time, del_flag, checked, pics, checked_person_id, checked_person_name, checked_time, target_person_id, target_person_name, target_person_community_id, target_person_community_child_id, target_person_house_id, target_person_house_address, visit_start_time, visit_end_time, visitor_pic_permit, visitor_plate_permit,vehicle_type from base_visitor_vehicle_information
+    </sql>
+
+    <select id="selectBaseVisitorVehicleInformationList" parameterType="BaseVisitorVehicleInformation"
+            resultMap="BaseVisitorVehicleInformationResult">
+        <include refid="selectBaseVisitorVehicleInformationVo"/>
+        <where>
+                del_flag = '0'
+            <if test="plate != null  and plate != ''">
+                and plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="model != null  and model != ''">
+                and model = #{model}
+            </if>
+            <if test="brand != null  and brand != ''">
+                and brand like concat('%', #{brand}, '%')
+            </if>
+            <if test="specificBrand != null  and specificBrand != ''">
+                and specific_brand like concat('%', #{specificBrand}, '%')
+            </if>
+            <if test="numberOfSeats != null ">
+                and number_of_seats = #{numberOfSeats}
+            </if>
+            <if test="driverName != null  and driverName != ''">
+                and driver_name like concat('%', #{driverName}, '%')
+            </if>
+            <if test="driverSex != null  and driverSex != ''">
+                and driver_sex = #{driverSex}
+            </if>
+            <if test="driverIdentificationNumber != null  and driverIdentificationNumber != ''">
+                and driver_identification_number like concat('%', #{driverIdentificationNumber}, '%')
+            </if>
+            <if test="driverPhoneNumber != null  and driverPhoneNumber != ''">
+                and driver_phone_number like concat('%', #{driverPhoneNumber}, '%')
+            </if>
+            <if test="checked != null  and checked != ''">
+                and checked = #{checked}
+            </if>
+            <if test="checkedPersonId != null  and checkedPersonId != ''">
+                and checked_person_id = #{checkedPersonId}
+            </if>
+            <if test="checkedPersonName != null  and checkedPersonName != ''">
+                and checked_person_name like concat('%', #{checkedPersonName}, '%')
+            </if>
+            <if test="checkedTime != null ">
+                and checked_time &gt;= #{checkedTime}
+            </if>
+            <if test="targetPersonId != null  and targetPersonId != ''">
+                and target_person_id = #{targetPersonId}
+            </if>
+            <if test="targetPersonName != null  and targetPersonName != ''">
+                and target_person_name like concat('%', #{targetPersonName}, '%')
+            </if>
+            <if test="targetPersonCommunityId != null  and targetPersonCommunityId != ''">
+                and target_person_community_id = #{targetPersonCommunityId}
+            </if>
+            <if test="targetPersonCommunityChildId != null  and targetPersonCommunityChildId != ''">
+                and target_person_community_child_id = #{targetPersonCommunityChildId}
+            </if>
+            <if test="targetPersonHouseId != null  and targetPersonHouseId != ''">
+                and target_person_house_id = #{targetPersonHouseId}
+            </if>
+            <if test="targetPersonHouseAddress != null  and targetPersonHouseAddress != ''">
+                and target_person_house_address = #{targetPersonHouseAddress}
+            </if>
+            <if test="visitStartTime != null ">
+                and visit_start_time &gt;= #{visitStartTime}
+            </if>
+            <if test="visitEndTime != null ">
+                and visit_end_time &lt;= #{visitEndTime}
+            </if>
+            <if test="visitorPicPermit != null  and visitorPicPermit != ''">
+                and visitor_pic_permit = #{visitorPicPermit}
+            </if>
+            <if test="visitorPlatePermit != null  and visitorPlatePermit != ''">
+                and visitor_plate_permit = #{visitorPlatePermit}
+            </if>
+            <if test="vehicleType != null  and vehicleType != ''">
+                and vehicle_type = #{vehicleType}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="targetPersonCommunityId == null  or targetPersonCommunityId == ''">
+                    and target_person_community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="targetPersonCommunityChildId == null  or targetPersonCommunityChildId == ''">
+                    and target_person_community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseVisitorVehicleInformationById" parameterType="String"
+            resultMap="BaseVisitorVehicleInformationResult">
+        <include refid="selectBaseVisitorVehicleInformationVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseVisitorVehicleInformation" parameterType="BaseVisitorVehicleInformation">
+        insert into base_visitor_vehicle_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="plate != null">plate,
+            </if>
+            <if test="model != null">model,
+            </if>
+            <if test="brand != null">brand,
+            </if>
+            <if test="specificBrand != null">specific_brand,
+            </if>
+            <if test="numberOfSeats != null">number_of_seats,
+            </if>
+            <if test="driverName != null">driver_name,
+            </if>
+            <if test="driverSex != null">driver_sex,
+            </if>
+            <if test="driverIdentificationNumber != null">driver_identification_number,
+            </if>
+            <if test="driverPhoneNumber != null">driver_phone_number,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="checked != null">checked,
+            </if>
+            <if test="pics != null">pics,
+            </if>
+            <if test="checkedPersonId != null">checked_person_id,
+            </if>
+            <if test="checkedPersonName != null">checked_person_name,
+            </if>
+            <if test="checkedTime != null">checked_time,
+            </if>
+            <if test="targetPersonId != null">target_person_id,
+            </if>
+            <if test="targetPersonName != null">target_person_name,
+            </if>
+            <if test="targetPersonCommunityId != null">target_person_community_id,
+            </if>
+            <if test="targetPersonCommunityChildId != null">target_person_community_child_id,
+            </if>
+            <if test="targetPersonHouseId != null">target_person_house_id,
+            </if>
+            <if test="targetPersonHouseAddress != null">target_person_house_address,
+            </if>
+            <if test="visitStartTime != null">visit_start_time,
+            </if>
+            <if test="visitEndTime != null">visit_end_time,
+            </if>
+            <if test="visitorPicPermit != null and visitorPicPermit != ''">visitor_pic_permit,
+            </if>
+            <if test="visitorPlatePermit != null and visitorPlatePermit != ''">visitor_plate_permit,
+            </if>
+            <if test="vehicleType != null  and vehicleType != ''">
+                vehicle_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="plate != null">#{plate},
+            </if>
+            <if test="model != null">#{model},
+            </if>
+            <if test="brand != null">#{brand},
+            </if>
+            <if test="specificBrand != null">#{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">#{numberOfSeats},
+            </if>
+            <if test="driverName != null">#{driverName},
+            </if>
+            <if test="driverSex != null">#{driverSex},
+            </if>
+            <if test="driverIdentificationNumber != null">#{driverIdentificationNumber},
+            </if>
+            <if test="driverPhoneNumber != null">#{driverPhoneNumber},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="checked != null">#{checked},
+            </if>
+            <if test="pics != null">#{pics},
+            </if>
+            <if test="checkedPersonId != null">#{checkedPersonId},
+            </if>
+            <if test="checkedPersonName != null">#{checkedPersonName},
+            </if>
+            <if test="checkedTime != null">#{checkedTime},
+            </if>
+            <if test="targetPersonId != null">#{targetPersonId},
+            </if>
+            <if test="targetPersonName != null">#{targetPersonName},
+            </if>
+            <if test="targetPersonCommunityId != null">#{targetPersonCommunityId},
+            </if>
+            <if test="targetPersonCommunityChildId != null">#{targetPersonCommunityChildId},
+            </if>
+            <if test="targetPersonHouseId != null">#{targetPersonHouseId},
+            </if>
+            <if test="targetPersonHouseAddress != null">#{targetPersonHouseAddress},
+            </if>
+            <if test="visitStartTime != null">#{visitStartTime},
+            </if>
+            <if test="visitEndTime != null">#{visitEndTime},
+            </if>
+            <if test="visitorPicPermit != null and visitorPicPermit != ''">#{visitorPicPermit},
+            </if>
+            <if test="visitorPlatePermit != null and visitorPlatePermit != ''">#{visitorPlatePermit},
+            </if>
+            <if test="vehicleType != null  and vehicleType != ''">
+                #{vehicleType},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseVisitorVehicleInformation" parameterType="BaseVisitorVehicleInformation">
+        update base_visitor_vehicle_information
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="plate != null">plate =
+                #{plate},
+            </if>
+            <if test="model != null">model =
+                #{model},
+            </if>
+            <if test="brand != null">brand =
+                #{brand},
+            </if>
+            <if test="specificBrand != null">specific_brand =
+                #{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">number_of_seats =
+                #{numberOfSeats},
+            </if>
+            <if test="driverName != null">driver_name =
+                #{driverName},
+            </if>
+            <if test="driverSex != null">driver_sex =
+                #{driverSex},
+            </if>
+            <if test="driverIdentificationNumber != null">driver_identification_number =
+                #{driverIdentificationNumber},
+            </if>
+            <if test="driverPhoneNumber != null">driver_phone_number =
+                #{driverPhoneNumber},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="checked != null">checked =
+                #{checked},
+            </if>
+            <if test="pics != null">pics =
+                #{pics},
+            </if>
+            <if test="checkedPersonId != null">checked_person_id =
+                #{checkedPersonId},
+            </if>
+            <if test="checkedPersonName != null">checked_person_name =
+                #{checkedPersonName},
+            </if>
+            <if test="checkedTime != null">checked_time =
+                #{checkedTime},
+            </if>
+            <if test="targetPersonId != null">target_person_id =
+                #{targetPersonId},
+            </if>
+            <if test="targetPersonName != null">target_person_name =
+                #{targetPersonName},
+            </if>
+            <if test="targetPersonCommunityId != null">target_person_community_id =
+                #{targetPersonCommunityId},
+            </if>
+            <if test="targetPersonCommunityChildId != null">target_person_community_child_id =
+                #{targetPersonCommunityChildId},
+            </if>
+            <if test="targetPersonHouseId != null">target_person_house_id =
+                #{targetPersonHouseId},
+            </if>
+            <if test="targetPersonHouseAddress != null">target_person_house_address =
+                #{targetPersonHouseAddress},
+            </if>
+            <if test="visitStartTime != null">visit_start_time =
+                #{visitStartTime},
+            </if>
+            <if test="visitEndTime != null">visit_end_time =
+                #{visitEndTime},
+            </if>
+            <if test="visitorPicPermit != null and visitorPicPermit != ''">visitor_pic_permit =
+                #{visitorPicPermit},
+            </if>
+            <if test="visitorPlatePermit != null and visitorPlatePermit != ''">visitor_plate_permit =
+                #{visitorPlatePermit},
+            </if>
+            <if test="vehicleType != null  and vehicleType != ''">
+                vehicle_type = #{vehicleType},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseVisitorVehicleInformationById" parameterType="String">
+        delete from base_visitor_vehicle_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseVisitorVehicleInformationByIds" parameterType="String">
+        delete from base_visitor_vehicle_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseVisitorVehicleInformationByIds" parameterType="String">
+        update base_visitor_vehicle_information set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

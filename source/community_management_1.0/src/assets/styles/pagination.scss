@@ -1,0 +1,73 @@
+@import './variables.scss';
+
+.el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background .el-pager li {
+  background-color: #FFFFFF;
+  color: #606266;
+  min-width: 30px;
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+}
+// // 总数字体
+// .el-pagination__total
+// {
+//   color: $fontC !important;
+// }
+// // 跳转字体
+// .el-pagination__jump
+// {
+//   color: $fontC !important;
+// }
+// // 分页选择项弹窗
+// .el-select-dropdown
+// {
+//   background: rgba($color: $baseC, $alpha: 0.1) !important;
+//   border: 0.5px solid rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC !important;
+// }
+// // 分页选择项弹窗三角
+// .el-popper[x-placement^="top"] .popper__arrow {
+//   border-top-color: $selectC;
+// }
+// .el-popper[x-placement^="top"] .popper__arrow::after {
+//   border-top-color: $selectC;
+// }
+// // 分页选择项hover
+// .el-select-dropdown__item.hover, .el-select-dropdown__item:hover
+// {
+//   background: rgba($color: $baseC, $alpha: 0.6) !important;
+// }
+// // 分页选择项选中字体
+// .el-select-dropdown__item.selected
+// {
+//    color: $fontC !important;
+// }
+// // 分页选择框
+// .el-pagination .el-select .el-input .el-input__inner
+// {
+//   &:hover{
+//     background: rgba($color: $baseC, $alpha: 0.6) !important;
+//   }
+//   background: rgba($color: $baseC, $alpha: 0.1) !important;
+//   color: $fontC !important;
+//   border: 0.5px solid rgba($color: $baseC, $alpha: 0.6);
+// }
+// // 翻页按钮
+// .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li
+// {
+//   &:hover{
+//     background: rgba($color: $baseC, $alpha: 0.6) !important;
+//   }
+//   background: rgba($color: $baseC, $alpha: 0.1) !important;
+//   border: 0.5px solid rgba($color: $baseC, $alpha: 0.6);
+//   color: $fontC !important;
+// }
+// // 选中、鼠标悬停页码
+// .el-pagination.is-background .el-pager li:not(.disabled).active, .el-pagination.is-background .el-pager li:hover
+// {
+//   background: rgba($color: $baseC, $alpha: 0.6) !important;
+// }
+// // 输入框悬停
+// .el-pagination__editor.el-input .el-input__inner:hover
+// {
+//   background: rgba($color: $baseC, $alpha: 0.6) !important;
+// }

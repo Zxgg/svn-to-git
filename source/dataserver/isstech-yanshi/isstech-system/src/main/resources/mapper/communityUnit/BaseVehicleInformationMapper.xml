@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseVehicleInformationMapper">
+
+<!--    <resultMap type="TestForzengxi" id="TestForzengxiResult" >-->
+<!--        <association property="baseVehicleInformation" column="id" resultMap="BaseVehicleInformationResult"></association>-->
+<!--        <association property="vehicleInformationVo"  column="id" select="VehicleInformationVoResult"> </association>-->
+<!--    </resultMap>-->
+
+<!--    <select id="testId"  parameterType="String" resultType="TestForzengxiResult">-->
+<!--        <include refid="selectVehicleAndPerson"></include>-->
+<!--    </select>-->
+
+    <resultMap type="BaseVehicleInformation" id="BaseVehicleInformationResult">
+        <result property="id" column="id"/>
+        <result property="plate" column="plate"/>
+        <result property="model" column="model"/>
+        <result property="brand" column="brand"/>
+        <result property="specificBrand" column="specific_brand"/>
+        <result property="numberOfSeats" column="number_of_seats"/>
+        <result property="parkingSpaceNumber" column="parking_space_number"/>
+        <result property="buyTime" column="buy_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="checked" column="checked"/>
+        <result property="limited" column="limited"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="energyType"    column="energy_type"/>
+        <result property="isKey"    column="is_key"/>
+    </resultMap>
+
+    <resultMap type="VehicleInformationVo" id="VehicleInformationVoResult">
+        <result property="id" column="id"/>
+        <result property="plate" column="plate"/>
+        <result property="model" column="model"/>
+        <result property="brand" column="brand"/>
+        <result property="specificBrand" column="specific_brand"/>
+        <result property="numberOfSeats" column="number_of_seats"/>
+        <result property="parkingSpaceNumber" column="parking_space_number"/>
+        <result property="buyTime" column="buy_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="checked" column="checked"/>
+        <result property="limited" column="limited"/>
+        <result property="vehicleComHousePersonId" column="vehicle_com_house_person_id"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="typeOfResidence" column="type_of_residence"/>
+        <result property="homeowner" column="homeowner"/>
+        <result property="isDelFlag" column="is_del_flag"/>
+        <result property="energyType"    column="energy_type"/>
+        <result property="isKey"    column="is_key"/>
+    </resultMap>
+
+    <sql id="selectBaseVehicleInformationVo">
+        select id, plate, model, brand, specific_brand, number_of_seats, parking_space_number, buy_time, create_by, create_time, update_by, update_time, del_flag, remark, checked,limited,community_id,community_child_id, energy_type, is_key from base_vehicle_information
+    </sql>
+    <sql id="addVehicleInformationVo">
+        select bvi.id, bvi.plate, bvi.model, bvi.brand, bvi.specific_brand, bvi.number_of_seats, bvi.parking_space_number, bvi.buy_time,
+            bvi.create_by, bvi.create_time, bvi.update_by, bvi.update_time, bvi.checked,bvi.remark,bvi.limited, bvi.energy_type, bvi.is_key, bvchp.id vehicle_com_house_person_id ,
+            bvchp.community_id ,bvchp.community_child_id ,bvchp.community_houses_id ,bvchp.personnel_id ,bvchp.vehicle_id ,bvchp.type_of_residence ,
+            bvchp.homeowner ,bvchp.del_flag  is_del_flag
+        from base_vehicle_information bvi,base_vehicle_community_houses_personnel bvchp
+    </sql>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+    <select id="selectVehicleInformationVoList" parameterType="VehicleInformationVo"
+            resultMap="VehicleInformationVoResult">
+        <include refid="addVehicleInformationVo"/>
+        <where>
+            bvi.id = bvchp.vehicle_id and
+            bvi.del_flag = '0' and
+            bvchp.del_flag = '0'
+            <if test="delFlag != null  and delFlag != ''">
+                and bvi.del_flag = #{delFlag}
+            </if>
+            <if test="id != null and id !=''">
+                and bvi.id = #{id}
+            </if>
+            <if test="plate != null  and plate != ''">
+                and bvi.plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="model != null  and model != ''">
+                and bvi.model = #{model}
+            </if>
+            <if test="brand != null  and brand != ''">
+                and bvi.brand like concat('%', #{brand}, '%')
+            </if>
+            <if test="specificBrand != null  and specificBrand != ''">
+                and bvi.specific_brand like concat('%', #{specificBrand}, '%')
+            </if>
+            <if test="numberOfSeats != null ">
+                and bvi.number_of_seats = #{numberOfSeats}
+            </if>
+            <if test="parkingSpaceNumber != null  and parkingSpaceNumber != ''">
+                and bvi.parking_space_number like concat('%', #{parkingSpaceNumber}, '%')
+            </if>
+            <if test="buyTime != null ">
+                and bvi.buy_time = #{buyTime}
+            </if>
+            <if test="checked != null  and checked != ''">
+                and bvi.checked = #{checked}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bvi.community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bvi.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and bvchp.community_houses_id = #{communityHousesId}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and bvchp.personnel_id = #{personnelId}
+            </if>
+            <if test="isDelFlag == null  and isDelFlag == ''">
+                and bvchp.del_flag = 0
+            </if>
+            <if test="energyType != null  and energyType != ''">
+             and bvi.energy_type = #{energyType}
+            </if>
+            <if test="isKey != null  and isKey != ''">
+             and is_key = #{isKey}
+             </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bvi.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bvi.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectBaseVehicleInformationList" parameterType="BaseVehicleInformation"
+            resultMap="BaseVehicleInformationResult">
+        <include refid="selectBaseVehicleInformationVo"/>
+        <where>
+            del_flag = '0'
+            <if test="delFlag != null  and delFlag != ''">
+                 and del_flag = #{delFlag}
+            </if>
+            <if test="plate != null  and plate != ''">
+                and plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="model != null  and model != ''">
+                and model = #{model}
+            </if>
+            <if test="brand != null  and brand != ''">
+                and brand like concat('%', #{brand}, '%')
+            </if>
+            <if test="specificBrand != null  and specificBrand != ''">
+                and specific_brand like concat('%', #{specificBrand}, '%')
+            </if>
+            <if test="numberOfSeats != null ">
+                and number_of_seats = #{numberOfSeats}
+            </if>
+            <if test="parkingSpaceNumber != null  and parkingSpaceNumber != ''">
+                and parking_space_number like concat('%', #{parkingSpaceNumber}, '%')
+            </if>
+            <if test="buyTime != null ">
+                and buy_time = #{buyTime}
+            </if>
+            <if test="checked != null  and checked != ''">
+                and checked = #{checked}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="energyType != null  and energyType != ''">
+             and energy_type = #{energyType}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isKey != null  and isKey != ''">
+             and is_key = #{isKey}
+             </if>
+        </where>
+    </select>
+
+    <select id="selectBaseVehicleInformationById" parameterType="String" resultMap="BaseVehicleInformationResult">
+        <include refid="selectBaseVehicleInformationVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseVehicleInformation" parameterType="BaseVehicleInformation">
+        insert into base_vehicle_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="plate != null">plate,
+            </if>
+            <if test="model != null">model,
+            </if>
+            <if test="brand != null">brand,
+            </if>
+            <if test="specificBrand != null">specific_brand,
+            </if>
+            <if test="numberOfSeats != null">number_of_seats,
+            </if>
+            <if test="parkingSpaceNumber != null">parking_space_number,
+            </if>
+            <if test="buyTime != null">buy_time,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="checked != null">checked,
+            </if>
+            <if test="limited != null">limited,
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                community_id,
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                community_child_id,
+            </if>
+            <if test="energyType != null">
+            energy_type,
+            </if>
+            <if test="isKey != null">
+            is_key,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="plate != null">#{plate},
+            </if>
+            <if test="model != null">#{model},
+            </if>
+            <if test="brand != null">#{brand},
+            </if>
+            <if test="specificBrand != null">#{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">#{numberOfSeats},
+            </if>
+            <if test="parkingSpaceNumber != null">#{parkingSpaceNumber},
+            </if>
+            <if test="buyTime != null">#{buyTime},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="checked != null">#{checked},
+            </if>
+            <if test="limited != null">#{limited},
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                #{communityId},
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                #{communityChildId},
+            </if>
+            <if test="energyType != null">
+            #{energyType},
+            </if>
+            <if test="isKey != null">
+            #{isKey},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseVehicleInformation" parameterType="BaseVehicleInformation">
+        update base_vehicle_information
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="plate != null">plate =
+                #{plate},
+            </if>
+            <if test="model != null">model =
+                #{model},
+            </if>
+            <if test="brand != null">brand =
+                #{brand},
+            </if>
+            <if test="specificBrand != null">specific_brand =
+                #{specificBrand},
+            </if>
+            <if test="numberOfSeats != null">number_of_seats =
+                #{numberOfSeats},
+            </if>
+            <if test="parkingSpaceNumber != null">parking_space_number =
+                #{parkingSpaceNumber},
+            </if>
+            <if test="buyTime != null">buy_time =
+                #{buyTime},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="checked != null">checked =
+                #{checked},
+            </if>
+            <if test="limited != null">limited =
+                #{limited},
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                community_id = #{communityId},
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                community_child_id = #{communityChildId},
+            </if>
+            <if test="energyType != null">
+            energy_type = #{energyType},
+            </if>
+            <if test="isKey != null">
+            is_key = #{isKey},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseVehicleInformationById" parameterType="String">
+        delete from base_vehicle_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseVehicleInformationByIds" parameterType="String">
+        delete from base_vehicle_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseVehicleInformationByIds" parameterType="String">
+        update base_vehicle_information set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectVehicleAndPerson" resultType="java.util.Map">
+        SELECT
+            t.* ,
+            n.id as person_id,
+            n.name  ,
+            n.old_name,
+            n.sex,
+            n.nationality,
+            n.id_type,
+            n.identification_number,
+            n.idcard_start_date,
+            n.idcard_end_date,
+            n.nation,
+            n.location,
+            n.residence_detail,
+            n.address,
+            n.address_detail,
+            n.del_flag as person_del_flag,
+            n.remark as person_remark,
+            n.marital,
+            n.political,
+            n.degree,
+            n.religion,
+            n.profession,
+            n.professio_detail,
+            n.service_premises,
+            n.phone_number,
+            n.special,
+            n.limited as person_limited,
+            n.caring,
+            n.floating,
+            n.arrival_country_date,
+            n.arrival_province_date,
+            n.departure_date,
+            n.floating_reasons,
+            n.card_type,
+            n.card_handling_agency,
+            n.card_num,
+            n.card_record_date,
+            n.pics,
+            n.checked as person_checked,
+            n.brith_date,
+            n.community_id as person_community_id,
+            n.community_child_id as person_community_child_id,
+            n.img_url,
+            n.is_same,
+            n.door_no,
+            n.household_idc,
+            n.household_name,
+            n.householdRelation,
+            n.file_id,
+            n.household_phone,
+            n.person_type,
+            n.stay_behind,
+            n.identification_positive,
+            n.identification_reverse,
+            n.custom_tag
+        FROM
+            base_vehicle_information t
+            LEFT JOIN base_vehicle_community_houses_personnel m ON t.id = m.vehicle_id and m.del_flag = 0
+            LEFT JOIN base_personnel_information n ON m.personnel_id = n.id and n.del_flag = 0
+        <where>
+            m.homeowner = 1 and t.del_flag = 0
+            <if test="plate != null ">
+                and t.plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="name != null ">
+                and n.name like concat('%', #{name}, '%')
+            </if>
+            <if test="identificationNumber != null ">
+                and n.identification_number like concat('%', #{identificationNumber}, '%')
+            </if>
+        </where>
+        order by t.update_time desc
+    </select>
+
+
+    <resultMap type="VehiclePersonHouseVo" id="VehiclePersonHouseVoResult">
+<!--        <result property="vehicleId" column="vehicleId"></result>-->
+<!--        <result property="plate" column="plate"></result>-->
+<!--        <result property="parkingSpaceNum" column="parkingSpaceNum"></result>-->
+<!--        <result property="color" column="color"></result>-->
+<!--        <result property="gridId" column="gridId"></result>-->
+<!--        <result property="personId" column="personId"></result>-->
+<!--        <result property="name" column="name"></result>-->
+<!--        <result property="sex" column="sex"></result>-->
+<!--        <result property="phoneNumber" column="phoneNumber"></result>-->
+<!--        <result property="location" column="location"></result>-->
+<!--        <result property="idNumber" column="idNumber"></result>-->
+<!--        <result property="address" column="address"></result>-->
+<!--        <result property="vehicleImg" column="vehicleImg"></result>-->
+<!--        <result property="brand" column="brand"></result>-->
+<!--        <result property="communityChildId" column="communityChildId"></result>-->
+<!--        <result property="communityChildName" column="communityChildName"></result>-->
+    </resultMap>
+
+    <select resultMap="VehiclePersonHouseVoResult" id="getVehiclePersonHouses">
+        SELECT
+        t.id as vehicleId,
+        t.plate as plate,
+        t.parking_space_number as parkingSpaceNum,
+        t.color as color,
+        t.grid_id as gridId,
+        t.image as vehicleImg,
+        t.brand as brand,
+        t.community_child_id as communityChildId,
+        cc.name as communityChildName,
+        n.id as personId,
+        n.name as name,
+        n.sex as sex,
+        TIMESTAMPDIFF(YEAR,n.brith_date, CURDATE()) as age,
+        n.phone_number as phoneNumber,
+        n.location as location,
+        n.identification_number as idNumber,
+        h.community_building_id as buildingId,
+        h.building_name as buildingName,
+        h.remark as address
+        FROM
+        base_vehicle_information t
+        LEFT JOIN base_vehicle_community_houses_personnel m ON t.id = m.vehicle_id and m.del_flag = 0
+        LEFT JOIN base_personnel_information n ON m.personnel_id = n.id and n.del_flag = 0
+        LEFT JOIN base_community_houses h ON h.id = m.community_houses_id and h.del_flag = 0
+        LEFT JOIN base_community_child cc on t.community_child_id = cc.id
+        <where>
+            m.homeowner = 1 and t.del_flag = 0
+            <if test="plate != null ">
+                and t.plate like concat('%', #{plate}, '%')
+            </if>
+            <if test="name != null ">
+                and n.name like concat('%', #{name}, '%')
+            </if>
+            <if test="identificationNumber != null ">
+                and n.identification_number like concat('%', #{identificationNumber}, '%')
+            </if>
+        </where>
+        order by t.update_time desc
+    </select>
+
+</mapper>

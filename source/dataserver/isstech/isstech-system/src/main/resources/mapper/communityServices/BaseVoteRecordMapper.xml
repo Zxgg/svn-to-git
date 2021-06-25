@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseVoteRecordMapper">
+
+    <resultMap type="BaseVoteRecord" id="BaseVoteRecordResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="uuid" column="uuid"/>
+        <result property="voteProjectId" column="vote_project_id"/>
+        <result property="voteProjectOptionId" column="vote_project_option_id"/>
+    </resultMap>
+
+    <sql id="selectBaseVoteRecordVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, name, uuid, vote_project_id, vote_project_option_id from base_vote_record
+    </sql>
+
+    <select id="selectBaseVoteRecordList" parameterType="BaseVoteRecord" resultMap="BaseVoteRecordResult">
+        <include refid="selectBaseVoteRecordVo"/>
+        <where>
+                del_flag = '0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="uuid != null  and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="voteProjectId != null  and voteProjectId != ''">
+                and vote_project_id = #{voteProjectId}
+            </if>
+            <if test="voteProjectOptionId != null  and voteProjectOptionId != ''">
+                and vote_project_option_id = #{voteProjectOptionId}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseVoteRecordById" parameterType="String" resultMap="BaseVoteRecordResult">
+        <include refid="selectBaseVoteRecordVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseVoteRecord" parameterType="BaseVoteRecord">
+        insert into base_vote_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="uuid != null and uuid != ''">uuid,
+            </if>
+            <if test="voteProjectId != null and voteProjectId != ''">vote_project_id,
+            </if>
+            <if test="voteProjectOptionId != null and voteProjectOptionId != ''">vote_project_option_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="uuid != null and uuid != ''">#{uuid},
+            </if>
+            <if test="voteProjectId != null and voteProjectId != ''">#{voteProjectId},
+            </if>
+            <if test="voteProjectOptionId != null and voteProjectOptionId != ''">#{voteProjectOptionId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseVoteRecord" parameterType="BaseVoteRecord">
+        update base_vote_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="uuid != null and uuid != ''">uuid =
+                #{uuid},
+            </if>
+            <if test="voteProjectId != null and voteProjectId != ''">vote_project_id =
+                #{voteProjectId},
+            </if>
+            <if test="voteProjectOptionId != null and voteProjectOptionId != ''">vote_project_option_id =
+                #{voteProjectOptionId},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseVoteRecordById" parameterType="String">
+        delete from base_vote_record where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseVoteRecordByIds" parameterType="String">
+        delete from base_vote_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseVoteRecordByIds" parameterType="String">
+        update base_vote_record set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

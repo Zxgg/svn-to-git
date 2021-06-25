@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseStayBehindMapper">
+
+    <resultMap type="BaseStayBehind" id="BaseStayBehindResult">
+            <result property="id"    column="id"    />
+            <result property="personYearIncome"    column="person_year_income"    />
+            <result property="type"    column="type"    />
+            <result property="memberId"    column="member_ID"    />
+            <result property="memberName"    column="member_name"    />
+            <result property="memberHealth"    column="member_health"    />
+            <result property="memberRelation"    column="member_relation"    />
+            <result property="memberPhone"    column="member_phone"    />
+            <result property="memberWorkAddress"    column="member_work_address"    />
+            <result property="familyYearIncome"    column="family_year_income"    />
+            <result property="difficultAppeal"    column="difficult_appeal"    />
+            <result property="help"    column="help"    />
+            <result property="personnelId"    column="personnel_id"    />
+            <result property="communityId"    column="community_id"    />
+            <result property="communityChildId"    column="community_child_id"    />
+            <result property="createTime"    column="create_time"    />
+            <result property="createBy"    column="create_by"    />
+            <result property="updateBy"    column="update_by"    />
+            <result property="updateTime"    column="update_time"    />
+            <result property="delFlag"    column="del_flag"    />
+    </resultMap>
+
+    <sql id="selectBaseStayBehindVo">
+        select id, person_year_income, type, member_ID, member_name, member_health, member_relation, member_phone, member_work_address, family_year_income, difficult_appeal, help, personnel_id, community_id, community_child_id, create_time, create_by, update_by, update_time, del_flag from base_stay_behind
+    </sql>
+
+    <select id="selectBaseStayBehindList" parameterType="BaseStayBehind" resultMap="BaseStayBehindResult">
+        <include refid="selectBaseStayBehindVo"/>
+        <where>
+            del_flag = '0'
+            <if test="personYearIncome != null "> and person_year_income = #{personYearIncome}</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="memberId != null  and memberId != ''"> and member_ID = #{memberId}</if>
+            <if test="memberName != null  and memberName != ''"> and member_name like concat('%', #{memberName}, '%')</if>
+            <if test="memberHealth != null  and memberHealth != ''"> and member_health = #{memberHealth}</if>
+            <if test="memberRelation != null  and memberRelation != ''"> and member_relation = #{memberRelation}</if>
+            <if test="memberPhone != null  and memberPhone != ''"> and member_phone = #{memberPhone}</if>
+            <if test="memberWorkAddress != null  and memberWorkAddress != ''"> and member_work_address = #{memberWorkAddress}</if>
+            <if test="familyYearIncome != null "> and family_year_income = #{familyYearIncome}</if>
+            <if test="difficultAppeal != null  and difficultAppeal != ''"> and difficult_appeal = #{difficultAppeal}</if>
+            <if test="help != null  and help != ''"> and help = #{help}</if>
+            <if test="personnelId != null  and personnelId != ''"> and personnel_id = #{personnelId}</if>
+            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+        </where>
+    </select>
+
+    <select id="selectBaseStayBehindById" parameterType="String" resultMap="BaseStayBehindResult">
+        <include refid="selectBaseStayBehindVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseStayBehind" parameterType="BaseStayBehind">
+        insert into base_stay_behind
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="personYearIncome != null">person_year_income,</if>
+            <if test="type != null">type,</if>
+            <if test="memberId != null">member_ID,</if>
+            <if test="memberName != null">member_name,</if>
+            <if test="memberHealth != null">member_health,</if>
+            <if test="memberRelation != null">member_relation,</if>
+            <if test="memberPhone != null">member_phone,</if>
+            <if test="memberWorkAddress != null">member_work_address,</if>
+            <if test="familyYearIncome != null">family_year_income,</if>
+            <if test="difficultAppeal != null">difficult_appeal,</if>
+            <if test="help != null">help,</if>
+            <if test="personnelId != null">personnel_id,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="personYearIncome != null">#{personYearIncome},</if>
+            <if test="type != null">#{type},</if>
+            <if test="memberId != null">#{memberId},</if>
+            <if test="memberName != null">#{memberName},</if>
+            <if test="memberHealth != null">#{memberHealth},</if>
+            <if test="memberRelation != null">#{memberRelation},</if>
+            <if test="memberPhone != null">#{memberPhone},</if>
+            <if test="memberWorkAddress != null">#{memberWorkAddress},</if>
+            <if test="familyYearIncome != null">#{familyYearIncome},</if>
+            <if test="difficultAppeal != null">#{difficultAppeal},</if>
+            <if test="help != null">#{help},</if>
+            <if test="personnelId != null">#{personnelId},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseStayBehind" parameterType="BaseStayBehind">
+        update base_stay_behind
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="personYearIncome != null">person_year_income = #{personYearIncome},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="memberId != null">member_ID = #{memberId},</if>
+            <if test="memberName != null">member_name = #{memberName},</if>
+            <if test="memberHealth != null">member_health = #{memberHealth},</if>
+            <if test="memberRelation != null">member_relation = #{memberRelation},</if>
+            <if test="memberPhone != null">member_phone = #{memberPhone},</if>
+            <if test="memberWorkAddress != null">member_work_address = #{memberWorkAddress},</if>
+            <if test="familyYearIncome != null">family_year_income = #{familyYearIncome},</if>
+            <if test="difficultAppeal != null">difficult_appeal = #{difficultAppeal},</if>
+            <if test="help != null">help = #{help},</if>
+            <if test="personnelId != null">personnel_id = #{personnelId},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseStayBehindById" parameterType="String">
+        delete from base_stay_behind where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseStayBehindByIds" parameterType="String">
+        delete from base_stay_behind where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseStayBehindByIds" parameterType="String">
+        update base_stay_behind set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="getByPersonId" parameterType="string" resultMap="BaseStayBehindResult">
+        <include refid="selectBaseStayBehindVo"/>
+        where personnel_id=#{personId} and del_flag='0'
+    </select>
+
+</mapper>

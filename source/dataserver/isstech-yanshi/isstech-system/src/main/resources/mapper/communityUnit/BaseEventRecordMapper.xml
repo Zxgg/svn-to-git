@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseEventRecordMapper">
+
+    <resultMap type="BaseEventRecord" id="BaseEventRecordResult">
+        <result property="id" column="id"/>
+        <result property="eventId" column="event_id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="eventContent" column="event_content"/>
+        <result property="eventStatus" column="event_status"/>
+        <result property="eventStatusSon" column="event_status_son"/>
+        <result property="content" column="content"/>
+        <result property="communityId" column="community_id"/>
+        <result property="handleBy" column="handle_by"/>
+        <result property="remarks" column="remarks"/>
+        <result property="fileId" column="file_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="eventDegree" column="event_degree"/>
+        <result property="reportBy" column="report_by"/>
+        <result property="isback" column="isback"/>
+        <result property="reportingTime" column="reporting_time"/>
+
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseEventRecordVo">
+        select id, event_id, event_name, event_content, event_status, event_status_son, content, community_id, handle_by, remarks, file_id, create_by, create_time, update_by, update_time, del_flag,community_child_id ,event_degree,report_by ,isback,reporting_time from base_event_record
+    </sql>
+
+    <select id="selectBaseEventRecordList" parameterType="BaseEventRecord" resultMap="BaseEventRecordResult">
+        <include refid="selectBaseEventRecordVo"/>
+        <where>
+            del_flag = '0'
+            <if test="eventId != null  and eventId != ''">and event_id = #{eventId}</if>
+            <if test="eventName != null  and eventName != ''">and event_name like concat('%', #{eventName}, '%')</if>
+            <if test="eventContent != null  and eventContent != ''">and event_content = #{eventContent}</if>
+            <if test="eventStatus != null  and eventStatus != ''">and event_status = #{eventStatus}</if>
+            <if test="eventStatusSon != null  and eventStatusSon != ''">and event_status_son = #{eventStatusSon}</if>
+            <if test="content != null  and content != ''">and content = #{content}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="handleBy != null  and handleBy != ''">and handle_by = #{handleBy}</if>
+            <if test="remarks != null  and remarks != ''">and remarks = #{remarks}</if>
+            <if test="fileId != null  and fileId != ''">and file_id = #{fileId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id = #{communityChildId}</if>
+            <if test="eventDegree != null  and eventDegree != ''">and event_degree = #{eventDegree}</if>
+            <if test="reportBy != null  and reportBy != ''">and report_by = #{reportBy}</if>
+            <if test="isback != null  and isback != ''">and isback = #{isback}</if>
+            <if test="reportingTime != null  and reportingTime != ''">and reporting_time = #{reportingTime}</if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseEventRecordById" parameterType="String" resultMap="BaseEventRecordResult">
+        <include refid="selectBaseEventRecordVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseEventRecord" parameterType="BaseEventRecord">
+        insert into base_event_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="eventId != null">event_id,</if>
+            <if test="eventName != null">event_name,</if>
+            <if test="eventContent != null">event_content,</if>
+            <if test="eventStatus != null">event_status,</if>
+            <if test="eventStatusSon != null">event_status_son,</if>
+            <if test="content != null">content,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="handleBy != null">handle_by,</if>
+            <if test="remarks != null">remarks,</if>
+            <if test="fileId != null">file_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="eventDegree != null">event_degree,</if>
+            <if test="reportBy != null">report_by,</if>
+            <if test="isback != null">isback,</if>
+            <if test="reportingTime != null">reporting_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="eventId != null">#{eventId},</if>
+            <if test="eventName != null">#{eventName},</if>
+            <if test="eventContent != null">#{eventContent},</if>
+            <if test="eventStatus != null">#{eventStatus},</if>
+            <if test="eventStatusSon != null">#{eventStatusSon},</if>
+            <if test="content != null">#{content},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="handleBy != null">#{handleBy},</if>
+            <if test="remarks != null">#{remarks},</if>
+            <if test="fileId != null">#{fileId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="eventDegree != null">#{eventDegree},</if>
+            <if test="reportBy != null">#{reportBy},</if>
+            <if test="isback != null">#{isback},</if>
+            <if test="reportingTime != null">#{reportingTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseEventRecord" parameterType="BaseEventRecord">
+        update base_event_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="eventId != null">event_id = #{eventId},</if>
+            <if test="eventName != null">event_name = #{eventName},</if>
+            <if test="eventContent != null">event_content = #{eventContent},</if>
+            <if test="eventStatus != null">event_status = #{eventStatus},</if>
+            <if test="eventStatusSon != null">event_status_son = #{eventStatusSon},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="handleBy != null">handle_by = #{handleBy},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+            <if test="fileId != null">file_id = #{fileId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="eventDegree != null">event_degree = #{eventDegree},</if>
+            <if test="reportBy != null">report_by = #{reportBy},</if>
+            <if test="isback != null">isback = #{isback},</if>
+            <if test="reportingTime != null">reporting_time = #{reportingTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseEventRecordById" parameterType="String">
+        delete from base_event_record where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseEventRecordByIds" parameterType="String">
+        delete from base_event_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseEventRecordByIds" parameterType="String">
+        update base_event_record set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

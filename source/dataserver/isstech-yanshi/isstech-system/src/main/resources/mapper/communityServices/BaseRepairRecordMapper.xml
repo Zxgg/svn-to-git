@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseRepairRecordMapper">
+
+    <resultMap type="BaseRepairRecord" id="BaseRepairRecordResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="repairPersonName" column="repair_person_name"/>
+        <result property="repairContent" column="repair_content"/>
+        <result property="deal" column="deal"/>
+        <result property="dealPersonName" column="deal_person_name"/>
+    </resultMap>
+
+    <sql id="selectBaseRepairRecordVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, repair_person_name, repair_content, deal, deal_person_name from base_repair_record
+    </sql>
+
+    <select id="selectBaseRepairRecordList" parameterType="BaseRepairRecord" resultMap="BaseRepairRecordResult">
+        <include refid="selectBaseRepairRecordVo"/>
+        <where>
+                 del_flag = '0'
+            <if test="repairPersonName != null  and repairPersonName != ''">
+                and repair_person_name like concat('%', #{repairPersonName}, '%')
+            </if>
+            <if test="repairContent != null  and repairContent != ''">
+                and repair_content = #{repairContent}
+            </if>
+            <if test="deal != null  and deal != ''">
+                and deal = #{deal}
+            </if>
+            <if test="dealPersonName != null  and dealPersonName != ''">
+                and deal_person_name like concat('%', #{dealPersonName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseRepairRecordById" parameterType="String" resultMap="BaseRepairRecordResult">
+        <include refid="selectBaseRepairRecordVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseRepairRecord" parameterType="BaseRepairRecord">
+        insert into base_repair_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="repairPersonName != null">repair_person_name,
+            </if>
+            <if test="repairContent != null">repair_content,
+            </if>
+            <if test="deal != null">deal,
+            </if>
+            <if test="dealPersonName != null">deal_person_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="repairPersonName != null">#{repairPersonName},
+            </if>
+            <if test="repairContent != null">#{repairContent},
+            </if>
+            <if test="deal != null">#{deal},
+            </if>
+            <if test="dealPersonName != null">#{dealPersonName},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseRepairRecord" parameterType="BaseRepairRecord">
+        update base_repair_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="repairPersonName != null">repair_person_name =
+                #{repairPersonName},
+            </if>
+            <if test="repairContent != null">repair_content =
+                #{repairContent},
+            </if>
+            <if test="deal != null">deal =
+                #{deal},
+            </if>
+            <if test="dealPersonName != null">deal_person_name =
+                #{dealPersonName},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseRepairRecordById" parameterType="String">
+        delete from base_repair_record where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseRepairRecordByIds" parameterType="String">
+        delete from base_repair_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseRepairRecordByIds" parameterType="String">
+        update base_repair_record set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

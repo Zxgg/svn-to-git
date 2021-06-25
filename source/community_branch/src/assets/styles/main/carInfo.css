@@ -1,0 +1,532 @@
+.communityVehicleStatistics {
+  /* height: 27%; */
+  /* height: 300px; */
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  /* padding: 0 10px; */
+}
+.communityVehicleStatisticsTime {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  /* margin-top: 5px; */
+  /* margin-bottom: 5px; */
+}
+.activeVehicle {
+  height: 38%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 5px;
+}
+.vehicleCategory {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  /* margin-top: 5px; */
+}
+.controlOfTheVehicle {
+  height: 25%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  /* margin-top: 30px; */
+}
+.carLeftBox {
+  /* left: 10px; */
+  /* padding-top: 10px; */
+  height: 100%;
+  width: 100%;
+  right: 10px;
+}
+.switchImg {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  background-color: #32376d;
+  color: #fff;
+  position: absolute;
+  left: 480px;
+  top: 10px;
+}
+.switchImg:hover {
+  cursor: pointer;
+  color: #29cbc0;
+}
+.switchImg img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 模块标题 */
+.car-boxTitle, .car-boxTitleM, .car-boxTitleL {
+  /* padding: 10px 0px 0px 27px; */
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* width: 460px; */
+  height: 25px;
+  margin-left: 18px;
+}
+.car-boxTitle {
+  background-image: url(../../images/car/title.png);
+  width: 90%;
+}
+.car-boxTitleM {
+  background-image: url(../../images/car/title-mid.png);
+}
+.car-boxTitleL {
+  background-image: url(../../images/car/title-long.png);
+}
+.car-boxTitle span:first-child {
+  width: 86px;
+}
+.car-boxTitleM span:first-child {
+  width: 168px;
+}
+.car-boxTitle span:first-child, .car-boxTitleM span:first-child, .car-boxTitleL span:first-child {
+  display: inline-block;
+  /* width: 90px; */
+  height: 20px;
+  color: #fff;
+  margin-left: 30px;
+  font-size: 16px;
+}
+.car-boxTitle span:last-child, .car-boxTitleM span:last-child, .car-boxTitleL span:last-child {
+  color: #9AA9BF;
+  font-size: 8px;
+  /* height: 10px; */
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.carCrossBox {
+  margin-top: 5px;
+  height: 78%;
+  overflow-y: scroll;
+  position: relative;
+}
+.carCross span:first-child {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+.carCross span:nth-child(2) {
+  position: absolute;
+  color: #fff;
+  left: 8%;
+  font-size: 14px;
+}
+.carCross span:last-child {
+  position: absolute;
+  right: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+.carCross {
+  height: 30px;
+  line-height: 30px;
+  margin-top: 5px;
+  background: rgba(0, 217, 255, 0.5);
+}
+.carCross img {
+  width: 100%;
+  height: 100%;
+}
+.controlOfTheVehicleBox {
+  /* margin-top: 15px; */
+  width:100%;
+  /* margin-left: 3%; */
+  height:100%;
+}
+.controlOfTheVehicleBox div:first-child{
+  /* height: 95%; */
+}
+.controlOfTheVehicleBoxInside {
+  height: 100%;
+  border: 1px solid rgba(0, 217, 255, 1);
+  background: rgba(1, 230, 255, 0.4);
+}
+.controlOfTheVehicleBoxInsidePic {
+  height: 55%;
+}
+.controlOfTheVehicleBoxInsidePic img {
+  width: 100%;
+  height: 100%;
+}
+.controlOfTheVehicleBoxInsideCarNum {
+  margin-top: 5px;
+  text-align: center;
+}
+.controlOfTheVehicleBoxInsideCarNum span {
+  color: #fff;
+  font-size: 14px;
+}
+.controlOfTheVehicleBoxInsideCarNum span:last-child {
+  margin-left: 5px;
+}
+.controlOfTheVehicleBoxInsideAlarm {
+  color: rgba(255, 0, 0, 1);
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.controlOfTheVehicleBoxInsideDetail {
+  margin-left: 35%;
+  margin-top: 5px;
+}
+.controlOfTheVehicleBoxInsideDetail div {
+  width: 40px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-color: rgba(0, 217, 255, 1);
+  color: #fff;
+  font-size: 12px;
+}
+.controlOfTheVehicleBoxInsideDetail div:hover {
+  color: blue;
+  cursor: pointer;
+}
+.vehicleYears{
+  height: 30%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 12px;
+}
+.vehicleEnergy{
+  height: 23%;
+  /* background-color: rgba(34, 39, 81, 0.8); */
+  margin-top: 20px;
+}
+.controlOfTheVehicle-box{
+  background: url("../../images/car/管控车辆背景.png")
+  no-repeat center center / 100% 100%;
+  height: 100%;
+  width: 100%;
+}
+.controlOfTheVehicleBox .el-carousel__item{
+  width: 75%;
+  height: 75%;
+  left: -70px;
+  /* left: 10%;
+  height: 240px; */
+}
+.controlOfTheVehicleBox .el-carousel__item--card {
+  /* width: 65%;
+  height: 70%; */
+}
+.controlOfTheVehicleBox .el-carousel__arrow i {
+  color: transparent;
+}
+.controlOfTheVehicleBox .el-carousel__mask {
+  width: 75%;
+  height: 75%;
+  background-color: transparent;
+}
+.controlOfTheVehicle-img-div {
+  padding-left: 48px;
+  padding-top: 36px;
+}
+.controlOfTheVehicle-img{
+  /* width: 98%;
+  height: 68%; */
+  /* margin: 1%; */
+  margin-bottom: 0 !important;
+  width: 144px;
+  height: 124px;
+}
+.controlOfTheVehicle-name-div {
+  /* display: -webkit-flex;
+  display: flex;
+  flex-direction: column; */
+  padding-top: 38px;
+  padding-left: 25px;
+}
+.controlOfTheVehicle-name-div div {
+  /* margin-top: 10%; */
+}
+.controlOfTheVehicle-name{
+  font-size: 12px;
+  color: #E1E8FA;
+  letter-spacing: 0.6px;
+  line-height: 30px;
+  height: 30px;
+  /* color: #fff; */
+  /* margin-left: 5%; */
+}
+.controlOfTheVehicle .is-active {
+  background-color: transparent !important;
+  opacity: 1 !important;
+}
+/* .controlOfTheVehicle .is-active {
+  background-color: transparent !important;
+  opacity: 1;
+} */
+.controlOfTheVehicle .el-carousel__item {
+  background-color: transparent;
+  opacity: 0.2;
+}
+/* .controlOfTheVehicle .el-carousel__item:nth-child(2n) {
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.controlOfTheVehicle .el-carousel__item:nth-child(2n+1) {
+  background-color: transparent;
+  opacity: 0.5;
+} */
+.controlOfTheVehicle-box .medium{
+  width: 98%;
+  height:30.2%;
+  margin-left: 1%;
+  background-color: #0C0F2A;
+  opacity: 0.8;
+  margin-top: -2.5%;
+}
+.controlOfTheVehicleBox-carousel{
+  background: transparent;
+  opacity: 1;
+}
+.controlOfTheVehicle-box .controlOfTheVehicle-name-div div:first-child{
+  width: 100%;
+  height: 50%;
+}
+.controlOfTheVehicle-box .controlOfTheVehicle-name-div div:last-child{
+  width: 100%;
+  height: 50%;
+}
+
+/* 表格样式 */
+.carLeftBox .el-table tr {
+  /* background-color: #1f234a !important; */
+  background-color: transparent;
+  /* cursor: pointer; */
+} 
+.carLeftBox .el-table .el-table__header-wrapper th,
+.carLeftBox .el-table .el-table__fixed-header-wrapper th {
+  background: none;
+}
+.carLeftBox .el-table--enable-row-hover .el-table__body tr:hover > td {
+  background: none;
+}
+.carSearchList .el-table--enable-row-hover .el-table__body tr:hover > td {
+  cursor: pointer;
+}
+.carLeftBox .el-table th.is-leaf,
+.carLeftBox .el-table td {
+  border-bottom: 0;
+}
+.carLeftBox .el-table--group::after,
+.carLeftBox .el-table--border::after,
+.carLeftBox .el-table::before {
+  /* background-color: #182751; */
+  background: none;
+}
+
+
+.cheliangfenbuDiv {
+  background-image: url("../../images/car/车辆分布.png");
+  background-repeat:no-repeat;
+  padding-top: 35px;
+  /* padding-left: 8px; */
+  height: 300px;
+  /* height: 100%; */
+  /* background-size: 580px 500px; */
+}
+.cheliangfenbu {
+  /* width: 224px;
+  height: 132px; */
+  /* background: linear-gradient(
+    -2deg,
+    rgba(36, 89, 142, 0.02),
+    rgba(36, 89, 142, 0.01)
+  ); */
+  /* box-shadow: 0px 2px 11px 0px rgba(3, 0, 0, 0.26); */
+  font-size: 7px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #d3e3ec;
+  background: none;
+  height: 100%;
+  /* margin-top: 20px; */
+}
+.carsearch {
+  height: 100%;
+}
+.carSearch {
+  /* height: 45%; */
+  background-image: url("../../images/car/车辆信息搜索.png");
+  background-repeat: no-repeat;
+  padding-top: 25px;
+  height: 100%;
+}
+/* 搜索 */
+.search{
+  display: flex;
+  flex-direction: row;
+  /* margin-top: 26px; */
+  justify-content: space-around;
+  /* text-align: center; */
+  padding: 0 10px;
+}
+.searchInput {
+  /* width: 170px; */
+  background: transparent;
+  /* opacity: 0.2; */
+  border: 1px solid #4A73AC;
+  border-radius: 2px;
+  height: 25px;
+}
+.carSearch .el-input--medium .el-input__inner {
+  color: #fff;
+}
+.searchbutton {
+  background-image: url("../../images/car/搜索bg.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 70px;
+  height: 25px;
+  /* background: linear-gradient(4deg, #40BBFF, rgba(93, 197, 255, 0)); */
+  border-radius: 2px;
+  border: none;
+  font-size: 14px;
+  font-family: Adobe Heiti Std;
+  font-weight: normal;
+  color: #C8D2F5;
+  line-height: 8px;
+}
+.carSearchList {
+  height: calc(100% - 378px);
+}
+.carSearchListTable {
+  background: none;
+  color: #d3e3ec;
+  /* left: 10px; */
+  /* margin-top: 18px; */
+}
+.carLeftBox .el-table th > .cell {
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #91abc9;
+}
+
+.caryear {
+  display: flex;
+  padding-top: 20px;
+  text-align: center;
+  height: 25%;
+}
+.carYeardiv {
+  width: 400px;
+  height: 300px;
+}
+.carYeardiv > span {
+  color: #A5CBEC;
+  font-size: 14px;
+  width: 30%;
+  background-image: url("../../images/car/车辆入住框.png");
+  background-repeat: no-repeat;
+  padding-left: 8px;
+}
+.carYearImg {
+  background-image: url("../../images/car/车辆入住时间.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  padding-top: 35px;
+}
+.carYearImg > span:first-child {
+  font-size: 26px;
+  font-family: DINCondensed-Bold;
+  font-weight: bold;
+  color: #244D6E;
+  background: linear-gradient(3deg, #FAD79C 0%, #F6B142 24.31640625%, #F6B142 42.1630859375%, #FFFCF3 42.1630859375%, #FFFCF3 61.4013671875%, #FBDEAF 99.31640625%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.carYearImg > span:last-child {
+  font-size: 10px;
+  font-family: DINCondensed-Bold;
+  font-weight: normal;
+  color: #244D6E;
+  background: linear-gradient(3deg, #FAD79C 0%, #F6B142 24.31640625%, #F6B142 42.1630859375%, #FFFCF3 42.1630859375%, #FFFCF3 61.4013671875%, #FBDEAF 99.31640625%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.addressform .el-form-item__content {
+  width: 300px !important;
+}
+.addr {
+  margin-left: 0px;
+}
+.address {
+  margin-left: 0px;
+}
+.dialogCarClass .el-dialog{
+  background-image: url("../../images/peopleinfo/frame2bg.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  /* height: 600px; */
+  border: 0;
+}
+.dialogCarClass .el-dialog__body {
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #D3E3ED;
+  padding: 10px 45px;
+  height: 550px;
+}
+.dialogCarClass .el-dialog__header {
+  /* background-color:rgba(34, 39, 81, 1); */
+  padding: 6px 75px;
+  background-color: transparent;
+  border: 0;
+}
+.dialogCarClass .el-dialog__title{
+  color: #E2EFF9;
+}
+.dialogCarClass .el-dialog__headerbtn {
+  top: 9px;
+  right: 66px;
+}
+.dialogCarClass .el-dialog__headerbtn .el-dialog__close {
+  color: #E2EFF9;
+}
+.dialogCarClass .el-dialog:not(.is-fullscreen) {
+  margin-top: 8% !important;
+}
+.dialogCarClass .el-divider {
+  background-color: #D3E3ED !important;
+}
+.dialogCarClass_pic{
+  margin-top: 15%;
+  width: 297px;
+  height: 219px;
+  background: url("../../../assets/images/peopleinfo/picbg.png")
+  no-repeat center center / 100% 100%; 
+}
+.dialogCarClass_info{
+  width: 433px;
+  height: 318px;
+  background: url("../../../assets/images/car/nr-bg.png")
+  no-repeat center center / 100% 100%;
+}
+.dialogCarClass_info .el-form .el-form-item {
+  margin-bottom: 0px !important;
+  width: 170px;
+}
+.dialogCarClass_info .el-form .el-form-item .el-form-item__label{
+  color: #B4CFFA;
+}
+
+.dialogCarClass_info_1{
+  padding-top: 30px;
+}
+.dialogCarClass_info_2{
+  padding-top: 30px;
+}
+.dialogCarClass_info .el_form_itemDiv {
+  display: flex !important;
+  width: 100%;
+  margin-top: 0px;
+}

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseOrgBasicMapper">
+
+    <resultMap type="CommunityOrgBasicVo" id="BaseOrgBasicResult">
+        <result property="id" column="id"/>
+        <result property="orgName" column="org_name"/>
+        <result property="orgType" column="org_type"/>
+        <result property="orgLevel" column="org_level"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="parentName" column="parent_name"/>
+        <result property="sort" column="sort"/>
+        <result property="res" column="res"/>
+        <result property="divison" column="divison"/>
+        <result property="longitudes" column="longitudes"/>
+        <result property="latitudes" column="latitudes"/>
+        <result property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="uUserId" column="u_user_id"/>
+        <result property="uDeptId" column="u_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+    </resultMap>
+
+    <sql id="selectBaseOrgBasicVo">
+        select zz.id, org_name, org_type, org_level, parent_id, parent_name, sort, res, divison, longitudes, latitudes, user_id, dept_id, zz.create_time, u_user_id, u_dept_id, zz.update_time, zz.del_flag,co.community_id,co.community_child_id,co.community_houses_id from base_org_basic zz left join base_community_organization co on co.social_organization_id = zz.id and co.del_flag = '0'
+    </sql>
+
+    <select id="selectBaseOrgBasicList" parameterType="CommunityOrgBasicVo" resultMap="BaseOrgBasicResult">
+        <include refid="selectBaseOrgBasicVo"/>
+        <where>
+            zz.del_flag = '0'
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and community_houses_id like concat('%', #{communityHousesId}, '%')
+            </if>
+            <if test="orgName != null  and orgName != ''">
+                and org_name like concat('%', #{orgName}, '%')
+            </if>
+            <if test="orgType != null  and orgType != ''">
+                and org_type = #{orgType}
+            </if>
+            <if test="orgLevel != null  and orgLevel != ''">
+                and org_level = #{orgLevel}
+            </if>
+            <if test="parentId != null  and parentId != ''">
+                and parent_id = #{parentId}
+            </if>
+            <if test="parentName != null  and parentName != ''">
+                and parent_name like concat('%', #{parentName}, '%')
+            </if>
+            <if test="sort != null ">
+                and sort = #{sort}
+            </if>
+            <if test="res != null  and res != ''">
+                and res = #{res}
+            </if>
+            <if test="divison != null  and divison != ''">
+                and divison = #{divison}
+            </if>
+            <if test="userId != null  and userId != ''">
+                and user_id like concat('%', #{userId}, '%')
+            </if>
+            <if test="deptId != null  and deptId != ''">
+                and dept_id like concat('%', #{deptId}, '%')
+            </if>
+            <if test="uUserId != null  and uUserId != ''">
+                and u_user_id like concat('%', #{uUserId}, '%')
+            </if>
+            <if test="uDeptId != null  and uDeptId != ''">
+                and u_dept_id like concat('%', #{uDeptId}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseOrgBasicById" parameterType="String" resultMap="BaseOrgBasicResult">
+        <include refid="selectBaseOrgBasicVo"/>
+        where zz.id = #{id}
+    </select>
+
+    <insert id="insertBaseOrgBasic" parameterType="BaseOrgBasic">
+        insert into base_org_basic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="orgName != null">org_name,
+            </if>
+            <if test="orgType != null">org_type,
+            </if>
+            <if test="orgLevel != null">org_level,
+            </if>
+            <if test="parentId != null">parent_id,
+            </if>
+            <if test="parentName != null">parent_name,
+            </if>
+            <if test="sort != null">sort,
+            </if>
+            <if test="res != null">res,
+            </if>
+            <if test="divison != null">divison,
+            </if>
+            <if test="longitudes != null">longitudes,
+            </if>
+            <if test="latitudes != null">latitudes,
+            </if>
+            <if test="userId != null">user_id,
+            </if>
+            <if test="deptId != null">dept_id,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="uUserId != null">u_user_id,
+            </if>
+            <if test="uDeptId != null">u_dept_id,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="orgName != null">#{orgName},
+            </if>
+            <if test="orgType != null">#{orgType},
+            </if>
+            <if test="orgLevel != null">#{orgLevel},
+            </if>
+            <if test="parentId != null">#{parentId},
+            </if>
+            <if test="parentName != null">#{parentName},
+            </if>
+            <if test="sort != null">#{sort},
+            </if>
+            <if test="res != null">#{res},
+            </if>
+            <if test="divison != null">#{divison},
+            </if>
+            <if test="longitudes != null">#{longitudes},
+            </if>
+            <if test="latitudes != null">#{latitudes},
+            </if>
+            <if test="userId != null">#{userId},
+            </if>
+            <if test="deptId != null">#{deptId},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="uUserId != null">#{uUserId},
+            </if>
+            <if test="uDeptId != null">#{uDeptId},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseOrgBasic" parameterType="BaseOrgBasic">
+        update base_org_basic
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orgName != null">org_name =
+                #{orgName},
+            </if>
+            <if test="orgType != null">org_type =
+                #{orgType},
+            </if>
+            <if test="orgLevel != null">org_level =
+                #{orgLevel},
+            </if>
+            <if test="parentId != null">parent_id =
+                #{parentId},
+            </if>
+            <if test="parentName != null">parent_name =
+                #{parentName},
+            </if>
+            <if test="sort != null">sort =
+                #{sort},
+            </if>
+            <if test="res != null">res =
+                #{res},
+            </if>
+            <if test="divison != null">divison =
+                #{divison},
+            </if>
+            <if test="longitudes != null">longitudes =
+                #{longitudes},
+            </if>
+            <if test="latitudes != null">latitudes =
+                #{latitudes},
+            </if>
+            <if test="userId != null">user_id =
+                #{userId},
+            </if>
+            <if test="deptId != null">dept_id =
+                #{deptId},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="uUserId != null">u_user_id =
+                #{uUserId},
+            </if>
+            <if test="uDeptId != null">u_dept_id =
+                #{uDeptId},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseOrgBasicById" parameterType="String">
+        delete from base_org_basic where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseOrgBasicByIds" parameterType="String">
+        delete from base_org_basic where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseOrgBasicByIds" parameterType="String">
+        update base_org_basic set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

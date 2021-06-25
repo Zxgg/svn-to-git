@@ -1,0 +1,21 @@
+{
+  "DBRestAPIEndPointUri": "http://172.21.15.52:7089",
+  "FileUpLoadUri": "http://172.21.15.52:7089/upload/image/sample",
+  "imgEchoAddress": "http://172.21.15.54:7801",
+  "epidemicDeclareUrl": "http://172.21.15.52:8080/h5/index.html#/",
+  "VideoBasicsRestAPIEndPointUri": "http://172.21.15.52:10086/api/open/V1.0.0/vss/",
+  "StreamingMediaUrl": "http://172.21.15.52:10086/api/open/V1.0.0/",
+  "DBHuaWeiVcnRestAPIEndPointUri": "http://172.21.15.52:10086/api/open/V1.0.0/vcn/",
+  "DBHuaWeiVcmRestAPIEndPointUri": "http://172.21.15.52:10086/api/open/V1.0.0/vcm/",
+  "vcmImageUrl": "http://172.21.15.52:10086/api/open/V1.0.0/vcm/intelligent_analysis/image_Download?imageUrl=",
+  "videoType": 3,
+  "LiveGBS": "http://172.21.15.51:10001/api/v1/",
+  "WebSocketIP": "ws://172.21.15.51:8087/webSocket",
+  "isUseImageProxy": true,
+  "deviceserial": "32100000002107001188",
+  "gisServer": {
+    "mapUrl": "http://172.21.15.67:8090//iserver/services/map-China43262/rest/maps/China4326",
+    "mapType": "tianditu",
+    "projection": "EPSG:4326"
+  }
+}

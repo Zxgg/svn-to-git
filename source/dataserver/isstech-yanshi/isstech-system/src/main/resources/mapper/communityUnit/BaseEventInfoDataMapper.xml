@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseEventInfoDataMapper">
+
+    <resultMap type="BaseEventInfo" id="BaseEventInfoResult">
+        <result property="id" column="id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="eventType" column="event_type"/>
+        <result property="reportingTime" column="reporting_time"/>
+        <result property="eventStatus" column="event_status"/>
+        <result property="dealWithType" column="deal_with_type"/>
+        <result property="content" column="content"/>
+        <result property="communityId" column="community_id"/>
+        <result property="remarks" column="remarks"/>
+        <result property="fileId" column="file_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="eventDegree" column="event_degree"/>
+        <result property="address" column="address"/>
+        <result property="handleBy" column="handle_by"/>
+        <result property="handleById" column="handle_by_id"/>
+        <result property="createbyPhone" column="createby_phone"/>
+        <result property="alertFile" column="alert_file"/>
+        <result property="confidence" column="confidence"/>
+        <result property="division" column="division"/>
+        <result property="disposition" column="disposition"/>
+        <result property="petitioner" column="petitioner"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseEventInfoVo">
+        select id,
+               event_name,
+               event_type,
+               reporting_time,
+               event_status,
+               deal_with_type,
+               content,
+               community_id,
+               remarks,
+               file_id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               del_flag,
+               community_child_id,
+               event_degree,
+               address,
+               handle_by,
+               handle_by_id,
+               createby_phone,
+               alert_file,
+               confidence,
+               division,
+               disposition,
+               petitioner
+        from base_event_info_data
+    </sql>
+
+    <select id="selectBaseEventInfoList" parameterType="BaseEventInfo" resultMap="BaseEventInfoResult">
+        <include refid="selectBaseEventInfoVo"/>
+        <where>
+            del_flag = '0'
+            <if test="eventName != null  and eventName != ''">and event_name like concat('%', #{eventName}, '%')</if>
+            <if test="eventType != null  and eventType != ''">and event_type = #{eventType}</if>
+            <if test="reportingTime != null ">and reporting_time = #{reportingTime}</if>
+            <if test="eventStatus != null  and eventStatus != ''">and event_status = #{eventStatus}</if>
+            <if test="dealWithType != null  and dealWithType != ''">and deal_with_type = #{dealWithType}</if>
+            <if test="content != null  and content != ''">and content = #{content}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="remarks != null  and remarks != ''">and remarks = #{remarks}</if>
+            <if test="fileId != null  and fileId != ''">and file_id = #{fileId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="eventDegree != null  and eventDegree != ''">and event_degree = #{eventDegree}</if>
+            <if test="address != null  and address != ''">and address = #{address}</if>
+            <if test="handleBy != null  and handleBy != ''">and handle_by = #{handleBy}</if>
+            <if test="handleById != null  and handleById != ''">and handle_by_id = #{handleById}</if>
+            <if test="createbyPhone != null  and createbyPhone != ''">and createby_phone = #{createbyPhone}</if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListStatusCount" resultType="java.util.Map">
+        SELECT count(id)      AS num,
+               deal_with_type as type
+        FROM base_event_info_data
+        where deal_with_type is not null
+        GROUP BY deal_with_type
+        union all
+        SELECT count(id)    AS num,
+               event_status as type
+        FROM base_event_info_data
+        where event_status is not null
+        GROUP BY event_status
+    </select>
+
+    <select id="selectBaseEventInfoById" parameterType="String" resultMap="BaseEventInfoResult">
+        <include refid="selectBaseEventInfoVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseEventInfo" parameterType="BaseEventInfo">
+        insert into base_event_info_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="eventName != null">event_name,</if>
+            <if test="eventType != null">event_type,</if>
+            <if test="reportingTime != null">reporting_time,</if>
+            <if test="eventStatus != null">event_status,</if>
+            <if test="dealWithType != null">deal_with_type,</if>
+            <if test="content != null">content,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="remarks != null">remarks,</if>
+            <if test="fileId != null">file_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="eventDegree != null">event_degree,</if>
+            <if test="address != null">address,</if>
+            <if test="handleBy != null">handle_by,</if>
+            <if test="handleById != null">handle_by_id,</if>
+            <if test="createbyPhone != null">createby_phone,</if>
+            <if test="alertFile != null">alert_file,</if>
+            <if test="confidence != null">confidence,</if>
+            <if test="division != null">division,</if>
+            <if test="disposition != null">disposition,</if>
+            <if test="petitioner != null">petitioner,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="eventName != null">#{eventName},</if>
+            <if test="eventType != null">#{eventType},</if>
+            <if test="reportingTime != null">#{reportingTime},</if>
+            <if test="eventStatus != null">#{eventStatus},</if>
+            <if test="dealWithType != null">#{dealWithType},</if>
+            <if test="content != null">#{content},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="remarks != null">#{remarks},</if>
+            <if test="fileId != null">#{fileId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="eventDegree != null">#{eventDegree},</if>
+            <if test="address != null">#{address},</if>
+            <if test="handleBy != null">#{handleBy},</if>
+            <if test="handleById != null">#{handleById},</if>
+            <if test="createbyPhone != null">#{createbyPhone},</if>
+            <if test="alertFile != null">#{alertFile},</if>
+            <if test="confidence != null">#{confidence},</if>
+            <if test="division != null">#{division},</if>
+            <if test="disposition != null">#{disposition},</if>
+            <if test="petitioner != null">#{petitioner},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseEventInfo" parameterType="BaseEventInfo">
+        update base_event_info_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="eventName != null">event_name = #{eventName},</if>
+            <if test="eventType != null">event_type = #{eventType},</if>
+            <if test="reportingTime != null">reporting_time = #{reportingTime},</if>
+            <if test="eventStatus != null">event_status = #{eventStatus},</if>
+            <if test="dealWithType != null">deal_with_type = #{dealWithType},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+            <if test="fileId != null">file_id = #{fileId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="eventDegree != null">event_degree = #{eventDegree},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="handleBy != null">handle_by = #{handleBy},</if>
+            <if test="handleById != null">handle_by_id = #{handleById},</if>
+            <if test="createbyPhone != null">createby_phone = #{createbyPhone},</if>
+            <if test="alertFile != null">alert_file = #{alertFile},</if>
+            <if test="confidence != null">confidence = #{confidence},</if>
+            <if test="division != null">confidence = #{division},</if>
+            <if test="disposition != null">confidence = #{disposition},</if>
+            <if test="petitioner != null">confidence = #{petitioner},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseEventInfoById" parameterType="String">
+        delete
+        from base_event_info_data
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseEventInfoByIds" parameterType="String">
+        delete from base_event_info_data where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseEventInfoByIds" parameterType="String">
+        update base_event_info_data set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="deleteAll">
+        delete
+        from base_event_info_data
+    </select>
+
+    <select id="analysisData" resultType="com.isstech.isstechadmin.domain.dto.EventAnalysisDTO">
+        select count(*)                            as total,
+               sum(locate('社会治安', event_type) > 0) as public_security,
+               sum(locate('纠纷调解', event_type))     as dispute_mediation,
+               sum(locate('专项活动', event_type))     as special_activities,
+               sum(locate('公共安全', event_type))     as public_safety,
+               sum(locate('环境保护', event_type))     as environmental_protection,
+               sum(locate('城市管理', event_type))     as city_management,
+               sum(locate('民生服务', event_type))     as livelihood_services
+
+        from base_event_info_data;
+
+    </select>
+
+    <select id="sumDataGroupByDivision" resultType="com.isstech.isstechadmin.domain.dto.EventCountDTO">
+        select count(*) as num,division,community_id
+        from base_event_info_data
+        <where>
+            <if test="eventType != null">locate(#{eventType}, event_type)</if>
+            <if test="communityId != null">and community_id = #{communityId}</if>
+        </where>
+        GROUP BY division;
+
+    </select>
+
+    <select id="getHandleAndConclude" resultType="com.isstech.isstechadmin.domain.dto.EventCountDTO">
+        select count(*) as toConclude,
+        sum(event_status like '%办理%') as handle
+        from base_event_info_data
+        <where>
+            <if test="communityId != null">and community_id = #{communityId}</if>
+            <if test="division != null">and division = #{division}</if>
+        </where>
+
+    </select>
+
+</mapper>

@@ -1,0 +1,76 @@
+.main{
+	padding: 25rpx;
+}
+view{
+	margin-bottom: 20rpx;
+}
+.birthdaydate{
+	border: 1px solid #dcdfe6; 
+	line-height: 45rpx;
+	padding-left: 30rpx;
+}
+.picker_nativeplace .city{
+	border: 1px solid #c0c4cc; 
+	line-height: 45rpx;
+}
+input{
+	padding-left: 30rpx;
+	border: 1px solid #c0c4cc; 
+	line-height: 25px;
+	height: 25px;
+	border-radius: 4px;
+	margin-top: 10rpx;
+	font-size: 14px;
+}
+.date picker{
+	margin-top: 5rpx;
+}
+.brithDate{
+	border-radius: 8rpx; 
+	border:1px solid #c0c4cc;
+	padding-left: 35rpx;
+	line-height: 25px;
+}
+.arrivalProvinceDate,.cardRecordDate,
+.departureDate,.arrivalCountryDate,
+.idcardStartDate,.idcardEndDate{
+	padding-left: 30rpx;
+	border: 1px solid #c0c4cc; 
+	border-radius: 8rpx;
+}
+.idcardStartDate,.idcardEndDate{
+	height: 25px;
+	line-height: 25px;
+}
+.native{
+	line-height: 25px;
+	padding-left: 30rpx; 
+	border-radius: 8rpx; 
+	border:1px solid #c0c4cc;
+}
+.imgsborder{
+	border: 1px solid #c0c4cc;
+	border-radius: 8rpx;
+	width: 100px;
+	height: 100px;
+}
+.imgs{
+	width: 100px;
+	height: 100px;
+	font-size: 20px;
+}
+.uni-btn-v{
+	text-align: center;
+}
+button{
+	border-radius: 20rpx;
+	background-color: #7FA3AC;
+	color: white;
+	width: 200rpx;
+}
+.uni-btn-v image{
+	width: 40rpx;
+	height: 40rpx;
+	margin-left: 20%;
+}
+

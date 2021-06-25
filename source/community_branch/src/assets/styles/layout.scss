@@ -1,0 +1,66 @@
+$topHeaderHeight:74px;
+$bottomHeight:10px;
+$middleContainerheight:calc(100% - 74px - 10px);
+
+.SystemTitleRow {
+  // background-image: url(TitleBackgroundImage);
+  width: 100%;
+  height: $topHeaderHeight;
+  border: 1px solid #005982;
+  margin: 0 auto;
+  background-image: url(../../assets/images/home/TitleBackground.png);
+  // background-repeat: no-repeat;
+  background-repeat: repeat;
+  background-size: cover; /* 重点二 */
+  overflow: auto;
+  // overflow-y: hidden;
+}
+.mainContainerLimitWidth{
+  min-width: 1200px;
+  
+}
+.mainContainerLimitHeight{
+  min-height: 400px;
+}
+// .middleContainer{
+//   width: 100%;
+//   height: $middleContainerheight;
+//   background:gray;
+//   font-size: 30px;
+//   color: #fff;
+//   text-align: center;
+// }
+.container_leftBar{
+  width: 200px;
+  height: 100%;
+}
+.container_rightContent{
+  width: calc(100% - 200px);
+  height: 100%;
+}
+.data_top{
+  width: 100%;
+  height: auto;
+  // max-height: 100px;
+  background: hotpink;
+}
+.data_ContentPanel{
+  width: 100%;
+  // height: $middleContainerheight;
+  background:black;
+}
+.data_left{
+  height: 100%;
+  // width: 200px;
+  background: burlywood;
+}
+.data_middle{
+  height: 100%;
+  width: calc(100% - 200px - 200px);
+  background: green;
+}
+.data_right{
+  height: 100%;
+  width: 200px;
+  background: goldenrod;
+}

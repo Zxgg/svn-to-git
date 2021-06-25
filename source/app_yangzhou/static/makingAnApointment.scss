@@ -1,0 +1,28 @@
+
+.main{
+	padding: 25rpx;
+}
+input{
+	border: 1px solid #dcdfe6; 
+	// margin: 10rpx 25rpx;
+	padding-left: 15rpx;
+	border-radius: 8rpx;
+	height: 25px;
+	line-height: 25px;
+}
+.btn{
+	display: flex;
+	margin-bottom: 70rpx;
+}
+.btn button{
+	width: 200rpx;
+	border-radius: 20rpx;
+	background: #7FA3AC;
+	color: white;
+}
+.visittime{
+	line-height: 25px;
+	padding-left: 30rpx; 
+	border-radius: 8rpx; 
+	border:1px solid #c0c4cc;
+}

@@ -1,0 +1,22 @@
+{
+  "DBRestAPIEndPointUri": "http://172.21.15.52:7089",
+  "VideoBasicsRestAPIEndPointUri": "http://172.21.15.52:10086/api/open/V1.0.0/vss/",
+  "DBHuaWeiVcmRestAPIEndPointUri": "http://172.21.15.52:10086/api/open/V1.0.0/vcm/",
+  "SmartNetworkRestAPIEndPointUri": "http://172.21.15.52:7089/",
+  "imgEchoAddress": "http://172.21.15.54:7801",
+  "gisServer": {
+    "mapUrl": "http://172.21.15.67:8090//iserver/services/map-China43262/rest/maps/China4326",
+    "dataUrl": "http://172.21.15.67:8090/iserver/services/data-map_data6/rest/data",
+    "routeUrl": "http://172.21.15.67:8090/iserver/services/transportationAnalyst-map_data/rest/networkanalyst/data_Network@data",
+    "offlineMap": "http://172.21.15.51:7514/tiles/",
+    "mapType": "gaode",
+    "projection": "EPSG:4326"
+  },
+  "isUseImageProxy": true,
+  "vcmImageUrl": "http://172.21.15.52:10086/api/open/V1.0.0/vcm/intelligent_analysis/image_Download?imageUrl=",
+  "WebSocketUrl": "http://172.21.15.52:7089",
+  "deviceserial": "32100000002107001188",
+  "videoType": 3,
+  "LiveGBS": "http://172.21.15.51:10001/api/v1/",
+  "gbCodeList":"08547859311988650116#1f54ffbe068a4616b9ecdbf05b6bde6b,08547859311988650105#1f54ffbe068a4616b9ecdbf05b6bde6b,08547859311988650101#1f54ffbe068a4616b9ecdbf05b6bde6b,08547859311988650132#1f54ffbe068a4616b9ecdbf05b6bde6b"
+}

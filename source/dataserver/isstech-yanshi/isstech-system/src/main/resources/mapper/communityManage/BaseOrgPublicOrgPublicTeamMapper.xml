@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseOrgPublicOrgPublicTeamMapper">
+
+    <resultMap type="BaseOrgPublicOrgPublicTeam" id="BaseOrgPublicOrgPublicTeamResult">
+        <result property="id" column="id"/>
+        <result property="publicId" column="public_id"/>
+        <result property="publicteamId" column="publicteam_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+    </resultMap>
+
+    <sql id="selectBaseOrgPublicOrgPublicTeamVo">
+        select id, public_id, publicteam_id, create_time, update_by, update_time, del_flag, create_by from base_org_public_org_public_team
+    </sql>
+
+    <select id="selectBaseOrgPublicOrgPublicTeamList" parameterType="BaseOrgPublicOrgPublicTeam"
+            resultMap="BaseOrgPublicOrgPublicTeamResult">
+        <include refid="selectBaseOrgPublicOrgPublicTeamVo"/>
+        <where>
+            del_flag = '0'
+            <if test="publicId != null  and publicId != ''">and public_id = #{publicId}</if>
+            <if test="publicteamId != null  and publicteamId != ''">and publicteam_id = #{publicteamId}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by like concat('%', #{updateBy}, '%')</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="delFlag != null  and delFlag != ''">and del_flag = #{delFlag}</if>
+            <if test="createBy != null  and createBy != ''">and create_by like concat('%', #{createBy}, '%')</if>
+        </where>
+    </select>
+
+    <select id="selectBaseOrgPublicOrgPublicTeamById" parameterType="String"
+            resultMap="BaseOrgPublicOrgPublicTeamResult">
+        <include refid="selectBaseOrgPublicOrgPublicTeamVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseOrgPublicOrgPublicTeam" parameterType="BaseOrgPublicOrgPublicTeam">
+        insert into base_org_public_org_public_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="publicId != null and publicId != ''">public_id,</if>
+            <if test="publicteamId != null and publicteamId != ''">publicteam_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="publicId != null and publicId != ''">#{publicId},</if>
+            <if test="publicteamId != null and publicteamId != ''">#{publicteamId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseOrgPublicOrgPublicTeam" parameterType="BaseOrgPublicOrgPublicTeam">
+        update base_org_public_org_public_team
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="publicId != null and publicId != ''">public_id = #{publicId},</if>
+            <if test="publicteamId != null and publicteamId != ''">publicteam_id = #{publicteamId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseOrgPublicOrgPublicTeamById" parameterType="String">
+        delete from base_org_public_org_public_team where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseOrgPublicOrgPublicTeamByIds" parameterType="String">
+        delete from base_org_public_org_public_team where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteBaseOrgPublicOrgPublicTeamByTeamIds" parameterType="String">
+        delete from base_org_public_org_public_team where publicteam_id in
+        <foreach item="publicteamId" collection="array" open="(" separator="," close=")">
+            #{publicteamId}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseOrgPublicOrgPublicTeamByIds" parameterType="String">
+        update base_org_public_org_public_team set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

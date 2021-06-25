@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePassStratygeMapper">
+
+    <resultMap type="BasePassStratyge" id="BasePassStratygeResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="passstrategyVistor" column="passStrategy_vistor"/>
+        <result property="passstrategyVistorTimespan" column="passStrategy_vistor_timeSpan"/>
+        <result property="passstrategyTempvistor" column="passStrategy_tempVistor"/>
+        <result property="passstrategyTempvistorTimespan" column="passStrategy_tempVistor_timeSpan"/>
+        <result property="passstrategyBlackface" column="passStrategy_blackFace"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBasePassStratygeVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, passStrategy_vistor, passStrategy_vistor_timeSpan, passStrategy_tempVistor, passStrategy_tempVistor_timeSpan, passStrategy_blackFace from base_pass_stratyge
+    </sql>
+
+    <select id="selectBasePassStratygeList" parameterType="BasePassStratyge" resultMap="BasePassStratygeResult">
+        <include refid="selectBasePassStratygeVo"/>
+        <where>
+            del_flag = '0'
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="passstrategyVistor != null  and passstrategyVistor != ''">and passStrategy_vistor =
+                #{passstrategyVistor}
+            </if>
+            <if test="passstrategyVistorTimespan != null  and passstrategyVistorTimespan != ''">and
+                passStrategy_vistor_timeSpan = #{passstrategyVistorTimespan}
+            </if>
+            <if test="passstrategyTempvistor != null  and passstrategyTempvistor != ''">and passStrategy_tempVistor =
+                #{passstrategyTempvistor}
+            </if>
+            <if test="passstrategyTempvistorTimespan != null  and passstrategyTempvistorTimespan != ''">and
+                passStrategy_tempVistor_timeSpan = #{passstrategyTempvistorTimespan}
+            </if>
+            <if test="passstrategyBlackface != null  and passstrategyBlackface != ''">and passStrategy_blackFace =
+                #{passstrategyBlackface}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBasePassStratygeById" parameterType="String" resultMap="BasePassStratygeResult">
+        <include refid="selectBasePassStratygeVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBasePassStratyge" parameterType="BasePassStratyge">
+        insert into base_pass_stratyge
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="communityId != null and communityId != ''">community_id,</if>
+            <if test="communityChildId != null and communityChildId != ''">community_child_id,</if>
+            <if test="passstrategyVistor != null and passstrategyVistor != ''">passStrategy_vistor,</if>
+            <if test="passstrategyVistorTimespan != null">passStrategy_vistor_timeSpan,</if>
+            <if test="passstrategyTempvistor != null and passstrategyTempvistor != ''">passStrategy_tempVistor,</if>
+            <if test="passstrategyTempvistorTimespan != null">passStrategy_tempVistor_timeSpan,</if>
+            <if test="passstrategyBlackface != null and passstrategyBlackface != ''">passStrategy_blackFace,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="communityId != null and communityId != ''">#{communityId},</if>
+            <if test="communityChildId != null and communityChildId != ''">#{communityChildId},</if>
+            <if test="passstrategyVistor != null and passstrategyVistor != ''">#{passstrategyVistor},</if>
+            <if test="passstrategyVistorTimespan != null">#{passstrategyVistorTimespan},</if>
+            <if test="passstrategyTempvistor != null and passstrategyTempvistor != ''">#{passstrategyTempvistor},</if>
+            <if test="passstrategyTempvistorTimespan != null">#{passstrategyTempvistorTimespan},</if>
+            <if test="passstrategyBlackface != null and passstrategyBlackface != ''">#{passstrategyBlackface},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBasePassStratyge" parameterType="BasePassStratyge">
+        update base_pass_stratyge
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="communityId != null and communityId != ''">community_id = #{communityId},</if>
+            <if test="communityChildId != null and communityChildId != ''">community_child_id = #{communityChildId},
+            </if>
+            <if test="passstrategyVistor != null and passstrategyVistor != ''">passStrategy_vistor =
+                #{passstrategyVistor},
+            </if>
+            <if test="passstrategyVistorTimespan != null">passStrategy_vistor_timeSpan =
+                #{passstrategyVistorTimespan},
+            </if>
+            <if test="passstrategyTempvistor != null and passstrategyTempvistor != ''">passStrategy_tempVistor =
+                #{passstrategyTempvistor},
+            </if>
+            <if test="passstrategyTempvistorTimespan != null">passStrategy_tempVistor_timeSpan =
+                #{passstrategyTempvistorTimespan},
+            </if>
+            <if test="passstrategyBlackface != null and passstrategyBlackface != ''">passStrategy_blackFace =
+                #{passstrategyBlackface},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePassStratygeById" parameterType="String">
+        delete from base_pass_stratyge where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePassStratygeByIds" parameterType="String">
+        delete from base_pass_stratyge where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePassStratygeByIds" parameterType="String">
+        update base_pass_stratyge set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

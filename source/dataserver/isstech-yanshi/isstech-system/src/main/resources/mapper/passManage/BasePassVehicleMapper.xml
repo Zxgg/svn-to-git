@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePassVehicleMapper">
+
+    <resultMap type="BasePassVehicle" id="BasePassVehicleResult">
+        <result property="id"    column="id"    />
+        <result property="motorVehicleId"    column="motor_vehicle_id"    />
+        <result property="appearTime"    column="appear_time"    />
+        <result property="brandReliability"    column="brand_reliability"    />
+        <result property="calling"    column="calling"    />
+        <result property="carOfVehicle"    column="car_of_vehicle"    />
+        <result property="descOfFrontItem"    column="desc_of_front_item"    />
+        <result property="descOfRearItem"    column="desc_of_rear_item"    />
+        <result property="deviceId"    column="device_id"    />
+        <result property="direction"    column="direction"    />
+        <result property="disappearTime"    column="disappear_time"    />
+        <result property="drivingStatusCode"    column="driving_status_code"    />
+        <result property="filmColor"    column="film_color"    />
+        <result property="hasPlate"    column="has_plate"    />
+        <result property="hitMarkInfo"    column="hit_mark_info"    />
+        <result property="infoKind"    column="info_kind"    />
+        <result property="isAltered"    column="is_altered"    />
+        <result property="isCovered"    column="is_covered"    />
+        <result property="isDecked"    column="is_decked"    />
+        <result property="isModified"    column="is_modified"    />
+        <result property="isSuspicious"    column="is_suspicious"    />
+        <result property="laneNo"    column="lane_no"    />
+        <result property="leftTopX"    column="left_top_x"    />
+        <result property="leftTopY"    column="left_top_y"    />
+        <result property="markTime"    column="mark_time"    />
+        <result property="nameOfPassedRoad"    column="name_of_passed_road"    />
+        <result property="numOfPassenger"    column="num_of_passenger"    />
+        <result property="passTime"    column="pass_time"    />
+        <result property="plateCharReliabil"    column="plate_char_reliabil"    />
+        <result property="plateClass"    column="plate_class"    />
+        <result property="plateColor"    column="plate_color"    />
+        <result property="plateDescribe"    column="plate_describe"    />
+        <result property="plateNo"    column="plate_no"    />
+        <result property="plateNoAttach"    column="plate_no_attach"    />
+        <result property="plateReliability"    column="plate_reliability"    />
+        <result property="rearviewMirror"    column="rearview_mirror"    />
+        <result property="rightBtmX"    column="right_btm_x"    />
+        <result property="rightBtmY"    column="right_btm_y"    />
+        <result property="safetyBelt"    column="safety_belt"    />
+        <result property="sideOfVehicle"    column="side_of_vehicle"    />
+        <result property="sourceId"    column="source_id"    />
+        <result property="speed"    column="speed"    />
+        <result property="storageUrl1"    column="storage_url1"    />
+        <result property="storageUrl2"    column="storage_url2"    />
+        <result property="storageUrl3"    column="storage_url3"    />
+        <result property="storageUrl4"    column="storage_url4"    />
+        <result property="storageUrl5"    column="storage_url5"    />
+        <result property="sunvisor"    column="sunvisor"    />
+        <result property="tollgateId"    column="tollgate_id"    />
+        <result property="usingPropertiesCode"    column="using_properties_code"    />
+        <result property="vehicleBodyDesc"    column="vehicle_body_desc"    />
+        <result property="vehicleBrand"    column="vehicle_brand"    />
+        <result property="vehicleChassis"    column="vehicle_chassis"    />
+        <result property="vehicleClass"    column="vehicle_class"    />
+        <result property="vehicleColor"    column="vehicle_color"    />
+        <result property="vehicleColorDepth"    column="vehicle_color_depth"    />
+        <result property="vehicleDoor"    column="vehicle_door"    />
+        <result property="vehicleFrontItem"    column="vehicle_front_item"    />
+        <result property="vehicleHeight"    column="vehicle_height"    />
+        <result property="vehicleHood"    column="vehicle_hood"    />
+        <result property="vehicleLength"    column="vehicle_length"    />
+        <result property="vehicleModel"    column="vehicle_model"    />
+        <result property="vehicleRearItem"    column="vehicle_rear_item"    />
+        <result property="vehicleRoof"    column="vehicle_roof"    />
+        <result property="vehicleShielding"    column="vehicle_shielding"    />
+        <result property="vehicleStyles"    column="vehicle_styles"    />
+        <result property="vehicleTrunk"    column="vehicle_trunk"    />
+        <result property="vehicleWheel"    column="vehicle_wheel"    />
+        <result property="vehicleWidth"    column="vehicle_width"    />
+        <result property="vehicleWindow"    column="vehicle_window"    />
+        <result property="wheelPrintedPattern"    column="wheel_printed_pattern"    />
+        <result property="vehicleId"    column="vehicle_id"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="communityBuildingId"    column="community_building_id"    />
+        <result property="communityBuildingName"    column="community_building_name"    />
+        <result property="communityChildId"    column="community_child_id"    />
+        <result property="communityChildName"    column="community_child_name"    />
+        <result property="communityHousesId"    column="community_houses_id"    />
+        <result property="communityHousesName"    column="community_houses_name"    />
+        <result property="communityId"    column="community_id"    />
+        <result property="communityName"    column="community_name"    />
+        <result property="sourceTableName"    column="source_table_name"    />
+    </resultMap>
+
+    <sql id="selectBasePassVehicleVo">
+        select id, motor_vehicle_id, appear_time, brand_reliability, calling, car_of_vehicle, desc_of_front_item, desc_of_rear_item, device_id, direction, disappear_time, driving_status_code, film_color, has_plate, hit_mark_info, info_kind, is_altered, is_covered, is_decked, is_modified, is_suspicious, lane_no, left_top_x, left_top_y, mark_time, name_of_passed_road, num_of_passenger, pass_time, plate_char_reliabil, plate_class, plate_color, plate_describe, plate_no, plate_no_attach, plate_reliability, rearview_mirror, right_btm_x, right_btm_y, safety_belt, side_of_vehicle, source_id, speed, storage_url1, storage_url2, storage_url3, storage_url4, storage_url5, sunvisor, tollgate_id, using_properties_code, vehicle_body_desc, vehicle_brand, vehicle_chassis, vehicle_class, vehicle_color, vehicle_color_depth, vehicle_door, vehicle_front_item, vehicle_height, vehicle_hood, vehicle_length, vehicle_model, vehicle_rear_item, vehicle_roof, vehicle_shielding, vehicle_styles, vehicle_trunk, vehicle_wheel, vehicle_width, vehicle_window, wheel_printed_pattern, vehicle_id, del_flag, community_building_id, community_building_name, community_child_id, community_child_name, community_houses_id, community_houses_name, community_id, community_name, source_table_name from base_pass_vehicle
+    </sql>
+
+    <select id="selectBasePassVehicleList" parameterType="PassVehicleVo" resultMap="BasePassVehicleResult">
+        <include refid="selectBasePassVehicleVo"/>
+        <where>
+            del_flag = '0'
+            <if test="motorVehicleId != null  and motorVehicleId != ''"> and motor_vehicle_id = #{motorVehicleId}</if>
+            <if test="appearTime != null "> and appear_time = #{appearTime}</if>
+            <if test="brandReliability != null  and brandReliability != ''"> and brand_reliability = #{brandReliability}</if>
+            <if test="calling != null  and calling != ''"> and calling = #{calling}</if>
+            <if test="carOfVehicle != null  and carOfVehicle != ''"> and car_of_vehicle = #{carOfVehicle}</if>
+            <if test="descOfFrontItem != null  and descOfFrontItem != ''"> and desc_of_front_item = #{descOfFrontItem}</if>
+            <if test="descOfRearItem != null  and descOfRearItem != ''"> and desc_of_rear_item = #{descOfRearItem}</if>
+            <if test="deviceId != null  and deviceId != ''"> and device_id = #{deviceId}</if>
+            <if test="direction != null  and direction != ''"> and direction = #{direction}</if>
+            <if test="disappearTime != null "> and disappear_time = #{disappearTime}</if>
+            <if test="drivingStatusCode != null  and drivingStatusCode != ''"> and driving_status_code = #{drivingStatusCode}</if>
+            <if test="filmColor != null  and filmColor != ''"> and film_color = #{filmColor}</if>
+            <if test="hasPlate != null  and hasPlate != ''"> and has_plate = #{hasPlate}</if>
+            <if test="hitMarkInfo != null  and hitMarkInfo != ''"> and hit_mark_info = #{hitMarkInfo}</if>
+            <if test="infoKind != null  and infoKind != ''"> and info_kind = #{infoKind}</if>
+            <if test="isAltered != null  and isAltered != ''"> and is_altered = #{isAltered}</if>
+            <if test="isCovered != null  and isCovered != ''"> and is_covered = #{isCovered}</if>
+            <if test="isDecked != null  and isDecked != ''"> and is_decked = #{isDecked}</if>
+            <if test="isModified != null  and isModified != ''"> and is_modified = #{isModified}</if>
+            <if test="isSuspicious != null  and isSuspicious != ''"> and is_suspicious = #{isSuspicious}</if>
+            <if test="laneNo != null  and laneNo != ''"> and lane_no = #{laneNo}</if>
+            <if test="leftTopX != null  and leftTopX != ''"> and left_top_x = #{leftTopX}</if>
+            <if test="leftTopY != null  and leftTopY != ''"> and left_top_y = #{leftTopY}</if>
+            <if test="markTime != null "> and mark_time = #{markTime}</if>
+            <if test="nameOfPassedRoad != null  and nameOfPassedRoad != ''"> and name_of_passed_road = #{nameOfPassedRoad}</if>
+            <if test="numOfPassenger != null  and numOfPassenger != ''"> and num_of_passenger = #{numOfPassenger}</if>
+            <if test="passTime != null "> and pass_time = #{passTime}</if>
+            <if test="plateCharReliabil != null  and plateCharReliabil != ''"> and plate_char_reliabil = #{plateCharReliabil}</if>
+            <if test="plateClass != null  and plateClass != ''"> and plate_class = #{plateClass}</if>
+            <if test="plateColor != null  and plateColor != ''"> and plate_color = #{plateColor}</if>
+            <if test="plateDescribe != null  and plateDescribe != ''"> and plate_describe = #{plateDescribe}</if>
+            <if test="plateNo != null  and plateNo != ''"> and plate_no = #{plateNo}</if>
+            <if test="plateNoAttach != null  and plateNoAttach != ''"> and plate_no_attach = #{plateNoAttach}</if>
+            <if test="plateReliability != null  and plateReliability != ''"> and plate_reliability = #{plateReliability}</if>
+            <if test="rearviewMirror != null  and rearviewMirror != ''"> and rearview_mirror = #{rearviewMirror}</if>
+            <if test="rightBtmX != null  and rightBtmX != ''"> and right_btm_x = #{rightBtmX}</if>
+            <if test="rightBtmY != null  and rightBtmY != ''"> and right_btm_y = #{rightBtmY}</if>
+            <if test="safetyBelt != null  and safetyBelt != ''"> and safety_belt = #{safetyBelt}</if>
+            <if test="sideOfVehicle != null  and sideOfVehicle != ''"> and side_of_vehicle = #{sideOfVehicle}</if>
+            <if test="sourceId != null  and sourceId != ''"> and source_id = #{sourceId}</if>
+            <if test="speed != null  and speed != ''"> and speed = #{speed}</if>
+            <if test="storageUrl1 != null  and storageUrl1 != ''"> and storage_url1 = #{storageUrl1}</if>
+            <if test="storageUrl2 != null  and storageUrl2 != ''"> and storage_url2 = #{storageUrl2}</if>
+            <if test="storageUrl3 != null  and storageUrl3 != ''"> and storage_url3 = #{storageUrl3}</if>
+            <if test="storageUrl4 != null  and storageUrl4 != ''"> and storage_url4 = #{storageUrl4}</if>
+            <if test="storageUrl5 != null  and storageUrl5 != ''"> and storage_url5 = #{storageUrl5}</if>
+            <if test="sunvisor != null  and sunvisor != ''"> and sunvisor = #{sunvisor}</if>
+            <if test="tollgateId != null  and tollgateId != ''"> and tollgate_id = #{tollgateId}</if>
+            <if test="usingPropertiesCode != null  and usingPropertiesCode != ''"> and using_properties_code = #{usingPropertiesCode}</if>
+            <if test="vehicleBodyDesc != null  and vehicleBodyDesc != ''"> and vehicle_body_desc = #{vehicleBodyDesc}</if>
+            <if test="vehicleBrand != null  and vehicleBrand != ''"> and vehicle_brand = #{vehicleBrand}</if>
+            <if test="vehicleChassis != null  and vehicleChassis != ''"> and vehicle_chassis = #{vehicleChassis}</if>
+            <if test="vehicleClass != null  and vehicleClass != ''"> and vehicle_class = #{vehicleClass}</if>
+            <if test="vehicleColor != null  and vehicleColor != ''"> and vehicle_color = #{vehicleColor}</if>
+            <if test="vehicleColorDepth != null  and vehicleColorDepth != ''"> and vehicle_color_depth = #{vehicleColorDepth}</if>
+            <if test="vehicleDoor != null  and vehicleDoor != ''"> and vehicle_door = #{vehicleDoor}</if>
+            <if test="vehicleFrontItem != null  and vehicleFrontItem != ''"> and vehicle_front_item = #{vehicleFrontItem}</if>
+            <if test="vehicleHeight != null  and vehicleHeight != ''"> and vehicle_height = #{vehicleHeight}</if>
+            <if test="vehicleHood != null  and vehicleHood != ''"> and vehicle_hood = #{vehicleHood}</if>
+            <if test="vehicleLength != null  and vehicleLength != ''"> and vehicle_length = #{vehicleLength}</if>
+            <if test="vehicleModel != null  and vehicleModel != ''"> and vehicle_model = #{vehicleModel}</if>
+            <if test="vehicleRearItem != null  and vehicleRearItem != ''"> and vehicle_rear_item = #{vehicleRearItem}</if>
+            <if test="vehicleRoof != null  and vehicleRoof != ''"> and vehicle_roof = #{vehicleRoof}</if>
+            <if test="vehicleShielding != null  and vehicleShielding != ''"> and vehicle_shielding = #{vehicleShielding}</if>
+            <if test="vehicleStyles != null  and vehicleStyles != ''"> and vehicle_styles = #{vehicleStyles}</if>
+            <if test="vehicleTrunk != null  and vehicleTrunk != ''"> and vehicle_trunk = #{vehicleTrunk}</if>
+            <if test="vehicleWheel != null  and vehicleWheel != ''"> and vehicle_wheel = #{vehicleWheel}</if>
+            <if test="vehicleWidth != null  and vehicleWidth != ''"> and vehicle_width = #{vehicleWidth}</if>
+            <if test="vehicleWindow != null  and vehicleWindow != ''"> and vehicle_window = #{vehicleWindow}</if>
+            <if test="wheelPrintedPattern != null  and wheelPrintedPattern != ''"> and wheel_printed_pattern = #{wheelPrintedPattern}</if>
+            <if test="vehicleId != null  and vehicleId != ''"> and vehicle_id = #{vehicleId}</if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''"> and community_building_id = #{communityBuildingId}</if>
+            <if test="communityBuildingName != null  and communityBuildingName != ''"> and community_building_name like concat('%', #{communityBuildingName}, '%')</if>
+            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+            <if test="communityChildName != null  and communityChildName != ''"> and community_child_name like concat('%', #{communityChildName}, '%')</if>
+            <if test="communityHousesId != null  and communityHousesId != ''"> and community_houses_id = #{communityHousesId}</if>
+            <if test="communityHousesName != null  and communityHousesName != ''"> and community_houses_name like concat('%', #{communityHousesName}, '%')</if>
+            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+            <if test="communityName != null  and communityName != ''"> and community_name like concat('%', #{communityName}, '%')</if>
+            <if test="sourceTableName != null  and sourceTableName != ''"> and source_table_name = #{sourceTableName}</if>
+            <if test="isAllDataAccess != null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="startPassTime != null and startPassTime != ''">
+                and appear_time &gt;= #{startPassTime}
+            </if>
+            <if test="endPassTime != null and endPassTime != ''">
+                and appear_time &lt;= #{endPassTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBasePassVehicleById" parameterType="String" resultMap="BasePassVehicleResult">
+        <include refid="selectBasePassVehicleVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBasePassVehicle" parameterType="BasePassVehicle">
+        insert into base_pass_vehicle
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="motorVehicleId != null and motorVehicleId != ''">motor_vehicle_id,</if>
+            <if test="appearTime != null">appear_time,</if>
+            <if test="brandReliability != null">brand_reliability,</if>
+            <if test="calling != null">calling,</if>
+            <if test="carOfVehicle != null">car_of_vehicle,</if>
+            <if test="descOfFrontItem != null">desc_of_front_item,</if>
+            <if test="descOfRearItem != null">desc_of_rear_item,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="direction != null">direction,</if>
+            <if test="disappearTime != null">disappear_time,</if>
+            <if test="drivingStatusCode != null">driving_status_code,</if>
+            <if test="filmColor != null">film_color,</if>
+            <if test="hasPlate != null">has_plate,</if>
+            <if test="hitMarkInfo != null">hit_mark_info,</if>
+            <if test="infoKind != null">info_kind,</if>
+            <if test="isAltered != null">is_altered,</if>
+            <if test="isCovered != null">is_covered,</if>
+            <if test="isDecked != null">is_decked,</if>
+            <if test="isModified != null">is_modified,</if>
+            <if test="isSuspicious != null">is_suspicious,</if>
+            <if test="laneNo != null">lane_no,</if>
+            <if test="leftTopX != null">left_top_x,</if>
+            <if test="leftTopY != null">left_top_y,</if>
+            <if test="markTime != null">mark_time,</if>
+            <if test="nameOfPassedRoad != null">name_of_passed_road,</if>
+            <if test="numOfPassenger != null">num_of_passenger,</if>
+            <if test="passTime != null">pass_time,</if>
+            <if test="plateCharReliabil != null">plate_char_reliabil,</if>
+            <if test="plateClass != null">plate_class,</if>
+            <if test="plateColor != null">plate_color,</if>
+            <if test="plateDescribe != null">plate_describe,</if>
+            <if test="plateNo != null">plate_no,</if>
+            <if test="plateNoAttach != null">plate_no_attach,</if>
+            <if test="plateReliability != null">plate_reliability,</if>
+            <if test="rearviewMirror != null">rearview_mirror,</if>
+            <if test="rightBtmX != null">right_btm_x,</if>
+            <if test="rightBtmY != null">right_btm_y,</if>
+            <if test="safetyBelt != null">safety_belt,</if>
+            <if test="sideOfVehicle != null">side_of_vehicle,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="speed != null">speed,</if>
+            <if test="storageUrl1 != null">storage_url1,</if>
+            <if test="storageUrl2 != null">storage_url2,</if>
+            <if test="storageUrl3 != null">storage_url3,</if>
+            <if test="storageUrl4 != null">storage_url4,</if>
+            <if test="storageUrl5 != null">storage_url5,</if>
+            <if test="sunvisor != null">sunvisor,</if>
+            <if test="tollgateId != null">tollgate_id,</if>
+            <if test="usingPropertiesCode != null">using_properties_code,</if>
+            <if test="vehicleBodyDesc != null">vehicle_body_desc,</if>
+            <if test="vehicleBrand != null">vehicle_brand,</if>
+            <if test="vehicleChassis != null">vehicle_chassis,</if>
+            <if test="vehicleClass != null">vehicle_class,</if>
+            <if test="vehicleColor != null">vehicle_color,</if>
+            <if test="vehicleColorDepth != null">vehicle_color_depth,</if>
+            <if test="vehicleDoor != null">vehicle_door,</if>
+            <if test="vehicleFrontItem != null">vehicle_front_item,</if>
+            <if test="vehicleHeight != null">vehicle_height,</if>
+            <if test="vehicleHood != null">vehicle_hood,</if>
+            <if test="vehicleLength != null">vehicle_length,</if>
+            <if test="vehicleModel != null">vehicle_model,</if>
+            <if test="vehicleRearItem != null">vehicle_rear_item,</if>
+            <if test="vehicleRoof != null">vehicle_roof,</if>
+            <if test="vehicleShielding != null">vehicle_shielding,</if>
+            <if test="vehicleStyles != null">vehicle_styles,</if>
+            <if test="vehicleTrunk != null">vehicle_trunk,</if>
+            <if test="vehicleWheel != null">vehicle_wheel,</if>
+            <if test="vehicleWidth != null">vehicle_width,</if>
+            <if test="vehicleWindow != null">vehicle_window,</if>
+            <if test="wheelPrintedPattern != null">wheel_printed_pattern,</if>
+            <if test="vehicleId != null and vehicleId != ''">vehicle_id,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="communityBuildingId != null">community_building_id,</if>
+            <if test="communityBuildingName != null">community_building_name,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="communityChildName != null">community_child_name,</if>
+            <if test="communityHousesId != null">community_houses_id,</if>
+            <if test="communityHousesName != null">community_houses_name,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityName != null">community_name,</if>
+            <if test="sourceTableName != null">source_table_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="motorVehicleId != null and motorVehicleId != ''">#{motorVehicleId},</if>
+            <if test="appearTime != null">#{appearTime},</if>
+            <if test="brandReliability != null">#{brandReliability},</if>
+            <if test="calling != null">#{calling},</if>
+            <if test="carOfVehicle != null">#{carOfVehicle},</if>
+            <if test="descOfFrontItem != null">#{descOfFrontItem},</if>
+            <if test="descOfRearItem != null">#{descOfRearItem},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="direction != null">#{direction},</if>
+            <if test="disappearTime != null">#{disappearTime},</if>
+            <if test="drivingStatusCode != null">#{drivingStatusCode},</if>
+            <if test="filmColor != null">#{filmColor},</if>
+            <if test="hasPlate != null">#{hasPlate},</if>
+            <if test="hitMarkInfo != null">#{hitMarkInfo},</if>
+            <if test="infoKind != null">#{infoKind},</if>
+            <if test="isAltered != null">#{isAltered},</if>
+            <if test="isCovered != null">#{isCovered},</if>
+            <if test="isDecked != null">#{isDecked},</if>
+            <if test="isModified != null">#{isModified},</if>
+            <if test="isSuspicious != null">#{isSuspicious},</if>
+            <if test="laneNo != null">#{laneNo},</if>
+            <if test="leftTopX != null">#{leftTopX},</if>
+            <if test="leftTopY != null">#{leftTopY},</if>
+            <if test="markTime != null">#{markTime},</if>
+            <if test="nameOfPassedRoad != null">#{nameOfPassedRoad},</if>
+            <if test="numOfPassenger != null">#{numOfPassenger},</if>
+            <if test="passTime != null">#{passTime},</if>
+            <if test="plateCharReliabil != null">#{plateCharReliabil},</if>
+            <if test="plateClass != null">#{plateClass},</if>
+            <if test="plateColor != null">#{plateColor},</if>
+            <if test="plateDescribe != null">#{plateDescribe},</if>
+            <if test="plateNo != null">#{plateNo},</if>
+            <if test="plateNoAttach != null">#{plateNoAttach},</if>
+            <if test="plateReliability != null">#{plateReliability},</if>
+            <if test="rearviewMirror != null">#{rearviewMirror},</if>
+            <if test="rightBtmX != null">#{rightBtmX},</if>
+            <if test="rightBtmY != null">#{rightBtmY},</if>
+            <if test="safetyBelt != null">#{safetyBelt},</if>
+            <if test="sideOfVehicle != null">#{sideOfVehicle},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="speed != null">#{speed},</if>
+            <if test="storageUrl1 != null">#{storageUrl1},</if>
+            <if test="storageUrl2 != null">#{storageUrl2},</if>
+            <if test="storageUrl3 != null">#{storageUrl3},</if>
+            <if test="storageUrl4 != null">#{storageUrl4},</if>
+            <if test="storageUrl5 != null">#{storageUrl5},</if>
+            <if test="sunvisor != null">#{sunvisor},</if>
+            <if test="tollgateId != null">#{tollgateId},</if>
+            <if test="usingPropertiesCode != null">#{usingPropertiesCode},</if>
+            <if test="vehicleBodyDesc != null">#{vehicleBodyDesc},</if>
+            <if test="vehicleBrand != null">#{vehicleBrand},</if>
+            <if test="vehicleChassis != null">#{vehicleChassis},</if>
+            <if test="vehicleClass != null">#{vehicleClass},</if>
+            <if test="vehicleColor != null">#{vehicleColor},</if>
+            <if test="vehicleColorDepth != null">#{vehicleColorDepth},</if>
+            <if test="vehicleDoor != null">#{vehicleDoor},</if>
+            <if test="vehicleFrontItem != null">#{vehicleFrontItem},</if>
+            <if test="vehicleHeight != null">#{vehicleHeight},</if>
+            <if test="vehicleHood != null">#{vehicleHood},</if>
+            <if test="vehicleLength != null">#{vehicleLength},</if>
+            <if test="vehicleModel != null">#{vehicleModel},</if>
+            <if test="vehicleRearItem != null">#{vehicleRearItem},</if>
+            <if test="vehicleRoof != null">#{vehicleRoof},</if>
+            <if test="vehicleShielding != null">#{vehicleShielding},</if>
+            <if test="vehicleStyles != null">#{vehicleStyles},</if>
+            <if test="vehicleTrunk != null">#{vehicleTrunk},</if>
+            <if test="vehicleWheel != null">#{vehicleWheel},</if>
+            <if test="vehicleWidth != null">#{vehicleWidth},</if>
+            <if test="vehicleWindow != null">#{vehicleWindow},</if>
+            <if test="wheelPrintedPattern != null">#{wheelPrintedPattern},</if>
+            <if test="vehicleId != null and vehicleId != ''">#{vehicleId},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="communityBuildingId != null">#{communityBuildingId},</if>
+            <if test="communityBuildingName != null">#{communityBuildingName},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="communityChildName != null">#{communityChildName},</if>
+            <if test="communityHousesId != null">#{communityHousesId},</if>
+            <if test="communityHousesName != null">#{communityHousesName},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityName != null">#{communityName},</if>
+            <if test="sourceTableName != null">#{sourceTableName},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBasePassVehicle" parameterType="BasePassVehicle">
+        update base_pass_vehicle
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="motorVehicleId != null and motorVehicleId != ''">motor_vehicle_id = #{motorVehicleId},</if>
+            <if test="appearTime != null">appear_time = #{appearTime},</if>
+            <if test="brandReliability != null">brand_reliability = #{brandReliability},</if>
+            <if test="calling != null">calling = #{calling},</if>
+            <if test="carOfVehicle != null">car_of_vehicle = #{carOfVehicle},</if>
+            <if test="descOfFrontItem != null">desc_of_front_item = #{descOfFrontItem},</if>
+            <if test="descOfRearItem != null">desc_of_rear_item = #{descOfRearItem},</if>
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="direction != null">direction = #{direction},</if>
+            <if test="disappearTime != null">disappear_time = #{disappearTime},</if>
+            <if test="drivingStatusCode != null">driving_status_code = #{drivingStatusCode},</if>
+            <if test="filmColor != null">film_color = #{filmColor},</if>
+            <if test="hasPlate != null">has_plate = #{hasPlate},</if>
+            <if test="hitMarkInfo != null">hit_mark_info = #{hitMarkInfo},</if>
+            <if test="infoKind != null">info_kind = #{infoKind},</if>
+            <if test="isAltered != null">is_altered = #{isAltered},</if>
+            <if test="isCovered != null">is_covered = #{isCovered},</if>
+            <if test="isDecked != null">is_decked = #{isDecked},</if>
+            <if test="isModified != null">is_modified = #{isModified},</if>
+            <if test="isSuspicious != null">is_suspicious = #{isSuspicious},</if>
+            <if test="laneNo != null">lane_no = #{laneNo},</if>
+            <if test="leftTopX != null">left_top_x = #{leftTopX},</if>
+            <if test="leftTopY != null">left_top_y = #{leftTopY},</if>
+            <if test="markTime != null">mark_time = #{markTime},</if>
+            <if test="nameOfPassedRoad != null">name_of_passed_road = #{nameOfPassedRoad},</if>
+            <if test="numOfPassenger != null">num_of_passenger = #{numOfPassenger},</if>
+            <if test="passTime != null">pass_time = #{passTime},</if>
+            <if test="plateCharReliabil != null">plate_char_reliabil = #{plateCharReliabil},</if>
+            <if test="plateClass != null">plate_class = #{plateClass},</if>
+            <if test="plateColor != null">plate_color = #{plateColor},</if>
+            <if test="plateDescribe != null">plate_describe = #{plateDescribe},</if>
+            <if test="plateNo != null">plate_no = #{plateNo},</if>
+            <if test="plateNoAttach != null">plate_no_attach = #{plateNoAttach},</if>
+            <if test="plateReliability != null">plate_reliability = #{plateReliability},</if>
+            <if test="rearviewMirror != null">rearview_mirror = #{rearviewMirror},</if>
+            <if test="rightBtmX != null">right_btm_x = #{rightBtmX},</if>
+            <if test="rightBtmY != null">right_btm_y = #{rightBtmY},</if>
+            <if test="safetyBelt != null">safety_belt = #{safetyBelt},</if>
+            <if test="sideOfVehicle != null">side_of_vehicle = #{sideOfVehicle},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="speed != null">speed = #{speed},</if>
+            <if test="storageUrl1 != null">storage_url1 = #{storageUrl1},</if>
+            <if test="storageUrl2 != null">storage_url2 = #{storageUrl2},</if>
+            <if test="storageUrl3 != null">storage_url3 = #{storageUrl3},</if>
+            <if test="storageUrl4 != null">storage_url4 = #{storageUrl4},</if>
+            <if test="storageUrl5 != null">storage_url5 = #{storageUrl5},</if>
+            <if test="sunvisor != null">sunvisor = #{sunvisor},</if>
+            <if test="tollgateId != null">tollgate_id = #{tollgateId},</if>
+            <if test="usingPropertiesCode != null">using_properties_code = #{usingPropertiesCode},</if>
+            <if test="vehicleBodyDesc != null">vehicle_body_desc = #{vehicleBodyDesc},</if>
+            <if test="vehicleBrand != null">vehicle_brand = #{vehicleBrand},</if>
+            <if test="vehicleChassis != null">vehicle_chassis = #{vehicleChassis},</if>
+            <if test="vehicleClass != null">vehicle_class = #{vehicleClass},</if>
+            <if test="vehicleColor != null">vehicle_color = #{vehicleColor},</if>
+            <if test="vehicleColorDepth != null">vehicle_color_depth = #{vehicleColorDepth},</if>
+            <if test="vehicleDoor != null">vehicle_door = #{vehicleDoor},</if>
+            <if test="vehicleFrontItem != null">vehicle_front_item = #{vehicleFrontItem},</if>
+            <if test="vehicleHeight != null">vehicle_height = #{vehicleHeight},</if>
+            <if test="vehicleHood != null">vehicle_hood = #{vehicleHood},</if>
+            <if test="vehicleLength != null">vehicle_length = #{vehicleLength},</if>
+            <if test="vehicleModel != null">vehicle_model = #{vehicleModel},</if>
+            <if test="vehicleRearItem != null">vehicle_rear_item = #{vehicleRearItem},</if>
+            <if test="vehicleRoof != null">vehicle_roof = #{vehicleRoof},</if>
+            <if test="vehicleShielding != null">vehicle_shielding = #{vehicleShielding},</if>
+            <if test="vehicleStyles != null">vehicle_styles = #{vehicleStyles},</if>
+            <if test="vehicleTrunk != null">vehicle_trunk = #{vehicleTrunk},</if>
+            <if test="vehicleWheel != null">vehicle_wheel = #{vehicleWheel},</if>
+            <if test="vehicleWidth != null">vehicle_width = #{vehicleWidth},</if>
+            <if test="vehicleWindow != null">vehicle_window = #{vehicleWindow},</if>
+            <if test="wheelPrintedPattern != null">wheel_printed_pattern = #{wheelPrintedPattern},</if>
+            <if test="vehicleId != null and vehicleId != ''">vehicle_id = #{vehicleId},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="communityBuildingId != null">community_building_id = #{communityBuildingId},</if>
+            <if test="communityBuildingName != null">community_building_name = #{communityBuildingName},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="communityChildName != null">community_child_name = #{communityChildName},</if>
+            <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+            <if test="communityHousesName != null">community_houses_name = #{communityHousesName},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityName != null">community_name = #{communityName},</if>
+            <if test="sourceTableName != null">source_table_name = #{sourceTableName},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePassVehicleById" parameterType="String">
+        delete from base_pass_vehicle where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePassVehicleByIds" parameterType="String">
+        delete from base_pass_vehicle where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePassVehicleByIds" parameterType="String">
+        update base_pass_vehicle set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

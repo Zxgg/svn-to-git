@@ -1,0 +1,244 @@
+@import './variables.scss';
+$systemBackground: $titleC;
+$menuBackgroundColor: rgba($color: $menuC, $alpha: 0.4);
+$menuBackgroundActiveColor: rgba($color: $baseC, $alpha: 0.7);
+$menuOpenColor: #010529;
+
+.menuList {
+  background-color: transparent;
+  color: $fontC !important;
+  .el-menu-item.is-active {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-menu-item:hover {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title:hover {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title.is-active {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  .el-submenu__title:hover,
+  .el-submenu__title:focus {
+    background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+  // menuList el-submenu is-active is-opened
+  .el-submenu.is-active.is-opened {
+    // background-color: $menuBackgroundActiveColor !important;
+    color: $fontC !important;
+  }
+}
+.el-submenu:hover .is-opened {
+  // background-color: $menuBackgroundActiveColor !important;
+  color: $fontC !important;
+}
+.menuList .el-submenu.is-active.is-opened:hover {
+  color: $fontC !important;
+  // background-color: $menuBackgroundActiveColor !important;
+  
+}
+.menuList .el-submenu.is-active.is-opened:focus {
+  color: $fontC !important;
+  // background-color: $menuBackgroundActiveColor !important;
+}
+.menuList .el-submenu {
+  color: $fontC !important;
+}
+.el-menu--popup {
+  padding: 0px;
+  margin: 0px;
+  color: $fontC !important;
+  background-color: $selectC !important;
+  &:active {
+    background-color: $menuBackgroundActiveColor !important;
+  }
+}
+.el-menu--popup.is-active {
+  color: $fontC !important;
+}
+.el-menu--vertical {
+  .nest-menu .el-submenu > .el-submenu__title,
+  .el-menu-item {
+    color: $fontC !important;
+    &:hover {
+      background-color: $menuBackgroundActiveColor !important;
+    }
+  }
+}
+.el-menu-item.is-active {
+  background: $menuBackgroundActiveColor;
+}
+.el-submenu-item.is-active {
+  background: $menuBackgroundActiveColor;
+}
+
+// 菜单背景色
+.el-menu {
+ background: transparent;
+}
+// 菜单图标
+.el-submenu__title i {
+  color: $fontC;
+}
+// 子菜单图标
+.el-menu-item i {
+  color: $fontC;
+}
+
+.menuList .el-menu--collapse .el-menu{
+  color: $fontC !important;
+}
+// 菜单收起时二级标题颜色
+.menuList .el-submenu__title {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+// 菜单右白框
+.el-menu {
+  border-right: 0;
+  float: right;
+  font-family: 'PingFangSC-Regular',' PingFang SC';
+}
+// 收缩按钮
+.el-icon-s-unfold {
+  &:hover {
+    color: $menuBackgroundActiveColor;
+  }
+  color: $fontC;
+}
+.el-icon-s-fold {
+  &:hover {
+    color: $menuBackgroundActiveColor;
+  }
+  color: $fontC;
+}
+.el-menu-item{
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 20px;
+  height: 48px;
+  line-height: 56px;
+  padding: 0 0px;
+  margin-left: 40px;
+  // position: relative;
+  // top: 42%; /*偏移*/
+  // transform: translateY(-50%)
+}
+// 常态下颜色
+.el-menu--horizontal > .el-menu-item{
+  color: #ffffff;
+  background-color: transparent !important;
+}
+.el-menu--horizontal{
+  height: 90px;
+}
+// .el-menu--horizontal:hover {
+//   background-color: transparent !important;
+//   color: #00DCFF;
+// }
+// 激活按钮颜色 失效
+/* .el-menu--horizontal > .el-menu-item.is-active{
+  color: #00DCFF;
+  background-color: transparent !important;
+} */
+/* 菜单激活的背景图片 */
+.mainInfoLeft > .el-menu--horizontal > .el-menu-item.is-active{
+	background: url("../../assets/images/menu/menu-checked-left.png") 0 0 no-repeat;
+	background-size: 100% 100%;
+	width: 130px;
+	height: 30px;
+	// border: 0px;
+	font-weight: bold;
+	color: #ffffff;
+}
+.mainInfoRight > .el-menu--horizontal > .el-menu-item.is-active{
+	background: url("../../assets/images/menu/menu-checked.png") 0 0 no-repeat;
+	background-size: 100% 100%;
+	width: 130px;
+	height: 30px;
+	// border: 0px;
+	font-weight: bold;
+	color: #ffffff;
+}
+.menuList_horizontal{
+  .el-menu-item:hover {
+    background-color: transparent !important;
+    color: #00DCFF !important;
+  }
+}
+// .el-menu--horizontal > .el-menu-item{
+//   height: 90px;
+// }
+
+
+.menuHorizontalRight{
+  .el-menu{
+    float: right;
+  }
+}
+.menuHorizontalLeft{
+  // .el-menu{
+    float: left;
+  // }
+}
+.horizontalMenu{
+  background-color: transparent !important;
+  color: #ffffff;
+  // 菜单右白框
+  .el-menu {
+    border-right: 0;
+    font-family: 'PingFangSC-Regular',' PingFang SC';
+  }
+  .el-menu-item{
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .3s, background-color .3s, color .3s;
+    box-sizing: border-box;
+    white-space: nowrap;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0px;
+    margin-left: 0px;
+  }
+  // .el-menu.el-menu--horizontal{
+  //   // border-bottom: solid 0px #e6e6e6;
+  // }
+  .el-menu.el-menu--horizontal{
+    border-bottom: solid 1px transparent;
+  }
+  // 常态
+  .el-menu--horizontal > .el-menu-item{
+    color: #ffffff;
+    float: left;
+    margin: 0;
+    border-bottom: 2px solid transparent;
+  }
+  // 鼠标经过
+  .el-menu-item:hover {
+    background-color: transparent !important;
+    color: #00DCFF !important;
+  }
+  // 激活
+  .el-menu--horizontal > .el-menu-item.is-active{
+    color: #00DCFF;
+    background-color: transparent !important;
+  }
+}
+
+
+
+
+
+
+
+
+

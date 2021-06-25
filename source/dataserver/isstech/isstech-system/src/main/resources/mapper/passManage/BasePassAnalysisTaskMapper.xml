@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePassAnalysisTaskMapper">
+
+    <resultMap type="BasePassAnalysisTask" id="BasePassAnalysisTaskResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="alarmLevel" column="alarm_level"/>
+        <result property="hitType" column="hit_type"/>
+        <result property="confidenceThreshold" column="confidence_threshold"/>
+        <result property="suspectId" column="suspect_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="enable" column="enable"/>
+        <result property="selectBayonets" column="select_bayonets"/>
+        <result property="selectGroups" column="select_groups"/>
+        <result property="srcDomainCode" column="src_domain_code"/>
+        <result property="plateSimilar" column="plate_similar"/>
+        <result property="rosterType" column="roster_type"/>
+        <result property="bayonetNames" column="bayonet_names"/>
+        <result property="groupNames" column="group_names"/>
+    </resultMap>
+
+    <sql id="selectBasePassAnalysisTaskVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, name, type, alarm_level, hit_type, confidence_threshold, suspect_id, task_id, start_date, end_date, enable, select_bayonets, select_groups, src_domain_code, plate_similar,roster_type,bayonet_names,group_names from base_pass_analysis_task
+    </sql>
+
+    <select id="selectBasePassAnalysisTaskList" parameterType="BasePassAnalysisTask"
+            resultMap="BasePassAnalysisTaskResult">
+        <include refid="selectBasePassAnalysisTaskVo"/>
+        <where>
+            del_flag ='0'
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id = #{communityChildId} </if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="alarmLevel != null ">and alarm_level = #{alarmLevel}</if>
+            <if test="hitType != null  and hitType != ''">and hit_type = #{hitType}</if>
+            <if test="confidenceThreshold != null ">and confidence_threshold = #{confidenceThreshold}</if>
+            <if test="suspectId != null  and suspectId != ''">and suspect_id = #{suspectId}</if>
+            <if test="taskId != null  and taskId != ''">and task_id = #{taskId}</if>
+            <if test="startDate != null ">and start_date = #{startDate}</if>
+            <if test="endDate != null ">and end_date = #{endDate}</if>
+            <if test="enable != null  and enable != ''">and enable = #{enable}</if>
+            <if test="selectBayonets != null  and selectBayonets != ''">and select_bayonets = #{selectBayonets}</if>
+            <if test="selectGroups != null  and selectGroups != ''">and select_groups = #{selectGroups}</if>
+            <if test="srcDomainCode != null  and srcDomainCode != ''">and src_domain_code = #{srcDomainCode}</if>
+            <if test="plateSimilar != null  and plateSimilar != ''">and plate_similar = #{plateSimilar}</if>
+            <if test="rosterType != null  and rosterType != ''">and roster_type = #{rosterType}</if>
+            <if test="bayonetNames != null  and bayonetNames != ''">and bayonet_names = #{bayonetNames}</if>
+            <if test="groupNames != null  and groupNames != ''">and group_names = #{groupNames}</if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBasePassAnalysisTaskById" parameterType="String" resultMap="BasePassAnalysisTaskResult">
+        <include refid="selectBasePassAnalysisTaskVo"/>
+        where id = #{id} and del_flag ='0'
+    </select>
+
+    <insert id="insertBasePassAnalysisTask" parameterType="BasePassAnalysisTask">
+        insert into base_pass_analysis_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="name != null">name,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="alarmLevel != null">alarm_level,</if>
+            <if test="hitType != null">hit_type,</if>
+            <if test="confidenceThreshold != null">confidence_threshold,</if>
+            <if test="suspectId != null and suspectId != ''">suspect_id,</if>
+            <if test="taskId != null">task_id,</if>
+            <if test="startDate != null">start_date,</if>
+            <if test="endDate != null">end_date,</if>
+            <if test="enable != null and enable != ''">enable,</if>
+            <if test="selectBayonets != null">select_bayonets,</if>
+            <if test="selectGroups != null">select_groups,</if>
+            <if test="srcDomainCode != null">src_domain_code,</if>
+            <if test="plateSimilar != null and plateSimilar != ''">plate_similar,</if>
+            <if test="rosterType != null  and rosterType != ''"> roster_type,</if>
+            <if test="bayonetNames != null  and bayonetNames != ''"> bayonet_names,</if>
+            <if test="groupNames != null  and groupNames != ''"> group_names,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="alarmLevel != null">#{alarmLevel},</if>
+            <if test="hitType != null">#{hitType},</if>
+            <if test="confidenceThreshold != null">#{confidenceThreshold},</if>
+            <if test="suspectId != null and suspectId != ''">#{suspectId},</if>
+            <if test="taskId != null">#{taskId},</if>
+            <if test="startDate != null">#{startDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+            <if test="enable != null and enable != ''">#{enable},</if>
+            <if test="selectBayonets != null">#{selectBayonets},</if>
+            <if test="selectGroups != null">#{selectGroups},</if>
+            <if test="srcDomainCode != null">#{srcDomainCode},</if>
+            <if test="plateSimilar != null and plateSimilar != ''">#{plateSimilar},</if>
+            <if test="rosterType != null  and rosterType != ''"> #{rosterType},</if>
+            <if test="bayonetNames != null  and bayonetNames != ''"> #{bayonetNames},</if>
+            <if test="groupNames != null  and groupNames != ''"> #{groupNames},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBasePassAnalysisTask" parameterType="BasePassAnalysisTask">
+        update base_pass_analysis_task
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="alarmLevel != null">alarm_level = #{alarmLevel},</if>
+            <if test="hitType != null">hit_type = #{hitType},</if>
+            <if test="confidenceThreshold != null">confidence_threshold = #{confidenceThreshold},</if>
+            <if test="suspectId != null and suspectId != ''">suspect_id = #{suspectId},</if>
+            <if test="taskId != null">task_id = #{taskId},</if>
+            <if test="startDate != null">start_date = #{startDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="selectBayonets != null">select_bayonets = #{selectBayonets},</if>
+            <if test="selectGroups != null">select_groups = #{selectGroups},</if>
+            <if test="srcDomainCode != null">src_domain_code = #{srcDomainCode},</if>
+            <if test="plateSimilar != null and plateSimilar != ''">plate_similar = #{plateSimilar},</if>
+            <if test="rosterType != null  and rosterType != ''"> roster_type = #{rosterType},</if>
+            <if test="bayonetNames != null  and bayonetNames != ''"> bayonet_names = #{bayonetNames},</if>
+            <if test="groupNames != null  and groupNames != ''"> group_names = #{groupNames},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePassAnalysisTaskById" parameterType="String">
+        delete from base_pass_analysis_task where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePassAnalysisTaskByIds" parameterType="String">
+        delete from base_pass_analysis_task where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteBySuspectId" parameterType="String">
+        delete from base_pass_analysis_task where suspect_id in
+        <foreach item="suspectId" collection="array" open="(" separator="," close=")">
+            #{suspectId}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePassAnalysisTaskByIds" parameterType="String">
+        update base_pass_analysis_task set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,133 @@
+.main{
+	width: 100%;
+	font-size: 30rpx;
+}
+.title{
+	margin-right: 50rpx !important;
+}
+input{
+	border: 1px solid #dcdfe6;
+	padding-left: 35rpx;
+	border-radius: 8rpx;
+}
+button{
+	line-height: 50rpx;
+	font-size: 25rpx;
+}
+.btn{
+	margin-bottom:50rpx;
+	display: flex;
+}
+.add {
+	margin: 0;
+	padding: 0;
+	padding-left: 50rpx;
+	padding-right: 50rpx;
+	background:#FFD662;
+	padding-bottom: 100rpx;
+	padding-top: 100rpx;
+	margin-bottom: 5%;
+}
+.addinside{
+	background-color: white;
+	width: 100rpx;
+	height: 100rpx;
+	margin-bottom: 30rpx;
+	margin: 0 auto;
+	text-align: center;
+	color: #B68505;
+}
+.addshow{
+	margin-bottom: 20rpx;
+}
+.xj{
+	width: 100rpx;
+	height: 100rpx;
+}
+.addnote button{
+	background-color: #83A6AE;
+	color: white;
+}
+.addnote{
+	padding: 20rpx;
+	margin-bottom: 25rpx;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.complaint_name input,.complaint_concent textarea,.addnote{
+	border: 1px solid #dcdfe6;
+	margin-top: 10rpx;
+}
+.complaint_name,.complaint_concent{
+	margin: 20rpx 25rpx;
+}
+.complaint_concent{
+	padding-right: 30rpx;
+}
+.btn2{
+	display: flex;
+	margin-left: 55%;
+	font-size: 25rpx;
+}
+.table{
+	width: 92%;
+	padding: 4%;
+	font-size: 25rpx;
+	background: white !important;
+	border-radius: 40rpx;
+	position: absolute;
+	top: 22%;
+}
+.tr_dian{
+	width: 100%;
+	display:flex;
+	flex-direction: row;
+}
+.dianchild{
+	text-align: center;
+	font-weight: 500;
+	font-size: 40rpx;
+	color: #FFD662;
+}
+.tr_th{
+	width: 100%;
+	display:flex;
+	flex-direction: row;
+	padding-top: 10rpx;
+	color: #87A9B1;
+}
+.th{
+	text-align: center;
+	font-weight: 500;
+	margin-bottom: 5%;
+}
+.tr_td{
+	display:flex;
+	flex-direction: row;
+	border-bottom: 1px solid #dcdfe6;
+	font-size: 20rpx !important;
+	color: #8B8B8B;
+	border-radius: 15rpx;
+	box-shadow: 3px 1px 1px #F0F4F5;
+	margin-bottom: 10rpx;
+}
+.tr_td:hover{
+	background-color: GhostWhite;
+}
+.td{
+	text-align: center;
+	padding-top: 15rpx;
+	padding-bottom: 15rpx;
+}
+.dianchild:first-child,.th:first-child,.td:first-child{
+	width: 20%;
+}
+.dianchild:nth-child(2),.th:nth-child(2),.td:nth-child(2){
+	width: 35%;
+}
+.dianchild:nth-child(3),.th:nth-child(3),.td:nth-child(3){
+	width: 25%;
+}
+.dianchild:last-child,.th:last-child,.td:last-child{
+	width: 20%;
+}

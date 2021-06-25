@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityOrganizationMapper">
+
+    <resultMap type="BaseCommunityOrganization" id="BaseCommunityOrganizationResult">
+        <result property="id" column="id"/>
+        <result property="communityId" column="community_id"/>
+        <result property="socialOrganizationId" column="social_organization_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="type" column="type"/>
+        <result property="propertyManagement" column="property_management"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+    </resultMap>
+
+    <sql id="selectBaseCommunityOrganizationVo">
+        select id, community_id, social_organization_id, start_time, end_time, create_by, create_time, update_by, update_time, del_flag, remark, community_child_id, type, property_management, community_houses_id from base_community_organization
+    </sql>
+
+    <select id="selectBaseCommunityOrganizationList" parameterType="BaseCommunityOrganization"
+            resultMap="BaseCommunityOrganizationResult">
+        <include refid="selectBaseCommunityOrganizationVo"/>
+        <where>
+            del_flag = '0'
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="socialOrganizationId != null  and socialOrganizationId != ''">and social_organization_id =
+                #{socialOrganizationId}
+            </if>
+            <if test="startTime != null ">and start_time = #{startTime}</if>
+            <if test="endTime != null ">and end_time = #{endTime}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="propertyManagement != null  and propertyManagement != ''">and property_management =
+                #{propertyManagement}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">and community_houses_id =
+                #{communityHousesId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseCommunityOrganizationById" parameterType="String" resultMap="BaseCommunityOrganizationResult">
+        <include refid="selectBaseCommunityOrganizationVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <insert id="insertBaseCommunityOrganization" parameterType="BaseCommunityOrganization">
+        insert into base_community_organization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="socialOrganizationId != null">social_organization_id,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="type != null">type,</if>
+            <if test="propertyManagement != null and propertyManagement != ''">property_management,</if>
+            <if test="communityHousesId != null">community_houses_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="socialOrganizationId != null">#{socialOrganizationId},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="propertyManagement != null and propertyManagement != ''">#{propertyManagement},</if>
+            <if test="communityHousesId != null">#{communityHousesId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCommunityOrganization" parameterType="BaseCommunityOrganization">
+        update base_community_organization
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="socialOrganizationId != null">social_organization_id = #{socialOrganizationId},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="propertyManagement != null and propertyManagement != ''">property_management =
+                #{propertyManagement},
+            </if>
+            <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityOrganizationById" parameterType="String">
+        delete from base_community_organization where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityOrganizationByIds" parameterType="String">
+        delete from base_community_organization where social_organization_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityOrganizationByIds" parameterType="String">
+        update base_community_organization set del_flag = '1' where social_organization_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

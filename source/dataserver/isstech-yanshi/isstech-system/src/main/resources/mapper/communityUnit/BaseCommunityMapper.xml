@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityMapper">
+
+    <resultMap type="BaseCommunity" id="BaseCommunityResult">
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="addressProvincial" column="address_provincial"/>
+        <result property="addressCitie" column="address_citie"/>
+        <result property="addressCountie" column="address_countie"/>
+        <result property="code" column="code"/>
+        <result property="untitled" column="untitled"/>
+        <result property="longitud" column="longitud"/>
+        <result property="latitude" column="latitude"/>
+        <result property="deptIds" column="deptIds"/>
+    </resultMap>
+
+    <sql id="selectBaseCommunityVo">
+        select create_by, create_time, update_by, update_time, del_flag, remark, id, name, address_provincial, address_citie, address_countie, code, untitled, longitud, latitude ,(select group_concat(cast(d.dept_ip as char) separator ',')from base_dept_community d  where d.community_id = id) as deptIds from base_community
+    </sql>
+
+    <select id="selectBaseCommunityList" parameterType="BaseCommunity" resultMap="BaseCommunityResult">
+        <include refid="selectBaseCommunityVo"/>
+        <where>
+            del_flag = '0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="addressProvincial != null  and addressProvincial != ''">
+                and address_provincial like concat('%', #{addressProvincial}, '%')
+            </if>
+            <if test="addressCitie != null  and addressCitie != ''">
+                and address_citie like concat('%', #{addressCitie}, '%')
+            </if>
+            <if test="addressCountie != null  and addressCountie != ''">
+                and address_countie like concat('%', #{addressCountie}, '%')
+            </if>
+            <if test="code != null  and code != ''">
+                and code = #{code}
+            </if>
+            <if test="untitled != null  and untitled != ''">
+                and untitled like concat('%', #{untitled}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                and id in
+                <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                    #{dataAccess.communityId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseCommunityById" parameterType="String" resultMap="BaseCommunityResult">
+        <include refid="selectBaseCommunityVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <insert id="insertBaseCommunity" parameterType="BaseCommunity">
+        insert into base_community
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="id != null">id,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="addressProvincial != null">address_provincial,
+            </if>
+            <if test="addressCitie != null">address_citie,
+            </if>
+            <if test="addressCountie != null">address_countie,
+            </if>
+            <if test="code != null">code,
+            </if>
+            <if test="untitled != null">untitled,
+            </if>
+            <if test="longitud != null">longitud,
+            </if>
+            <if test="latitude != null">latitude,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="id != null">#{id},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="addressProvincial != null">#{addressProvincial},
+            </if>
+            <if test="addressCitie != null">#{addressCitie},
+            </if>
+            <if test="addressCountie != null">#{addressCountie},
+            </if>
+            <if test="code != null">#{code},
+            </if>
+            <if test="untitled != null">#{untitled},
+            </if>
+            <if test="longitud != null">#{longitud},
+            </if>
+            <if test="latitude != null">#{latitude},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCommunity" parameterType="BaseCommunity">
+        update base_community
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="addressProvincial != null">address_provincial =
+                #{addressProvincial},
+            </if>
+            <if test="addressCitie != null">address_citie =
+                #{addressCitie},
+            </if>
+            <if test="addressCountie != null">address_countie =
+                #{addressCountie},
+            </if>
+            <if test="code != null">code =
+                #{code},
+            </if>
+            <if test="untitled != null">untitled =
+                #{untitled},
+            </if>
+            <if test="longitud != null">longitud =
+                #{longitud},
+            </if>
+            <if test="latitude != null">latitude =
+                #{latitude},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityById" parameterType="String">
+        delete from base_community where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityByIds" parameterType="String">
+        delete from base_community where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityByIds" parameterType="String">
+        update base_community set del_flag = '1'
+         where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <insert id="insertBaseDeptsCommunity">
+        insert into base_dept_community
+        (dept_ip,community_id)
+        VALUES
+        <foreach collection="deptIdsArr" item="deptId" separator=",">
+        (#{deptId},#{communityId})
+        </foreach>
+    </insert>
+
+    <insert id="insertBaseDeptCommunity" parameterType="BaseDeptCommunity">
+        insert into base_dept_community
+        (dept_ip,community_id)
+        VALUES
+        (   #{deptId},   #{communityId})
+    </insert>
+
+    <delete id="deleteBaseDeptCommunityById" parameterType="String">
+        delete from base_dept_community where community_id = #{id}
+    </delete>
+
+    <delete id="deleteBaseDeptCommunityByIds" parameterType="String">
+        delete from base_dept_community where community_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

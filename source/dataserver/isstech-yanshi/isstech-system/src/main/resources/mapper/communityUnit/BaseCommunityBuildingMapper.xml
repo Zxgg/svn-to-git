@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityBuildingMapper">
+
+    <resultMap type="BaseCommunityBuilding" id="BaseCommunityBuildingResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="multiple" column="multiple"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityChildName" column="community_child_name"/>
+        <result property="serialNumber" column="serial_number"/>
+        <result property="floorNumber" column="floor_number"/>
+        <result property="unitNumber" column="unit_number"/>
+        <result property="longitud" column="longitud"/>
+        <result property="latitude" column="latitude"/>
+        <result property="elevator" column="elevator"/>
+    </resultMap>
+
+    <sql id="selectBaseCommunityBuildingVo">
+        select id, name, create_by, create_time, update_by, update_time, del_flag, remark, community_id, multiple, community_child_id, community_child_name, serial_number, floor_number, unit_number, longitud, latitude, elevator from base_community_building
+    </sql>
+
+    <select id="selectBaseCommunityBuildingList" parameterType="BaseCommunityBuilding"
+            resultMap="BaseCommunityBuildingResult">
+        <include refid="selectBaseCommunityBuildingVo"/>
+        <where>
+            del_flag = '0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityChildName != null  and communityChildName != ''">
+                and community_child_name like concat('%', #{communityChildName}, '%')
+            </if>
+            <if test="serialNumber != null  and serialNumber != ''">
+                and serial_number = #{serialNumber}
+            </if>
+            <if test="floorNumber != null ">
+                and floor_number = #{floorNumber}
+            </if>
+            <if test="unitNumber != null ">
+                and unit_number = #{unitNumber}
+            </if>
+            <if test="elevator != null  and elevator != ''">
+                and elevator = #{elevator}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <select id="selectBaseCommunityBuildingById" parameterType="String" resultMap="BaseCommunityBuildingResult">
+        <include refid="selectBaseCommunityBuildingVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseCommunityBuilding" parameterType="BaseCommunityBuilding">
+        insert into base_community_building
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="multiple != null">multiple,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+            <if test="communityChildName != null">community_child_name,
+            </if>
+            <if test="serialNumber != null">serial_number,
+            </if>
+            <if test="floorNumber != null">floor_number,
+            </if>
+            <if test="unitNumber != null">unit_number,
+            </if>
+            <if test="longitud != null">longitud,
+            </if>
+            <if test="latitude != null">latitude,
+            </if>
+            <if test="elevator != null">elevator,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="multiple != null">#{multiple},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+            <if test="communityChildName != null">#{communityChildName},
+            </if>
+            <if test="serialNumber != null">#{serialNumber},
+            </if>
+            <if test="floorNumber != null">#{floorNumber},
+            </if>
+            <if test="unitNumber != null">#{unitNumber},
+            </if>
+            <if test="longitud != null">#{longitud},
+            </if>
+            <if test="latitude != null">#{latitude},
+            </if>
+            <if test="elevator != null">#{elevator},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCommunityBuilding" parameterType="BaseCommunityBuilding">
+        update base_community_building
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="multiple != null">multiple =
+                #{multiple},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+            <if test="communityChildName != null">community_child_name =
+                #{communityChildName},
+            </if>
+            <if test="serialNumber != null">serial_number =
+                #{serialNumber},
+            </if>
+            <if test="floorNumber != null">floor_number =
+                #{floorNumber},
+            </if>
+            <if test="unitNumber != null">unit_number =
+                #{unitNumber},
+            </if>
+            <if test="longitud != null">longitud =
+                #{longitud},
+            </if>
+            <if test="latitude != null">latitude =
+                #{latitude},
+            </if>
+            <if test="elevator != null">elevator =
+                #{elevator},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityBuildingById" parameterType="String">
+        delete from base_community_building where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityBuildingByIds" parameterType="String">
+        delete from base_community_building where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityBuildingByIds" parameterType="String">
+        update base_community_building set del_flag = '1'
+         where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

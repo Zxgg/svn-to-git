@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityHousesMapper">
+
+    <resultMap type="BaseCommunityHouses" id="BaseCommunityHousesResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityBuildingId" column="community_building_id"/>
+        <result property="serialNumber" column="serial_number"/>
+        <result property="buildingName" column="building_name"/>
+        <result property="unit" column="unit"/>
+        <result property="floor" column="floor"/>
+        <result property="houseNumber" column="house_number"/>
+        <result property="phone" column="phone"/>
+        <result property="houseStructure" column="house_structure"/>
+        <result property="buildingArea" column="building_area"/>
+        <result property="area" column="area"/>
+        <result property="constructionTime" column="construction_time"/>
+        <result property="housePropertyRight" column="house_property_right"/>
+        <result property="natureOfUse" column="nature_of_use"/>
+        <result property="rent" column="rent"/>
+        <result property="rentalPurpose" column="rental_purpose"/>
+        <result property="hazardType" column="hazard_type"/>
+        <result property="longitud" column="longitud"/>
+        <result property="latitude" column="latitude"/>
+        <result property="pics" column="pics"/>
+        <result property="elevator" column="elevator"/>
+        <result property="planarGraph" column="planar_graph"/>
+        <result property="azimuthGraph" column="azimuth_graph"/>
+        <result property="starRating" column="star_rating"/>
+    </resultMap>
+
+    <resultMap type="CommunityHousesVo" id="CommunityHousesVoResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityBuildingId" column="community_building_id"/>
+        <result property="serialNumber" column="serial_number"/>
+        <result property="buildingName" column="building_name"/>
+        <result property="unit" column="unit"/>
+        <result property="floor" column="floor"/>
+        <result property="houseNumber" column="house_number"/>
+        <result property="phone" column="phone"/>
+        <result property="houseStructure" column="house_structure"/>
+        <result property="buildingArea" column="building_area"/>
+        <result property="area" column="area"/>
+        <result property="constructionTime" column="construction_time"/>
+        <result property="housePropertyRight" column="house_property_right"/>
+        <result property="natureOfUse" column="nature_of_use"/>
+        <result property="rent" column="rent"/>
+        <result property="rentalPurpose" column="rental_purpose"/>
+        <result property="hazardType" column="hazard_type"/>
+        <result property="longitud" column="longitud"/>
+        <result property="latitude" column="latitude"/>
+        <result property="pics" column="pics"/>
+        <result property="elevator" column="elevator"/>
+        <result property="comHousePersonId" column="com_house_person_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="typeOfResidence" column="type_of_residence"/>
+        <result property="homeowner" column="homeowner"/>
+        <result property="isDelFlag" column="is_del_flag"/>
+        <result property="planarGraph" column="planar_graph"/>
+        <result property="azimuthGraph" column="azimuth_graph"/>
+        <result property="starRating" column="star_rating"/>
+    </resultMap>
+
+    <sql id="selectBaseCommunityHousesVo">
+        select id, name, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, community_building_id, serial_number,
+        building_name, unit, floor, house_number, phone, house_structure, building_area, area, construction_time, house_property_right, nature_of_use, rent,
+        rental_purpose, hazard_type, longitud, latitude, pics, elevator, planar_graph, azimuth_graph, star_rating from base_community_houses
+    </sql>
+
+    <sql id="selectCommunityHouse">
+        select bch.id, bch.name,bch.create_by, bch.create_time, bch.update_by, bch.update_time, bch.del_flag, bch.remark, bch.community_id, bch.community_child_id, bch.community_building_id, bch.serial_number,
+        bch.building_name, bch.unit, bch.floor, bch.house_number, bch.phone, bch.house_structure, bch.building_area, bch.area, bch.construction_time, bch.house_property_right, bch.nature_of_use, bch.rent,
+        bch.rental_purpose, bch.hazard_type, bch.longitud, bch.latitude, bch.pics, bch.elevator, bch.planar_graph, bch.azimuth_graph, bch.star_rating
+        from base_community_houses bch,base_community bc,base_community_child bcc
+    </sql>
+
+    <sql id="queryCommunityHousesVo">
+        select bch.id, bch.name, bch.create_by, bch.create_time, bch.update_by, bch.update_time, bch.del_flag, bch.remark, bch.community_id, bch.community_child_id,
+            bch.community_building_id, bch.serial_number, bch.building_name, bch.unit, bch.floor, bch.house_number, bch.phone, bch.house_structure, bch.building_area,
+            bch.area, bch.construction_time, bch.house_property_right, bch.nature_of_use, bch.rent, bch.rental_purpose, bch.hazard_type, bch.longitud, bch.latitude,
+            bch.pics, bch.elevator , bch.planar_graph, bch.azimuth_graph, bch.star_rating, bchp.id com_house_person_id,bchp.community_houses_id,bchp.personnel_id,bchp.type_of_residence,bchp.homeowner,bchp.del_flag is_del_flag
+        from
+            base_community_houses_personnel bchp, base_community_houses bch
+    </sql>
+
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <select id="queryCommunityHousesVoList" parameterType="CommunityHousesVo"
+            resultMap="CommunityHousesVoResult">
+        <include refid="queryCommunityHousesVo"/>
+        <where>
+            bchp.community_houses_id = bch.id
+            and bchp.del_flag='0'
+            and bch.del_flag='0'
+            <if test="name != null  and name != ''">
+                and bch.name like concat('%', #{name}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bch.community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bch.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">
+                and bch.community_building_id = #{communityBuildingId}
+            </if>
+            <if test="buildingName != null  and buildingName != ''">
+                and bch.building_name like concat('%', #{buildingName}, '%')
+            </if>
+            <if test="unit != null  and unit != ''">
+                and bch.unit = #{unit}
+            </if>
+            <if test="floor != null  and floor != ''">
+                and bch.floor = #{floor}
+            </if>
+            <if test="houseNumber != null  and houseNumber != ''">
+                and bch.house_number = like concat('%', #{houseNumber}, '%')
+            </if>
+            <if test="phone != null  and phone != ''">
+                and bch.phone like concat('%', #{phone}, '%')
+            </if>
+            <if test="houseStructure != null  and houseStructure != ''">
+                and bch.house_structure = #{houseStructure}
+            </if>
+            <if test="buildingArea != null  and buildingArea != ''">
+                and bch.building_area = #{buildingArea}
+            </if>
+            <if test="area != null  and area != ''">
+                and bch.area = #{area}
+            </if>
+            <if test="constructionTime != null  and constructionTime != ''">
+                and bch.construction_time &gt;= #{constructionTime}
+            </if>
+            <if test="housePropertyRight != null  and housePropertyRight != ''">
+                and bch.house_property_right = #{housePropertyRight}
+            </if>
+            <if test="natureOfUse != null  and natureOfUse != ''">
+                and bch.nature_of_use = #{natureOfUse}
+            </if>
+            <if test="rent != null  and rent != ''">
+                and bch.rent = #{rent}
+            </if>
+            <if test="rentalPurpose != null  and rentalPurpose != ''">
+                and bch.rental_purpose = #{rentalPurpose}
+            </if>
+            <if test="hazardType != null  and hazardType != ''">
+                and bch.hazard_type = #{hazardType}
+            </if>
+            <if test="elevator != null  and elevator != ''">
+                and bch.elevator = #{elevator}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and bchp.personnel_id = #{personnelId}
+            </if>
+            <if test="isDelFlag != null  and isDelFlag != ''">
+                and bchp.del_flag = #{isDelFlag}
+            </if>
+            <if test="azimuthGraph != null  and azimuthGraph != ''">
+                and azimuth_graph = #{azimuthGraph}
+             </if>
+            <if test="starRating != null  and starRating != ''">
+                and star_rating = #{starRating}
+             </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bch.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bch.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+
+    </select>
+
+    <select id="selectBaseCommunityHousesList" parameterType="CommunityHousesVo"
+            resultMap="BaseCommunityHousesResult">
+        <include refid="selectCommunityHouse"/>
+        <where>
+            bch.del_flag = '0' and
+            bch.community_id=bc.id
+            and bch.community_child_id=bcc.id
+            <if test="delFlag != null  and delFlag != ''">
+            and bch.del_flag = #{delFlag}
+            </if>
+            <if test="name != null  and name != ''">
+                and bch.name like concat('%', #{name}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bch.community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bch.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">
+                and bch.community_building_id = #{communityBuildingId}
+            </if>
+            <if test="buildingName != null  and buildingName != ''">
+                and bch.building_name like concat('%', #{buildingName}, '%')
+            </if>
+            <if test="unit != null  and unit != ''">
+                and bch.unit = #{unit}
+            </if>
+            <if test="floor != null  and floor != ''">
+                and bch.floor = #{floor}
+            </if>
+            <if test="houseNumber != null  and houseNumber != ''">
+                and bch.house_number like concat('%', #{houseNumber}, '%')
+            </if>
+            <if test="phone != null  and phone != ''">
+                and bch.phone like concat('%', #{phone}, '%')
+            </if>
+            <if test="houseStructure != null  and houseStructure != ''">
+                and bch.house_structure = #{houseStructure}
+            </if>
+            <if test="buildingArea != null  and buildingArea != ''">
+                and bch.building_area = #{buildingArea}
+            </if>
+            <if test="area != null  and area != ''">
+                and bch.area = #{area}
+            </if>
+            <if test="constructionTime != null  and constructionTime != ''">
+                and bch.construction_time &gt;= #{constructionTime}
+            </if>
+            <if test="housePropertyRight != null  and housePropertyRight != ''">
+                and bch.house_property_right = #{housePropertyRight}
+            </if>
+            <if test="natureOfUse != null  and natureOfUse != ''">
+                and bch.nature_of_use = #{natureOfUse}
+            </if>
+            <if test="rent != null  and rent != ''">
+                and bch.rent = #{rent}
+            </if>
+            <if test="rentalPurpose != null  and rentalPurpose != ''">
+                and bch.rental_purpose = #{rentalPurpose}
+            </if>
+            <if test="hazardType != null  and hazardType != ''">
+                and bch.hazard_type = #{hazardType}
+            </if>
+            <if test="elevator != null  and elevator != ''">
+                and bch.elevator = #{elevator}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bch.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bch.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="communityName != null  and communityName != ''">
+                and bc.`name` like concat('%', #{communityName}, '%')
+            </if>
+            <if test="communityChildName != null  and communityChildName != ''">
+                and bcc.`name` like concat('%', #{communityChildName}, '%')
+            </if>
+        </where>
+        order by bch.community_id,bch.community_child_id,bch.serial_number,bch.unit,bch.floor,bch.house_number
+    </select>
+
+    <select id="selectBaseCommunityHousesById" parameterType="String" resultMap="BaseCommunityHousesResult">
+        <include refid="selectBaseCommunityHousesVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseCommunityHouses" parameterType="BaseCommunityHouses">
+        insert into base_community_houses
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+            <if test="communityBuildingId != null">community_building_id,
+            </if>
+            <if test="serialNumber != null">serial_number,
+            </if>
+            <if test="buildingName != null">building_name,
+            </if>
+            <if test="unit != null">unit,
+            </if>
+            <if test="floor != null">floor,
+            </if>
+            <if test="houseNumber != null">house_number,
+            </if>
+            <if test="phone != null">phone,
+            </if>
+            <if test="houseStructure != null">house_structure,
+            </if>
+            <if test="buildingArea != null">building_area,
+            </if>
+            <if test="area != null">area,
+            </if>
+            <if test="constructionTime != null">construction_time,
+            </if>
+            <if test="housePropertyRight != null">house_property_right,
+            </if>
+            <if test="natureOfUse != null">nature_of_use,
+            </if>
+            <if test="rent != null">rent,
+            </if>
+            <if test="rentalPurpose != null">rental_purpose,
+            </if>
+            <if test="hazardType != null">hazard_type,
+            </if>
+            <if test="longitud != null">longitud,
+            </if>
+            <if test="latitude != null">latitude,
+            </if>
+            <if test="pics != null">pics,
+            </if>
+            <if test="elevator != null">elevator,
+            </if>
+            <if test="planarGraph != null">planar_graph,
+            </if>
+            <if test="azimuthGraph != null">azimuth_graph,
+            </if>
+            <if test="starRating != null">star_rating,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+            <if test="communityBuildingId != null">#{communityBuildingId},
+            </if>
+            <if test="serialNumber != null">#{serialNumber},
+            </if>
+            <if test="buildingName != null">#{buildingName},
+            </if>
+            <if test="unit != null">#{unit},
+            </if>
+            <if test="floor != null">#{floor},
+            </if>
+            <if test="houseNumber != null">#{houseNumber},
+            </if>
+            <if test="phone != null">#{phone},
+            </if>
+            <if test="houseStructure != null">#{houseStructure},
+            </if>
+            <if test="buildingArea != null">#{buildingArea},
+            </if>
+            <if test="area != null">#{area},
+            </if>
+            <if test="constructionTime != null">#{constructionTime},
+            </if>
+            <if test="housePropertyRight != null">#{housePropertyRight},
+            </if>
+            <if test="natureOfUse != null">#{natureOfUse},
+            </if>
+            <if test="rent != null">#{rent},
+            </if>
+            <if test="rentalPurpose != null">#{rentalPurpose},
+            </if>
+            <if test="hazardType != null">#{hazardType},
+            </if>
+            <if test="longitud != null">#{longitud},
+            </if>
+            <if test="latitude != null">#{latitude},
+            </if>
+            <if test="pics != null">#{pics},
+            </if>
+            <if test="elevator != null">#{elevator},
+            </if>
+            <if test="planarGraph != null">#{planarGraph},
+            </if>
+            <if test="azimuthGraph != null">#{azimuthGraph},
+            </if>
+            <if test="starRating != null">#{starRating},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseCommunityHouses" parameterType="BaseCommunityHouses">
+        update base_community_houses
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+            <if test="communityBuildingId != null">community_building_id =
+                #{communityBuildingId},
+            </if>
+            <if test="serialNumber != null">serial_number =
+                #{serialNumber},
+            </if>
+            <if test="buildingName != null">building_name =
+                #{buildingName},
+            </if>
+            <if test="unit != null">unit =
+                #{unit},
+            </if>
+            <if test="floor != null">floor =
+                #{floor},
+            </if>
+            <if test="houseNumber != null">house_number =
+                #{houseNumber},
+            </if>
+            <if test="phone != null">phone =
+                #{phone},
+            </if>
+            <if test="houseStructure != null">house_structure =
+                #{houseStructure},
+            </if>
+            <if test="buildingArea != null">building_area =
+                #{buildingArea},
+            </if>
+            <if test="area != null">area =
+                #{area},
+            </if>
+            <if test="constructionTime != null">construction_time =
+                #{constructionTime},
+            </if>
+            <if test="housePropertyRight != null">house_property_right =
+                #{housePropertyRight},
+            </if>
+            <if test="natureOfUse != null">nature_of_use =
+                #{natureOfUse},
+            </if>
+            <if test="rent != null">rent =
+                #{rent},
+            </if>
+            <if test="rentalPurpose != null">rental_purpose =
+                #{rentalPurpose},
+            </if>
+            <if test="hazardType != null">hazard_type =
+                #{hazardType},
+            </if>
+            <if test="longitud != null">longitud =
+                #{longitud},
+            </if>
+            <if test="latitude != null">latitude =
+                #{latitude},
+            </if>
+            <if test="pics != null">pics =
+                #{pics},
+            </if>
+            <if test="elevator != null">elevator =
+                #{elevator},
+            </if>
+            <if test="planarGraph != null">
+            planar_graph = #{planarGraph},
+            </if>
+            <if test="azimuthGraph != null">
+            azimuth_graph = #{azimuthGraph},
+            </if>
+            <if test="starRating != null">
+            star_rating = #{starRating},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityHousesById" parameterType="String">
+        delete from base_community_houses where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityHousesByIds" parameterType="String">
+        delete from base_community_houses where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityHousesByIds" parameterType="String">
+        update base_community_houses set del_flag = '1'
+         where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectByIdList" resultMap="BaseCommunityHousesResult">
+        <include refid="selectBaseCommunityHousesVo"/>
+        where del_flag='0' and id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="queryHouseAndPersonList" resultType="java.util.Map">
+        SELECT
+            t.*,
+            n.id as person_id,
+            n.name as person_name,
+            n.old_name,
+            n.sex,
+            n.nationality,
+            n.id_type,
+            n.identification_number,
+            n.idcard_start_date,
+            n.idcard_end_date,
+            n.nation,
+            n.location,
+            n.residence_detail,
+            n.address,
+            n.address_detail,
+            n.del_flag as person_del_flag,
+            n.remark as person_remark,
+            n.marital,
+            n.political,
+            n.degree,
+            n.religion,
+            n.profession,
+            n.professio_detail,
+            n.service_premises,
+            n.phone_number,
+            n.special,
+            n.limited,
+            n.caring,
+            n.floating,
+            n.arrival_country_date,
+            n.arrival_province_date,
+            n.departure_date,
+            n.floating_reasons,
+            n.card_type,
+            n.card_handling_agency,
+            n.card_num,
+            n.card_record_date,
+            n.pics as person_pics,
+            n.checked,
+            n.brith_date,
+            n.community_id as person_community_id,
+            n.community_child_id as person_community_child_id,
+            n.img_url,
+            n.is_same,
+            n.door_no,
+            n.household_idc,
+            n.household_name,
+            n.householdRelation,
+            n.file_id,
+            n.household_phone,
+            n.person_type,
+            n.stay_behind,
+            n.identification_positive,
+            n.identification_reverse,
+            n.custom_tag
+
+        FROM
+            base_community_houses t
+            LEFT JOIN base_community_houses_personnel m ON t.id = m.community_houses_id and m.del_flag = 0
+            LEFT JOIN base_personnel_information n ON m.personnel_id = n.id and n.del_flag = 0
+         <where>
+             m.homeowner = 1 and t.del_flag = 0
+             <if test="name != null">
+                and t.name  like   concat('%', #{name}, '%')
+             </if>
+             <if test="personName != null">
+                and n.name like   concat('%', #{personName}, '%')
+             </if>
+         </where>
+        order by t.update_time desc
+    </select>
+</mapper>

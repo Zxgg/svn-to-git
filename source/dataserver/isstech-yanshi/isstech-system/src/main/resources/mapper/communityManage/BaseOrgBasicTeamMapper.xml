@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseOrgBasicTeamMapper">
+
+    <resultMap type="BaseOrgBasicTeam" id="BaseOrgBasicTeamResult">
+        <result property="id" column="id"/>
+        <result property="orgName" column="org_name"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="nation" column="nation"/>
+        <result property="political" column="political"/>
+        <result property="idNum" column="id_num"/>
+        <result property="brithDate" column="brith_date"/>
+        <result property="positionLevel" column="position_level"/>
+        <result property="position" column="position"/>
+        <result property="majorStrength" column="major_strength"/>
+        <result property="degree" column="degree"/>
+        <result property="phone" column="phone"/>
+        <result property="tel" column="tel"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createByDeptId" column="create_by_dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateByDeptId" column="update_by_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+    <resultMap type="BaseOrgBasicTeamVo" id="BaseOrgBasicTeamVoResult">
+        <result property="id" column="id"/>
+        <result property="orgName" column="org_name"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="nation" column="nation"/>
+        <result property="political" column="political"/>
+        <result property="idNum" column="id_num"/>
+        <result property="brithDate" column="brith_date"/>
+        <result property="positionLevel" column="position_level"/>
+        <result property="position" column="position"/>
+        <result property="majorStrength" column="major_strength"/>
+        <result property="degree" column="degree"/>
+        <result property="phone" column="phone"/>
+        <result property="tel" column="tel"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createByDeptId" column="create_by_dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateByDeptId" column="update_by_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="orgId" column="basic_id"/>
+        <result property="basicOrgName" column="basic_org_name"/>
+        <result property="basicOrgType" column="basic_org_type"/>
+        <result property="res" column="res"/>
+        <result property="divison" column="divison"/>
+        <result property="orgLevel" column="org_level"/>
+    </resultMap>
+
+    <sql id="selectBaseOrgBasicTeam">
+        select id, org_name, name, sex, nation, political, id_num, brith_date, position_level, position, major_strength, degree, phone, tel, create_by,
+        create_by_dept_id, create_time, update_by, update_by_dept_id, update_time, del_flag from base_org_basic_team
+    </sql>
+    <sql id="queryBaseOrgBasicTeamVo">
+        select bobt.id, bobt.org_name, bobt.name, bobt.sex, bobt.nation, bobt.political, bobt.id_num, bobt.brith_date, bobt.position_level,
+        bobt.position, bobt.major_strength, bobt.degree, bobt.phone, bobt.tel, bobt.create_by, bobt.create_by_dept_id, bobt.create_time,
+        bobt.update_by, bobt.update_by_dept_id, bobt.update_time, bobt.del_flag,bob.id basic_id,bob.org_name basic_org_name,bob.org_type basic_org_type,
+        bob.res res ,bob.divison divison ,bob.org_level org_level from base_org_basic_team bobt , base_org_basic_org_basic_team bobobt ,base_org_basic bob
+    </sql>
+
+    <select id="selectBaseOrgBasicTeamList" parameterType="BaseOrgBasicTeam" resultMap="BaseOrgBasicTeamResult">
+        <include refid="selectBaseOrgBasicTeam"/>
+        <where>
+            del_flag = '0'
+            <if test="orgName != null  and orgName != ''">and org_name like concat('%', #{orgName}, '%')</if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="sex != null  and sex != ''">and sex = #{sex}</if>
+            <if test="nation != null  and nation != ''">and nation = #{nation}</if>
+            <if test="political != null  and political != ''">and political = #{political}</if>
+            <if test="idNum != null  and idNum != ''">and id_num like concat('%', #{idNum}, '%')</if>
+            <if test="brithDate != null ">and brith_date = #{brithDate}</if>
+            <if test="positionLevel != null  and positionLevel != ''">and position_level = #{positionLevel}</if>
+            <if test="position != null  and position != ''">and position = #{position}</if>
+            <if test="majorStrength != null  and majorStrength != ''">and major_strength like concat('%', #{majorStrength}, '%') </if>
+            <if test="degree != null  and degree != ''">and degree = #{degree}</if>
+            <if test="phone != null  and phone != ''">and phone like concat('%', #{phone}, '%')</if>
+            <if test="tel != null  and tel != ''">and tel = #{tel}</if>
+            <if test="createBy != null  and createBy != ''">and create_by = #{createBy}</if>
+            <if test="createByDeptId != null  and createByDeptId != ''">and create_by_dept_id = #{createByDeptId}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by = #{updateBy}</if>
+            <if test="updateByDeptId != null  and updateByDeptId != ''">and update_by_dept_id = #{updateByDeptId}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="delFlag != null  and delFlag != ''">and del_flag = #{delFlag}</if>
+        </where>
+    </select>
+    <select id="selectBaseOrgBasicTeamVoList" parameterType="BaseOrgBasicTeamVo" resultMap="BaseOrgBasicTeamVoResult">
+        <include refid="queryBaseOrgBasicTeamVo"/>
+        <where>
+            bob.id = bobobt.basic_id and bobobt.team_id = bobt.id
+            and bobt.del_flag ='0' and bob.del_flag = '0'
+            <if test="orgName != null  and orgName != ''">and bobt.org_name like concat('%', #{orgName}, '%')</if>
+            <if test="name != null  and name != ''">and bobt.name like concat('%', #{name}, '%')</if>
+            <if test="sex != null  and sex != ''">and bobt.sex = #{sex}</if>
+            <if test="nation != null  and nation != ''">and bobt.nation = #{nation}</if>
+            <if test="political != null  and political != ''">and bobt.political = #{political}</if>
+            <if test="idNum != null  and idNum != ''">and bobt.id_num like concat('%', #{idNum}, '%')</if>
+            <if test="brithDate != null ">and bobt.brith_date = #{brithDate}</if>
+            <if test="positionLevel != null  and positionLevel != ''">and bobt.position_level = #{positionLevel}</if>
+            <if test="position != null  and position != ''">and bobt.position = #{position}</if>
+            <if test="majorStrength != null  and majorStrength != ''">and bobt.major_strength like concat('%',#{majorStrength}, '%')</if>
+            <if test="degree != null  and degree != ''">and bobt.degree = #{degree}</if>
+            <if test="phone != null  and phone != ''">and bobt.phone like concat('%', #{phone}, '%')</if>
+            <if test="tel != null  and tel != ''">and bobt.tel = #{tel}</if>
+            <if test="createBy != null  and createBy != ''">and bobt.create_by = #{createBy}</if>
+            <if test="createByDeptId != null  and createByDeptId != ''">and bobt.create_by_dept_id = #{createByDeptId}</if>
+            <if test="createTime != null ">and bobt.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy != ''">and bobt.update_by = #{updateBy}</if>
+            <if test="updateByDeptId != null  and updateByDeptId != ''">and bobt.update_by_dept_id = #{updateByDeptId}</if>
+            <if test="updateTime != null ">and bobt.update_time = #{updateTime}</if>
+            <if test="delFlag != null  and delFlag != ''">and bobt.del_flag = #{delFlag}</if>
+            <if test="orgId != null  and orgId != ''">and bob.id = #{orgId}</if>
+            <if test="basicOrgName != null  and basicOrgName != ''">and bob.org_name = #{basicOrgName}</if>
+            <if test="basicOrgType != null  and basicOrgType != ''">and bob.org_type = #{basicOrgType}</if>
+            <if test="res != null  and res != ''">and bob.res = #{res}</if>
+            <if test="divison != null  and divison != ''">and bob.divison = #{divison}</if>
+            <if test="orgLevel != null  and orgLevel != ''">and bob.org_level = #{orgLevel}</if>
+        </where>
+    </select>
+
+    <select id="selectBaseOrgBasicTeamById" parameterType="String" resultMap="BaseOrgBasicTeamVoResult">
+        <include refid="queryBaseOrgBasicTeamVo"/>
+        where bobt.id = #{id} and bob.id = bobobt.basic_id and bobobt.team_id = bobt.id
+        and bobt.del_flag ='0' and bob.del_flag = '0'
+    </select>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <insert id="insertBaseOrgBasicTeam" parameterType="BaseOrgBasicTeamVo">
+        insert into base_org_basic_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orgName != null">org_name,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="sex != null and sex != ''">sex,</if>
+            <if test="nation != null and nation != ''">nation,</if>
+            <if test="political != null and political != ''">political,</if>
+            <if test="idNum != null">id_num,</if>
+            <if test="brithDate != null">brith_date,</if>
+            <if test="positionLevel != null and positionLevel != ''">position_level,</if>
+            <if test="position != null and position != ''">position,</if>
+            <if test="majorStrength != null">major_strength,</if>
+            <if test="degree != null and degree != ''">degree,</if>
+            <if test="phone != null and phone != ''">phone,</if>
+            <if test="tel != null">tel,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createByDeptId != null">create_by_dept_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateByDeptId != null">update_by_dept_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orgName != null">#{orgName},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="sex != null and sex != ''">#{sex},</if>
+            <if test="nation != null and nation != ''">#{nation},</if>
+            <if test="political != null and political != ''">#{political},</if>
+            <if test="idNum != null">#{idNum},</if>
+            <if test="brithDate != null">#{brithDate},</if>
+            <if test="positionLevel != null and positionLevel != ''">#{positionLevel},</if>
+            <if test="position != null and position != ''">#{position},</if>
+            <if test="majorStrength != null">#{majorStrength},</if>
+            <if test="degree != null and degree != ''">#{degree},</if>
+            <if test="phone != null and phone != ''">#{phone},</if>
+            <if test="tel != null">#{tel},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createByDeptId != null">#{createByDeptId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateByDeptId != null">#{updateByDeptId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseOrgBasicTeam" parameterType="BaseOrgBasicTeamVo">
+        update base_org_basic_team
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orgName != null">org_name = #{orgName},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
+            <if test="nation != null and nation != ''">nation = #{nation},</if>
+            <if test="political != null and political != ''">political = #{political},</if>
+            <if test="idNum != null">id_num = #{idNum},</if>
+            <if test="brithDate != null">brith_date = #{brithDate},</if>
+            <if test="positionLevel != null and positionLevel != ''">position_level = #{positionLevel},</if>
+            <if test="position != null and position != ''">position = #{position},</if>
+            <if test="majorStrength != null">major_strength = #{majorStrength},</if>
+            <if test="degree != null and degree != ''">degree = #{degree},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="tel != null">tel = #{tel},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createByDeptId != null">create_by_dept_id = #{createByDeptId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateByDeptId != null">update_by_dept_id = #{updateByDeptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseOrgBasicTeamById" parameterType="String">
+        delete from base_org_basic_team where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseOrgBasicTeamByIds" parameterType="String">
+        delete from base_org_basic_team where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseOrgBasicTeamByIds" parameterType="String">
+        update base_org_basic_team set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

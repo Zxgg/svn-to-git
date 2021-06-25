@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpecialReleasedPeopleMapper">
+
+    <resultMap type="TSpecialReleasedPeople" id="TSpecialReleasedPeopleResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="isRecidivism" column="is_recidivism"/>
+        <result property="originalCrimeName" column="original_crime_name"/>
+        <result property="punishmentTerm" column="punishment_term"/>
+        <result property="punishmentAddress" column="punishment_address"/>
+        <result property="releaseDate" column="release_date"/>
+        <result property="dangerAssess" column="danger_assess"/>
+        <result property="joinDate" column="join_date"/>
+        <result property="joinSituation" column="join_situation"/>
+        <result property="placeDate" column="place_date"/>
+        <result property="placeSituation" column="place_situation"/>
+        <result property="unplaceSituation" column="unplace_situation"/>
+        <result property="helpSituation" column="help_situation"/>
+        <result property="isAgainCrime" column="is_again_crime"/>
+        <result property="crimeName" column="crime_name"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectTSpecialReleasedPeopleVo">
+        select id, create_by, dept_id, create_time, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, is_recidivism, original_crime_name, punishment_term, punishment_address, release_date, danger_assess, join_date, join_situation, place_date, place_situation, unplace_situation, help_situation, is_again_crime, crime_name, community_id, community_child_id from t_special_released_people
+    </sql>
+
+    <select id="selectTSpecialReleasedPeopleList" parameterType="TSpecialReleasedPeople"
+            resultMap="TSpecialReleasedPeopleResult">
+        <include refid="selectTSpecialReleasedPeopleVo"/>
+        <where>
+            del_flag = '0'
+            <if test="createBy != null  and createBy != ''">and create_by = #{createBy}</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by = #{updateBy}</if>
+            <if test="personnelId != null  and personnelId != ''">and personnel_id = #{personnelId}</if>
+            <if test="sourceType != null  and sourceType != ''">and source_type = #{sourceType}</if>
+            <if test="enable != null  and enable != ''">and enable = #{enable}</if>
+            <if test="remark != null  and remark != ''">and remark = #{remark}</if>
+            <if test="isRecidivism != null  and isRecidivism != ''">and is_recidivism = #{isRecidivism}</if>
+            <if test="originalCrimeName != null  and originalCrimeName != ''">and original_crime_name =
+                #{originalCrimeName}
+            </if>
+            <if test="punishmentTerm != null  and punishmentTerm != ''">and punishment_term = #{punishmentTerm}</if>
+            <if test="punishmentAddress != null  and punishmentAddress != ''">and punishment_address =
+                #{punishmentAddress}
+            </if>
+            <if test="releaseDate != null ">and release_date = #{releaseDate}</if>
+            <if test="dangerAssess != null  and dangerAssess != ''">and danger_assess = #{dangerAssess}</if>
+            <if test="joinDate != null ">and join_date = #{joinDate}</if>
+            <if test="joinSituation != null  and joinSituation != ''">and join_situation = #{joinSituation}</if>
+            <if test="placeDate != null ">and place_date = #{placeDate}</if>
+            <if test="placeSituation != null  and placeSituation != ''">and place_situation = #{placeSituation}</if>
+            <if test="unplaceSituation != null  and unplaceSituation != ''">and unplace_situation like concat('%',
+                #{unplaceSituation}, '%')
+            </if>
+            <if test="helpSituation != null  and helpSituation != ''">and help_situation = #{helpSituation}</if>
+            <if test="isAgainCrime != null  and isAgainCrime != ''">and is_again_crime = #{isAgainCrime}</if>
+            <if test="crimeName != null  and crimeName != ''">and crime_name = #{crimeName}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpecialReleasedPeopleById" parameterType="String" resultMap="TSpecialReleasedPeopleResult">
+        <include refid="selectTSpecialReleasedPeopleVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTSpecialReleasedPeople" parameterType="TSpecialReleasedPeople">
+        insert into t_special_released_people
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateDeptId != null">update_dept_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="enable != null and enable != ''">enable,</if>
+            <if test="remark != null">remark,</if>
+            <if test="isRecidivism != null and isRecidivism != ''">is_recidivism,</if>
+            <if test="originalCrimeName != null and originalCrimeName != ''">original_crime_name,</if>
+            <if test="punishmentTerm != null and punishmentTerm != ''">punishment_term,</if>
+            <if test="punishmentAddress != null and punishmentAddress != ''">punishment_address,</if>
+            <if test="releaseDate != null">release_date,</if>
+            <if test="dangerAssess != null and dangerAssess != ''">danger_assess,</if>
+            <if test="joinDate != null">join_date,</if>
+            <if test="joinSituation != null and joinSituation != ''">join_situation,</if>
+            <if test="placeDate != null">place_date,</if>
+            <if test="placeSituation != null and placeSituation != ''">place_situation,</if>
+            <if test="unplaceSituation != null">unplace_situation,</if>
+            <if test="helpSituation != null">help_situation,</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">is_again_crime,</if>
+            <if test="crimeName != null">crime_name,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateDeptId != null">#{updateDeptId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="enable != null and enable != ''">#{enable},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="isRecidivism != null and isRecidivism != ''">#{isRecidivism},</if>
+            <if test="originalCrimeName != null and originalCrimeName != ''">#{originalCrimeName},</if>
+            <if test="punishmentTerm != null and punishmentTerm != ''">#{punishmentTerm},</if>
+            <if test="punishmentAddress != null and punishmentAddress != ''">#{punishmentAddress},</if>
+            <if test="releaseDate != null">#{releaseDate},</if>
+            <if test="dangerAssess != null and dangerAssess != ''">#{dangerAssess},</if>
+            <if test="joinDate != null">#{joinDate},</if>
+            <if test="joinSituation != null and joinSituation != ''">#{joinSituation},</if>
+            <if test="placeDate != null">#{placeDate},</if>
+            <if test="placeSituation != null and placeSituation != ''">#{placeSituation},</if>
+            <if test="unplaceSituation != null">#{unplaceSituation},</if>
+            <if test="helpSituation != null">#{helpSituation},</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">#{isAgainCrime},</if>
+            <if test="crimeName != null">#{crimeName},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpecialReleasedPeople" parameterType="TSpecialReleasedPeople">
+        update t_special_released_people
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateDeptId != null">update_dept_id = #{updateDeptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id = #{personnelId},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="isRecidivism != null and isRecidivism != ''">is_recidivism = #{isRecidivism},</if>
+            <if test="originalCrimeName != null and originalCrimeName != ''">original_crime_name =
+                #{originalCrimeName},
+            </if>
+            <if test="punishmentTerm != null and punishmentTerm != ''">punishment_term = #{punishmentTerm},</if>
+            <if test="punishmentAddress != null and punishmentAddress != ''">punishment_address =
+                #{punishmentAddress},
+            </if>
+            <if test="releaseDate != null">release_date = #{releaseDate},</if>
+            <if test="dangerAssess != null and dangerAssess != ''">danger_assess = #{dangerAssess},</if>
+            <if test="joinDate != null">join_date = #{joinDate},</if>
+            <if test="joinSituation != null and joinSituation != ''">join_situation = #{joinSituation},</if>
+            <if test="placeDate != null">place_date = #{placeDate},</if>
+            <if test="placeSituation != null and placeSituation != ''">place_situation = #{placeSituation},</if>
+            <if test="unplaceSituation != null">unplace_situation = #{unplaceSituation},</if>
+            <if test="helpSituation != null">help_situation = #{helpSituation},</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">is_again_crime = #{isAgainCrime},</if>
+            <if test="crimeName != null">crime_name = #{crimeName},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpecialReleasedPeopleById" parameterType="String">
+        delete from t_special_released_people where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpecialReleasedPeopleByIds" parameterType="String">
+        delete from t_special_released_people where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTSpecialReleasedPeopleByIds" parameterType="String">
+        update t_special_released_people set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateTSpecialReleasedPeopleByPersonIds" parameterType="String">
+        update t_special_released_people set del_flag = '1'  where personnel_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

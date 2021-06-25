@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.SysNoticeMapper">
+    
+    <resultMap type="SysNotice" id="SysNoticeResult">
+        <result property="id"       column="id"       />
+        <result property="title"    column="title"    />
+        <result property="type"     column="type"     />
+        <result property="content"  column="content"  typeHandler="MyBlobTypeHandler" />
+        <result property="status"         column="status"          />
+        <result property="deptId"         column="dept_id"          />
+        <result property="createBy"       column="create_by"       />
+        <result property="createTime"     column="create_time"     />
+        <result property="updateBy"       column="update_by"       />
+        <result property="updateTime"     column="update_time"     />
+        <result property="remark"         column="remark"          />
+        <result property="delFlag"         column="del_flag"          />
+        <result property="pushType"         column="push_type"          />
+        <result property="level"         column="level"          />
+        <result property="files"         column="files"          />
+        <result property="pushTime"         column="push_time"          />
+        <result property="isPublish"         column="is_publish"          />
+        <result property="updateDeptId"         column="update_dept_id"          />
+    </resultMap>
+    
+    <sql id="selectNoticeVo">
+        select id, title, type, content, status,dept_id, create_by, create_time, update_by, update_time, remark,del_flag,push_type,level,files,push_time,is_publish,update_dept_id
+		from sys_notice
+    </sql>
+    
+    <select id="selectNoticeById" parameterType="String" resultMap="SysNoticeResult">
+        <include refid="selectNoticeVo"/>
+        where id = #{id}
+    </select>
+    
+    <select id="selectNoticeList" parameterType="SysNotice" resultMap="SysNoticeResult">
+        <include refid="selectNoticeVo"/>
+        <where>
+                del_flag = '0'
+            <if test="title != null and title != ''">
+				AND title like concat('%', #{title}, '%')
+			</if>
+			<if test="type != null and type != ''">
+				AND type = #{type}
+			</if>
+			<if test="createBy != null and createBy != ''">
+				AND create_by like concat('%', #{createBy}, '%')
+			</if>
+		</where>
+    </select>
+    
+    <update id="updateNotice" parameterType="SysNotice">
+        update sys_notice
+        <set>
+            <if test="title != null and title != ''">title = #{title}, </if>
+            <if test="type != null and type != ''">type = #{type}, </if>
+            <if test="content != null">content = #{content}, </if>
+            <if test="status != null and status != ''">status = #{status}, </if>
+            <if test="deptId != null and deptId != '' ">dept_id = #{deptId}, </if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateDeptId != null and updateDeptId != ''">update_dept_id = #{updateDeptId},</if>
+ 			update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNoticeById" parameterType="String">
+        delete from sys_notice where id = #{id}
+    </delete>
+
+    <insert id="insertNotice" parameterType="SysNotice">
+        insert into sys_notice (
+        id,
+        <if test="title != null and title != '' ">title, </if>
+        <if test="type != null and type != '' ">type, </if>
+        <if test="content != null and content != '' ">content, </if>
+        <if test="status != null and status != '' ">status, </if>
+        <if test="deptId != null and deptId != '' ">dept_id, </if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="delFlag != null and delFlag != ''">del_flag,</if>
+        <if test="pushType != null and pushType != ''">push_type,</if>
+        <if test="level != null and level != ''">level,</if>
+        <if test="files != null and files != ''">files,</if>
+        <if test="updateDeptId != null and updateDeptId != ''">update_dept_id ,</if>
+        push_time,
+        create_time
+        )values(
+        uuid(),
+        <if test="title != null and title != ''">#{title}, </if>
+        <if test="type != null and type != ''">#{type}, </if>
+        <if test="content != null and content != ''">#{content}, </if>
+        <if test="status != null and status != ''">#{status}, </if>
+        <if test="deptId != null and deptId != '' ">#{dept_id}, </if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="delFlag != null and delFlag != ''">#{del_flag},</if>
+        <if test="pushType != null and pushType != ''">#{push_type},</if>
+        <if test="level != null and level != ''">#{level},</if>
+        <if test="files != null and files != ''">#{files},</if>
+        <if test="updateDeptId != null and updateDeptId != ''">#{updateDeptId},</if>
+        sysdate(),
+        sysdate()
+        )
+    </insert>
+
+    <delete id="deleteNoticeByIds" parameterType="String">
+        delete from sys_notice where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateNoticeByIds" parameterType="String">
+        update sys_notice set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

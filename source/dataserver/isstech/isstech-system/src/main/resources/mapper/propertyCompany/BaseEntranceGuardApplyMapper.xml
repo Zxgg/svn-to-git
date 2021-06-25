@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseEntranceGuardApplyMapper">
+
+    <resultMap type="BaseEntranceGuardApply" id="BaseEntranceGuardApplyResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="personId"    column="person_id"    />
+                    <result property="personName"    column="person_name"    />
+                    <result property="communityHousesId"    column="community_houses_id"    />
+                    <result property="stat"    column="stat"    />
+                    <result property="reason"    column="reason"    />
+                    <result property="pics"    column="pics"    />
+                    <result property="receiveTime"    column="receive_time"    />
+                    <result property="checkerName"    column="checker_name"    />
+                    <result property="checkTime"    column="check_time"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseEntranceGuardApplyVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, person_id, person_name, community_houses_id, stat, reason, pics, receive_time, checker_name, check_time from base_entrance_guard_apply
+    </sql>
+
+    <select id="selectBaseEntranceGuardApplyList" parameterType="BaseEntranceGuardApply" resultMap="BaseEntranceGuardApplyResult">
+        <include refid="selectBaseEntranceGuardApplyVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="personId != null  and personId != ''"> and person_id = #{personId}</if>
+                                                                                                            <if test="personName != null  and personName != ''"> and person_name like concat('%', #{personName}, '%')</if>
+                                                                                                            <if test="communityHousesId != null  and communityHousesId != ''"> and community_houses_id = #{communityHousesId}</if>
+                                                                                                            <if test="stat != null  and stat != ''"> and stat = #{stat}</if>
+                                                                                                            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                            <if test="receiveTime != null "> and receive_time = #{receiveTime}</if>
+                                                                                                            <if test="checkerName != null  and checkerName != ''"> and checker_name like concat('%', #{checkerName}, '%')</if>
+                                                                                                            <if test="checkTime != null "> and check_time = #{checkTime}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </where>
+    </select>
+
+    <select id="selectBaseEntranceGuardApplyById" parameterType="String" resultMap="BaseEntranceGuardApplyResult">
+        <include refid="selectBaseEntranceGuardApplyVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseEntranceGuardApply" parameterType="BaseEntranceGuardApply">
+        insert into base_entrance_guard_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="communityId != null">community_id,</if>
+                                                                <if test="communityChildId != null">community_child_id,</if>
+                                                                <if test="personId != null">person_id,</if>
+                                                                <if test="personName != null">person_name,</if>
+                                                                <if test="communityHousesId != null">community_houses_id,</if>
+                                                                <if test="stat != null">stat,</if>
+                                                                <if test="reason != null">reason,</if>
+                                                                <if test="pics != null">pics,</if>
+                                                                <if test="receiveTime != null">receive_time,</if>
+                                                                <if test="checkerName != null">checker_name,</if>
+                                                                <if test="checkTime != null">check_time,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="communityId != null">#{communityId},</if>
+                                                                <if test="communityChildId != null">#{communityChildId},</if>
+                                                                <if test="personId != null">#{personId},</if>
+                                                                <if test="personName != null">#{personName},</if>
+                                                                <if test="communityHousesId != null">#{communityHousesId},</if>
+                                                                <if test="stat != null">#{stat},</if>
+                                                                <if test="reason != null">#{reason},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                                                <if test="receiveTime != null">#{receiveTime},</if>
+                                                                <if test="checkerName != null">#{checkerName},</if>
+                                                                <if test="checkTime != null">#{checkTime},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseEntranceGuardApply" parameterType="BaseEntranceGuardApply">
+        update base_entrance_guard_apply
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="communityId != null">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+                                                                <if test="personId != null">person_id = #{personId},</if>
+                                                                <if test="personName != null">person_name = #{personName},</if>
+                                                                <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+                                                                <if test="stat != null">stat = #{stat},</if>
+                                                                <if test="reason != null">reason = #{reason},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                                                <if test="receiveTime != null">receive_time = #{receiveTime},</if>
+                                                                <if test="checkerName != null">checker_name = #{checkerName},</if>
+                                                                <if test="checkTime != null">check_time = #{checkTime},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseEntranceGuardApplyById" parameterType="String">
+        delete from base_entrance_guard_apply where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseEntranceGuardApplyByIds" parameterType="String">
+        delete from base_entrance_guard_apply where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseEntranceGuardApplyByIds" parameterType="String">
+        update base_entrance_guard_apply set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

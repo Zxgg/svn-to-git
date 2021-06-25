@@ -1,0 +1,119 @@
+.visitorInfo .screen-9 li {
+	margin-right: 10px;
+  background: rgba(5, 54, 84, 0.65);
+  margin-bottom: 10px;
+}
+
+.visitorInfo li {
+  // margin-bottom: 7px;
+  width: 32.5%;
+	margin-right: .5%;
+	float: left;
+	margin-bottom: 0.5%;
+	background: #02263e;
+  border: 1px solid #035881;
+  list-style-type: none;
+}
+
+.visitorInfo .attendance_manager li {
+	width: 49.5%;
+	margin-right: .5%;
+	float: left;
+	margin-bottom: 0.5%;
+	background: #02263e;
+}
+
+.visitorInfo .attendance_manager li:nth-child(2n) {
+	margin-right: 0;
+}
+
+.visitorInfo .person_manager li:nth-child(8n) {
+	margin-right: 0;
+}
+
+.visitorInfo {
+	margin-top: 14px;
+}
+.visitorInfo .text {
+	width: 100%;
+	line-height: 36px;
+	color: #FFFFFF;
+    background-color: #1890ff;
+	border-color: #1890ff;
+	border-top: 1px solid #077f97;
+	border-bottom: 1px solid #077f97;
+	text-align: center;
+	height: 38px;
+}
+
+.visitorInfo .info {
+	padding: 8px 5px;
+	text-align: center;
+}
+
+.visitorInfo .attendance_manager .info {
+	text-align: center;
+	padding: 12px 5px;
+}
+
+.visitorInfo .info span {
+	color: #13a5d4;
+	margin-left: 10px;
+}
+
+.visitorInfo .info .ykk {
+	display: inline-block;
+	width: 66px;
+	text-align: right;
+	color: #13a5d4;
+}
+
+.visitorInfo .info .spanStatus {
+	display: inline-block;
+	background: #291605;
+	border: 1px solid #efbb0d;
+	border-radius: 4px;
+	padding: 2px 4px;
+	font-size: 12px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 5px;
+	color: #efbb0d;
+}
+
+.visitorInfo .info .yet.spanStatus {
+	color: #11bbf6;
+	border-color: #047ebd;
+	background: #05466c;
+}
+
+.col-box.visitorInfo {
+	height: calc(95.5% - 240px);
+	overflow-y: auto;
+	width: calc(100% - 16px);
+    position: absolute;
+    padding-right: 20px;
+}
+
+
+/* 2.实时人员监控样式 */
+.xg-info {
+	display: inline-block;
+  margin-left: 110px;
+  margin-left: 50px;
+	margin-top: 8px;
+}
+
+.xg-info span {
+	display: inline-block;
+	margin-right: 20px;
+  // font-size: 16px;
+  font-size: 18px;
+}
+
+.realtimePersonnelMonitoringPagi {
+	position: absolute;
+	bottom: 20px;
+	right: 30px;
+  }

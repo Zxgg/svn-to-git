@@ -1,0 +1,69 @@
+package com.isstech.isstechadmin.service;
+
+import java.util.List;
+import com.isstech.isstechadmin.domain.BaseEventRecord;
+
+/**
+ * 事件Service接口
+ * 
+ * @author yzp
+ * @date 2021-03-30
+ */
+public interface IBaseEventRecordService 
+{
+    /**
+     * 查询事件
+     * 
+     * @param id 事件ID
+     * @return 事件
+     */
+    public BaseEventRecord selectBaseEventRecordById(String id);
+
+    /**
+     * 查询事件列表
+     * 
+     * @param baseEventRecord 事件
+     * @return 事件集合
+     */
+    public List<BaseEventRecord> selectBaseEventRecordList(BaseEventRecord baseEventRecord);
+
+    /**
+     * 新增事件
+     * 
+     * @param baseEventRecord 事件
+     * @return 结果
+     */
+    public int insertBaseEventRecord(BaseEventRecord baseEventRecord);
+
+    /**
+     * 修改事件
+     * 
+     * @param baseEventRecord 事件
+     * @return 结果
+     */
+    public int updateBaseEventRecord(BaseEventRecord baseEventRecord);
+
+    /**
+     * 批量删除事件
+     * 
+     * @param ids 需要删除的事件ID
+     * @return 结果
+     */
+    public int deleteBaseEventRecordByIds(String[] ids);
+
+    /**
+     * 删除事件信息
+     * 
+     * @param id 事件ID
+     * @return 结果
+     */
+    public int deleteBaseEventRecordById(String id);
+
+    /**
+     * 批量软删除事件
+     *
+     * @param ids 需要删除的事件ID
+     * @return 结果
+     */
+    public int updateBaseEventRecordByIds(String[] ids);
+}

@@ -1,0 +1,575 @@
+.leftBox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin-top: -20px;
+}
+.rightBox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.personBox{
+  width: 100%;
+  height: 18%;
+  
+  /* margin-top: 10px; */
+  padding: 0 0 0 2%;
+}
+.personBox span{
+  color: #00FFDE;
+}
+/* .personBox .text{
+  display: inline-block;
+  width: 10%;
+  color: #00FFDE;
+  font-size: 24px;
+  text-align: center;
+} */
+.personBox .lineOne{
+  display: inline-block;
+  width: calc(100% - 100% + 4% + 4% + 5% + 20% + 10%);
+  border-bottom: 1px solid #00FFDE;
+}
+.personBox .lineTwo{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: -1.5%;
+  border-top: 1px solid #00FFDE;
+  transform: rotate(-60deg);
+}
+.personBox .lineThree{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: 4%;
+  border-top: 1px solid #00FFDE;
+  transform: rotate(-60deg);
+}
+.personBox .lineFour{
+  display: inline-block;
+  width: 25%;
+  margin-left: -2.5%;
+  border-bottom: 1px solid #00FFDE;
+}
+.houseNumber {
+  width: 100%;
+  height: 25%;
+  
+  margin-top: 10px;
+  padding: 2% 0 0 2%;
+}
+/* .houseNumber span {
+  
+} */
+.houseNumber .lineOne{
+  display: inline-block;
+  width: calc(100% - 100% + 4% + 4% + 5% + 20% + 10%);
+  border-bottom: 1px solid #f7b500;
+}
+.houseNumber .lineTwo{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: -1.5%;
+  border-top: 1px solid #f7b500;
+  transform: rotate(-60deg);
+}
+.houseNumber .lineThree{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: 4%;
+  border-top: 1px solid #f7b500;
+  transform: rotate(-60deg);
+}
+.houseNumber .lineFour{
+  display: inline-block;
+  width: 25%;
+  margin-left: -2.5%;
+  border-bottom: 1px solid #f7b500;
+}
+/* .houseNumber .text{
+  display: inline-block;
+  width: 10%;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 42px;
+} */
+.vehicleflowTitle{
+  padding: 2% 0 0 2%;
+}
+.vehicleflowTitle span {
+  color: #00B3FF;
+}
+.vehicleflowTitle .lineOne{
+  display: inline-block;
+  width: calc(100% - 100% + 4% + 4% + 5% + 20% + 10%);
+  border-bottom: 1px solid #00B3FF;
+}
+.vehicleflowTitle .lineTwo{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: -1.5%;
+  border-top: 1px solid #00B3FF;
+  transform: rotate(-60deg);
+}
+.vehicleflowTitle .lineThree{
+  display: inline-block;
+  width: 4%;
+  margin-bottom: 1%;
+  margin-left: 4%;
+  border-top: 1px solid #00B3FF;
+  transform: rotate(-60deg);
+}
+.vehicleflowTitle .lineFour{
+  display: inline-block;
+  width: 25%;
+  margin-left: -2.5%;
+  border-bottom: 1px solid #00B3FF;
+}
+
+.carePeople {
+  width: 100%;
+  height: 21%;
+  /* background-color:#182751; */
+}
+/* .vehicleflowTitle .text{
+  display: inline-block;
+  width: 10%;
+  color: #00B3FF;
+  font-size: 24px;
+  text-align: center;
+} */
+.notice {
+  width: 450px;
+  height: 70px;
+  position: absolute;
+  left: 480px;
+  top: 50px;
+}
+
+.recentVehicleActivity {
+  width: 100%;
+  height: 80px;
+  
+  margin-top: 5px;
+}
+.recentVehicleActivity > div:nth-child(2) {
+  margin-top: 5px;
+}
+.eventsFrom {
+  width: 100%;
+  height: 225px;
+  
+  margin-top: 5px;
+}
+.eventsNum{
+  width: 100%;
+  height: 35%;
+  margin-top: 5px;
+  /* line-height: 40px; */
+}
+.camera {
+  width: 100%;
+  height: 220px;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+/* 社区简介 */
+.communityProfile{
+  width: 100%;
+  height: 50%;
+}
+.specialPertext{
+  color: #D3E3EC;
+  font-size: 14px;
+  letter-spacing:2px;
+  text-indent: 24px;
+font-family: SourceHanSansCN;
+font-weight: 400;
+color: #D3E3EC;
+line-height: 20px;
+  padding: 0px 10px 10px;
+}
+/* 社区光荣榜 */
+.communityGlory {
+  width: 100%;
+  height: 25%;
+}
+
+.communityGloryRow
+{
+  height: 95%;
+  width: 100%;
+}
+
+.gloryContent{
+  /* height: calc(100% - 20px); */
+  background: url(../../images/index/社区光荣榜.png) no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+  margin-top: 0px;
+  padding-top: 9px;
+}
+
+/* 奇数行的样式 */
+.specialPerLi:nth-child(odd)>.honorXuhao  {
+  background: url(../../images/index/no.1.png) no-repeat;
+  height: 22px;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+}
+
+/* 偶数行的样式 */
+.specialPerLi:nth-child(even)>.honorXuhao  {
+  background: url(../../images/index/no.2.png) no-repeat;
+  height: 22px;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+}
+
+/* .specialPerLi .honorXuhao  {
+  background: url(../../images/index/no.2.png) no-repeat;
+  height: 22px;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+  color: #0000FF;
+} */
+
+/* 第一名黄色 */
+/*.specialPerLi .honorXuhao ::first-line  {
+  background: url(../../images/index/no.1.png) no-repeat;
+  height: 22px;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+  color: gold;
+} */
+
+.honorXuhao span
+{
+  color: #FF8EA5B7;
+  background: linear-gradient(180deg, #E2F2FD 0%, #AFC6D9 47.94921875%, #81ADD1 99.31640625%);
+  -webkit-background-clip: text;
+/* -webkit-text-fill-color: transparent; */
+}
+.specialPerLi{
+  /* height: 20px; */
+  width: 100%;
+  margin-left: 30px;
+  line-height: 15px;
+  margin-top: 12px;
+}
+.announcements {
+  width: 100%;
+  height: 195px;
+  
+  margin-top: 5px;
+  padding-top: 10px; 
+}
+.populationFlow {
+  width: 100%;
+  height: 30%;
+  
+  margin-top: 5px;
+  padding-top: 10px;
+}
+.houseIcon {
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+/* .houseNumberTitle span {
+  color: #f7b500;
+}
+.houseNumberTitle span:nth-child(3) {
+  display: inline-block;
+  width: 2px;
+  height: 10px;
+  background-color: #fff;
+  margin-left: 100px;
+  margin-right: 70px;
+}
+.houseNumberTitle span:nth-child(2) {
+  font-size: 15px;
+}
+.houseNumberTitle span:nth-child(4) {
+  font-size: 24px;
+} */
+.house{
+  width: 50%;
+}
+.occpancy{
+  width: 50%;
+}
+.recentVehicleActivityTitle {
+  height: 50px;
+  width: 100%;
+  padding: 5px;
+}
+.recentVehicleActivityStatic{
+  float: right;
+  width: 50%;
+}
+.recentVehicleActivityTitle span {
+  color: #00ffe5;
+}
+.recentVehicleActivityTitle span:nth-child(3) {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background-color: #fff;
+  margin-left: 57px;
+  margin-right: 64px;
+}
+.recentVehicleActivityTitle span:nth-child(2) {
+  font-size: 15px;
+}
+.recentVehicleActivityTitle span:nth-child(4) {
+  font-size: 26px;
+}
+.eventsFromTitle span:first-child {
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  background-color: #fff;
+  margin-right: 5px;
+}
+.eventsFromTitle {
+  margin-left: 20px;
+}
+.eventsFromTitle span {
+  color: #fff;
+}
+.eventsFrom {
+  padding-top: 10px;
+}
+.rightbottom{
+  width: 100%;
+  height: 200px;
+  
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.type1{
+  flex-grow: 1;
+}
+.type2{
+  flex-grow: 2;
+  /* margin-right: 30px; */
+}
+.type2 .rightTitle{
+  margin-left: 20px;
+}
+/* .rightTitle{
+  margin-left: 20px;
+} */
+.rightTitle span{
+  color: #fff;
+}
+.rightTitle span:first-child {
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  background-color: #fff;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.AnnouncementsTitle span {
+  color: #00ffdf;
+  margin-right: 5px;
+}
+.AnnouncementsTitle {
+  text-align: center;
+}
+.switchImg {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  position: absolute;
+  left: 480px;
+  top: 10px;
+}
+.switchImg:hover {
+  cursor: pointer;
+  color: #29cbc0;
+}
+.switchImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.specialPerLBox {
+  height: 100%;
+  overflow-y: scroll;
+  padding-left: 10px !important;
+}
+.specialPerLBox::-webkit-scrollbar {
+  display: none;
+}
+.specialPer {
+  width: 100%;
+  height: 100%;
+}
+/* .houseNumberTitle span:first-child,.recentVehicleActivityTitle span:first-child {
+  font-size: 26px;
+  margin-right: 5px;
+} */
+.occpancy{
+  width: 100%;
+  height: 150px;
+}
+.occupancyTitle{
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.occupancyTitle span{
+  color: #fff;
+}
+.occupancyTitle span:first-child{
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  background-color: #fff;
+  margin-right: 5px;
+}
+.houseNumberBox{
+  
+  margin-top: 10px;
+}
+.vehicleflow{
+  width: 100%;
+  /* height: 100px; */
+  height: 11%;
+  margin-top: 5px;
+}
+.vehicleflowNum{
+  margin-left: 20px;
+  font-size: 10px;
+  display: block;
+  margin-top: 10px;
+}
+.travel{
+  width: 100%;
+  height: 45%;
+  
+  margin-top: 5px;
+}
+.travelTitle{
+  margin-left: 20px;
+}
+.travel span{
+  color: #fff;
+}
+.travelTitle span:first-child {
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  background-color: #fff;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.houseuseTitle{
+  margin-left: 20px;
+}
+.houseuseTitle span{
+  color: #fff;
+}
+.houseuseTitle span:first-child {
+  display: inline-block;
+  width: 3px;
+  height: 13px;
+  background-color: #fff;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.carePersonList{
+  width: 90%;
+  height: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.carePersonList tbody{
+  background-color: transparent;
+}
+.carePersonList .el-table{
+  background-color: transparent;
+  color: #fff !important;
+}
+.carePersonList /deep/ .el-table tr{
+  background-color: transparent;
+}
+.levelIcon{
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: 7%;
+}
+
+
+.outer-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.inner-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: -17px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+
+.eventsNumRow
+{
+  height: 206px;
+  width: 100%;
+}
+
+.eventsContent{
+
+  background: url(../../images/index/网格分布.png) no-repeat;
+  /* background-size: 100% 100%; */
+  height: 100%;
+  width: 100%;
+  /* margin-top: 0px;
+  padding-top: 9px; */
+}
+
+.eventsContentLi{
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #D3E3EC;
+  padding-left: 12px;
+}
+.partyOrg{
+  width: 100%;
+  height: 50%;
+}
+.partyOrg div:nth-child(2){
+  background: url(../../images/index/社区党组织活动.png) no-repeat center top /100% 90%;
+  height: 100%;
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePropertyCompanyEvaluationMapper">
+
+    <resultMap type="BasePropertyCompanyEvaluation" id="BasePropertyCompanyEvaluationResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="monthly"    column="monthly"    />
+                    <result property="personId"    column="person_id"    />
+                    <result property="communityId"    column="community_id"    />
+                    <result property="communityChildId"    column="community_child_id"    />
+                    <result property="evaluation"    column="evaluation"    />
+                    <result property="anonymous"    column="anonymous"    />
+                    <result property="reply"    column="reply"    />
+                    <result property="replyer"    column="replyer"    />
+                    <result property="replyTime"    column="reply_time"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBasePropertyCompanyEvaluationVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, monthly, person_id, community_id, community_child_id, evaluation, anonymous, reply, replyer, reply_time from base_property_company_evaluation
+    </sql>
+
+    <select id="selectBasePropertyCompanyEvaluationList" parameterType="BasePropertyCompanyEvaluation" resultMap="BasePropertyCompanyEvaluationResult">
+        <include refid="selectBasePropertyCompanyEvaluationVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="remark != null  and remark != ''"> and remark = #{remark}</if>
+                                                                                                            <if test="monthly != null  and monthly != ''"> and monthly = #{monthly}</if>
+                                                                                                            <if test="personId != null  and personId != ''"> and person_id = #{personId}</if>
+                                                                                                            <if test="communityId != null  and communityId != ''"> and community_id = #{communityId}</if>
+                                                                                                            <if test="communityChildId != null  and communityChildId != ''"> and community_child_id = #{communityChildId}</if>
+                                                                                                            <if test="evaluation != null  and evaluation != ''"> and evaluation = #{evaluation}</if>
+                                                                                                            <if test="anonymous != null  and anonymous != ''"> and anonymous = #{anonymous}</if>
+                                                                                                            <if test="reply != null  and reply != ''"> and reply like concat('%', #{reply}, '%')</if>
+                                                                                                            <if test="replyer != null  and replyer != ''"> and replyer like concat('%', #{replyer}, '%')</if>
+                                                                                                            <if test="replyTime != null "> and reply_time = #{replyTime}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityId == null  or communityId == ''">
+                            and community_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                        <if test="communityChildId == null  or communityChildId == ''">
+                            and community_child_id in
+                            <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                                #{dataAccess.communityChildId}
+                            </foreach>
+                        </if>
+                    </if>
+                                                                                                                                                                                                                                                                </where>
+    </select>
+
+    <select id="selectBasePropertyCompanyEvaluationById" parameterType="String" resultMap="BasePropertyCompanyEvaluationResult">
+        <include refid="selectBasePropertyCompanyEvaluationVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBasePropertyCompanyEvaluation" parameterType="BasePropertyCompanyEvaluation">
+        insert into base_property_company_evaluation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="monthly != null">monthly,</if>
+                                                                <if test="personId != null">person_id,</if>
+                                                                <if test="communityId != null and communityId != ''">community_id,</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id,</if>
+                                                                <if test="evaluation != null">evaluation,</if>
+                                                                <if test="anonymous != null and anonymous != ''">anonymous,</if>
+                                                                <if test="reply != null">reply,</if>
+                                                                <if test="replyer != null">replyer,</if>
+                                                                <if test="replyTime != null">reply_time,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="monthly != null">#{monthly},</if>
+                                                                <if test="personId != null">#{personId},</if>
+                                                                <if test="communityId != null and communityId != ''">#{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">#{communityChildId},</if>
+                                                                <if test="evaluation != null">#{evaluation},</if>
+                                                                <if test="anonymous != null and anonymous != ''">#{anonymous},</if>
+                                                                <if test="reply != null">#{reply},</if>
+                                                                <if test="replyer != null">#{replyer},</if>
+                                                                <if test="replyTime != null">#{replyTime},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBasePropertyCompanyEvaluation" parameterType="BasePropertyCompanyEvaluation">
+        update base_property_company_evaluation
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="monthly != null">monthly = #{monthly},</if>
+                                                                <if test="personId != null">person_id = #{personId},</if>
+                                                                <if test="communityId != null and communityId != ''">community_id = #{communityId},</if>
+                                                                <if test="communityChildId != null and communityChildId != ''">community_child_id = #{communityChildId},</if>
+                                                                <if test="evaluation != null">evaluation = #{evaluation},</if>
+                                                                <if test="anonymous != null and anonymous != ''">anonymous = #{anonymous},</if>
+                                                                <if test="reply != null">reply = #{reply},</if>
+                                                                <if test="replyer != null">replyer = #{replyer},</if>
+                                                                <if test="replyTime != null">reply_time = #{replyTime},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePropertyCompanyEvaluationById" parameterType="String">
+        delete from base_property_company_evaluation where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePropertyCompanyEvaluationByIds" parameterType="String">
+        delete from base_property_company_evaluation where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePropertyCompanyEvaluationByIds" parameterType="String">
+        update base_property_company_evaluation set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

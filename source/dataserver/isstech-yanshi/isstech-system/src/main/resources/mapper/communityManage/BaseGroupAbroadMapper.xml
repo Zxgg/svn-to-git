@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseGroupAbroadMapper">
+
+    <resultMap type="CommunityGroupAbroadVo" id="BaseGroupAbroadResult">
+        <result property="id" column="id"/>
+        <result property="organizationName" column="organization_name"/>
+        <result property="organizationType" column="organization_type"/>
+        <result property="source" column="source"/>
+        <result property="website" column="website"/>
+        <result property="involveField" column="Involve_field"/>
+        <result property="mainLink" column="main_link"/>
+        <result property="sex" column="sex"/>
+        <result property="nationality" column="nationality"/>
+        <result property="brithDate" column="brith_date"/>
+        <result property="jobPost" column="job_post"/>
+        <result property="address" column="address"/>
+        <result property="zipCode" column="zip_code"/>
+        <result property="tel" column="tel"/>
+        <result property="phone" column="phone"/>
+        <result property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="uUserId" column="u_user_id"/>
+        <result property="uDeptId" column="u_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+    </resultMap>
+
+    <sql id="selectBaseGroupAbroadVo">
+        select zz.id, organization_name, organization_type, source, website, Involve_field, main_link, sex, nationality, brith_date, job_post, address, zip_code, tel, phone, user_id, dept_id, zz.create_time, u_user_id, u_dept_id, zz.update_time, zz.del_flag,co.community_id,co.community_child_id,co.community_houses_id from base_group_abroad zz left join base_community_organization co on co.social_organization_id = zz.id and co.del_flag = '0'
+    </sql>
+
+    <select id="selectBaseGroupAbroadList" parameterType="CommunityGroupAbroadVo" resultMap="BaseGroupAbroadResult">
+        <include refid="selectBaseGroupAbroadVo"/>
+        <where>
+            zz.del_flag = '0'
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and community_houses_id like concat('%', #{communityHousesId}, '%')
+            </if>
+            <if test="organizationName != null  and organizationName != ''">
+                and organization_name like concat('%', #{organizationName}, '%')
+            </if>
+            <if test="organizationType != null  and organizationType != ''">
+                and organization_type = #{organizationType}
+            </if>
+            <if test="source != null  and source != ''">
+                and source like concat('%', #{source}, '%')
+            </if>
+            <if test="involveField != null  and involveField != ''">
+                and Involve_field like concat('%', #{involveField}, '%')
+            </if>
+            <if test="mainLink != null  and mainLink != ''">
+                and main_link like concat('%', #{mainLink}, '%')
+            </if>
+            <if test="sex != null  and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="nationality != null  and nationality != ''">
+                and nationality = #{nationality}
+            </if>
+            <if test="brithDate != null ">
+                and brith_date = #{brithDate}
+            </if>
+            <if test="jobPost != null  and jobPost != ''">
+                and job_post like concat('%', #{jobPost}, '%')
+            </if>
+            <if test="address != null  and address != ''">
+                and address like concat('%', #{address}, '%')
+            </if>
+            <if test="zipCode != null  and zipCode != ''">
+                and zip_code like concat('%', #{zipCode}, '%')
+            </if>
+            <if test="tel != null  and tel != ''">
+                and tel like concat('%', #{tel}, '%')
+            </if>
+            <if test="phone != null  and phone != ''">
+                and phone like concat('%', #{phone}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseGroupAbroadById" parameterType="String" resultMap="BaseGroupAbroadResult">
+        <include refid="selectBaseGroupAbroadVo"/>
+        where zz.id = #{id}
+    </select>
+
+    <insert id="insertBaseGroupAbroad" parameterType="BaseGroupAbroad">
+        insert into base_group_abroad
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="organizationName != null">organization_name,
+            </if>
+            <if test="organizationType != null">organization_type,
+            </if>
+            <if test="source != null">source,
+            </if>
+            <if test="website != null">website,
+            </if>
+            <if test="involveField != null">Involve_field,
+            </if>
+            <if test="mainLink != null">main_link,
+            </if>
+            <if test="sex != null">sex,
+            </if>
+            <if test="nationality != null">nationality,
+            </if>
+            <if test="brithDate != null">brith_date,
+            </if>
+            <if test="jobPost != null">job_post,
+            </if>
+            <if test="address != null">address,
+            </if>
+            <if test="zipCode != null">zip_code,
+            </if>
+            <if test="tel != null">tel,
+            </if>
+            <if test="phone != null">phone,
+            </if>
+            <if test="userId != null">user_id,
+            </if>
+            <if test="deptId != null">dept_id,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="uUserId != null">u_user_id,
+            </if>
+            <if test="uDeptId != null">u_dept_id,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="organizationName != null">#{organizationName},
+            </if>
+            <if test="organizationType != null">#{organizationType},
+            </if>
+            <if test="source != null">#{source},
+            </if>
+            <if test="website != null">#{website},
+            </if>
+            <if test="involveField != null">#{involveField},
+            </if>
+            <if test="mainLink != null">#{mainLink},
+            </if>
+            <if test="sex != null">#{sex},
+            </if>
+            <if test="nationality != null">#{nationality},
+            </if>
+            <if test="brithDate != null">#{brithDate},
+            </if>
+            <if test="jobPost != null">#{jobPost},
+            </if>
+            <if test="address != null">#{address},
+            </if>
+            <if test="zipCode != null">#{zipCode},
+            </if>
+            <if test="tel != null">#{tel},
+            </if>
+            <if test="phone != null">#{phone},
+            </if>
+            <if test="userId != null">#{userId},
+            </if>
+            <if test="deptId != null">#{deptId},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="uUserId != null">#{uUserId},
+            </if>
+            <if test="uDeptId != null">#{uDeptId},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseGroupAbroad" parameterType="BaseGroupAbroad">
+        update base_group_abroad
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="organizationName != null">organization_name =
+                #{organizationName},
+            </if>
+            <if test="organizationType != null">organization_type =
+                #{organizationType},
+            </if>
+            <if test="source != null">source =
+                #{source},
+            </if>
+            <if test="website != null">website =
+                #{website},
+            </if>
+            <if test="involveField != null">Involve_field =
+                #{involveField},
+            </if>
+            <if test="mainLink != null">main_link =
+                #{mainLink},
+            </if>
+            <if test="sex != null">sex =
+                #{sex},
+            </if>
+            <if test="nationality != null">nationality =
+                #{nationality},
+            </if>
+            <if test="brithDate != null">brith_date =
+                #{brithDate},
+            </if>
+            <if test="jobPost != null">job_post =
+                #{jobPost},
+            </if>
+            <if test="address != null">address =
+                #{address},
+            </if>
+            <if test="zipCode != null">zip_code =
+                #{zipCode},
+            </if>
+            <if test="tel != null">tel =
+                #{tel},
+            </if>
+            <if test="phone != null">phone =
+                #{phone},
+            </if>
+            <if test="userId != null">user_id =
+                #{userId},
+            </if>
+            <if test="deptId != null">dept_id =
+                #{deptId},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="uUserId != null">u_user_id =
+                #{uUserId},
+            </if>
+            <if test="uDeptId != null">u_dept_id =
+                #{uDeptId},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseGroupAbroadById" parameterType="String">
+        delete from base_group_abroad where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseGroupAbroadByIds" parameterType="String">
+        delete from base_group_abroad where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseGroupAbroadByIds" parameterType="String">
+        update base_group_abroad set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseCommunityChildUserMapper">
+
+    <resultMap type="BaseCommunityChildUser" id="BaseCommunityChildUserResult">
+                    <result property="id"    column="id"    />
+                    <result property="createBy"    column="create_by"    />
+                    <result property="createTime"    column="create_time"    />
+                    <result property="updateBy"    column="update_by"    />
+                    <result property="updateTime"    column="update_time"    />
+                    <result property="delFlag"    column="del_flag"    />
+                    <result property="remark"    column="remark"    />
+                    <result property="name"    column="name"    />
+                    <result property="phoneNumber"    column="phone_number"    />
+                    <result property="idType"    column="id_type"    />
+                    <result property="identificationNumber"    column="identification_number"    />
+                    <result property="authentication"    column="authentication"    />
+                    <result property="sex"    column="sex"    />
+                    <result property="email"    column="email"    />
+                    <result property="pics"    column="pics"    />
+                    <result property="pwd"    column="pwd"    />
+                    <result property="oldPwd"    column="old_pwd"    />
+            </resultMap>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectBaseCommunityChildUserVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, name, phone_number, id_type, identification_number, authentication, sex, email, pics, pwd, old_pwd from base_community_child_user
+    </sql>
+
+    <select id="selectBaseCommunityChildUserList" parameterType="BaseCommunityChildUser" resultMap="BaseCommunityChildUserResult">
+        <include refid="selectBaseCommunityChildUserVo"/>
+        <where>
+            del_flag = '0'
+                                                                                                                                                                                                                                                <if test="remark != null  and remark != ''"> and remark = #{remark}</if>
+                                                                                                            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+                                                                                                            <if test="phoneNumber != null  and phoneNumber != ''"> and phone_number like concat('%', #{phoneNumber}, '%')</if>
+                                                                                                            <if test="idType != null  and idType != ''"> and id_type = #{idType}</if>
+                                                                                                            <if test="identificationNumber != null  and identificationNumber != ''"> and identification_number like concat('%', #{identificationNumber}, '%')</if>
+                                                                                                            <if test="authentication != null  and authentication != ''"> and authentication = #{authentication}</if>
+                                                                                                            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+                                                                                                            <if test="email != null  and email != ''"> and email like concat('%', #{email}, '%')</if>
+                                                                                                            <if test="pics != null  and pics != ''"> and pics = #{pics}</if>
+                                                                                                            <if test="pwd != null  and pwd != ''"> and pwd = #{pwd}</if>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </where>
+    </select>
+
+    <select id="selectBaseCommunityChildUserById" parameterType="String" resultMap="BaseCommunityChildUserResult">
+        <include refid="selectBaseCommunityChildUserVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseCommunityChildUser" parameterType="BaseCommunityChildUser">
+        insert into base_community_child_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">id,</if>
+                                                                <if test="createBy != null">create_by,</if>
+                                                                <if test="createTime != null">create_time,</if>
+                                                                <if test="updateBy != null">update_by,</if>
+                                                                <if test="updateTime != null">update_time,</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag,</if>
+                                                                <if test="remark != null">remark,</if>
+                                                                <if test="name != null and name != ''">name,</if>
+                                                                <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+                                                                <if test="idType != null and idType != ''">id_type,</if>
+                                                                <if test="identificationNumber != null and identificationNumber != ''">identification_number,</if>
+                                                                <if test="authentication != null">authentication,</if>
+                                                                <if test="sex != null">sex,</if>
+                                                                <if test="email != null">email,</if>
+                                                                <if test="pics != null">pics,</if>
+                                                                <if test="pwd != null and pwd != ''">pwd,</if>
+                                                                <if test="oldPwd != null">old_pwd,</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null">#{id},</if>
+                                                                <if test="createBy != null">#{createBy},</if>
+                                                                <if test="createTime != null">#{createTime},</if>
+                                                                <if test="updateBy != null">#{updateBy},</if>
+                                                                <if test="updateTime != null">#{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+                                                                <if test="remark != null">#{remark},</if>
+                                                                <if test="name != null and name != ''">#{name},</if>
+                                                                <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+                                                                <if test="idType != null and idType != ''">#{idType},</if>
+                                                                <if test="identificationNumber != null and identificationNumber != ''">#{identificationNumber},</if>
+                                                                <if test="authentication != null">#{authentication},</if>
+                                                                <if test="sex != null">#{sex},</if>
+                                                                <if test="email != null">#{email},</if>
+                                                                <if test="pics != null">#{pics},</if>
+                                                                <if test="pwd != null and pwd != ''">#{pwd},</if>
+                                                                <if test="oldPwd != null">#{oldPwd},</if>
+                                    </trim>
+    </insert>
+
+    <update id="updateBaseCommunityChildUser" parameterType="BaseCommunityChildUser">
+        update base_community_child_user
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="createBy != null">create_by = #{createBy},</if>
+                                                                <if test="createTime != null">create_time = #{createTime},</if>
+                                                                <if test="updateBy != null">update_by = #{updateBy},</if>
+                                                                <if test="updateTime != null">update_time = #{updateTime},</if>
+                                                                <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+                                                                <if test="remark != null">remark = #{remark},</if>
+                                                                <if test="name != null and name != ''">name = #{name},</if>
+                                                                <if test="phoneNumber != null and phoneNumber != ''">phone_number = #{phoneNumber},</if>
+                                                                <if test="idType != null and idType != ''">id_type = #{idType},</if>
+                                                                <if test="identificationNumber != null and identificationNumber != ''">identification_number = #{identificationNumber},</if>
+                                                                <if test="authentication != null">authentication = #{authentication},</if>
+                                                                <if test="sex != null">sex = #{sex},</if>
+                                                                <if test="email != null">email = #{email},</if>
+                                                                <if test="pics != null">pics = #{pics},</if>
+                                                                <if test="pwd != null and pwd != ''">pwd = #{pwd},</if>
+                                                                <if test="oldPwd != null">old_pwd = #{oldPwd},</if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseCommunityChildUserById" parameterType="String">
+        delete from base_community_child_user where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseCommunityChildUserByIds" parameterType="String">
+        delete from base_community_child_user where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseCommunityChildUserByIds" parameterType="String">
+        update base_community_child_user set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

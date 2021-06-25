@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseTempVisitorPersonnelInformationMapper">
+
+    <resultMap type="BaseTempVisitorPersonnelInformation" id="BaseTempVisitorPersonnelInformationResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="identificationNumber" column="identification_number"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="sex" column="sex"/>
+        <result property="special" column="special"/>
+        <result property="limited" column="limited"/>
+        <result property="caring" column="caring"/>
+        <result property="pics" column="pics"/>
+        <result property="checked" column="checked"/>
+    </resultMap>
+
+    <sql id="selectBaseTempVisitorPersonnelInformationVo">
+        select id, name, create_by, create_time, update_by, update_time, del_flag, identification_number, phone_number, sex, special, limited, caring, pics, checked from base_temp_visitor_personnel_information
+    </sql>
+
+    <select id="selectBaseTempVisitorPersonnelInformationList" parameterType="BaseTempVisitorPersonnelInformation"
+            resultMap="BaseTempVisitorPersonnelInformationResult">
+        <include refid="selectBaseTempVisitorPersonnelInformationVo"/>
+        <where>
+                del_flag = '0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="identificationNumber != null  and identificationNumber != ''">
+                and identification_number like concat('%', #{identificationNumber}, '%')
+            </if>
+            <if test="phoneNumber != null  and phoneNumber != ''">
+                and phone_number like concat('%', #{phoneNumber}, '%')
+            </if>
+            <if test="sex != null  and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="checked != null  and checked != ''">
+                and checked = #{checked}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseTempVisitorPersonnelInformationById" parameterType="String"
+            resultMap="BaseTempVisitorPersonnelInformationResult">
+        <include refid="selectBaseTempVisitorPersonnelInformationVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseTempVisitorPersonnelInformation" parameterType="BaseTempVisitorPersonnelInformation">
+        insert into base_temp_visitor_personnel_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="identificationNumber != null">identification_number,
+            </if>
+            <if test="phoneNumber != null">phone_number,
+            </if>
+            <if test="sex != null">sex,
+            </if>
+            <if test="special != null">special,
+            </if>
+            <if test="limited != null">limited,
+            </if>
+            <if test="caring != null">caring,
+            </if>
+            <if test="pics != null">pics,
+            </if>
+            <if test="checked != null and checked != ''">checked,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="identificationNumber != null">#{identificationNumber},
+            </if>
+            <if test="phoneNumber != null">#{phoneNumber},
+            </if>
+            <if test="sex != null">#{sex},
+            </if>
+            <if test="special != null">#{special},
+            </if>
+            <if test="limited != null">#{limited},
+            </if>
+            <if test="caring != null">#{caring},
+            </if>
+            <if test="pics != null">#{pics},
+            </if>
+            <if test="checked != null and checked != ''">#{checked},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseTempVisitorPersonnelInformation" parameterType="BaseTempVisitorPersonnelInformation">
+        update base_temp_visitor_personnel_information
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="identificationNumber != null">identification_number =
+                #{identificationNumber},
+            </if>
+            <if test="phoneNumber != null">phone_number =
+                #{phoneNumber},
+            </if>
+            <if test="sex != null">sex =
+                #{sex},
+            </if>
+            <if test="special != null">special =
+                #{special},
+            </if>
+            <if test="limited != null">limited =
+                #{limited},
+            </if>
+            <if test="caring != null">caring =
+                #{caring},
+            </if>
+            <if test="pics != null">pics =
+                #{pics},
+            </if>
+            <if test="checked != null and checked != ''">checked =
+                #{checked},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseTempVisitorPersonnelInformationById" parameterType="String">
+        delete from base_temp_visitor_personnel_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseTempVisitorPersonnelInformationByIds" parameterType="String">
+        delete from base_temp_visitor_personnel_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseTempVisitorPersonnelInformationByIds" parameterType="String">
+        update base_temp_visitor_personnel_information set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

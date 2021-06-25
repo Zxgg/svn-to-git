@@ -1,0 +1,172 @@
+.main{
+	padding-left: 20rpx;
+	padding-right: 20rpx;
+	margin-top: 30rpx;
+	padding-bottom: 25rpx;
+		}
+input{
+       border: 1px solid #dcdfe6; 
+	   margin-bottom: 15rpx;
+	   border-radius: 4px;
+	   width: 97%;
+	   margin-top: 10rpx;
+    }
+textarea{
+	border: 1px solid #dcdfe6; 
+	width: 98%;
+	// margin-top: 20rpx;
+	border-radius: 4px;
+	padding-left: 10rpx;
+	padding-top: 10rpx;
+	height: 100rpx;
+}
+radio-group{
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+.dcheck{
+	margin-left: 20rpx;
+}
+.btn{
+	width: 100%;
+	margin-top: 20rpx;
+	margin-bottom: 20rpx !important;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.note{
+	width: 96% !important;
+}
+.btn button{
+	margin-bottom: 20rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	font-size: 30rpx;
+	width: 20%;
+}
+radio-group radio{
+	font-size: 40rpx;
+}
+.hesuan{
+	margin-left: -14rpx;
+}
+.notebox{
+	margin-left: 3%;
+}
+.leaveLocal{
+	display: flex;
+	flex-direction: row;
+	position: relative;
+}
+.leaveLocal button{
+	height: 50rpx;
+	line-height: 50rpx;
+	font-size: 20rpx !important;
+	width: 120rpx !important;
+	padding-left: 0;
+	padding-right: 0;
+	position: absolute;
+	left: 27%;
+	top: 10%;
+}
+.btn{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.btn button{
+	font-size: 26rpx;
+	padding:0px;
+	margin: 0px;
+	width: 90rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+}
+.btn button:first-child{
+	margin-left: 30%;
+}
+.btn button:nth-child(2){
+	margin-right: 30%;
+}
+.leaveLocal_add{
+	font-size: 25rpx;
+	padding-top: 10rpx;
+	padding-left: 15rpx;
+	border: 1px solid $uni-text-color-disable;
+	margin-right: 20rpx;
+}
+.leaveInformation_show{
+	line-height: 60rpx;
+}
+.leaveInformation_show view{
+	font-size: 25rpx;
+	display: inline-block;
+	margin-right: 10rpx;
+}
+.del{
+	font-size: 10rpx !important;
+	position: absolute;
+	right: 1%;
+}
+.arriveTransportationTypes{
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+.arriveTransportationValues{
+	margin-top: 10rpx;
+}
+.havaBeenRiskAreaInformation{
+	height: 50rpx;
+	font-size: 25rpx !important;
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+.riskarea{
+	font-size: 26rpx;
+	margin-top: 15rpx;
+	margin-bottom: 15rpx;
+	border-radius:8rpx;
+}
+.riskarea p {
+	border: 1px solid #c0c0c0;
+	padding-left: 15rpx;
+	margin-right: 15rpx;
+	border-radius:8rpx;
+	margin-top: 15rpx;
+	text-align: center;
+	line-height: 40rpx !important;
+}
+.vaccinetwo{
+	margin-top: 15rpx;
+	margin-bottom: 35rpx;
+	margin-left: 15rpx;
+}
+.vaccinetwo picker{
+	border-radius:8rpx;
+	border: 1px solid #c0c0c0;
+	margin-right: 15rpx;
+	font-size: 27rpx;
+	width: 70%;
+}
+[name='arriveCityArea'],.arrivedate,.jtcc,.leavedate {
+	// border: 1px solid #c0c0c0; 
+	margin-right: 15rpx; 
+	line-height: 35rpx;
+	border-radius:8rpx;
+	font-size: 20rpx !important;
+}
+.jtcc{
+	padding-top: 4rpx;
+	padding-bottom: 4rpx;
+}
+.arrivedate{
+	// display: inline-block;
+	border: 1px solid $uni-text-color-disable;
+	text-align: center;
+}
+
+[name='arriveCityArea'],.leavedate{
+	border: 1px solid $uni-text-color-disable;
+	text-align: center;
+}

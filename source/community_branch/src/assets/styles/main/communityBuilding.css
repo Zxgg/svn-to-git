@@ -1,0 +1,178 @@
+.communityLeftBox {
+  left: 10px;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+.communityRightBox {
+  right: 10px;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+.communityNumber {
+  height: 25%;
+  background-color: rgba(34, 39, 81, 0.8);
+}
+.communityBuilding {
+  height: 73%;
+  background-color: rgba(34, 39, 81, 0.8);
+  margin-top: 5px;
+}
+.rentalHousingNum {
+  height: 50%;
+  background-color: rgba(34, 39, 81, 0.8);
+  margin-top: 5px;
+}
+.communityFacilitiesDisplay {
+  height: 47%;
+  background-color: rgba(34, 39, 81, 0.8);
+  margin-top: 5px;
+}
+
+.switchImg {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  background-color: #32376d;
+  color: #fff;
+  position: absolute;
+  left: 480px;
+  top: 10px;
+}
+.switchImg:hover {
+  cursor: pointer;
+  color: #29cbc0;
+}
+.switchImg img {
+  width: 100%;
+  height: 100%;
+}
+.community-boxTitle {
+  padding: 12px 0px 0px 15px;
+}
+.community-boxTitle span:first-child {
+  display: inline-block;
+  width: 2px;
+  height: 13px;
+  background-color: #fff;
+}
+.community-boxTitle span:nth-child(2) {
+  color: #fff;
+  margin-left: 10px;
+}
+.community-boxTitle span:nth-child(3) {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #1eb6fc;
+  border-radius: 50%;
+  margin-left: 50%;
+}
+.community-boxTitle span:nth-child(4) {
+  color: #fff;
+  font-size: 14px;
+  margin-left: 2%;
+}
+.community-boxTitle span:nth-child(5) {
+  color: #1eb6fc;
+  margin-left: 20px;
+}
+.community-boxTitle span:nth-child(6) {
+  color: #fff;
+  font-size: 14px;
+  margin-left: 3px;
+}
+.communityResidents {
+  height: 12%;
+  line-height: 60px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  border-top: 1px solid #1eb6fc;
+  border-bottom: 1px solid #1eb6fc;
+  color: #1eb6fc;
+  font-size: 26px;
+}
+.communityResidents span:nth-child(2) {
+  color: #1eb6fc;
+  font-size: 26px;
+  margin-left: 5px;
+}
+.communityResidents span:nth-child(3) {
+  color: #1eb6fc;
+  font-size: 26px;
+  margin-left: 5px;
+  margin-left: 42%;
+}
+.communityResidents span:nth-child(4) {
+  color: #1eb6fc;
+  font-size: 26px;
+  margin-left: 5px;
+}
+.communityArchitectureImg {
+  width: 98% !important;
+  height: 80%;
+  margin-top: 15px;
+  margin-left: 1%;
+}
+.communityArchitectureImg_title {
+  position: absolute;
+  right: 8%;
+  bottom: 25%;
+  width: 35%;
+  height: 7%;
+  background: linear-gradient(360deg, #0bebff 0%, #3b4aff 100%);
+  opacity: 0.4;
+}
+.communityArchitectureArea {
+  color: #fad94a;
+  font-size: 36px;
+  position: absolute;
+  right: 15%;
+  bottom: 26%;
+}
+.communityFacilities {
+  width: 92%;
+  height: 80%;
+  margin: 18px;
+  margin-top: 10px;
+}
+.communityFacilities_Out {
+  width: 140px;
+  height: 112px;
+  float: left;
+}
+.communityFacilities_inside {
+  width: 99%;
+  height: 100%;
+  margin-left: 2%;
+  margin-top: 1.5%;
+  text-align: center;
+}
+.outer-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.inner-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: -17px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.communityFacilitiesImg {
+  width: 100%;
+  height: 89px;
+}
+.communityFacilities_inside span {
+  color: #fff;
+  font-size: 12px;
+}

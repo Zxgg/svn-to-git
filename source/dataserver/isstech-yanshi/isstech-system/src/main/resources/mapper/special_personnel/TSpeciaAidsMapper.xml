@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpeciaAidsMapper">
+
+    <resultMap type="TSpeciaAids" id="TSpeciaAidsResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="infectedWay" column="Infected_way"/>
+        <result property="isHaveCrime" column="is_have_crime"/>
+        <result property="crimeSituation" column="crime_situation"/>
+        <result property="caseType" column="case_type"/>
+        <result property="followType" column="follow_type"/>
+        <result property="helpSituation" column="help_situation"/>
+        <result property="helpName" column="help_name"/>
+        <result property="helpTel" column="help_tel"/>
+        <result property="admittedSituation" column="admitted_situation"/>
+        <result property="admittedName" column="admitted_name"/>
+        <result property="mainSource" column="main_source"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectTSpeciaAidsVo">
+        select id, create_by, create_time, dept_id, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, Infected_way, is_have_crime, crime_situation, case_type, follow_type, help_situation, help_name, help_tel, admitted_situation, admitted_name, main_source, community_id, community_child_id from t_specia_aids
+    </sql>
+
+    <select id="selectTSpeciaAidsList" parameterType="TSpeciaAids" resultMap="TSpeciaAidsResult">
+        <include refid="selectTSpeciaAidsVo"/>
+        <where>
+            del_flag = '0'
+            <if test="createBy != null  and createBy != ''">and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by like concat('%', #{updateBy}, '%')</if>
+            <if test="personnelId != null  and personnelId != ''">and personnel_id = #{personnelId}</if>
+            <if test="sourceType != null  and sourceType != ''">and source_type = #{sourceType}</if>
+            <if test="enable != null  and enable != ''">and enable = #{enable}</if>
+            <if test="remark != null  and remark != ''">and remark = #{remark}</if>
+            <if test="infectedWay != null  and infectedWay != ''">and Infected_way = #{infectedWay}</if>
+            <if test="isHaveCrime != null  and isHaveCrime != ''">and is_have_crime = #{isHaveCrime}</if>
+            <if test="crimeSituation != null  and crimeSituation != ''">and crime_situation = #{crimeSituation}</if>
+            <if test="caseType != null  and caseType != ''">and case_type = #{caseType}</if>
+            <if test="followType != null  and followType != ''">and follow_type = #{followType}</if>
+            <if test="helpSituation != null  and helpSituation != ''">and help_situation = #{helpSituation}</if>
+            <if test="helpName != null  and helpName != ''">and help_name like concat('%', #{helpName}, '%')</if>
+            <if test="helpTel != null  and helpTel != ''">and help_tel like concat('%', #{helpTel}, '%')</if>
+            <if test="admittedSituation != null  and admittedSituation != ''">and admitted_situation =
+                #{admittedSituation}
+            </if>
+            <if test="admittedName != null  and admittedName != ''">and admitted_name like concat('%', #{admittedName},
+                '%')
+            </if>
+            <if test="mainSource != null  and mainSource != ''">and main_source = #{mainSource}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpeciaAidsById" parameterType="String" resultMap="TSpeciaAidsResult">
+        <include refid="selectTSpeciaAidsVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTSpeciaAids" parameterType="TSpeciaAids">
+        insert into t_specia_aids
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateDeptId != null">update_dept_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="enable != null and enable != ''">enable,</if>
+            <if test="remark != null">remark,</if>
+            <if test="infectedWay != null and infectedWay != ''">Infected_way,</if>
+            <if test="isHaveCrime != null and isHaveCrime != ''">is_have_crime,</if>
+            <if test="crimeSituation != null">crime_situation,</if>
+            <if test="caseType != null">case_type,</if>
+            <if test="followType != null and followType != ''">follow_type,</if>
+            <if test="helpSituation != null">help_situation,</if>
+            <if test="helpName != null and helpName != ''">help_name,</if>
+            <if test="helpTel != null and helpTel != ''">help_tel,</if>
+            <if test="admittedSituation != null">admitted_situation,</if>
+            <if test="admittedName != null">admitted_name,</if>
+            <if test="mainSource != null">main_source,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateDeptId != null">#{updateDeptId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="enable != null and enable != ''">#{enable},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="infectedWay != null and infectedWay != ''">#{infectedWay},</if>
+            <if test="isHaveCrime != null and isHaveCrime != ''">#{isHaveCrime},</if>
+            <if test="crimeSituation != null">#{crimeSituation},</if>
+            <if test="caseType != null">#{caseType},</if>
+            <if test="followType != null and followType != ''">#{followType},</if>
+            <if test="helpSituation != null">#{helpSituation},</if>
+            <if test="helpName != null and helpName != ''">#{helpName},</if>
+            <if test="helpTel != null and helpTel != ''">#{helpTel},</if>
+            <if test="admittedSituation != null">#{admittedSituation},</if>
+            <if test="admittedName != null">#{admittedName},</if>
+            <if test="mainSource != null">#{mainSource},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpeciaAids" parameterType="TSpeciaAids">
+        update t_specia_aids
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateDeptId != null">update_dept_id = #{updateDeptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id = #{personnelId},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="infectedWay != null and infectedWay != ''">Infected_way = #{infectedWay},</if>
+            <if test="isHaveCrime != null and isHaveCrime != ''">is_have_crime = #{isHaveCrime},</if>
+            <if test="crimeSituation != null">crime_situation = #{crimeSituation},</if>
+            <if test="caseType != null">case_type = #{caseType},</if>
+            <if test="followType != null and followType != ''">follow_type = #{followType},</if>
+            <if test="helpSituation != null">help_situation = #{helpSituation},</if>
+            <if test="helpName != null and helpName != ''">help_name = #{helpName},</if>
+            <if test="helpTel != null and helpTel != ''">help_tel = #{helpTel},</if>
+            <if test="admittedSituation != null">admitted_situation = #{admittedSituation},</if>
+            <if test="admittedName != null">admitted_name = #{admittedName},</if>
+            <if test="mainSource != null">main_source = #{mainSource},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpeciaAidsById" parameterType="String">
+        delete from t_specia_aids where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpeciaAidsByIds" parameterType="String">
+        delete from t_specia_aids where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTSpeciaAidsByIds" parameterType="String">
+        update t_specia_aids set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateTSpeciaAidsByPersonIds" parameterType="String">
+        update t_specia_aids set del_flag = '1' where personnel_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,1480 @@
+{
+  "//": "首页",
+  "shouye": {
+    "//": "当前社区",
+    "currentCommunity": {
+      "addressCitie": "扬州市",
+      "addressCountie": "广陵区",
+      "addressProvincial": "江苏省",
+      "allDataAccess": false,
+      "code": "321002",
+      "createBy": "admin",
+      "createTime": "2021-01-08 13:59:27",
+      "dataAccessList": null,
+      "delFlag": "0",
+      "deptIds": "c265818a-a56b-11eb-8219-0242ac120002",
+      "id": "0355931e-a70b-11eb-a21e-0050569ba051",
+      "latitude": null,
+      "longitud": null,
+      "name": "文昌花园社区",
+      "remark": null,
+      "searchValue": null,
+      "untitled": "东关街道",
+      "updateBy": "admin",
+      "updateTime": "2021-04-25 14:20:59"
+    },
+    "lianmenglist": [
+      {
+        "name": "蒋华锋",
+        "tot": "治安指导员",
+        "url": "http://172.21.15.54:7801/group1/M00/05/A1/rBUPNmCkvxKAS944AAAy1m9xAwE749.jpg?token=561688366f0e9a4e1b08369b90af42c3&ts=1621411726"
+      },
+      {
+        "name": "陈桂香",
+        "tot": "民生指导员",
+        "url": "http://172.21.15.54:7801"
+      },
+      {
+        "name": "奚峰",
+        "tot": "市场监督指导员",
+        "url": "http://172.21.15.54:7801/group1/M00/05/A1/rBUPNmCkv9uAUWgVAAJFJHqpCgE794.jpg?token=22258262718487e9f11fea1d74ac9274&ts=1621411926"
+      },
+      {
+        "name": "易思茂",
+        "tot": "应急管理指导员",
+        "url": "http://172.21.15.54:7801/group1/M00/05/A1/rBUPNmCkwGSATO9-AAGX7u474_A012.jpg?token=50a5fdfb0d891c7b14d962727482d897&ts=1621412064"
+      },
+      {
+        "name": "周寅",
+        "tot": "消防指导员",
+        "url": "http://172.21.15.54:7801/group1/M00/05/A1/rBUPNmCkwJGAFNCzAAH9r7t07gY424.jpg?token=8dee1f2ac24f1d01863c1e805945c9df&ts=1621412109"
+      },
+      {
+        "name": "李振兴",
+        "tot": "城管指导员",
+        "url": "http://172.21.15.54:7801/group1/M00/05/A1/rBUPNmCkwQGAX7FTABZ6v23MPQg417.jpg?token=d5ef424aa6c12161bc9391e46aefad4e&ts=1621412221"
+      }
+    ],
+    "imgList":[{"url":"http://172.21.15.54:7801/"},{"url":"http://172.21.15.54:7801/"},{"url":""},{"url":"http://172.21.15.54:7801/"},{"url":"http://172.21.15.54:7801/"}],
+    "//": "人房车统计展示",
+    "renfangche": {
+      "//": "房屋总数",
+      "houseTotalNumber": 4591,
+      "//": "车辆总数",
+      "vehicleflowNum": 3799,
+      "//": "总人数",
+      "personNum": 12608,
+      "//": "人口分布 （网格，常驻人口，党员）",
+      "personnelDistribution": [
+        {
+          "xuhao": 1,
+          "gridName": "第一网格",
+          "//": "常驻人口",
+          "residentPopulation": 1350,
+          "//": "党员数量",
+          "partyMemberNum": 32
+        },
+        {
+          "xuhao": 2,
+          "gridName": "第二网格",
+          "residentPopulation": 1161,
+          "partyMemberNum": 36
+        },
+        {
+          "xuhao": 3,
+          "gridName": "第三网格",
+          "residentPopulation": 720,
+          "partyMemberNum": 28
+        },
+        {
+          "xuhao": 4,
+          "gridName": "第四网格",
+          "residentPopulation": 1068,
+          "partyMemberNum": 41
+        },
+        {
+          "xuhao": 5,
+          "gridName": "第五网格",
+          "residentPopulation": 690,
+          "partyMemberNum": 29
+        },
+        {
+          "xuhao": 6,
+          "gridName": "第六网格",
+          "residentPopulation": 1086,
+          "partyMemberNum": 48
+        },
+        {
+          "xuhao": 7,
+          "gridName": "第七网格",
+          "residentPopulation": 1568,
+          "partyMemberNum": 46
+        },
+        {
+          "xuhao": 8,
+          "gridName": "第八网格",
+          "residentPopulation": 1320,
+          "partyMemberNum": 46
+        },
+        {
+          "xuhao": 9,
+          "gridName": "第九网格",
+          "residentPopulation": 960,
+          "partyMemberNum": 37
+        },
+        {
+          "xuhao": 10,
+          "gridName": "第十网格",
+          "residentPopulation": 957,
+          "partyMemberNum": 25
+        },
+        {
+          "xuhao": 11,
+          "gridName": "第十一网格",
+          "residentPopulation": 960,
+          "partyMemberNum": 31
+        }
+      ],
+      "//": "停车位",
+      "carParking": 720,
+      "//": "日车流峰值",
+      "dayPeakTraffic": 1870,
+      "//": "网格信息，从数据表中来",
+      "gridInfo": {},
+      "//": "房屋使用属性",
+      "houseNumData": [
+        {
+          "name": "自住",
+          "value": 387
+        },
+        {
+          "name": "出租",
+          "value": 48
+        },
+        {
+          "name": "商用",
+          "value": 0
+        },
+        {
+          "name": "其他",
+          "value": 9
+        }
+      ],
+      "//": "居住类型",
+      "liveTypeData": [
+        {
+          "value": 922,
+          "name": "自购房屋"
+        },
+        {
+          "value": 25,
+          "name": "租赁房屋"
+        },
+        {
+          "value": 35,
+          "name": "寄居"
+        },
+        {
+          "value": 41,
+          "name": "借住"
+        },
+        {
+          "value": 42,
+          "name": "单位宿舍"
+        },
+        {
+          "value": 17,
+          "name": "临时性宿舍"
+        },
+        {
+          "value": 5,
+          "name": "农民工公寓"
+        },
+        {
+          "value": 35,
+          "name": "其他"
+        }
+      ],
+      "//": "人口流动",
+      "mobilityData": [
+        {
+          "name": "本地人",
+          "value": 4900
+        },
+        {
+          "name": "外地人",
+          "value": 900
+        },
+        {
+          "name": "访客",
+          "value": 800
+        }
+      ],
+      "//": "车辆本地车外地车比例 0-100",
+      "vehicleNum": {
+        "//": "本地车",
+        "localVehicle": 75,
+        "//": "外地车",
+        "nonlocalVehicle": 25
+      }
+    },
+    "//": "特殊人员",
+    "specialNums": [
+      {
+        "name": "刑满释放人员",
+        "num": 8
+      },
+      {
+        "name": "社区矫正人员",
+        "num": 3
+      },
+      {
+        "name": "其他重点工作对象",
+        "num": 0
+      },
+      {
+        "name": "重点青少年",
+        "num": 0
+      },
+      {
+        "name": "易肇事严重精神病患者",
+        "num": 0
+      }
+    ],
+    "//": "关爱人员数量",
+    "carePerson": {
+      "oneNumTitle": "低保低边",
+      "oneNum": 2,
+      "twoNumTitle": "80岁以上老人",
+      "twoNum": 185,
+      "threeNumTitle": "孤儿",
+      "threeNum": 1,
+      "fourNumTitle": "特困供养人员",
+      "fourNum": 4
+    },
+    "//": "关爱事件提醒统计",
+    "careEvent": [
+      {
+        "type": "长期未出现",
+        "num": 0
+      },
+      {
+        "type": "生日提醒",
+        "num": 1
+      }
+    ],
+    "//": "社区简介",
+    "communityDescription": "文昌花园社区位于扬州市文昌大桥西北侧，东起京杭大运河，南界文昌中路，西临沙施河，北至解放北路，是扬州市第一个最大的拆迁安置社区，成立于2005年8月，区域面积1.28平方公里，有居民4219户，12608人，社区坚持以居民需求为导向，把服务作为社区建设的永恒主题，以党建促社建，以民主促民生、以创新促创优，在实践中履行“老百姓说好才是真的好”的承诺。",
+    "//": "社区简介图片",
+    "communityDescriptionImage": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCLnzSAV8RuAAv8KW-IHdc287.png?token=192ec29c3b2711d8fe2ec3273a8c4092&ts=1619765121",
+    "//": "社区简介图片填充方式",
+    "communityDescriptionImagefit": "contain",
+    "//": "社区光荣榜",
+    "communityHonor": [
+      {
+        "xuhao": 1,
+        "honor": "全国创先争优先进基层党组织"
+      },
+      {
+        "xuhao": 2,
+        "honor": "全国文明社区"
+      },
+      {
+        "xuhao": 3,
+        "honor": "全国和谐社区建设示范社区"
+      },
+      {
+        "xuhao": 4,
+        "honor": "全国社会工作服务示范社区"
+      },
+      {
+        "xuhao": 5,
+        "honor": "全国民主法治示范社区"
+      },
+      {
+        "xuhao": 6,
+        "honor": "全国最美志愿者服务社区"
+      },
+      {
+        "xuhao": 7,
+        "honor": "全国五四红旗团委"
+      }
+    ]
+  },
+  "//": "关爱人员",
+  "guanai": {
+    "//": "关爱人员类型统计",
+    "typeData": [
+      {
+        "name": "独居老人",
+        "value": "50"
+      },
+      {
+        "name": "残疾人员",
+        "value": "50"
+      },
+      {
+        "name": "重点治疗人员",
+        "value": "15"
+      },
+      {
+        "name": "安置帮教人员",
+        "value": "10"
+      },
+      {
+        "name": "知名人士",
+        "value": "10"
+      },
+      {
+        "name": "其他关爱人员",
+        "value": "15"
+      }
+    ],
+    "//": "关爱提醒数量统计",
+    "noticeCount": [
+      {
+        "type": "长期未出现",
+        "num": "1",
+        "processedNum": "100%"
+      },
+      {
+        "type": "生日提醒",
+        "num": "0",
+        "processedNum": "0"
+      }
+    ],
+    "//": "关爱提醒搜索",
+    "noticeSearch": [
+      {
+        "name": "张三长期未出现",
+        "personid": "张三",
+        "createTime": "2021-04-25 03:00:00",
+        "dictValue": 1
+      },
+      {
+        "name": "李四长期未出现",
+        "personid": "李四",
+        "createTime": "2021-04-25 03:00:00",
+        "dictValue": 1
+      },
+      {
+        "name": "王五长期未出现",
+        "personid": "王五",
+        "createTime": "2021-04-25 03:00:00",
+        "dictValue": 1
+      }
+    ],
+    "//": "关爱人员列表展示",
+    "careList": [
+      {
+        "pics": "http://10.17.13.103/group1/M00/00/08/ChENZ2CFEdiAfUaiAABe0NMK_gI448.jpg?token=3c2457a40bed8bcf5cb0354890a1924f&ts=1619333592",
+        "personName": "张三",
+        "sex": "男",
+        "age": "78",
+        "type": "独居老人",
+        "phoneNumber": "155****3116",
+        "communityChildName": "书香雅苑"
+      },
+      {
+        "pics": "http://10.17.13.103/group1/M00/00/08/ChENZ2CFEdiAfUaiAABe0NMK_gI448.jpg?token=3c2457a40bed8bcf5cb0354890a1924f&ts=1619333592",
+        "personName": "李四",
+        "sex": "女",
+        "age": "88",
+        "type": "独居老人",
+        "phoneNumber": "183****3063",
+        "communityChildName": "尚正一品"
+      },
+      {
+        "pics": "http://10.17.13.103/group1/M00/00/08/ChENZ2CFEdiAfUaiAABe0NMK_gI448.jpg?token=3c2457a40bed8bcf5cb0354890a1924f&ts=1619333592",
+        "personName": "王五",
+        "sex": "男",
+        "age": "65",
+        "type": "安置帮教人员",
+        "phoneNumber": "178****9933",
+        "communityChildName": "金宸府"
+      },
+      {
+        "pics": "http://10.17.13.103/group1/M00/00/08/ChENZ2CFEdiAfUaiAABe0NMK_gI448.jpg?token=3c2457a40bed8bcf5cb0354890a1924f&ts=1619333592",
+        "personName": "贺贺",
+        "sex": "女",
+        "age": "38",
+        "type": "安置帮教人员",
+        "phoneNumber": "188****5625",
+        "communityChildName": "东街一区"
+      },
+      {
+        "pics": "http://10.17.13.103/group1/M00/00/08/ChENZ2CFEdiAfUaiAABe0NMK_gI448.jpg?token=3c2457a40bed8bcf5cb0354890a1924f&ts=1619333592",
+        "personName": "嘿嘿",
+        "sex": "男",
+        "age": "56",
+        "type": "知名人士",
+        "phoneNumber": "156****3068",
+        "communityChildName": "流星花园"
+      }
+    ]
+  },
+  "//": "人员",
+  "renyuan": {
+    "//": "左侧",
+    "//": "人员信息统计",
+    "sexData": [
+      {
+        "name": "男",
+        "value": 6178
+      },
+      {
+        "name": "女",
+        "value": 6430
+      }
+    ],
+    "//": "文化程度统计",
+    "eduData": [
+      {
+        "name": "博士及以上",
+        "value": 2
+      },
+      {
+        "name": "硕士",
+        "value": 31
+      },
+      {
+        "name": "本科",
+        "value": 603
+      },
+      {
+        "name": "大专",
+        "value": 585
+      },
+      {
+        "name": "中专",
+        "value": 521
+      },
+      {
+        "name": "高中及以下",
+        "value": 10866
+      }
+    ],
+    "//": "年龄统计",
+    "ageData": {
+      "x": [
+        "<18",
+        "18-30",
+        "30-40",
+        "40-50",
+        "50-60",
+        "60-80",
+        ">80"
+      ],
+      "y": [
+        11.57,
+        11.7,
+        17.09,
+        18.12,
+        18.45,
+        21.6,
+        1.47
+      ]
+    },
+    "//": "民族统计",
+    "nationXData": [
+      {
+        "name": "维吾尔族",
+        "value": 2
+      },
+      {
+        "name": "蒙古族",
+        "value": 20
+      },
+      {
+        "name": "满族",
+        "value": 4
+      },
+      {
+        "name": "回族",
+        "value": 77
+      },
+      {
+        "name": "朝鲜族",
+        "value": 1
+      },
+      {
+        "name": "其他",
+        "value": 12
+      }
+    ],
+    "//": "右侧",
+    "//": "人员住房信息",
+    "perHousingData": [
+      {
+        "name": "自购房屋",
+        "value": 822
+      },
+      {
+        "name": "租赁房屋",
+        "value": 25
+      },
+      {
+        "name": "寄居",
+        "value": 35
+      },
+      {
+        "name": "借住",
+        "value": 41
+      },
+      {
+        "name": "单位宿舍",
+        "value": 42
+      },
+      {
+        "name": "临时性宿舍",
+        "value": 17
+      },
+      {
+        "name": "农民工公寓",
+        "value": 5
+      },
+      {
+        "name": "其他",
+        "value": 35
+      }
+    ],
+    "//": "网格信息",
+    "peopleHousingInfoList": [
+      {
+        "xuhao": 1,
+        "gridName": "第一网格",
+        "gridMember": "王婷",
+        "phone": "19962632563",
+        "range": "文康苑1-16幢、观潮路西商铺、解放北路商铺",
+        "//": "户数",
+        "households": "463",
+        "//": "常驻人员",
+        "permanentPer": "1350",
+        "//": "党员",
+        "partyMember": "32",
+        "//": "面积，平方公里",
+        "area": "0.0989",
+        "//": "超过80岁",
+        "over80": "15",
+        "//": "残疾",
+        "deformedMan": "10",
+        "//": "低保",
+        "basicLivingMan": "0",
+        "//": "流动",
+        "floatingMan": "23",
+        "//": "少数民族",
+        "nationalMinority": "6",
+        "//": "楼栋数",
+        "buildingNum": 18
+      },
+      {
+        "xuhao": 2,
+        "gridName": "第二网格",
+        "gridMember": "韩兆炎",
+        "phone": "19962632559",
+        "range": "鸿泰家园1-2幢、鸿泰家园17-25幢、印染厂宿舍",
+        "households": "420",
+        "permanentPer": "1161",
+        "partyMember": "36",
+        "area": "0.0897",
+        "over80": "11",
+        "deformedMan": "6",
+        "basicLivingMan": "0",
+        "floatingMan": "23",
+        "nationalMinority": "6",
+        "buildingNum": 12
+      },
+      {
+        "xuhao": 3,
+        "gridName": "第三网格",
+        "gridMember": "严婷",
+        "phone": "19962632560",
+        "range": "鸿泰家园3-16幢、文昌中路88号商铺",
+        "households": "350",
+        "permanentPer": "720",
+        "partyMember": "28",
+        "area": "0.0874",
+        "over80": "12",
+        "deformedMan": "9",
+        "basicLivingMan": "2",
+        "floatingMan": "15",
+        "nationalMinority": "10",
+        "buildingNum": 15
+      },
+      {
+        "xuhao": 4,
+        "gridName": "第四网格",
+        "gridMember": "王力",
+        "phone": "19962632561",
+        "range": "文盛苑92-104幢、观潮路东单位",
+        "households": "428",
+        "permanentPer": "1068",
+        "partyMember": "41",
+        "area": "0.0671",
+        "over80": "15",
+        "deformedMan": "8",
+        "basicLivingMan": "0",
+        "floatingMan": "28",
+        "nationalMinority": "3",
+        "buildingNum": 14
+      },
+      {
+        "xuhao": 5,
+        "gridName": "第五网格",
+        "gridMember": "林静",
+        "phone": "19962632562",
+        "range": "文贤苑17-24幢、朱自清小学、市规划局广陵分局、文昌国际大厦、首席国际大厦",
+        "households": "288",
+        "permanentPer": "690",
+        "partyMember": "29",
+        "area": "0.0867",
+        "over80": "11",
+        "deformedMan": "10",
+        "basicLivingMan": "0",
+        "floatingMan": "21",
+        "nationalMinority": "15",
+        "buildingNum": 12
+      },
+      {
+        "xuhao": 6,
+        "gridName": "第六网格",
+        "gridMember": "张玮",
+        "phone": "19962632569",
+        "range": "文盛苑82-91幢、农民公寓",
+        "households": "426",
+        "permanentPer": "1086",
+        "partyMember": "48",
+        "area": "0.0843",
+        "over80": "20",
+        "deformedMan": "6",
+        "basicLivingMan": "0",
+        "floatingMan": "23",
+        "nationalMinority": "2",
+        "buildingNum": 11
+      },
+      {
+        "xuhao": 7,
+        "gridName": "第七网格",
+        "gridMember": "刘静",
+        "phone": "19962632565",
+        "range": "文萃苑71-81幢",
+        "households": "494",
+        "permanentPer": "1568",
+        "partyMember": "46",
+        "area": "0.0876",
+        "over80": "30",
+        "deformedMan": "9",
+        "basicLivingMan": "0",
+        "floatingMan": "31",
+        "nationalMinority": "18",
+        "buildingNum": 11
+      },
+      {
+        "xuhao": 8,
+        "gridName": "第八网格",
+        "gridMember": "文婷",
+        "phone": "19962632566",
+        "range": "文萃苑56-70幢",
+        "households": "498",
+        "permanentPer": "1320",
+        "partyMember": "46",
+        "area": "0.0872",
+        "over80": "20",
+        "deformedMan": "9",
+        "basicLivingMan": "0",
+        "floatingMan": "23",
+        "nationalMinority": "16",
+        "buildingNum": 15
+      },
+      {
+        "xuhao": 9,
+        "gridName": "第九网格",
+        "gridMember": "张毅",
+        "phone": "19962632568",
+        "range": "文德苑31-35幢、文德苑37-41幢",
+        "households": "378",
+        "permanentPer": "960",
+        "partyMember": "37",
+        "area": "0.0946",
+        "over80": "12",
+        "deformedMan": "5",
+        "basicLivingMan": "0",
+        "floatingMan": "28",
+        "nationalMinority": "10",
+        "buildingNum": 10
+      },
+      {
+        "xuhao": 10,
+        "gridName": "第十网格",
+        "gridMember": "时建",
+        "phone": "17351356269",
+        "range": "文萃苑42-55幢",
+        "households": "478",
+        "permanentPer": "957",
+        "partyMember": "25",
+        "area": "0.0887",
+        "over80": "11",
+        "deformedMan": "10",
+        "basicLivingMan": "0",
+        "floatingMan": "16",
+        "nationalMinority": "6",
+        "buildingNum": 14
+      },
+      {
+        "xuhao": 11,
+        "gridName": "第十一网格",
+        "gridMember": "赵毅松",
+        "phone": "19962632570",
+        "range": "文德苑25-30幢、冷冻厂宿舍",
+        "households": "378",
+        "permanentPer": "960",
+        "partyMember": "31",
+        "area": "0.1904",
+        "over80": "11",
+        "deformedMan": "10",
+        "basicLivingMan": "0",
+        "floatingMan": "19",
+        "nationalMinority": "11",
+        "buildingNum": 7
+      }
+    ],
+    "//": "人员类型统计",
+    "personTypeData": [
+      {
+        "name": "关爱人员",
+        "value": 7
+      },
+      {
+        "name": "管控人员",
+        "value": 1
+      },
+      {
+        "name": "特殊人员",
+        "value": 2
+      }
+    ],
+    "//": "关爱人员信息",
+    "carePersonData": {
+      "x": [
+        "低保低边",
+        "80岁以上老人",
+        "空巢老人",
+        "孤儿",
+        "辍学儿童",
+        "特困供养人员"
+      ],
+      "y": [
+        2,
+        185,
+        0,
+        1,
+        0,
+        4
+      ]
+    },
+    "//": "布控人员信息",
+    "blackPersonData": [
+      {
+        "cardID": "321002193809193321",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCSZd-AH_QxAAedcd4UN30844.png?token=1122a31417cb1676dba84c4b710f87f7&ts=1620209208",
+        "taskType": "关爱人员",
+        "name": "傅宝英",
+        "phone": "17325531853",
+        "sex": "女",
+        "age": 82,
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号44-103"
+      },
+      {
+        "cardID": "321002193206143341",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOioKAF4g4AAK-9in5pMg093.jpg?token=853304de8d47e931a1e2715f2eb16065&ts=1619956436",
+        "taskType": "关爱人员",
+        "name": "李素兰",
+        "phone": "17351356269",
+        "sex": "女",
+        "age": 88,
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号47-102"
+      },
+      {
+        "cardID": "321002192811070019",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOiweAbKi-AAD9bBEyeVU508.jpg?token=45ab4f875fd5d25fc3b339e13dab91a3&ts=1619956569",
+        "taskType": "关爱人员",
+        "name": "陆守时",
+        "phone": "18303348520",
+        "sex": "男",
+        "age": "92",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号50-204"
+      },
+      {
+        "cardID": "321002193901203318",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOireAA8nRAADQ3tKYzDs568.jpg?token=660488daa129302ec607efade25198a9&ts=1619956489",
+        "taskType": "关爱人员",
+        "name": "徐兆瑞",
+        "phone": "15696342215",
+        "sex": "男",
+        "age": "81",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号52-306"
+      },
+      {
+        "cardID": "321002193809160000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXg2mAFSmIACnao7K_gBQ105.jpg?token=8f16727d0588f05316d4273c750b4759&ts=1620544460",
+        "taskType": "关爱人员",
+        "name": "李太英",
+        "phone": "13722465528",
+        "sex": "女",
+        "age": "82",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号71-206"
+      },
+      {
+        "cardID": "321002193804153000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXg76AaVceAAFb_N6v59o163.jpg?token=a2b196db0534522ef47ee22df76c92ce&ts=1620544544",
+        "taskType": "关爱人员",
+        "name": "程裕祥",
+        "phone": "13303347758",
+        "sex": "男",
+        "age": "82",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号100-103"
+      },
+      {
+        "cardID": "321002193709043000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOit2ADeN3AACvIJVjJGU611.jpg?token=75d20e1d01610ce551b7d3e255e38790&ts=1619956527",
+        "taskType": "关爱人员",
+        "name": "王南英",
+        "phone": "15751689385",
+        "sex": "女",
+        "age": "83",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号44-101"
+      },
+      {
+        "cardID": "321002193708123000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXg-2AC6nLAEY1S9pcNu0358.jpg?token=f3b6e44cbb9a4833015f7da75e167490&ts=1620544592",
+        "taskType": "关爱人员",
+        "name": "汪秀兰",
+        "phone": "13358133952",
+        "sex": "女",
+        "age": "83",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号59-204"
+      },
+      {
+        "cardID": "321002193706240000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXhEeAVz6jAEX-HBIScAk610.jpg?token=7965577e271ba8173d2e25ea572867a5&ts=1620544681",
+        "taskType": "关爱人员",
+        "name": "吴莲英",
+        "phone": "13773331298",
+        "sex": "女",
+        "age": "83",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号63-103"
+      },
+      {
+        "cardID": "321002193609301543",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXhGuAMUlnAAHNZPd_cL0325.png?token=bc9f0214f829bb523206ca6d329b521c&ts=1620544717",
+        "taskType": "关爱人员",
+        "name": "徐树华",
+        "phone": "18652756785",
+        "sex": "女",
+        "age": "84",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号63-205"
+      },
+      {
+        "cardID": "321002193501023000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXhJCAN43RAAIRFMK4uyc535.png?token=48cb0a334b09d636fb23742750118408&ts=1620544755",
+        "taskType": "关爱人员",
+        "name": "管秀珍",
+        "phone": "13952514503",
+        "sex": "女",
+        "age": "85",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号61-203"
+      },
+      {
+        "cardID": "321002192910063000",
+        "imageUrl": "http://172.21.15.54:7801/group1/M00/00/18/rBUPNmCXhLKASxdhAAOhE4srtkY260.jpg?token=ce0e4b7385abba97e4e476a2cd6c04bf&ts=1620544789",
+        "taskType": "关爱人员",
+        "name": "顾兰英",
+        "phone": "15358478039",
+        "sex": "女",
+        "age": "91",
+        "jiguan": "江苏扬州",
+        "fangwudizhi": "文昌中路18号60-202"
+      }
+    ],
+    "// ": "特殊人员",
+    "specialPersonData": {
+      "x": [
+        0,
+        0,
+        0,
+        3,
+        8
+      ],
+      "y": [
+        "其他重点工作对象",
+        "重点青少年",
+        "易肇事严重精神病患者",
+        "社区矫正人员",
+        "刑满释放人员"
+      ]
+    }
+  },
+  "//": "车辆",
+  "car": {
+    "//": "左侧",
+    "//": "车辆统计",
+    "communityVehicleStatisticsData": [
+      {
+        "name": "第一网格",
+        "outnum": 77,
+        "insideNum": 60,
+        "truckSpace": 44
+      },
+      {
+        "name": "第二网格",
+        "outnum": 77,
+        "insideNum": 55,
+        "truckSpace": 55
+      },
+      {
+        "name": "第三网格",
+        "outnum": 77,
+        "insideNum": 50,
+        "truckSpace": 67
+      },
+      {
+        "name": "第四网格",
+        "outnum": 77,
+        "insideNum": 48,
+        "truckSpace": 64
+      },
+      {
+        "name": "第五网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 67
+      },
+      {
+        "name": "第六网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 69
+      },
+      {
+        "name": "第七网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 72
+      },
+      {
+        "name": "第八网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 68
+      },
+      {
+        "name": "第九网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 74
+      },
+      {
+        "name": "第十网格",
+        "outnum": 77,
+        "insideNum": 54,
+        "truckSpace": 72
+      },
+      {
+        "name": "第十一网格",
+        "outnum": 77,
+        "insideNum": 51,
+        "truckSpace": 68
+      }
+    ],
+    "//": "车辆搜索",
+    "vehicleSearch": [
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE555555",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      },
+      {
+        "wg": "第一网格",
+        "plate": "豫LKE66666",
+        "type": "外来车辆",
+        "name": "贺贺"
+      }
+    ],
+    "//": "右侧",
+    "vehicleCategoryIn": [
+      {
+        "name": "南门流量",
+        "value": 389
+      },
+      {
+        "name": "北门流量",
+        "value": 374
+      },
+      {
+        "name": "东门流量",
+        "value": 0
+      },
+      {
+        "name": "西门流量",
+        "value": 0
+      }
+    ],
+    "vehicleCategoryOut": [
+      {
+        "name": "南门流量",
+        "value": 200
+      },
+      {
+        "name": "北门流量",
+        "value": 256
+      },
+      {
+        "name": "东门流量",
+        "value": 0
+      },
+      {
+        "name": "西门流量",
+        "value": 0
+      }
+    ],
+    "//": "车辆出入时间段统计",
+    "VehiclePassData": {
+      "x": [
+        "2021-04-20",
+        "2021-04-21",
+        "2021-04-22",
+        "2021-04-23",
+        "2021-04-24",
+        "2021-04-25",
+        "2021-04-26"
+      ],
+      "y": [
+        45,
+        65,
+        56,
+        78,
+        54,
+        87,
+        90
+      ]
+    },
+    "vehicleFlowInfo": {
+      "xAxis": [
+        "2021-04-20",
+        "2021-04-21",
+        "2021-04-22",
+        "2021-04-23",
+        "2021-04-24",
+        "2021-04-25",
+        "2021-04-26"
+      ],
+      "lines": [
+        {
+          "name": "出",
+          "data": [
+            2856,
+            2685,
+            2423,
+            3620,
+            2789,
+            2799,
+            2654
+          ]
+        },
+        {
+          "name": "入",
+          "data": [
+            2005,
+            2185,
+            2546,
+            2330,
+            2685,
+            2885,
+            2415
+          ]
+        }
+      ]
+    },
+    "//": "车辆出入时间段统计",
+    "controlOfTheVehicleData": [
+      {
+        "limitPic": "http://172.21.15.54:7801/group1/M00/00/14/rBUPNmCWHQaAOzHLAAzkWDEQyw8587.png?token=f2bb6f1d4d3aabed73b8342a505abcd9&ts=1620452710",
+        "plate": "苏K18B2H",
+        "ownerName": "申晓惠",
+        "pinpai": "丰田",
+        "zipinpai": "朗逸",
+        "wg": "暂无",
+        "carType:": "轿车",
+        "parkingLot": "暂无",
+        "carColor": "黑色",
+        "phone": "暂无",
+        "sex": "女",
+        "age": 40,
+        "jiguan": "扬州",
+        "fangwudizhi": "文昌中路18号农民公寓114幢1单元1楼101室",
+        "cardID": "321284198508112020"
+      },
+      {
+        "limitPic": "http://172.21.15.54:7801/group1/M00/00/14/rBUPNmCWHPiAFy5zAAw77MY9Pcs824.png?token=1b63ce0dc08e6eb5fc610ce5d9390774&ts=1620452696",
+        "plate": "苏K793ZJ",
+        "ownerName": "徐田氏",
+        "pinpai": "奔驰",
+        "zipinpai": "C200",
+        "wg": "第一网格",
+        "carType:": "轿车",
+        "parkingLot": "2",
+        "carColor": "白色",
+        "phone": "暂无",
+        "sex": "女",
+        "age": 30,
+        "jiguan": "扬州",
+        "fangwudizhi": "文昌中路18号农民公寓112幢1单元1楼103室",
+        "cardID": "321011192909180941"
+      },
+      {
+        "limitPic": "http://172.21.15.54:7801//group1/M00/00/1C/rBUPNmCboY2AIs_SAAaqRX2PGnk717.png?token=6e4974c2be4362bebaedaf30732229a2&ts=1620814328",
+        "plate": "苏KF053E",
+        "ownerName": "陈昱竼",
+        "pinpai": "丰田",
+        "zipinpai": "东风日产",
+        "wg": "暂无",
+        "carType:": "轿车",
+        "parkingLot": "暂无",
+        "carColor": "银色",
+        "phone": "暂无",
+        "sex": "女",
+        "age": "暂无",
+        "jiguan": "扬州",
+        "fangwudizhi": "文昌中路88号鸿泰家园6幢2单元3楼304室",
+        "cardID": "32100220170617001X"
+      }
+    ],
+    "//": "车辆能源类型",
+    "vehicleEnergyType": [
+      {
+        "name": "燃油车",
+        "value": 214
+      },
+      {
+        "name": "新能源",
+        "value": 28
+      },
+      {
+        "name": "混合动力",
+        "value": 22
+      }
+    ],
+    "//": "车辆入驻时间",
+    "VehicleYears": {
+      "x": 1895,
+      "y": 862,
+      "z": 0
+    },
+    "//": "访客车辆类型统计",
+    "activeVehicle": {
+      "x": [
+        1,
+        2,
+        9,
+        4,
+        8,
+        10
+      ],
+      "y": [
+        "SUV",
+        "厢式车",
+        "多用途汽车",
+        "跑车",
+        "小型货车",
+        "中型货车"
+      ]
+    }
+  },
+  "//": "房屋",
+  "house": {
+    "xiaoquhushuList": [
+      {
+        "xuhao": 1,
+        "name": "文康苑",
+        "hushu": "248",
+        "renshu": "796",
+        "area": "0.0601"
+      },
+      {
+        "xuhao": 2,
+        "name": "文盛苑",
+        "hushu": "305",
+        "renshu": "1039",
+        "area": "0.0723"
+      },
+      {
+        "xuhao": 3,
+        "name": "文贤苑",
+        "hushu": "208",
+        "renshu": "684",
+        "area": "0.0526"
+      },
+      {
+        "xuhao": 4,
+        "name": "文萃苑",
+        "hushu": "1296",
+        "renshu": "3845",
+        "area": "0.2635"
+      },
+      {
+        "xuhao": 5,
+        "name": "文德苑",
+        "hushu": "480",
+        "renshu": "1440",
+        "area": "0.1419"
+      },
+      {
+        "xuhao": 6,
+        "name": "鸿泰家园",
+        "hushu": "378",
+        "renshu": "1175",
+        "area": "0.0832"
+      },
+      {
+        "xuhao": 7,
+        "name": "印染厂宿舍",
+        "hushu": "108",
+        "renshu": "268",
+        "area": "0.0436"
+      },
+      {
+        "xuhao": 8,
+        "name": "农民公寓",
+        "hushu": "156",
+        "renshu": "238",
+        "area": "0.0476"
+      },
+      {
+        "xuhao": 9,
+        "name": "冷冻厂宿舍",
+        "hushu": "167",
+        "renshu": "310",
+        "area": "0.0498"
+      }
+    ],
+    "houseInfoList": [
+      {
+        "huzhu": "",
+        "shenfenzhenghao": 134234,
+        "dianhua": 13434,
+        "fangwuzhuzhi": "",
+        "chepai": "",
+        "cheliangleixing": "",
+        "车辆照片": ""
+      }
+    ],
+    "HouseType": [
+      {
+        "name": "商用",
+        "value": 253
+      },
+      {
+        "name": "其他",
+        "value": 46
+      },
+      {
+        "name": "出租",
+        "value": 73
+      },
+      {
+        "name": "自主",
+        "value": 72
+      }
+    ]
+  },
+  "//": "社区事件",
+  "event": {
+    "//": "社区网格员",
+    "eventsList": [
+      {
+        "id": 0,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPr5KAG0v0AA6kigrIxco322.jpg?token=99673f9fc79f666ece2639d545ce414e&ts=1620031462",
+        "name": "刘杏华",
+        "towns": "文昌花园16-107"
+      },
+      {
+        "id": 1,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsKaAFSL7AAA_1Qc6HcU324.jpg?token=c92fb1ee0416ea0a7237743e108dd782&ts=162003173",
+        "name": "马逸彬",
+        "towns": "文昌花园3-401"
+      },
+      {
+        "id": 2,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsNeAe-hSAAEzt0Ql-cs114.jpg?token=5c0d0c9182ede5dccee6cc672d6e3444&ts=1620031788",
+        "name": "徐孝忠",
+        "towns": "文昌花园9-203"
+      },
+      {
+        "id": 3,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsRaAa7bZAAEg63wtvfg512.jpg?token=7c997b0590e2699ee48184a99926df06&ts=1620031850",
+        "name": "张长新",
+        "towns": "文昌花园96-302"
+      },
+      {
+        "id": 4,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsUaAAoAJAAGCooqQNtA568.jpg?token=661da932af9e6ad38ed1f8eb1efd62f7&ts=1620031898",
+        "name": "邓礼荣",
+        "towns": "文昌花园103-603"
+      },
+      {
+        "id": 5,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsXqAWMkYAADV6h-1q4g562.jpg?token=3a9f40228387760c6218e707a8a76491&ts=1620031951",
+        "name": "曹振和",
+        "towns": "文昌花园100-502"
+      },
+      {
+        "id": 6,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPsZyAVze0AAEDicdgXdI306.jpg?token=40c263d046aea3c2a3ec16ba4f5ab799&ts=1620031984",
+        "name": "李玉龙",
+        "towns": "文昌花园99-503"
+      },
+      {
+        "id": 7,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPuLqAXLphABvKO6v6_48159.jpg?token=fe883f23f812cb7fa1f617132a94cca6&ts=1620033806",
+        "name": "王毓良",
+        "towns": "文昌花园19-505"
+      },
+      {
+        "id": 8,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPuROAZAfyAAARAEe66OU287.jpg?token=f8bee46432b02e5f36625c2590993552&ts=1620033895",
+        "name": "樊思俊",
+        "towns": "文昌花园18-408"
+      },
+      {
+        "id": 9,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPuTOAbfb_AAFgmW96vwU178.jpg?token=f0bd058ea4f8f57025348fcfb0ba9c47&ts=1620033927",
+        "name": "王永亮",
+        "towns": "文昌花园17-505"
+      },
+      {
+        "id": 10,
+        "pic": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPuVGAcDM-AAUijCThHQ4895.jpg?token=f65ff7879a43c122b64ba2b79d571e0f&ts=1620033957",
+        "name": "于桐寿",
+        "towns": "文昌花园88-3304"
+      }
+    ],
+    "eventsgetList": [
+      {
+        "id": 0,
+        "time": "2021年05月05日 13:50",
+        "address": "网格一",
+        "eventType": "专项活动",
+        "content": "发现关爱人员",
+        "eventTitle": "关爱人员出行",
+        "beforeDisposal": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCSeDSAZoQZAAX_DjFE0qc877.png?token=19f40d4663d4393101b511ecc1a0b5a6&ts=1620213901",
+        "afterDisposal": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOiweAbKi-AAD9bBEyeVU508.jpg?token=45ab4f875fd5d25fc3b339e13dab91a3&ts=1619956569",
+        "eventSource": "智能化事件",
+        "flag": "98%"
+      },
+      {
+        "id": 1,
+        "time": "2021年04月20日 11:50",
+        "address": "网格二",
+        "eventType": "社会治安",
+        "content": "告警事件阈值设置过低，导致人脸匹配出错",
+        "eventTitle": "误抓拍告警",
+        "beforeDisposal": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCPuTOAbfb_AAFgmW96vwU178.jpg?token=f0bd058ea4f8f57025348fcfb0ba9c47&ts=1620033927",
+        "afterDisposal": "http://172.21.15.54:7801/group1/M00/00/01/rBUPNmCOiweAbKi-AAD9bBEyeVU508.jpg?token=45ab4f875fd5d25fc3b339e13dab91a3&ts=1619956569",
+        "eventSource": "智能化事件",
+        "flag": "59%"
+      }
+    ],
+    "zibanjieform": {
+      "eventName": "打架",
+      "eventType": "普通事件",
+      "reportingTime": "2021-4-29 15:00:02",
+      "eventStatus": "已办结",
+      "dealWithType": null,
+      "rqstcontent": "29日下午发现居民李先生和小区居民王先生因为停车问题发生嘴角",
+      "eventDegree": "严重",
+      "handleBy": "林静",
+      "address": "小区门口",
+      "content": null,
+      "remarks": null
+    },
+    "form": {
+      "eventName": "赌博",
+      "eventType": "严重事件",
+      "reportingTime": "2021-4-20 19:33:02",
+      "eventStatus": "已办结",
+      "dealWithType": null,
+      "rqstcontent": "29日下午发现小区居民离先生等10人聚众赌博",
+      "eventDegree": "严重",
+      "handleBy": "王三",
+      "address": "小区19栋402室",
+      "content": null,
+      "remarks": null
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseListLibraryMapper">
+
+    <resultMap type="BaseListLibrary" id="BaseListLibraryResult">
+        <result property="id" column="id"/>
+        <result property="listId" column="list_id"/>
+        <result property="listName" column="list_name"/>
+        <result property="type" column="type"/>
+        <result property="describes" column="describes"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="selectBaseListLibraryVo">
+        select id, list_id,list_name, type, describes, create_time, create_by, update_time, update_by, del_flag from base_list_library
+    </sql>
+
+    <select id="selectBaseListLibraryList" parameterType="BaseListLibrary" resultMap="BaseListLibraryResult">
+        <include refid="selectBaseListLibraryVo"/>
+        <where>
+            del_flag = '0'
+            <if test="listId != null  and listId != ''">and list_id = #{listId}</if>
+            <if test="listName != null  and listName != ''">and list_name = #{listName}</if>
+            <if test="type != null  and type != ''">and type = #{type}</if>
+            <if test="describes != null  and describes != ''">and describes = #{describes}</if>
+        </where>
+    </select>
+
+    <select id="selectBaseListLibraryById" parameterType="String" resultMap="BaseListLibraryResult">
+        <include refid="selectBaseListLibraryVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseListLibrary" parameterType="BaseListLibrary">
+        insert into base_list_library
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="listId != null">list_id,</if>
+            <if test="listName != null  and listName != ''"> list_name,</if>
+            <if test="type != null">type,</if>
+            <if test="describes != null">describes,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="delFlag != null">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="listId != null">#{listId},</if>
+            <if test="listName != null  and listName != ''"> #{listName},</if>
+            <if test="type != null">#{type},</if>
+            <if test="describes != null">#{describes},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseListLibrary" parameterType="BaseListLibrary">
+        update base_list_library
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="listId != null">list_id = #{listId},</if>
+            <if test="listName != null  and listName != ''"> list_name = #{listName},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="describes != null">describes = #{describes},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseListLibraryById" parameterType="String">
+        delete from base_list_library where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseListLibraryByIds" parameterType="String">
+        delete from base_list_library where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseListLibraryByIds" parameterType="String">
+        update base_list_library set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

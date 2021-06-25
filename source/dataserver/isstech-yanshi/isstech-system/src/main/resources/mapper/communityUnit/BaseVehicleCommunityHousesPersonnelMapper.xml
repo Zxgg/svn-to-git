@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseVehicleCommunityHousesPersonnelMapper">
+
+    <resultMap type="BaseVehicleCommunityHousesPersonnel" id="BaseVehicleCommunityHousesPersonnelResult">
+        <result property="id" column="id"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="typeOfResidence" column="type_of_residence"/>
+        <result property="homeowner" column="homeowner"/>
+        <result property="parkingSpaceNumber" column="parking_space_number"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="personName" column="person_name"/>
+    </resultMap>
+    <resultMap type="VehComHousesPersonVo" id="VehComHousesPersonVoResult">
+        <result property="id" column="id"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="typeOfResidence" column="type_of_residence"/>
+        <result property="homeowner" column="homeowner"/>
+        <result property="parkingSpaceNumber" column="parking_space_number"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="personName" column="person_name"/>
+        <result property="plate" column="plate"/>
+        <result property="model" column="model"/>
+        <result property="brand" column="brand"/>
+        <result property="specificBrand" column="specific_brand"/>
+        <result property="numberOfSeats" column="number_of_seats"/>
+        <result property="parkingSpaceNumber" column="parking_space_number"/>
+        <result property="buyTime" column="buy_time"/>
+        <result property="checked" column="checked"/>
+
+    </resultMap>
+
+    <sql id="selectBaseVehicleCommunityHousesPersonnelVo">
+        select id, community_id, community_child_id, community_houses_id, personnel_id, vehicle_id, type_of_residence, homeowner, parking_space_number, create_by, create_time, update_by, update_time, del_flag, remark from base_vehicle_community_houses_personnel
+    </sql>
+
+    <!--    车辆信息补充-->
+    <sql id="selectVehComHousesPersonVo">
+        select bvchp.id, bvchp.community_id, bvchp.community_child_id, bvchp.community_houses_id, bvchp.personnel_id, bvchp.vehicle_id, bvchp.type_of_residence,bvchp.homeowner,
+        bvchp.parking_space_number, bvchp.create_by, bvchp.create_time, bvchp.update_by, bvchp.update_time, bvchp.del_flag, bvchp.remark ,bpi.name person_name , bvi.plate,
+        bvi.model, bvi.brand, bvi.specific_brand, bvi.number_of_seats, bvi.parking_space_number, bvi.buy_time,bvi.checked  from base_vehicle_community_houses_personnel bvchp ,
+        base_personnel_information bpi , base_vehicle_information bvi
+    </sql>
+
+    <!--    人员信息补充-->
+    <sql id="addBaseVehicleCommunityHousesPersonnelVo">
+        select bvchp.id, bvchp.community_id, bvchp.community_child_id, bvchp.community_houses_id, bvchp.personnel_id, bvchp.vehicle_id, bvchp.type_of_residence,bvchp.homeowner,
+        bvchp.parking_space_number, bvchp.create_by, bvchp.create_time, bvchp.update_by, bvchp.update_time, bvchp.del_flag, bvchp.remark ,bpi.name person_name
+        from base_vehicle_community_houses_personnel bvchp , base_personnel_information bpi
+    </sql>
+    <!--    人员名称 和 车辆信息补充-->
+    <select id="selectVehComHousesPersonVoList" parameterType="VehComHousesPersonVo"
+            resultMap="VehComHousesPersonVoResult">
+        <include refid="selectVehComHousesPersonVo"/>
+        <where>
+            bvchp.del_flag = '0'
+            and bvchp.personnel_id = bpi.id
+            and bvchp.vehicle_id = bvi.id
+            <if test="delFlag != null  and delFlag != ''">
+                 and bvchp.del_flag = #{delFlag}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bvchp.community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bvchp.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and bvchp.community_houses_id = #{communityHousesId}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and bvchp.personnel_id = #{personnelId}
+            </if>
+            <if test="vehicleId != null  and vehicleId != ''">
+                and bvchp.vehicle_id = #{vehicleId}
+            </if>
+            <if test="typeOfResidence != null  and typeOfResidence != ''">
+                and bvchp.type_of_residence = #{typeOfResidence}
+            </if>
+            <if test="homeowner != null  and homeowner != ''">
+                and bvchp.homeowner = #{homeowner}
+            </if>
+            <if test="parkingSpaceNumber != null  and parkingSpaceNumber != ''">
+                and bvchp.parking_space_number = #{parkingSpaceNumber}
+            </if>
+            <if test="delFlag != null  and delFlag != ''">
+                and bvchp.del_flag = #{delFlag}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bvchp.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bvchp.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+<!--人员名称补充-->
+    <select id="selectBaseVehicleCommunityHousesPersonnelList" parameterType="BaseVehicleCommunityHousesPersonnel"
+            resultMap="BaseVehicleCommunityHousesPersonnelResult">
+        <include refid="addBaseVehicleCommunityHousesPersonnelVo"/>
+        <where>
+            bvchp.del_flag = '0'
+            and bvchp.personnel_id = bpi.id
+            <if test="delFlag != null  and delFlag != ''">
+                and bvchp.del_flag = #{delFlag}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and bvchp.community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and bvchp.community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and bvchp.community_houses_id = #{communityHousesId}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and bvchp.personnel_id = #{personnelId}
+            </if>
+            <if test="vehicleId != null  and vehicleId != ''">
+                and bvchp.vehicle_id = #{vehicleId}
+            </if>
+            <if test="typeOfResidence != null  and typeOfResidence != ''">
+                and bvchp.type_of_residence = #{typeOfResidence}
+            </if>
+            <if test="homeowner != null  and homeowner != ''">
+                and bvchp.homeowner = #{homeowner}
+            </if>
+            <if test="parkingSpaceNumber != null  and parkingSpaceNumber != ''">
+                and bvchp.parking_space_number = #{parkingSpaceNumber}
+            </if>
+            <if test="delFlag != null  and delFlag != ''">
+                and bvchp.del_flag = #{delFlag}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and bvchp.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and bvchp.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectUuid"  resultType="String">
+        select uuid()
+    </select>
+
+    <select id="selectBaseVehicleCommunityHousesPersonnelById" parameterType="String"
+            resultMap="BaseVehicleCommunityHousesPersonnelResult">
+        <include refid="selectBaseVehicleCommunityHousesPersonnelVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseVehicleCommunityHousesPersonnel" parameterType="BaseVehicleCommunityHousesPersonnel">
+        insert into base_vehicle_community_houses_personnel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+            <if test="communityHousesId != null">community_houses_id,
+            </if>
+            <if test="personnelId != null">personnel_id,
+            </if>
+            <if test="vehicleId != null">vehicle_id,
+            </if>
+            <if test="typeOfResidence != null">type_of_residence,
+            </if>
+            <if test="homeowner != null">homeowner,
+            </if>
+            <if test="parkingSpaceNumber != null">parking_space_number,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+            <if test="communityHousesId != null">#{communityHousesId},
+            </if>
+            <if test="personnelId != null">#{personnelId},
+            </if>
+            <if test="vehicleId != null">#{vehicleId},
+            </if>
+            <if test="typeOfResidence != null">#{typeOfResidence},
+            </if>
+            <if test="homeowner != null">#{homeowner},
+            </if>
+            <if test="parkingSpaceNumber != null">#{parkingSpaceNumber},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseVehicleCommunityHousesPersonnel" parameterType="BaseVehicleCommunityHousesPersonnel">
+        update base_vehicle_community_houses_personnel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+            <if test="communityHousesId != null">community_houses_id =
+                #{communityHousesId},
+            </if>
+            <if test="personnelId != null">personnel_id =
+                #{personnelId},
+            </if>
+            <if test="vehicleId != null">vehicle_id =
+                #{vehicleId},
+            </if>
+            <if test="typeOfResidence != null">type_of_residence =
+                #{typeOfResidence},
+            </if>
+            <if test="homeowner != null">homeowner =
+                #{homeowner},
+            </if>
+            <if test="parkingSpaceNumber != null">parking_space_number =
+                #{parkingSpaceNumber},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseVehicleCommunityHousesPersonnelById" parameterType="String">
+        delete from base_vehicle_community_houses_personnel where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseVehicleCommunityHousesPersonnelByIds" parameterType="String">
+        delete from base_vehicle_community_houses_personnel where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseVehicleCommunityHousesPersonnelByIds" parameterType="String">
+        update base_vehicle_community_houses_personnel set del_flag = '1'  where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

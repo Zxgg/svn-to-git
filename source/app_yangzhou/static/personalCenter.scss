@@ -1,0 +1,70 @@
+.main{
+	// padding-top: 40rpx;
+}
+.top{
+	display: flex;
+	flex-direction: row;
+	// justify-content: center;
+	// align-items: center;
+	padding-left: 15%;
+	background-color: #E5EDEE;
+	padding-top: 7%;
+	padding-bottom: 7%;
+}
+.top image{
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+}
+.proprietor{
+	margin-bottom: 15rpx;
+	margin-left: 40rpx;
+	margin-top: 5%;
+}
+.personalData{
+	margin-left: 40rpx;
+	font-size: 24rpx;
+	margin-top: 10%;
+	color: #CDAD00;
+}
+.proprietor text{
+	font-size: 16rpx;
+	border: 1px solid #C0C0C0;
+	padding: 5rpx 20rpx;
+	border-radius: 8rpx;
+	margin-left: 20rpx;
+}
+.personalData text:first-child{
+	margin-right: 20rpx;
+}
+.personalData text:last-child{
+	margin-top: 30%;
+	margin-left: 20rpx;
+}
+.owner{
+	height: 100rpx;
+	line-height: 100rpx;
+	border-bottom: 1px solid #DCDCDC;
+	padding-left: 10%;
+	font-size: 28rpx;
+	color: #8B8B7A;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+}
+.owner text{
+	margin-left: 10%;
+}
+.owner image:first-child{
+	width: 50rpx;
+	height: 50rpx;
+	position: absolute;
+	top: 20%;
+}
+.owner image:last-child{
+	width: 35rpx;
+	height: 35rpx;
+	position: absolute;
+	top: 33%;
+	right: 10%;
+}

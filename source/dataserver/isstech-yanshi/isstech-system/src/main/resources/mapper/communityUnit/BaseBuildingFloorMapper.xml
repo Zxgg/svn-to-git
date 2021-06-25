@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseBuildingFloorMapper">
+
+    <resultMap type="BaseBuildingFloor" id="BaseBuildingFloorResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityBuildingId" column="community_building_id"/>
+        <result property="num" column="num"/>
+    </resultMap>
+
+    <sql id="selectBaseBuildingFloorVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, community_building_id, num from base_building_floor
+    </sql>
+
+    <select id="selectBaseBuildingFloorList" parameterType="BaseBuildingFloor" resultMap="BaseBuildingFloorResult">
+        <include refid="selectBaseBuildingFloorVo"/>
+        <where>
+            del_flag = '0'
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">
+                and community_building_id = #{communityBuildingId}
+            </if>
+            <if test="num != null  and num != ''">
+                and num = #{num}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                and community_id in
+                <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                    #{dataAccess.communityId}
+                </foreach>
+                and community_child_id in
+                <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                    #{dataAccess.communityChildId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseBuildingFloorById" parameterType="String" resultMap="BaseBuildingFloorResult">
+        <include refid="selectBaseBuildingFloorVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBaseBuildingFloor" parameterType="BaseBuildingFloor">
+        insert into base_building_floor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+            <if test="communityBuildingId != null">community_building_id,
+            </if>
+            <if test="num != null">num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+            <if test="communityBuildingId != null">#{communityBuildingId},
+            </if>
+            <if test="num != null">#{num},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseBuildingFloor" parameterType="BaseBuildingFloor">
+        update base_building_floor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+            <if test="communityBuildingId != null">community_building_id =
+                #{communityBuildingId},
+            </if>
+            <if test="num != null">num =
+                #{num},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseBuildingFloorById" parameterType="String">
+        delete from base_building_floor where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseBuildingFloorByIds" parameterType="String">
+        delete from base_building_floor where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseBuildingFloorByIds" parameterType="String">
+        update base_building_floor set del_flag = '1'
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

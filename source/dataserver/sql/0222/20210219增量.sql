@@ -1,0 +1,97 @@
+CREATE TABLE `base_data_request_notification` (
+  `id` varchar(38) COLLATE utf8mb4_bin NOT NULL COMMENT '唯一标识',
+  `create_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `del_flag` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '删除标志（0代表存在 1代表删除）',
+  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `community_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '社区id',
+  `community_child_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '小区id',
+  `person_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取人personID',
+  `material_type` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取材料类型（门禁卡、社保卡、居住证）',
+  `get_status` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取状态（待领取、已经领取、',
+  `get_time` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取时间点（比如每天的9点到18点，枚举）',
+  `get_location` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取地点',
+  `get_by_certificate` varchar(3072) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取时需要的携带的材料（比如本人身份证）',
+  `get_the` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '是否必须本人领取',
+  `get_replace_by_certificate` varchar(3072) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '带领人需要携带的证件（如果允许带领）',
+  `get_the_name` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '领取人姓名',
+  `pics` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '照片列表（比如领取签字）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='资料领取通知表';
+
+
+CREATE TABLE `base_certify_application_form` (
+  `id` varchar(38) COLLATE utf8mb4_bin NOT NULL COMMENT '唯一标识',
+  `create_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `del_flag` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '删除标志（0代表存在 1代表删除）',
+  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `community_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '社区id',
+  `community_child_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '小区id',
+  `person_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请人personID',
+  `certificate_type` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请办理的证件类型',
+  `required_material` varchar(3072) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '所需申请人提供的材料信息（由配置项中获取）',
+  `pics` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请人上传的图片列表',
+  `transaction_status` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '办理状态（已申请、审核通过、审核拒绝、待领取，已经领取）',
+  `apply_date` datetime DEFAULT NULL COMMENT '申请时间（创建时间）',
+  `receive_date` datetime DEFAULT NULL COMMENT '领取时间（状态改为已经领取的时间）',
+  `audit_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '审核人',
+  `audit_date` datetime DEFAULT NULL COMMENT '审核时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='证明办理申请单';
+
+
+CREATE TABLE `base_entrance_guard_apply` (
+  `id` varchar(38) COLLATE utf8mb4_bin NOT NULL COMMENT '唯一标识',
+  `create_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `del_flag` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '删除标志（0代表存在 1代表删除）',
+  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `community_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '社区id',
+  `community_child_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '小区id',
+  `person_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请人personID',
+  `person_name` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请人姓名',
+  `community_houses_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请人房屋ID（显示时抓换成具体地址）',
+  `stat` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '状态（待审核、审核通过、审核拒绝、待领取，已经领取）',
+  `reason` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '申请理由（新领门禁卡、补领门禁卡）',
+  `pics` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '照片列表（比如领取签字）',
+  `receive_time` datetime DEFAULT NULL COMMENT '领取时间（状态改为已经领取的时间）',
+  `checker_name` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '审核人',
+  `check_time` datetime DEFAULT NULL COMMENT '审核时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT=' 门禁申请表';
+
+CREATE TABLE `base_elevator_information` (
+  `id` varchar(38) COLLATE utf8mb4_bin NOT NULL COMMENT '唯一标识',
+  `create_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `del_flag` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '删除标志（0代表存在 1代表删除）',
+  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `community_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '社区id',
+  `community_child_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '小区id',
+  `community_building_id` varchar(38) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '楼栋id',
+  `unit` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '单元',
+  `elevator_number` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电梯编号',
+  `elevator_model` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电梯型号',
+  `elevator_install_date` datetime DEFAULT NULL COMMENT '电梯安装时间',
+  `check_record` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '年检记录json，年检人员，年检人员联系电话，年检人员编号，年检时间，年检结果',
+  `last_check_data` datetime DEFAULT NULL COMMENT '最后一次年检时间',
+  `last_check_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '最后一次年检人员',
+  `last_check_by_phone` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '最后一次年检人员联系电话',
+  `last_check_by_number` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '最后一次年检人员编号',
+  `last_check_result` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '最后一次年检结果',
+  `check_interval` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '年检间隔（多久检查一次，单位月）',
+  `elevator_factory_name` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电梯厂家名称',
+  `elevator_factory_by` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电梯厂家联系人',
+  `elevator_factory_phone` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电梯厂家联系电话',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='电梯信息表';
+

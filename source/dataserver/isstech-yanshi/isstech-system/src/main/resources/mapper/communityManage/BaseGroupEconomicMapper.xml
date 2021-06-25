@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseGroupEconomicMapper">
+
+    <resultMap type="CommunityGroupEconomicVo" id="BaseGroupEconomicResult">
+        <result property="id" column="id"/>
+        <result property="businessName" column="business_name"/>
+        <result property="type" column="type"/>
+        <result property="address" column="address"/>
+        <result property="tel" column="tel"/>
+        <result property="count" column="count"/>
+        <result property="socialCode" column="social_code"/>
+        <result property="orgCode" column="org_code"/>
+        <result property="legalType" column="legal_type"/>
+        <result property="legalIdcard" column="legal_idcard"/>
+        <result property="legalName" column="legal_name"/>
+        <result property="legalTel" column="legal_tel"/>
+        <result property="chargePersonName" column="charge_person_name"/>
+        <result property="chargePersonTel" column="charge_person_tel"/>
+        <result property="isDanger" column="is_danger"/>
+        <result property="dangerType" column="danger_type"/>
+        <result property="isFocus" column="is_focus"/>
+        <result property="isPartyConditions" column="is_party_conditions"/>
+        <result property="isParty" column="is_party"/>
+        <result property="partyMemberCount" column="party_member_count"/>
+        <result property="isUnion" column="is_union"/>
+        <result property="unionMemberCount" column="union_member_count"/>
+        <result property="isCommunist" column="is_communist"/>
+        <result property="communistMemberCount" column="communist_member_count"/>
+        <result property="isWomenFed" column="is_women_fed"/>
+        <result property="womenFedCount" column="women_fed_count"/>
+        <result property="longitudes" column="longitudes"/>
+        <result property="latitudes" column="latitudes"/>
+        <result property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="uUserId" column="u_user_id"/>
+        <result property="uDeptId" column="u_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+    </resultMap>
+
+    <sql id="selectBaseGroupEconomicVo">
+        select zz.id, business_name, zz.type, address, tel, count, social_code, org_code, legal_type, legal_idcard, legal_name, legal_tel, charge_person_name, charge_person_tel, is_danger, danger_type, is_focus, is_party_conditions, is_party, party_member_count, is_union, union_member_count, is_communist, communist_member_count, is_women_fed, women_fed_count, longitudes, latitudes, user_id, dept_id, zz.create_time, u_user_id, u_dept_id, zz.update_time, zz.del_flag,co.community_id,co.community_child_id,co.community_houses_id from base_group_economic zz left join base_community_organization co on co.social_organization_id = zz.id and co.del_flag = '0'
+    </sql>
+
+    <select id="selectBaseGroupEconomicList" parameterType="CommunityGroupEconomicVo" resultMap="BaseGroupEconomicResult">
+        <include refid="selectBaseGroupEconomicVo"/>
+        <where>
+            zz.del_flag = '0'
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and community_houses_id like concat('%', #{communityHousesId}, '%')
+            </if>
+            <if test="businessName != null  and businessName != ''">
+                and business_name like concat('%', #{businessName}, '%')
+            </if>
+            <if test="type != null  and type != ''">
+                and type = #{type}
+            </if>
+            <if test="address != null  and address != ''">
+                and address like concat('%', #{address}, '%')
+            </if>
+            <if test="tel != null  and tel != ''">
+                and tel like concat('%', #{tel}, '%')
+            </if>
+            <if test="count != null  and count != ''">
+                and count = #{count}
+            </if>
+            <if test="socialCode != null  and socialCode != ''">
+                and social_code like concat('%', #{socialCode}, '%')
+            </if>
+            <if test="orgCode != null  and orgCode != ''">
+                and org_code like concat('%', #{orgCode}, '%')
+            </if>
+            <if test="legalType != null  and legalType != ''">
+                and legal_type = #{legalType}
+            </if>
+            <if test="legalIdcard != null  and legalIdcard != ''">
+                and legal_idcard like concat('%', #{legalIdcard}, '%')
+            </if>
+            <if test="legalName != null  and legalName != ''">
+                and legal_name like concat('%', #{legalName}, '%')
+            </if>
+            <if test="legalTel != null  and legalTel != ''">
+                and legal_tel like concat('%', #{legalTel}, '%')
+            </if>
+            <if test="chargePersonName != null  and chargePersonName != ''">
+                and charge_person_name like concat('%', #{chargePersonName}, '%')
+            </if>
+            <if test="chargePersonTel != null  and chargePersonTel != ''">
+                and charge_person_tel like concat('%', #{chargePersonTel}, '%')
+            </if>
+            <if test="isDanger != null  and isDanger != ''">
+                and is_danger = #{isDanger}
+            </if>
+            <if test="dangerType != null  and dangerType != ''">
+                and danger_type = #{dangerType}
+            </if>
+            <if test="isFocus != null  and isFocus != ''">
+                and is_focus = #{isFocus}
+            </if>
+            <if test="isPartyConditions != null  and isPartyConditions != ''">
+                and is_party_conditions = #{isPartyConditions}
+            </if>
+            <if test="isParty != null  and isParty != ''">
+                and is_party = #{isParty}
+            </if>
+            <if test="partyMemberCount != null  and partyMemberCount != ''">
+                and party_member_count &gt;= #{partyMemberCount}
+            </if>
+            <if test="isUnion != null  and isUnion != ''">
+                and is_union = #{isUnion}
+            </if>
+            <if test="unionMemberCount != null  and unionMemberCount != ''">
+                and union_member_count &gt;= #{unionMemberCount}
+            </if>
+            <if test="isCommunist != null  and isCommunist != ''">
+                and is_communist = #{isCommunist}
+            </if>
+            <if test="communistMemberCount != null  and communistMemberCount != ''">
+                and communist_member_count &gt;= #{communistMemberCount}
+            </if>
+            <if test="isWomenFed != null  and isWomenFed != ''">
+                and is_women_fed = #{isWomenFed}
+            </if>
+            <if test="womenFedCount != null  and womenFedCount != ''">
+                and women_fed_count &gt;= #{womenFedCount}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseGroupEconomicById" parameterType="String" resultMap="BaseGroupEconomicResult">
+        <include refid="selectBaseGroupEconomicVo"/>
+        where zz.id = #{id}
+    </select>
+
+    <insert id="insertBaseGroupEconomic" parameterType="BaseGroupEconomic">
+        insert into base_group_economic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="businessName != null">business_name,
+            </if>
+            <if test="type != null">type,
+            </if>
+            <if test="address != null">address,
+            </if>
+            <if test="tel != null">tel,
+            </if>
+            <if test="count != null">count,
+            </if>
+            <if test="socialCode != null">social_code,
+            </if>
+            <if test="orgCode != null">org_code,
+            </if>
+            <if test="legalType != null">legal_type,
+            </if>
+            <if test="legalIdcard != null">legal_idcard,
+            </if>
+            <if test="legalName != null">legal_name,
+            </if>
+            <if test="legalTel != null">legal_tel,
+            </if>
+            <if test="chargePersonName != null">charge_person_name,
+            </if>
+            <if test="chargePersonTel != null">charge_person_tel,
+            </if>
+            <if test="isDanger != null">is_danger,
+            </if>
+            <if test="dangerType != null">danger_type,
+            </if>
+            <if test="isFocus != null">is_focus,
+            </if>
+            <if test="isPartyConditions != null">is_party_conditions,
+            </if>
+            <if test="isParty != null">is_party,
+            </if>
+            <if test="partyMemberCount != null">party_member_count,
+            </if>
+            <if test="isUnion != null">is_union,
+            </if>
+            <if test="unionMemberCount != null">union_member_count,
+            </if>
+            <if test="isCommunist != null">is_communist,
+            </if>
+            <if test="communistMemberCount != null">communist_member_count,
+            </if>
+            <if test="isWomenFed != null">is_women_fed,
+            </if>
+            <if test="womenFedCount != null">women_fed_count,
+            </if>
+            <if test="longitudes != null">longitudes,
+            </if>
+            <if test="latitudes != null">latitudes,
+            </if>
+            <if test="userId != null">user_id,
+            </if>
+            <if test="deptId != null">dept_id,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="uUserId != null">u_user_id,
+            </if>
+            <if test="uDeptId != null">u_dept_id,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="businessName != null">#{businessName},
+            </if>
+            <if test="type != null">#{type},
+            </if>
+            <if test="address != null">#{address},
+            </if>
+            <if test="tel != null">#{tel},
+            </if>
+            <if test="count != null">#{count},
+            </if>
+            <if test="socialCode != null">#{socialCode},
+            </if>
+            <if test="orgCode != null">#{orgCode},
+            </if>
+            <if test="legalType != null">#{legalType},
+            </if>
+            <if test="legalIdcard != null">#{legalIdcard},
+            </if>
+            <if test="legalName != null">#{legalName},
+            </if>
+            <if test="legalTel != null">#{legalTel},
+            </if>
+            <if test="chargePersonName != null">#{chargePersonName},
+            </if>
+            <if test="chargePersonTel != null">#{chargePersonTel},
+            </if>
+            <if test="isDanger != null">#{isDanger},
+            </if>
+            <if test="dangerType != null">#{dangerType},
+            </if>
+            <if test="isFocus != null">#{isFocus},
+            </if>
+            <if test="isPartyConditions != null">#{isPartyConditions},
+            </if>
+            <if test="isParty != null">#{isParty},
+            </if>
+            <if test="partyMemberCount != null">#{partyMemberCount},
+            </if>
+            <if test="isUnion != null">#{isUnion},
+            </if>
+            <if test="unionMemberCount != null">#{unionMemberCount},
+            </if>
+            <if test="isCommunist != null">#{isCommunist},
+            </if>
+            <if test="communistMemberCount != null">#{communistMemberCount},
+            </if>
+            <if test="isWomenFed != null">#{isWomenFed},
+            </if>
+            <if test="womenFedCount != null">#{womenFedCount},
+            </if>
+            <if test="longitudes != null">#{longitudes},
+            </if>
+            <if test="latitudes != null">#{latitudes},
+            </if>
+            <if test="userId != null">#{userId},
+            </if>
+            <if test="deptId != null">#{deptId},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="uUserId != null">#{uUserId},
+            </if>
+            <if test="uDeptId != null">#{uDeptId},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseGroupEconomic" parameterType="BaseGroupEconomic">
+        update base_group_economic
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="businessName != null">business_name =
+                #{businessName},
+            </if>
+            <if test="type != null">type =
+                #{type},
+            </if>
+            <if test="address != null">address =
+                #{address},
+            </if>
+            <if test="tel != null">tel =
+                #{tel},
+            </if>
+            <if test="count != null">count =
+                #{count},
+            </if>
+            <if test="socialCode != null">social_code =
+                #{socialCode},
+            </if>
+            <if test="orgCode != null">org_code =
+                #{orgCode},
+            </if>
+            <if test="legalType != null">legal_type =
+                #{legalType},
+            </if>
+            <if test="legalIdcard != null">legal_idcard =
+                #{legalIdcard},
+            </if>
+            <if test="legalName != null">legal_name =
+                #{legalName},
+            </if>
+            <if test="legalTel != null">legal_tel =
+                #{legalTel},
+            </if>
+            <if test="chargePersonName != null">charge_person_name =
+                #{chargePersonName},
+            </if>
+            <if test="chargePersonTel != null">charge_person_tel =
+                #{chargePersonTel},
+            </if>
+            <if test="isDanger != null">is_danger =
+                #{isDanger},
+            </if>
+            <if test="dangerType != null">danger_type =
+                #{dangerType},
+            </if>
+            <if test="isFocus != null">is_focus =
+                #{isFocus},
+            </if>
+            <if test="isPartyConditions != null">is_party_conditions =
+                #{isPartyConditions},
+            </if>
+            <if test="isParty != null">is_party =
+                #{isParty},
+            </if>
+            <if test="partyMemberCount != null">party_member_count =
+                #{partyMemberCount},
+            </if>
+            <if test="isUnion != null">is_union =
+                #{isUnion},
+            </if>
+            <if test="unionMemberCount != null">union_member_count =
+                #{unionMemberCount},
+            </if>
+            <if test="isCommunist != null">is_communist =
+                #{isCommunist},
+            </if>
+            <if test="communistMemberCount != null">communist_member_count =
+                #{communistMemberCount},
+            </if>
+            <if test="isWomenFed != null">is_women_fed =
+                #{isWomenFed},
+            </if>
+            <if test="womenFedCount != null">women_fed_count =
+                #{womenFedCount},
+            </if>
+            <if test="longitudes != null">longitudes =
+                #{longitudes},
+            </if>
+            <if test="latitudes != null">latitudes =
+                #{latitudes},
+            </if>
+            <if test="userId != null">user_id =
+                #{userId},
+            </if>
+            <if test="deptId != null">dept_id =
+                #{deptId},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="uUserId != null">u_user_id =
+                #{uUserId},
+            </if>
+            <if test="uDeptId != null">u_dept_id =
+                #{uDeptId},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseGroupEconomicById" parameterType="String">
+        delete from base_group_economic where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseGroupEconomicByIds" parameterType="String">
+        delete from base_group_economic where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseGroupEconomicByIds" parameterType="String">
+        update base_group_economic set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BasePersonnelInformationMapper">
+
+    <resultMap type="BasePersonnelInformation" id="BasePersonnelInformationResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="oldName" column="old_name"/>
+        <result property="sex" column="sex"/>
+        <result property="nationality" column="nationality"/>
+        <result property="idType" column="id_type"/>
+        <result property="identificationNumber" column="identification_number"/>
+        <result property="idcardStartDate" column="idcard_start_date"/>
+        <result property="idcardEndDate" column="idcard_end_date"/>
+        <result property="nation" column="nation"/>
+        <result property="location" column="location"/>
+        <result property="residenceDetail" column="residence_detail"/>
+        <result property="address" column="address"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="marital" column="marital"/>
+        <result property="political" column="political"/>
+        <result property="degree" column="degree"/>
+        <result property="religion" column="religion"/>
+        <result property="profession" column="profession"/>
+        <result property="professioDetail" column="professio_detail"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="servicePremises" column="service_premises"/>
+        <result property="special" column="special"/>
+        <result property="limited" column="limited"/>
+        <result property="caring" column="caring"/>
+        <result property="floating" column="floating"/>
+        <result property="arrivalCountryDate" column="arrival_country_date"/>
+        <result property="arrivalProvinceDate" column="arrival_province_date"/>
+        <result property="departureDate" column="departure_date"/>
+        <result property="floatingReasons" column="floating_reasons"/>
+        <result property="cardType" column="card_type"/>
+        <result property="cardHandlingAgency" column="card_handling_agency"/>
+        <result property="cardNum" column="card_num"/>
+        <result property="cardRecordDate" column="card_record_date"/>
+        <result property="pics" column="pics"/>
+        <result property="checked" column="checked"/>
+        <result property="brithDate" column="brith_date"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="isSame" column="is_same"/>
+        <result property="doorNo" column="door_no"/>
+        <result property="householdIdc" column="household_idc"/>
+        <result property="householdName" column="household_name"/>
+        <result property="householdRelation" column="householdRelation"/>
+        <result property="householdPhone" column="household_phone"/>
+        <result property="fileId" column="file_id"/>
+        <result property="personType" column="person_type"/>
+        <result property="stayBehind" column="stay_behind"/>
+        <result property="identificationPositive" column="identification_positive"/>
+        <result property="identificationReverse" column="identification_reverse"/>
+        <result property="customTag" column="custom_tag"/>
+        <result property="gridId" column="grid_id"/>
+    </resultMap>
+
+    <resultMap type="PersonHousesVo" id="PersonHousesVoResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="oldName" column="old_name"/>
+        <result property="sex" column="sex"/>
+        <result property="nationality" column="nationality"/>
+        <result property="idType" column="id_type"/>
+        <result property="identificationNumber" column="identification_number"/>
+        <result property="idcardStartDate" column="idcard_start_date"/>
+        <result property="idcardEndDate" column="idcard_end_date"/>
+        <result property="nation" column="nation"/>
+        <result property="location" column="location"/>
+        <result property="residenceDetail" column="residence_detail"/>
+        <result property="address" column="address"/>
+        <result property="addressDetail" column="address_detail"/>
+        <result property="marital" column="marital"/>
+        <result property="political" column="political"/>
+        <result property="degree" column="degree"/>
+        <result property="religion" column="religion"/>
+        <result property="profession" column="profession"/>
+        <result property="professioDetail" column="professio_detail"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="special" column="special"/>
+        <result property="limited" column="limited"/>
+        <result property="caring" column="caring"/>
+        <result property="floating" column="floating"/>
+        <result property="arrivalCountryDate" column="arrival_country_date"/>
+        <result property="arrivalProvinceDate" column="arrival_province_date"/>
+        <result property="departureDate" column="departure_date"/>
+        <result property="floatingReasons" column="floating_reasons"/>
+        <result property="cardType" column="card_type"/>
+        <result property="cardHandlingAgency" column="card_handling_agency"/>
+        <result property="cardNum" column="card_num"/>
+        <result property="cardRecordDate" column="card_record_date"/>
+        <result property="pics" column="pics"/>
+        <result property="checked" column="checked"/>
+        <result property="relationshipWithHomeowner" column="relationship_with_homeowner"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="typeOfResidence" column="type_of_residence"/>
+        <result property="homeowner" column="homeowner"/>
+        <result property="homePerRemark" column="home_per_remark"/>
+        <result property="comHousesPerId" column="com_houses_per_id"/>
+        <result property="servicePremises" column="service_premises"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="isSame" column="is_same"/>
+        <result property="doorNo" column="door_no"/>
+        <result property="householdIdc" column="household_idc"/>
+        <result property="householdName" column="household_name"/>
+        <result property="householdRelation" column="householdRelation"/>
+        <result property="householdPhone" column="household_phone"/>
+        <result property="fileId" column="file_id"/>
+        <result property="personType" column="person_type"/>
+        <result property="stayBehind" column="stay_behind"/>
+        <result property="identificationPositive" column="identification_positive"/>
+        <result property="identificationReverse" column="identification_reverse"/>
+        <result property="customTag" column="custom_tag"/>
+    </resultMap>
+
+    <sql id="selectBasePersonnelInformationVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, name, old_name, sex, nationality, id_type,
+        identification_number, idcard_start_date, idcard_end_date, nation, location, residence_detail, address, address_detail,
+        marital, political, degree, religion, profession, professio_detail, phone_number, special, limited, caring, floating,
+        arrival_country_date, arrival_province_date, departure_date, floating_reasons, card_type, card_handling_agency, card_num,
+        card_record_date, pics, checked, brith_date,service_premises,community_id,community_child_id,img_url,is_same,door_no,household_idc,
+        household_name,householdRelation,household_phone,file_id,person_type,stay_behind,identification_positive,identification_reverse,custom_tag from base_personnel_information
+    </sql>
+
+    <sql id="selectPersonHousesVo">
+        select distinct bpi.*, bchp.relationship_with_homeowner,bchp.start_time ,bchp.end_time ,bchp.type_of_residence,bchp.homeowner,bchp.remark home_per_remark,bchp.id com_houses_per_id
+        from base_personnel_information bpi,base_community_houses_personnel bchp,base_community_houses bch
+    </sql>
+
+    <select id="selectBasePersonnelInformationList" parameterType="BasePersonnelInformation"
+            resultMap="BasePersonnelInformationResult">
+        <include refid="selectBasePersonnelInformationVo"/>
+        <where>
+            <!--            <if test="delFlag != null  and delFlag != ''">-->
+            <!--                and del_flag = #{delFlag}-->
+            <!--            </if>-->
+            del_flag='0'
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="oldName != null  and oldName != ''">
+                and old_name like concat('%', #{oldName}, '%')
+            </if>
+            <if test="sex != null  and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="nationality != null  and nationality != ''">
+                and nationality = #{nationality}
+            </if>
+            <if test="idType != null  and idType != ''">
+                and id_type = #{idType}
+            </if>
+            <if test="identificationNumber != null  and identificationNumber != ''">
+                and identification_number like concat('%', #{identificationNumber}, '%')
+            </if>
+            <if test="nation != null  and nation != ''">
+                and nation = #{nation}
+            </if>
+            <if test="location != null  and location != ''">
+                and location like concat('%', #{location}, '%')
+            </if>
+            <if test="residenceDetail != null  and residenceDetail != ''">
+                and residence_detail like concat('%', #{residenceDetail}, '%')
+            </if>
+            <if test="address != null  and address != ''">
+                and address = #{address}
+            </if>
+            <if test="addressDetail != null  and addressDetail != ''">
+                and address_detail like concat('%', #{addressDetail}, '%')
+            </if>
+            <if test="marital != null  and marital != ''">
+                and marital = #{marital}
+            </if>
+            <if test="political != null  and political != ''">
+                and political = #{political}
+            </if>
+            <if test="degree != null  and degree != ''">
+                and degree = #{degree}
+            </if>
+            <if test="religion != null  and religion != ''">
+                and religion = #{religion}
+            </if>
+            <if test="profession != null  and profession != ''">
+                and profession like concat('%', #{profession}, '%')
+            </if>
+            <if test="professioDetail != null  and professioDetail != ''">
+                and professio_detail = #{professioDetail}
+            </if>
+            <if test="phoneNumber != null  and phoneNumber != ''">
+                and phone_number like concat('%', #{phoneNumber}, '%')
+            </if>
+            <choose>
+                <when test="special != null  and special != '' and special == '0' ">
+                    and special = '0'
+                </when>
+                <when test="special != null  and special != '' and special == '-1' ">
+                    and special != '0'
+                </when>
+                <when test="special == null  or special == ''">
+                </when>
+                <otherwise>
+                    and special = #{special}
+                </otherwise>
+            </choose>
+            <if test="limited != null  and limited != ''">
+                and limited = #{limited}
+            </if>
+            <if test="caring != null  and caring != ''">
+                and caring = #{caring}
+            </if>
+            <if test="floating != null  and floating != ''">
+                and floating = #{floating}
+            </if>
+            <if test="arrivalCountryDate != null ">
+                and arrival_country_date = #{arrivalCountryDate}
+            </if>
+            <if test="arrivalProvinceDate != null ">
+                and arrival_province_date = #{arrivalProvinceDate}
+            </if>
+            <if test="departureDate != null ">
+                and departure_date = #{departureDate}
+            </if>
+            <if test="floatingReasons != null  and floatingReasons != ''">
+                and floating_reasons like concat('%', #{floatingReasons}, '%')
+            </if>
+            <if test="cardType != null  and cardType != ''">
+                and card_type = #{cardType}
+            </if>
+            <if test="cardHandlingAgency != null  and cardHandlingAgency != ''">
+                and card_handling_agency = #{cardHandlingAgency}
+            </if>
+            <if test="cardNum != null  and cardNum != ''">
+                and card_num = #{cardNum}
+            </if>
+            <if test="cardRecordDate != null  and cardRecordDate != ''">
+                and card_record_date = #{cardRecordDate}
+            </if>
+            <if test="pics != null  and pics != ''">
+                and pics = #{pics}
+            </if>
+            <if test="checked != null  and checked != ''">
+                and checked = #{checked}
+            </if>
+            <if test="brithDate != null ">
+                and brith_date = #{brithDate}
+            </if>
+            <if test="servicePremises != null ">
+                and service_premises = #{servicePremises}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="isSame != null  and isSame != ''">
+                and is_same = #{isSame}
+            </if>
+            <if test="doorNo != null  and doorNo != ''">
+                and door_no = #{doorNo}
+            </if>
+            <if test="householdIdc != null  and householdIdc != ''">
+                and household_idc = #{householdIdc}
+            </if>
+            <if test="householdName != null  and householdName != ''">
+                and household_name = #{householdName}
+            </if>
+            <if test="householdRelation != null  and householdRelation != ''">
+                and householdRelation = #{householdRelation}
+            </if>
+            <if test="householdPhone != null  and householdPhone != ''">
+                and household_phone = #{householdPhone}
+            </if>
+            <if test="fileId != null  and fileId != ''">
+                and file_id = #{fileId}
+            </if>
+            <if test="personType != null  and personType != ''">
+                and person_type = #{personType}
+            </if>
+            <if test="stayBehind != null  and stayBehind != ''">
+                and stay_behind = #{stayBehind}
+            </if>
+            <if test="customTag != null  and customTag != ''">
+                and custom_tag = #{customTag}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+        order by create_time desc,id desc
+    </select>
+
+    <select id="selectBasePersonnelInformationById" parameterType="String" resultMap="BasePersonnelInformationResult">
+        <include refid="selectBasePersonnelInformationVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <insert id="insertBasePersonnelInformation" parameterType="BasePersonnelInformation">
+        insert into base_personnel_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="delFlag == null or delFlag == ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="oldName != null">old_name,
+            </if>
+            <if test="sex != null">sex,
+            </if>
+            <if test="nationality != null">nationality,
+            </if>
+            <if test="idType != null">id_type,
+            </if>
+            <if test="identificationNumber != null">identification_number,
+            </if>
+            <if test="idcardStartDate != null">idcard_start_date,
+            </if>
+            <if test="idcardEndDate != null">idcard_end_date,
+            </if>
+            <if test="nation != null">nation,
+            </if>
+            <if test="location != null">location,
+            </if>
+            <if test="residenceDetail != null">residence_detail,
+            </if>
+            <if test="address != null">address,
+            </if>
+            <if test="addressDetail != null">address_detail,
+            </if>
+            <if test="marital != null">marital,
+            </if>
+            <if test="political != null">political,
+            </if>
+            <if test="degree != null">degree,
+            </if>
+            <if test="religion != null">religion,
+            </if>
+            <if test="profession != null">profession,
+            </if>
+            <if test="professioDetail != null">professio_detail,
+            </if>
+            <if test="phoneNumber != null">phone_number,
+            </if>
+            <if test="special != null">special,
+            </if>
+            <if test="limited != null">limited,
+            </if>
+            <if test="caring != null">caring,
+            </if>
+            <if test="floating != null">floating,
+            </if>
+            <if test="arrivalCountryDate != null">arrival_country_date,
+            </if>
+            <if test="arrivalProvinceDate != null">arrival_province_date,
+            </if>
+            <if test="departureDate != null">departure_date,
+            </if>
+            <if test="floatingReasons != null">floating_reasons,
+            </if>
+            <if test="cardType != null">card_type,
+            </if>
+            <if test="cardHandlingAgency != null">card_handling_agency,
+            </if>
+            <if test="cardNum != null">card_num,
+            </if>
+            <if test="cardRecordDate != null">card_record_date,
+            </if>
+            <if test="pics != null">pics,
+            </if>
+            <if test="checked != null">checked,
+            </if>
+            <if test="brithDate != null">brith_date,
+            </if>
+            <if test="servicePremises != null">service_premises,
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                community_id,
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                community_child_id,
+            </if>
+            <if test="imgUrl != null  and imgUrl != ''">img_url,</if>
+            <if test="isSame != null  and isSame != ''">
+                is_same,
+            </if>
+            <if test="doorNo != null  and doorNo != ''">
+                door_no,
+            </if>
+            <if test="householdIdc != null  and householdIdc != ''">
+                household_idc,
+            </if>
+            <if test="householdName != null  and householdName != ''">
+                household_name,
+            </if>
+            <if test="householdRelation != null  and householdRelation != ''">
+                householdRelation,
+            </if>
+            <if test="householdPhone != null  and householdPhone != ''">
+                household_phone,
+            </if>
+            <if test="fileId != null  and fileId != ''">
+                file_id,
+            </if>
+            <if test="personType != null">
+                person_type,
+            </if>
+            <if test="stayBehind != null">
+                stay_behind,
+            </if>
+            <if test="identificationPositive != null">identification_positive,</if>
+            <if test="identificationReverse != null">identification_reverse,</if>
+            <if test="customTag != null">custom_tag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="delFlag == null or delFlag == ''">0,
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="oldName != null">#{oldName},
+            </if>
+            <if test="sex != null">#{sex},
+            </if>
+            <if test="nationality != null">#{nationality},
+            </if>
+            <if test="idType != null">#{idType},
+            </if>
+            <if test="identificationNumber != null">#{identificationNumber},
+            </if>
+            <if test="idcardStartDate != null">#{idcardStartDate},
+            </if>
+            <if test="idcardEndDate != null">#{idcardEndDate},
+            </if>
+            <if test="nation != null">#{nation},
+            </if>
+            <if test="location != null">#{location},
+            </if>
+            <if test="residenceDetail != null">#{residenceDetail},
+            </if>
+            <if test="address != null">#{address},
+            </if>
+            <if test="addressDetail != null">#{addressDetail},
+            </if>
+            <if test="marital != null">#{marital},
+            </if>
+            <if test="political != null">#{political},
+            </if>
+            <if test="degree != null">#{degree},
+            </if>
+            <if test="religion != null">#{religion},
+            </if>
+            <if test="profession != null">#{profession},
+            </if>
+            <if test="professioDetail != null">#{professioDetail},
+            </if>
+            <if test="phoneNumber != null">#{phoneNumber},
+            </if>
+            <if test="special != null">#{special},
+            </if>
+            <if test="limited != null">#{limited},
+            </if>
+            <if test="caring != null">#{caring},
+            </if>
+            <if test="floating != null">#{floating},
+            </if>
+            <if test="arrivalCountryDate != null">#{arrivalCountryDate},
+            </if>
+            <if test="arrivalProvinceDate != null">#{arrivalProvinceDate},
+            </if>
+            <if test="departureDate != null">#{departureDate},
+            </if>
+            <if test="floatingReasons != null">#{floatingReasons},
+            </if>
+            <if test="cardType != null">#{cardType},
+            </if>
+            <if test="cardHandlingAgency != null">#{cardHandlingAgency},
+            </if>
+            <if test="cardNum != null">#{cardNum},
+            </if>
+            <if test="cardRecordDate != null">#{cardRecordDate},
+            </if>
+            <if test="pics != null">#{pics},
+            </if>
+            <if test="checked != null">#{checked},
+            </if>
+            <if test="brithDate != null">#{brithDate},
+            </if>
+            <if test="servicePremises != null">#{servicePremises},
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                #{communityId},
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                #{communityChildId},
+            </if>
+            <if test="imgUrl != null  and imgUrl != ''">#{imgUrl},</if>
+            <if test="isSame != null  and isSame != ''">
+                #{isSame},
+            </if>
+            <if test="doorNo != null  and doorNo != ''">
+                #{doorNo},
+            </if>
+            <if test="householdIdc != null  and householdIdc != ''">
+                #{householdIdc},
+            </if>
+            <if test="householdName != null  and householdName != ''">
+                #{householdName},
+            </if>
+            <if test="householdRelation != null  and householdRelation != ''">
+                #{householdRelation},
+            </if>
+            <if test="householdPhone != null  and householdPhone != ''">
+                #{householdPhone},
+            </if>
+            <if test="fileId != null  and fileId != ''">
+                #{fileId},
+            </if>
+            <if test="personType != null">
+                #{personType},
+            </if>
+            <if test="stayBehind != null">
+                #{stayBehind},
+            </if>
+            <if test="identificationPositive != null">#{identificationPositive},</if>
+            <if test="identificationReverse != null">#{identificationReverse},</if>
+            <if test="customTag != null">#{customTag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBasePersonnelInformation" parameterType="BasePersonnelInformation">
+        update base_personnel_information
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="oldName != null">old_name =
+                #{oldName},
+            </if>
+            <if test="sex != null">sex =
+                #{sex},
+            </if>
+            <if test="nationality != null">nationality =
+                #{nationality},
+            </if>
+            <if test="idType != null">id_type =
+                #{idType},
+            </if>
+            <if test="identificationNumber != null">identification_number =
+                #{identificationNumber},
+            </if>
+            <if test="idcardStartDate != null">idcard_start_date =
+                #{idcardStartDate},
+            </if>
+            <if test="idcardEndDate != null">idcard_end_date =
+                #{idcardEndDate},
+            </if>
+            <if test="nation != null">nation =
+                #{nation},
+            </if>
+            <if test="location != null">location =
+                #{location},
+            </if>
+            <if test="residenceDetail != null">residence_detail =
+                #{residenceDetail},
+            </if>
+            <if test="address != null">address =
+                #{address},
+            </if>
+            <if test="addressDetail != null">address_detail =
+                #{addressDetail},
+            </if>
+            <if test="marital != null">marital =
+                #{marital},
+            </if>
+            <if test="political != null">political =
+                #{political},
+            </if>
+            <if test="degree != null">degree =
+                #{degree},
+            </if>
+            <if test="religion != null">religion =
+                #{religion},
+            </if>
+            <if test="profession != null">profession =
+                #{profession},
+            </if>
+            <if test="professioDetail != null">professio_detail =
+                #{professioDetail},
+            </if>
+            <if test="phoneNumber != null">phone_number =
+                #{phoneNumber},
+            </if>
+            <if test="special != null">special =
+                #{special},
+            </if>
+            <if test="limited != null">limited =
+                #{limited},
+            </if>
+            <if test="caring != null">caring =
+                #{caring},
+            </if>
+            <if test="floating != null">floating =
+                #{floating},
+            </if>
+            <if test="arrivalCountryDate != null">arrival_country_date =
+                #{arrivalCountryDate},
+            </if>
+            <if test="arrivalProvinceDate != null">arrival_province_date =
+                #{arrivalProvinceDate},
+            </if>
+            <if test="departureDate != null">departure_date =
+                #{departureDate},
+            </if>
+            <if test="floatingReasons != null">floating_reasons =
+                #{floatingReasons},
+            </if>
+            <if test="cardType != null">card_type =
+                #{cardType},
+            </if>
+            <if test="cardHandlingAgency != null">card_handling_agency =
+                #{cardHandlingAgency},
+            </if>
+            <if test="cardNum != null">card_num =
+                #{cardNum},
+            </if>
+            <if test="cardRecordDate != null">card_record_date =
+                #{cardRecordDate},
+            </if>
+            <if test="pics != null">pics =
+                #{pics},
+            </if>
+            <if test="checked != null">checked =
+                #{checked},
+            </if>
+            <if test="brithDate != null">brith_date =
+                #{brithDate},
+            </if>
+            <if test="servicePremises != null">service_premises =
+                #{servicePremises},
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                community_id = #{communityId},
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                community_child_id = #{communityChildId},
+            </if>
+            <if test="imgUrl != null  and imgUrl != ''">img_url = #{imgUrl},</if>
+            <if test="isSame != null  and isSame != ''">
+                is_same = #{isSame},
+            </if>
+            <if test="doorNo != null  and doorNo != ''">
+                door_no = #{doorNo},
+            </if>
+            <if test="householdIdc != null  and householdIdc != ''">
+                household_idc = #{householdIdc},
+            </if>
+            <if test="householdName != null  and householdName != ''">
+                household_name = #{householdName},
+            </if>
+            <if test="householdRelation != null  and householdRelation != ''">
+                householdRelation = #{householdRelation},
+            </if>
+            <if test="householdPhone != null  and householdPhone != ''">
+                household_phone = #{householdPhone},
+            </if>
+            <if test="fileId != null  and fileId != ''">
+                file_id = #{fileId},
+            </if>
+            <if test="personType != null">
+                person_type = #{personType},
+            </if>
+            <if test="stayBehind != null">
+                stay_behind = #{stayBehind},
+            </if>
+            <if test="identificationPositive != null">identification_positive = #{identificationPositive},</if>
+            <if test="identificationReverse != null">identification_reverse = #{identificationReverse},</if>
+            <if test="customTag != null">custom_tag = #{customTag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBasePersonnelInformationById" parameterType="String">
+        delete from base_personnel_information where id = #{id}
+    </delete>
+
+    <delete id="deleteBasePersonnelInformationByIds" parameterType="String">
+        delete from base_personnel_information where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBasePersonnelInformationByIds" parameterType="String">
+        update base_personnel_information set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectPerInformByHousesId" parameterType="String" resultMap="PersonHousesVoResult">
+        <include refid="selectPersonHousesVo"/>
+        where bchp.community_houses_id = bch.id and bpi.id = bchp.personnel_id
+        and bpi.del_flag='0' and bch.del_flag='0' and bchp.del_flag='0'
+        and bch.id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectByIdList" resultMap="BasePersonnelInformationResult">
+        <include refid="selectBasePersonnelInformationVo"/>
+        where del_flag='0' and id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updateSpecialByIds" parameterType="String">
+        update base_personnel_information set special = '0' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="queryCount" parameterType="QueryVo" resultType="java.lang.Integer">
+        select count(1) from base_personnel_information bpi
+        <where>
+            <if test="delFlag != null  and delFlag != ''">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryBasePerson" parameterType="QueryVo" resultMap="BasePersonnelInformationResult">
+        select bpi.name,bpi.sex ,bpi.identification_number ,
+        CASE WHEN id_type ='111' THEN '0' WHEN id_type='414' THEN '1' WHEN id_type='114' THEN '3' else '5' END as
+        id_type
+        ,sdd.dict_label nationality,nation ,brith_date,bpi.remark ,file_id ,professio_detail
+        from base_personnel_information bpi,sys_dict_data sdd
+        <where>
+            sdd.dict_type='base_nationality'
+            and bpi.nationality = sdd.dict_value
+            <if test="delFlag != null  and delFlag != ''">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+        </where>
+        limit #{limitNum},#{limitSize}
+    </select>
+
+    <select id="sumByGrid" parameterType="String" resultMap="BasePersonnelInformationResult">
+          <include refid="selectBasePersonnelInformationVo"/>
+          <where>
+              id in(
+              select personnel_id from base_community_houses_personnel t1  left JOIN
+              base_community_houses t2 on t1.community_houses_id=t2.id
+              <where>
+                  <if test="_parameter != null  and _parameter != ''">
+                      t2.grid_id=#{gridId}
+                  </if>
+              </where>
+              )
+          </where>
+    </select>
+
+</mapper>

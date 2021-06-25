@@ -1,0 +1,1794 @@
+{
+	"info": {
+		"_postman_id": "c535c6a2-959b-433c-9b50-96df8858cb91",
+		"name": "智慧网格-svn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录相关",
+			"item": [
+				{
+					"name": "登陆",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\",\r\n    \"code\":\"12\",\r\n    \"uuid\":\"165a5db35e5c46a48fac3f726e99aa78\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://10.16.123.58:7089/login",
+							"protocol": "http",
+							"host": [
+								"10",
+								"16",
+								"123",
+								"58"
+							],
+							"port": "7089",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取验证码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://10.16.123.58:7089/captchaImage",
+							"protocol": "http",
+							"host": [
+								"10",
+								"16",
+								"123",
+								"58"
+							],
+							"port": "7089",
+							"path": [
+								"captchaImage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "前端",
+			"item": [
+				{
+					"name": " 首页",
+					"item": [
+						{
+							"name": "首页 - 关爱人员事件",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNhODJhYzhjLWU1NGQtNDRjNC1hMzI0LTc2YmIyOGY4Njk2YiJ9.OiXxzqYXv8qqUaN8k_g3YLeZ-5pyUpz8jaa8gUW9hBz-aD0WOI2BrfjLFFDELJXODjIvzcpcSAEZSidXlKu6UQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countCaringEvent",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countCaringEvent"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页- 人员占比统计（本地人，外地人，访客量）",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUxOTdmMWE5LTllN2QtNDQ5Yy1iMzI3LTc3ZmM0MjY5YmJhOSJ9.bSfF9uQVm2aya7ruftHpIf7b1ljXfW7RZk1ngm65UWmaS0szb-H6JpT-hI8ffiuoTR8uaHyLIXS10gsapuaedQ"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countPerProportion",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countPerProportion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页-社区内组织统计",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjY3ODBkODQ1LTc1ZDAtNGY4OC1hMzI3LWEwZWFiN2RiZDllMSJ9.24iixzTX5dQ7LV0pPvkX3p6J7i_CvodFDN0WKsPqM7tyXrLi_AsVer6WZttvM3-NQ1giLDyziS_aAygd_SxiRQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/countOrganization",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countOrganization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页-摄像头数量  是否在线(0否1是,默认1)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countCaptureOnline",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countCaptureOnline"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 房屋统计（包括房屋总数和入住率）",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countHouse?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countHouse"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 最近车辆活动数未完成",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/recentVehicleActivity",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"recentVehicleActivity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 事件数量统计",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/eventNumberStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"eventNumberStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id  非必填"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id  非必填"
+										}
+									]
+								},
+								"description": "首页 - 事件数量统计"
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 事件环比",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/eventRing?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"eventRing"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id 非必填"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id 非必填"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 人口流动情况",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/flowPopulation?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"flowPopulation"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id  非必填"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id  非必填"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "统计房屋使用类型",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNhODJhYzhjLWU1NGQtNDRjNC1hMzI0LTc2YmIyOGY4Njk2YiJ9.OiXxzqYXv8qqUaN8k_g3YLeZ-5pyUpz8jaa8gUW9hBz-aD0WOI2BrfjLFFDELJXODjIvzcpcSAEZSidXlKu6UQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/countHouseUseNature?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countHouseUseNature"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 特殊/管控人群",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/specialPopulation?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"specialPopulation"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "人员信息",
+					"item": [
+						{
+							"name": "人员信息 - 人员信息统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/perStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"perStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 文化程度统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/educationStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"educationStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 年龄统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/ageStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"ageStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 民族统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/nationStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"nationStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 人员住房信息统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/perHouseInformStatistics?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"perHouseInformStatistics"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 各小区人员数量",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/eachCommunityPerNum?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"eachCommunityPerNum"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息 - 特殊/管控人群",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNiNWQ2MGVhLWNhYzUtNGJkMy1hNDAwLWFmNGJjNmI5ODNiNCJ9.XiM3_KG_phGCalU97QVYozqAv0lJGsM15ajDJJxn-47aiut9zM9iZfgG5TJSiVgir7ezvcurf6U5SwDp79TqfA"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/specialPopulation?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"specialPopulation"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "关爱人员信息",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImE3YzM5MDg0LTI5M2MtNDIzNC04ZDM3LTdiMmUxNjU5M2NjMCJ9.aK5mRaN1Lcr5cbUmV06KuR_hLzpNYAazoIgwORgyrhXgyorzgxGvmzPZyzQkH9y_Bjrlowfsi-1c8KItGUPtdw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countCaringType?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countCaringType"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员信息-类型统计（特殊，管控，关爱）",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjZmN2MxZDc2LTU2MjUtNDMyZS1iYjEzLWYzMDZkMzYxODk2MiJ9.CWK0UmQe66xhJsZ0vayfz55ixkBCertxsKK2YLHIVU2Ke7GIg62cgXGrEAolWg-IuiiaAXdvRkFSFunvbptOZQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countNoNormalClass?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countNoNormalClass"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 人口流动情况",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/flowPopulation?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"flowPopulation"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id  非必填"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id  非必填"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "各种类型的关爱提醒的数量",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjFkYjUwYjgwLTI4Y2YtNDc1ZS05OThhLWQwMWQ0MmNiYTMwYiJ9.q30nlQIYidyNjxNss_07jPVZVRl9dGK8mx-_Gf_BJxPgqVlwwDqGTS3kegucb4DwnMuq5FSvTZbmWu1I04x9cw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countCaringEventByType?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countCaringEventByType"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "社区房屋",
+					"item": [
+						{
+							"name": "房屋数量树形图",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/communityUnit/community/selectTreeInfo?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"communityUnit",
+										"community",
+										"selectTreeInfo"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "统计房屋使用类型",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countHouseUseNature?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countHouseUseNature"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页 - 房屋统计（包括房屋总数和入住率）",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImUyZmQyM2NlLTA1YTgtNGY1OS1iZDBjLTAzZTJkYzhkOGU4MiJ9.ADPNp4qOtYGvGtXASkQ5jhnQ6pikczIixSmn4TmGJ9dXUr39N3y2z3MffMyjX92eVcNsFtqFqBlDvoz4bC07Bw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countHouse?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countHouse"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002",
+											"description": "社区id"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"description": "小区id"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "社区面积",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNkNTc2MWY2LTFjNDMtNDEwMS04NDkxLTVkZGQ4MjAxZjZmMiJ9.RRbeCbKGYC92U1Crh4v64uVKqfYSKQvZ4fwVzNdCCBc2dIPcY-ZdK6ZlT3RgNbVg-3abE9qWRWRRhegcJG4wEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countCommunityArea?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countCommunityArea"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "车辆信息",
+					"item": [
+						{
+							"name": "小区车辆统计",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjAwNDMyMjMwLTgwMTEtNDVjOS05NmUzLTczNTZkNTFlZjNhZiJ9.zzGrGSe8zIntKV2j-RKWfvgBVt9r7Ppw4OUlDQ6OxD0lcJiJd3YTa_9qZtnKsPyl9bss-wxQuRucpgX_BzcwJw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/eachCommunityVehicle?communityId=2b4a4772-296e-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"eachCommunityVehicle"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "管控车辆",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjAwNDMyMjMwLTgwMTEtNDVjOS05NmUzLTczNTZkNTFlZjNhZiJ9.zzGrGSe8zIntKV2j-RKWfvgBVt9r7Ppw4OUlDQ6OxD0lcJiJd3YTa_9qZtnKsPyl9bss-wxQuRucpgX_BzcwJw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjIxZWY1NmRkLTYwODItNGFlOS04OTM3LWQyNzUxYmRjZmUzNCJ9.uJZ7FE-JCuEGW8aQ92qBKvzQ-ySYkyIkqeA0MdSv8nNedinpz_PahSKkpFwjWNiocnCP0-lrx3FCVWx7gN2hGw",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/getLimitedByCommunity",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"getLimitedByCommunity"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "车辆类别",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjAwNDMyMjMwLTgwMTEtNDVjOS05NmUzLTczNTZkNTFlZjNhZiJ9.zzGrGSe8zIntKV2j-RKWfvgBVt9r7Ppw4OUlDQ6OxD0lcJiJd3YTa_9qZtnKsPyl9bss-wxQuRucpgX_BzcwJw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/getVehicleSort?communityId=2b4a4772-296e-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"getVehicleSort"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "车辆的使用年限（0-6年，6年以上到15年，15年以上）",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjkzMWI4M2M1LWM5MDYtNGIwNy1iMDY3LWVhMDNjOWNhOTA2MiJ9.9rJ6tNMCR_IpWZ2djfPe6dI6P24y7f6adhelpn65UpNKL5JPkfJZb1pFeOIU43Df6qsmOCJVKZ5QIthuBiweXQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/countVehicleAge?communityId=2b4a4772-296e-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countVehicleAge"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "访客车辆类型统计（客运车 货运车 校车 公交车  快递车 垃圾车）",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjEyMTc5ZDYzLWQxYjItNGIyYi05MjYzLWZkMDlmN2RiNzQzZCJ9.OMx4coOjokEnodEJTL1VA-1itTtsR-8H3EkznU6aDF2ZGW2FREvTBf8IE2wv-z6afD0bxeH1iI8KBwUH40ysWQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:7089/count/getVisitVehicleType?communityId=2b4a4772-296e-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"getVisitVehicleType"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "统计车辆的能源类型",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjEyMTc5ZDYzLWQxYjItNGIyYi05MjYzLWZkMDlmN2RiNzQzZCJ9.OMx4coOjokEnodEJTL1VA-1itTtsR-8H3EkznU6aDF2ZGW2FREvTBf8IE2wv-z6afD0bxeH1iI8KBwUH40ysWQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countVehicleEnergy?communityId=2b4a4772-296e-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countVehicleEnergy"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "2b4a4772-296e-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "小区车辆出入时间段统计",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhhY2IxYjdlLTYzNzEtNDMzNC1iMGVjLTkyMGE2YzJhODM2MSJ9._8LzbzJ6W3L_bXcKgY3L4okCpElO5pu88urY_Ym-VmtDYLlXxQVO6dKybBSMMTPWuSUPE4HERVcT4_Cra37RmA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countVehiclePass?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countVehiclePass"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "车辆信息模块"
+				},
+				{
+					"name": "通行数据",
+					"item": [
+						{
+							"name": "访客数量分布",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhhY2IxYjdlLTYzNzEtNDMzNC1iMGVjLTkyMGE2YzJhODM2MSJ9._8LzbzJ6W3L_bXcKgY3L4okCpElO5pu88urY_Ym-VmtDYLlXxQVO6dKybBSMMTPWuSUPE4HERVcT4_Cra37RmA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countVisit?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countVisit"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "访客类别",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImU3MzNjMTg1LTRmOWQtNDI0YS1iMzQyLTY2MDA4Mzc1ODFlOSJ9.8DthQGHRX8w0Sw1zR8o9ovjdmfpx4A7WF9dyR_5Edm7wVXoAq-2iu6kFhEXRC6xayl2oiyFoiBv-ox799pl0Xw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countVisitType?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countVisitType"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "今日车辆通信曲线",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjdiMmQ4MTFlLTMzYTAtNGU2Ni04NDE5LTZjMTdiZWFjYWI1MSJ9.2t0GedDVG_On0mq5ReIJKayHqOdKC06G5oQDVr2T0NpQCXJY4ySyzFIW-QoSOL3mhF84lPx9bkcMkT_RGQrZ3g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countPassYesterday?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&type=1",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countPassYesterday"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"description": "必填 固定值为1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "今日人员通行曲线",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjdiMmQ4MTFlLTMzYTAtNGU2Ni04NDE5LTZjMTdiZWFjYWI1MSJ9.2t0GedDVG_On0mq5ReIJKayHqOdKC06G5oQDVr2T0NpQCXJY4ySyzFIW-QoSOL3mhF84lPx9bkcMkT_RGQrZ3g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countPassYesterday?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&type=2",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countPassYesterday"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "type",
+											"value": "2",
+											"description": "必填项 固定值为2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "人员通行抓拍",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNkNTc2MWY2LTFjNDMtNDEwMS04NDkxLTVkZGQ4MjAxZjZmMiJ9.RRbeCbKGYC92U1Crh4v64uVKqfYSKQvZ4fwVzNdCCBc2dIPcY-ZdK6ZlT3RgNbVg-3abE9qWRWRRhegcJG4wEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/personnelPassSnap?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"personnelPassSnap"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "车辆通行抓拍",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNkNTc2MWY2LTFjNDMtNDEwMS04NDkxLTVkZGQ4MjAxZjZmMiJ9.RRbeCbKGYC92U1Crh4v64uVKqfYSKQvZ4fwVzNdCCBc2dIPcY-ZdK6ZlT3RgNbVg-3abE9qWRWRRhegcJG4wEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/vehiclePassSnap?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"vehiclePassSnap"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "布控人员信息",
+					"item": [
+						{
+							"name": "布控人员",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImNkNTc2MWY2LTFjNDMtNDEwMS04NDkxLTVkZGQ4MjAxZjZmMiJ9.RRbeCbKGYC92U1Crh4v64uVKqfYSKQvZ4fwVzNdCCBc2dIPcY-ZdK6ZlT3RgNbVg-3abE9qWRWRRhegcJG4wEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/getBlackPersonnelByCommunity?communityId=51802a87-2a4b-11eb-8b0f-0242ac120002&communityChildId=63fc9964-337b-11eb-8b0f-0242ac120002",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"getBlackPersonnelByCommunity"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": "51802a87-2a4b-11eb-8b0f-0242ac120002"
+										},
+										{
+											"key": "communityChildId",
+											"value": "63fc9964-337b-11eb-8b0f-0242ac120002"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "文件上传",
+					"item": [
+						{
+							"name": "图片上传",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImQ1ODA3OWU4LWQ5MGYtNDI2Yi1hNGI5LTEzOWIyMGU3MjIwMyJ9.Y2zCpA8EC3Wmu5FpUiWsTyO9rhU_rGQCBOejWwA2uFwd-6kHqe1kTYPBU1cMf5XPS8ABfYnr8_nkSExYFev8vw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Administrator/Documents/WeChat Files/wxid_sf2xpo2y0zik22/FileStorage/File/2020-12/5e07fc068a25be373fd856a4ce7e94d8_t.gif"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Administrator/Documents/WeChat Files/All Users/de51c035a8ad84481033555ed2279742.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://10.16.123.58:7089/upload/image/sample",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"upload",
+										"image",
+										"sample"
+									]
+								},
+								"description": "http://127.0.0.1:7089/communityUnit/personnel_information"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "实有信息",
+					"item": [
+						{
+							"name": "实有信息",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImEyYTk2YTUwLWFiNjEtNGI4MS05MmI5LTM0MzdiNmRlNGYwMSJ9.HlhqFMsTWsk7_hSY60Kv_CxN5HnDAFPy1zleIMl1iBFHl0x0oZ5-v3LcyOMDUQD6JTxGftZoX8jF_YEPuFj3cQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://10.16.123.58:7089/count/countActualInformation?communityId=&communityChildId=",
+									"protocol": "http",
+									"host": [
+										"10",
+										"16",
+										"123",
+										"58"
+									],
+									"port": "7089",
+									"path": [
+										"count",
+										"countActualInformation"
+									],
+									"query": [
+										{
+											"key": "communityId",
+											"value": ""
+										},
+										{
+											"key": "communityChildId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

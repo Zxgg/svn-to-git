@@ -1,0 +1,10 @@
+redis 10.112.253.2
+MongoDB 10.112.253.4
+mysql 10.112.253.4 用户名/密码 security/security
+
+向日葵：375 230 872 密码：123456 
+服务器1-4 都可以用
+
+https://10.112.253.5/yihao01-ecommunity-local/         admin/000000
+
+http://10.112.253.2/yihao01-security-center/v2/index/safety   admin/000000

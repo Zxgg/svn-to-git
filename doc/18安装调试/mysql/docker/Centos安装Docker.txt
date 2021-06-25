@@ -1,0 +1,40 @@
+
+
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+yum clean all
+yum makecache
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+yum list docker-ce --showduplicates | sort -r
+//yum install -y docker-ce docker-ce-cli containerd.io
+//yum install -y docker-ce-17.12.1.ce
+yum install -y docker-ce
+查看本机的网卡是否开启
+sysctl -a | grep rp_filter | grep -v 'veth'
+
+关闭所有rp_filter = 1的项
+
+cat >> /etc/sysctl.conf<<EOF
+net.ipv4.conf.all.rp_filter = 0
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.eno1.rp_filter = 0
+net.ipv4.conf.virbr0.rp_filter = 0
+net.ipv4.conf.virbr0-nic.rp_filter =0
+EOF
+#使修改立即生效
+sysctl -p
+设置服务开机启动
+systemctl enable docker
+查询当前服务状态
+systemctl status docker  
+重启Docker服务
+systemctl restart docker
+
+
+docker run -id -p 1935:1935 -p 8080:80 gemfield/zlmediakit:20.04-runtime-ubuntu18.04
+
+docker save gemfield/zlmediakit:20.04-runtime-ubuntu18.04 | gzip > /root/temp/gemfield_zlmediakit_20.04-runtime-ubuntu18.04.tar.gz
+
+docker load < /root/temp/gemfield_zlmediakit_20.04-runtime-ubuntu18.04.tar.gz

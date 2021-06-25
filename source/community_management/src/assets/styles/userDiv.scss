@@ -1,0 +1,257 @@
+$lightColor:#70B7FC;
+$commonColor: #11BBF3;
+$commonTextSize:14px;
+$titltTextSize:16px;
+$buttonColor:#11BBF3;
+$buttonActiveColor:#00FFFF;
+.fill{
+  width: 100%;
+  height: 100%;
+}
+.divStackPanel{
+  /* 要创建一个 flex 容器，只需要将一个 display: flex 属性添加到一个元素上。
+默认情况下，所有的直接子元素都被认为是 flex 项，并从左到右依次排列在一行中。
+如果 flex 项的宽度总和大于容器，那么 flex 项将按比例缩小，直到它们适应 flex 容器宽度 */
+display: flex;
+/* flex-direction 决定主轴的方向 row(默认)|row-reverse|column|column-reverse*/
+/* flex-direction: row; */
+/* flex-wrap决定当排列不下时是否换行以及换行的方式,nowrap(默认)|wrap|wrap-reverse */
+/* flex-wrap:wrap; */
+
+/* flex-flow是lex-direction和flex-wrap的简写形式，如：row wrap|column wrap-reverse等。默认值为row nowrap，即横向排列 不换行 */
+flex-flow: row wrap;
+
+/* !当主轴沿水平方向时!justify-content,决定item在主轴上的对齐方式，可能的值有flex-start（默认），flex-end，center，space-between，space-around */
+justify-content: center;
+/* !主轴水平时!决定了item在交叉轴上的对齐方式，可能的值有flex-start|flex-end|center|baseline|stretch */
+align-items: center;
+text-align: center;
+}
+.divStackPanel_left{
+  /* 要创建一个 flex 容器，只需要将一个 display: flex 属性添加到一个元素上。
+默认情况下，所有的直接子元素都被认为是 flex 项，并从左到右依次排列在一行中。
+如果 flex 项的宽度总和大于容器，那么 flex 项将按比例缩小，直到它们适应 flex 容器宽度 */
+display: flex;
+/* flex-direction 决定主轴的方向 row(默认)|row-reverse|column|column-reverse*/
+/* flex-direction: row; */
+/* flex-wrap决定当排列不下时是否换行以及换行的方式,nowrap(默认)|wrap|wrap-reverse */
+/* flex-wrap:wrap; */
+
+/* flex-flow是lex-direction和flex-wrap的简写形式，如：row wrap|column wrap-reverse等。默认值为row nowrap ，即横向排列 不换行 */
+flex-flow: row wrap;
+
+/* !当主轴沿水平方向时!justify-content,决定item在主轴上的对齐方式，可能的值有flex-start（默认），flex-end，center，space-between，space-around */
+justify-content: flex-start;
+/* !主轴水平时!决定了item在交叉轴上的对齐方式，可能的值有flex-start|flex-end|center|baseline|stretch */
+align-items: center;
+text-align: center;
+}
+.divStackPanel_right{
+  /* 要创建一个 flex 容器，只需要将一个 display: flex 属性添加到一个元素上。
+默认情况下，所有的直接子元素都被认为是 flex 项，并从左到右依次排列在一行中。
+如果 flex 项的宽度总和大于容器，那么 flex 项将按比例缩小，直到它们适应 flex 容器宽度 */
+display: flex;
+/* flex-direction 决定主轴的方向 row(默认)|row-reverse|column|column-reverse*/
+/* flex-direction: row; */
+/* flex-wrap决定当排列不下时是否换行以及换行的方式,nowrap(默认)|wrap|wrap-reverse */
+/* flex-wrap:wrap; */
+
+/* flex-flow是lex-direction和flex-wrap的简写形式，如：row wrap|column wrap-reverse等。默认值为row nowrap ，即横向排列 不换行 */
+flex-flow: row wrap;
+
+/* !当主轴沿水平方向时!justify-content,决定item在主轴上的对齐方式，可能的值有flex-start（默认），flex-end，center，space-between，space-around */
+justify-content: flex-end;
+/* !主轴水平时!决定了item在交叉轴上的对齐方式，可能的值有flex-start|flex-end|center|baseline|stretch */
+align-items: center;
+text-align: center;
+}
+.divStackPanel_HorizontalLeft{
+  /* 要创建一个 flex 容器，只需要将一个 display: flex 属性添加到一个元素上。
+默认情况下，所有的直接子元素都被认为是 flex 项，并从左到右依次排列在一行中。
+如果 flex 项的宽度总和大于容器，那么 flex 项将按比例缩小，直到它们适应 flex 容器宽度 */
+display: flex;
+/* flex-direction 决定主轴的方向 row(默认)|row-reverse|column|column-reverse*/
+/* flex-direction: row; */
+/* flex-wrap决定当排列不下时是否换行以及换行的方式,nowrap(默认)|wrap|wrap-reverse */
+/* flex-wrap:wrap; */
+
+/* flex-flow是lex-direction和flex-wrap的简写形式，如：row wrap|column wrap-reverse等。默认值为row nowrap，即横向排列 不换行 */
+flex-flow: nowrap;
+
+/* !当主轴沿水平方向时!justify-content,决定item在主轴上的对齐方式，可能的值有flex-start（默认），flex-end，center，space-between，space-around */
+justify-content: flex-start;
+/* !主轴水平时!决定了item在交叉轴上的对齐方式，可能的值有flex-start|flex-end|center|baseline|stretch */
+align-items: center;
+text-align: center;
+}
+.noWarp{
+  flex-flow: row nowrap;
+}
+.HorizontalCenter {
+  margin: 0 auto; /*水平居中*/
+}
+.HorizontalDiv{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.HorizontalLeft{
+  margin-left: 0px;
+  margin-right: 0px auto;
+  float:left;
+}
+.HorizontalRight{
+  margin-left: 0px auto;
+  margin-right: 0px ;
+  float:right;
+}
+.VerticalCenter {
+  position: relative;
+  top: 50%; /*偏移*/
+  transform: translateY(-50%)
+  // margin-top: -height/2;
+}
+.VerticalMargin{
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.HorizontalMargin{
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.HorizontalLeftMargin{
+  margin-left: 8px;
+}
+.VerticalPadding{
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.HorizontalPadding{
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.textCenter{
+  text-align: center;
+}
+.textLeft{
+  text-align: left;
+}
+.textRight{
+  text-align: right;
+}
+.commonTextBlock{
+  color: $commonColor;
+  font-size: $titltTextSize;
+  margin-left: 4px;;
+  margin-right: 4px;
+}
+.LightTextBlock{
+  color: $lightColor;
+  font-size: 16px;
+  margin-left: 4px;;
+  margin-right: 4px;
+}
+.commonTitleText{
+  color: $commonColor;
+  font-size: $titltTextSize;
+  margin-left: 4px;;
+  margin-right: 4px;
+}
+.lightTitleText{
+  color: $lightColor;
+  font-size: $commonTextSize;
+  margin-left: 4px;;
+  margin-right: 4px;
+}
+.commonInput{
+  width: 240px;
+}
+.commonBorder{
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 1px solid ;
+  border-color:$commonColor ;
+  border-radius: 4px;
+}
+.heightBorder{
+  border: 1px solid;
+  border-color:$lightColor ;
+  border-radius: 4px;
+}
+
+.commonBtn{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 4px;
+  padding: 0px;
+}
+.Hide{
+  display: none;
+}
+.Visible{
+  display: '';
+}
+.cursor_hander{
+  cursor: pointer;
+}
+.spanBtn:hover{ 
+  color:$lightColor;
+}
+.inputLongWidth {
+  width: 200px;
+}
+.inputWidth {
+  width: 122px;
+}
+.inputShortWidth {
+  width: 50px;
+}
+
+.el-form{
+  text-align: left;
+}
+.el-form-item {
+  margin-bottom: 12px;
+}
+.comboxMiddle{
+  width: 140px
+}
+.comboxLong{
+  width: 380px
+}
+.imputMiddle{
+  width: 140px
+}
+.imputLong{
+  width: 340px
+}
+.commonTable{
+  color: #00FFFF;
+  
+}
+.longStringShutSelect{
+  .el-select{
+    width: 120px;
+  }
+}
+
+.yellowText{ 
+  color:$yellow;
+  font-size: 12px;
+}
+.redText{ 
+  color:$red;
+  font-size: 18px;
+}
+
+.treeSelectC{
+  height: 650px;
+  overflow: auto;
+}
+
+
+
+
+

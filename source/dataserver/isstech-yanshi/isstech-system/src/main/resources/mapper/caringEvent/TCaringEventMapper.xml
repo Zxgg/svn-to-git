@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TCaringEventMapper">
+
+    <resultMap type="TCaringEvent" id="TCaringEventResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="personid" column="personId"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="alarmtype" column="alarmType"/>
+        <result property="content" column="content"/>
+        <result property="processed" column="processed"/>
+        <result property="processedSituation" column="processed_situation"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <sql id="selectTCaringEventVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, name, type, personId, vehicleId, alarmType, content, processed, processed_situation, community_id, community_child_id from t_caring_event
+    </sql>
+
+    <select id="selectTCaringEventList" parameterType="TCaringEvent" resultMap="TCaringEventResult">
+        <include refid="selectTCaringEventVo"/>
+        <where>
+                del_flag = '0'
+            <if test="remark != null  and remark != ''">
+                and remark like concat('%', #{remark}, '%')
+            </if>
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="type != null  and type != ''">
+                and type = #{type}
+            </if>
+            <if test="personid != null  and personid != ''">
+                and personId like concat('%', #{personid}, '%')
+            </if>
+            <if test="vehicleid != null  and vehicleid != ''">
+                and vehicleId like concat('%', #{vehicleid}, '%')
+            </if>
+            <if test="alarmtype != null ">
+                and alarmType = #{alarmtype}
+            </if>
+            <if test="content != null  and content != ''">
+                and content like concat('%', #{content}, '%')
+            </if>
+            <if test="processed != null  and processed != ''">
+                and processed = #{processed}
+            </if>
+            <if test="processedSituation != null  and processedSituation != ''">
+                and processed_situation like concat('%', #{processedSituation}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="delFlag != null  and delFlag != ''">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+            order by create_time desc
+    </select>
+
+    <select id="selectTCaringEventById" parameterType="String" resultMap="TCaringEventResult">
+        <include refid="selectTCaringEventVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTCaringEvent" parameterType="TCaringEvent">
+        insert into t_caring_event
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="type != null and type != ''">type,
+            </if>
+            <if test="personid != null">personId,
+            </if>
+            <if test="vehicleid != null">vehicleId,
+            </if>
+            <if test="alarmtype != null">alarmType,
+            </if>
+            <if test="content != null">content,
+            </if>
+            <if test="processed != null and processed != ''">processed,
+            </if>
+            <if test="processedSituation != null">processed_situation,
+            </if>
+            <if test="communityId != null">community_id,
+            </if>
+            <if test="communityChildId != null">community_child_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="type != null and type != ''">#{type},
+            </if>
+            <if test="personid != null">#{personid},
+            </if>
+            <if test="vehicleid != null">#{vehicleid},
+            </if>
+            <if test="alarmtype != null">#{alarmtype},
+            </if>
+            <if test="content != null">#{content},
+            </if>
+            <if test="processed != null and processed != ''">#{processed},
+            </if>
+            <if test="processedSituation != null">#{processedSituation},
+            </if>
+            <if test="communityId != null">#{communityId},
+            </if>
+            <if test="communityChildId != null">#{communityChildId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTCaringEvent" parameterType="TCaringEvent">
+        update t_caring_event
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="type != null and type != ''">type =
+                #{type},
+            </if>
+            <if test="personid != null">personId =
+                #{personid},
+            </if>
+            <if test="vehicleid != null">vehicleId =
+                #{vehicleid},
+            </if>
+            <if test="alarmtype != null">alarmType =
+                #{alarmtype},
+            </if>
+            <if test="content != null">content =
+                #{content},
+            </if>
+            <if test="processed != null and processed != ''">processed =
+                #{processed},
+            </if>
+            <if test="processedSituation != null">processed_situation =
+                #{processedSituation},
+            </if>
+            <if test="communityId != null">community_id =
+                #{communityId},
+            </if>
+            <if test="communityChildId != null">community_child_id =
+                #{communityChildId},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTCaringEventById" parameterType="String">
+        delete from t_caring_event where id = #{id}
+    </delete>
+
+    <delete id="deleteTCaringEventByIds" parameterType="String">
+        delete from t_caring_event where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTCaringEventByIds" parameterType="String">
+        update t_caring_event set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+    <insert id="insertBatch" parameterType="List">
+        INSERT INTO t_caring_event
+             (id,create_by,create_time,update_by,update_time,remark,name,type,personId,vehicleId,alarmType,content,community_id,community_child_id)
+                VALUES
+        <foreach collection="list" item="event" separator=",">
+            (uuid(),#{event.createBy},#{event.createTime},#{event.updateBy},#{event.updateTime},#{event.remark},#{event.name},#{event.type},#{event.personid},#{event.vehicleid},
+            #{event.alarmtype},#{event.content},#{event.communityId},#{event.communityChildId})
+        </foreach>
+    </insert>
+
+</mapper>

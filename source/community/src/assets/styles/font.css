@@ -1,0 +1,16 @@
+@font-face
+{
+  font-family: 'DINCondensed-Bold';
+  src: url('../font/DIN_Condensed_Bold.ttf') format('truetype');
+}
+@font-face
+{
+  font-family: 'YouSheBiaoTiHei';
+  src: url('../font/TTMeiHeiJ.ttf') format('truetype');
+}
+
+@font-face
+{
+  font-family: 'AlarmTitleFont';
+  src: url('../font/YouSheBiaoTiHei-2.ttf') format('truetype');
+}

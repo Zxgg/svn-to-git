@@ -1,0 +1,22 @@
+-- 按钮父菜单ID
+SELECT @parentId := uuid();
+
+-- 菜单 SQL
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(@parentId, '${functionName}', '${parentMenuId}', '1', '${moduleName}/${businessName}', 'default:${moduleName}/${businessName}/index:-1', 1, 'C', '0', '0', '${permissionPrefix}:list', '#', 'admin', sysdate(), 'admin', sysdate(), '${functionName}菜单', 0, 0);
+
+-- 按钮 SQL
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(uuid(), '${functionName}查询', @parentId, '1',  '#', '', 1,  'F', '0',  '0', '${permissionPrefix}:query',        '#', 'admin', sysdate(), 'admin', sysdate(), '', 0, 0);
+
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(uuid(), '${functionName}新增', @parentId, '2',  '#', '', 1,  'F', '0',  '0', '${permissionPrefix}:add',          '#', 'admin', sysdate(), 'admin', sysdate(), '', 0, 0);
+
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(uuid(), '${functionName}修改', @parentId, '3',  '#', '', 1,  'F', '0',  '0', '${permissionPrefix}:edit',         '#', 'admin', sysdate(), 'admin', sysdate(), '', 0, 0);
+
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(uuid(), '${functionName}删除', @parentId, '4',  '#', '', 1,  'F', '0',  '0', '${permissionPrefix}:remove',       '#', 'admin', sysdate(), 'admin', sysdate(), '', 0, 0);
+
+insert into sys_menu (id, name, parent_id, order_num, path, component, is_frame, type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark, del_flag ,multi_component)
+values(uuid(), '${functionName}导出', @parentId, '5',  '#', '', 1,  'F', '0',  '0', '${permissionPrefix}:export',       '#', 'admin', sysdate(), 'admin', sysdate(), '', 0, 0);

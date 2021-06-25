@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpeciaCorrectMapper">
+
+    <resultMap type="TSpeciaCorrect" id="TSpeciaCorrectResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="communityPersonnelNumber" column="community_personnel_number"/>
+        <result property="originalDetentionPlace" column="original_detention_place"/>
+        <result property="correctType" column="correct_type"/>
+        <result property="caseType" column="case_type"/>
+        <result property="crimeType" column="crime_type"/>
+        <result property="specificCrime" column="specific_crime"/>
+        <result property="termDate" column="term_date"/>
+        <result property="punishmentKinds" column="punishment_kinds"/>
+        <result property="termStartDate" column="term_start_date"/>
+        <result property="termEndDate" column="term_end_date"/>
+        <result property="correctStartDate" column="correct_start_date"/>
+        <result property="correctEndDate" column="correct_end_date"/>
+        <result property="acceptMode" column="accept_mode"/>
+        <result property="fourHistoriesSituation" column="four_histories_situation"/>
+        <result property="sfgf" column="SFGF"/>
+        <result property="threeInvolveSituation" column="three_involve_situation"/>
+        <result property="isBuildCorrectTeam" column="is_build_correct_team"/>
+        <result property="correctTeamSituation" column="correct_team_situation"/>
+        <result property="correctRemoveType" column="correct_remove_type"/>
+        <result property="isTrusteeship" column="is_trusteeship"/>
+        <result property="trusteeshipReason" column="trusteeship_reason"/>
+        <result property="checkTrusteeshipSituation" column="check_trusteeship_situation"/>
+        <result property="trusteeshipCorrectSituation" column="trusteeship_correct_situation"/>
+        <result property="isLeak" column="is_leak"/>
+        <result property="leakReason" column="leak_reason"/>
+        <result property="checkLeakSituation" column="check_leak_situation"/>
+        <result property="correctSituation" column="correct_situation"/>
+        <result property="rewardPunishmentSituation" column="reward_punishment_situation"/>
+        <result property="punishmentChangeSituation" column="punishment_change_situation"/>
+        <result property="crimeName" column="crime_name"/>
+        <result property="isAgainCrime" column="is_again_crime"/>
+        <result property="correctOffice" column="correct_office"/>
+        <result property="correctTerm" column="correct_term"/>
+        <result property="documentReceiptDate" column="document_receipt_date"/>
+        <result property="receivedTime" column="received_time"/>
+        <result property="specificTime" column="specific_time"/>
+        <result property="mainCrime" column="main_crime"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectTSpeciaCorrectVo">
+        select id, create_by, dept_id, create_time, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, community_personnel_number, original_detention_place, correct_type, case_type, crime_type, specific_crime, term_date, punishment_kinds, term_start_date, term_end_date, correct_start_date, correct_end_date, accept_mode, four_histories_situation, SFGF, three_involve_situation, is_build_correct_team, correct_team_situation, correct_remove_type, is_trusteeship, trusteeship_reason, check_trusteeship_situation, trusteeship_correct_situation, is_leak, leak_reason, check_leak_situation, correct_situation, reward_punishment_situation, punishment_change_situation, crime_name, is_again_crime, correct_office, correct_term, document_receipt_date, received_time, specific_time, main_crime, community_id, community_child_id from t_specia_correct
+    </sql>
+
+    <select id="selectTSpeciaCorrectList" parameterType="TSpeciaCorrect" resultMap="TSpeciaCorrectResult">
+        <include refid="selectTSpeciaCorrectVo"/>
+        <where>
+            del_flag = '0'
+            <if test="createBy != null  and createBy != ''">and create_by = #{createBy}</if>
+            <if test="updateBy != null  and updateBy != ''">and update_by = #{updateBy}</if>
+            <if test="personnelId != null  and personnelId != ''">and personnel_id = #{personnelId}</if>
+            <if test="sourceType != null  and sourceType != ''">and source_type = #{sourceType}</if>
+            <if test="enable != null  and enable != ''">and enable = #{enable}</if>
+            <if test="remark != null  and remark != ''">and remark = #{remark}</if>
+            <if test="communityPersonnelNumber != null  and communityPersonnelNumber != ''">and
+                community_personnel_number = #{communityPersonnelNumber}
+            </if>
+            <if test="originalDetentionPlace != null  and originalDetentionPlace != ''">and original_detention_place =
+                #{originalDetentionPlace}
+            </if>
+            <if test="correctType != null  and correctType != ''">and correct_type = #{correctType}</if>
+            <if test="caseType != null  and caseType != ''">and case_type = #{caseType}</if>
+            <if test="crimeType != null  and crimeType != ''">and crime_type = #{crimeType}</if>
+            <if test="specificCrime != null  and specificCrime != ''">and specific_crime = #{specificCrime}</if>
+            <if test="termDate != null ">and term_date = #{termDate}</if>
+            <if test="punishmentKinds != null  and punishmentKinds != ''">and punishment_kinds = #{punishmentKinds}</if>
+            <if test="termStartDate != null ">and term_start_date = #{termStartDate}</if>
+            <if test="termEndDate != null ">and term_end_date = #{termEndDate}</if>
+            <if test="correctStartDate != null ">and correct_start_date = #{correctStartDate}</if>
+            <if test="correctEndDate != null ">and correct_end_date = #{correctEndDate}</if>
+            <if test="acceptMode != null  and acceptMode != ''">and accept_mode = #{acceptMode}</if>
+            <if test="fourHistoriesSituation != null  and fourHistoriesSituation != ''">and four_histories_situation
+                like concat('%', #{fourHistoriesSituation}, '%')
+            </if>
+            <if test="sfgf != null  and sfgf != ''">and SFGF = #{sfgf}</if>
+            <if test="threeInvolveSituation != null  and threeInvolveSituation != ''">and three_involve_situation like
+                concat('%', #{threeInvolveSituation}, '%')
+            </if>
+            <if test="isBuildCorrectTeam != null  and isBuildCorrectTeam != ''">and is_build_correct_team =
+                #{isBuildCorrectTeam}
+            </if>
+            <if test="correctTeamSituation != null  and correctTeamSituation != ''">and correct_team_situation like
+                concat('%', #{correctTeamSituation}, '%')
+            </if>
+            <if test="correctRemoveType != null  and correctRemoveType != ''">and correct_remove_type =
+                #{correctRemoveType}
+            </if>
+            <if test="isTrusteeship != null  and isTrusteeship != ''">and is_trusteeship = #{isTrusteeship}</if>
+            <if test="trusteeshipReason != null  and trusteeshipReason != ''">and trusteeship_reason =
+                #{trusteeshipReason}
+            </if>
+            <if test="checkTrusteeshipSituation != null  and checkTrusteeshipSituation != ''">and
+                check_trusteeship_situation = #{checkTrusteeshipSituation}
+            </if>
+            <if test="trusteeshipCorrectSituation != null  and trusteeshipCorrectSituation != ''">and
+                trusteeship_correct_situation = #{trusteeshipCorrectSituation}
+            </if>
+            <if test="isLeak != null  and isLeak != ''">and is_leak = #{isLeak}</if>
+            <if test="leakReason != null  and leakReason != ''">and leak_reason = #{leakReason}</if>
+            <if test="checkLeakSituation != null  and checkLeakSituation != ''">and check_leak_situation =
+                #{checkLeakSituation}
+            </if>
+            <if test="correctSituation != null  and correctSituation != ''">and correct_situation =
+                #{correctSituation}
+            </if>
+            <if test="rewardPunishmentSituation != null  and rewardPunishmentSituation != ''">and
+                reward_punishment_situation = #{rewardPunishmentSituation}
+            </if>
+            <if test="punishmentChangeSituation != null  and punishmentChangeSituation != ''">and
+                punishment_change_situation = #{punishmentChangeSituation}
+            </if>
+            <if test="crimeName != null  and crimeName != ''">and crime_name like concat('%', #{crimeName}, '%')</if>
+            <if test="isAgainCrime != null  and isAgainCrime != ''">and is_again_crime = #{isAgainCrime}</if>
+            <if test="correctOffice != null  and correctOffice != ''">and correct_office = #{correctOffice}</if>
+            <if test="correctTerm != null ">and correct_term = #{correctTerm}</if>
+            <if test="documentReceiptDate != null ">and document_receipt_date = #{documentReceiptDate}</if>
+            <if test="receivedTime != null ">and received_time = #{receivedTime}</if>
+            <if test="specificTime != null ">and specific_time = #{specificTime}</if>
+            <if test="mainCrime != null  and mainCrime != ''">and main_crime = #{mainCrime}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpeciaCorrectById" parameterType="String" resultMap="TSpeciaCorrectResult">
+        <include refid="selectTSpeciaCorrectVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTSpeciaCorrect" parameterType="TSpeciaCorrect">
+        insert into t_specia_correct
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateDeptId != null">update_dept_id,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="enable != null and enable != ''">enable,</if>
+            <if test="remark != null">remark,</if>
+            <if test="communityPersonnelNumber != null">community_personnel_number,</if>
+            <if test="originalDetentionPlace != null">original_detention_place,</if>
+            <if test="correctType != null and correctType != ''">correct_type,</if>
+            <if test="caseType != null and caseType != ''">case_type,</if>
+            <if test="crimeType != null">crime_type,</if>
+            <if test="specificCrime != null and specificCrime != ''">specific_crime,</if>
+            <if test="termDate != null">term_date,</if>
+            <if test="punishmentKinds != null">punishment_kinds,</if>
+            <if test="termStartDate != null">term_start_date,</if>
+            <if test="termEndDate != null">term_end_date,</if>
+            <if test="correctStartDate != null">correct_start_date,</if>
+            <if test="correctEndDate != null">correct_end_date,</if>
+            <if test="acceptMode != null and acceptMode != ''">accept_mode,</if>
+            <if test="fourHistoriesSituation != null">four_histories_situation,</if>
+            <if test="sfgf != null">SFGF,</if>
+            <if test="threeInvolveSituation != null">three_involve_situation,</if>
+            <if test="isBuildCorrectTeam != null and isBuildCorrectTeam != ''">is_build_correct_team,</if>
+            <if test="correctTeamSituation != null and correctTeamSituation != ''">correct_team_situation,</if>
+            <if test="correctRemoveType != null">correct_remove_type,</if>
+            <if test="isTrusteeship != null and isTrusteeship != ''">is_trusteeship,</if>
+            <if test="trusteeshipReason != null">trusteeship_reason,</if>
+            <if test="checkTrusteeshipSituation != null">check_trusteeship_situation,</if>
+            <if test="trusteeshipCorrectSituation != null">trusteeship_correct_situation,</if>
+            <if test="isLeak != null and isLeak != ''">is_leak,</if>
+            <if test="leakReason != null">leak_reason,</if>
+            <if test="checkLeakSituation != null">check_leak_situation,</if>
+            <if test="correctSituation != null">correct_situation,</if>
+            <if test="rewardPunishmentSituation != null">reward_punishment_situation,</if>
+            <if test="punishmentChangeSituation != null">punishment_change_situation,</if>
+            <if test="crimeName != null">crime_name,</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">is_again_crime,</if>
+            <if test="correctOffice != null">correct_office,</if>
+            <if test="correctTerm != null">correct_term,</if>
+            <if test="documentReceiptDate != null">document_receipt_date,</if>
+            <if test="receivedTime != null">received_time,</if>
+            <if test="specificTime != null">specific_time,</if>
+            <if test="mainCrime != null">main_crime,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateDeptId != null">#{updateDeptId},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="enable != null and enable != ''">#{enable},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="communityPersonnelNumber != null">#{communityPersonnelNumber},</if>
+            <if test="originalDetentionPlace != null">#{originalDetentionPlace},</if>
+            <if test="correctType != null and correctType != ''">#{correctType},</if>
+            <if test="caseType != null and caseType != ''">#{caseType},</if>
+            <if test="crimeType != null">#{crimeType},</if>
+            <if test="specificCrime != null and specificCrime != ''">#{specificCrime},</if>
+            <if test="termDate != null">#{termDate},</if>
+            <if test="punishmentKinds != null">#{punishmentKinds},</if>
+            <if test="termStartDate != null">#{termStartDate},</if>
+            <if test="termEndDate != null">#{termEndDate},</if>
+            <if test="correctStartDate != null">#{correctStartDate},</if>
+            <if test="correctEndDate != null">#{correctEndDate},</if>
+            <if test="acceptMode != null and acceptMode != ''">#{acceptMode},</if>
+            <if test="fourHistoriesSituation != null">#{fourHistoriesSituation},</if>
+            <if test="sfgf != null">#{sfgf},</if>
+            <if test="threeInvolveSituation != null">#{threeInvolveSituation},</if>
+            <if test="isBuildCorrectTeam != null and isBuildCorrectTeam != ''">#{isBuildCorrectTeam},</if>
+            <if test="correctTeamSituation != null and correctTeamSituation != ''">#{correctTeamSituation},</if>
+            <if test="correctRemoveType != null">#{correctRemoveType},</if>
+            <if test="isTrusteeship != null and isTrusteeship != ''">#{isTrusteeship},</if>
+            <if test="trusteeshipReason != null">#{trusteeshipReason},</if>
+            <if test="checkTrusteeshipSituation != null">#{checkTrusteeshipSituation},</if>
+            <if test="trusteeshipCorrectSituation != null">#{trusteeshipCorrectSituation},</if>
+            <if test="isLeak != null and isLeak != ''">#{isLeak},</if>
+            <if test="leakReason != null">#{leakReason},</if>
+            <if test="checkLeakSituation != null">#{checkLeakSituation},</if>
+            <if test="correctSituation != null">#{correctSituation},</if>
+            <if test="rewardPunishmentSituation != null">#{rewardPunishmentSituation},</if>
+            <if test="punishmentChangeSituation != null">#{punishmentChangeSituation},</if>
+            <if test="crimeName != null">#{crimeName},</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">#{isAgainCrime},</if>
+            <if test="correctOffice != null">#{correctOffice},</if>
+            <if test="correctTerm != null">#{correctTerm},</if>
+            <if test="documentReceiptDate != null">#{documentReceiptDate},</if>
+            <if test="receivedTime != null">#{receivedTime},</if>
+            <if test="specificTime != null">#{specificTime},</if>
+            <if test="mainCrime != null">#{mainCrime},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpeciaCorrect" parameterType="TSpeciaCorrect">
+        update t_specia_correct
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateDeptId != null">update_dept_id = #{updateDeptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="personnelId != null and personnelId != ''">personnel_id = #{personnelId},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="communityPersonnelNumber != null">community_personnel_number = #{communityPersonnelNumber},</if>
+            <if test="originalDetentionPlace != null">original_detention_place = #{originalDetentionPlace},</if>
+            <if test="correctType != null and correctType != ''">correct_type = #{correctType},</if>
+            <if test="caseType != null and caseType != ''">case_type = #{caseType},</if>
+            <if test="crimeType != null">crime_type = #{crimeType},</if>
+            <if test="specificCrime != null and specificCrime != ''">specific_crime = #{specificCrime},</if>
+            <if test="termDate != null">term_date = #{termDate},</if>
+            <if test="punishmentKinds != null">punishment_kinds = #{punishmentKinds},</if>
+            <if test="termStartDate != null">term_start_date = #{termStartDate},</if>
+            <if test="termEndDate != null">term_end_date = #{termEndDate},</if>
+            <if test="correctStartDate != null">correct_start_date = #{correctStartDate},</if>
+            <if test="correctEndDate != null">correct_end_date = #{correctEndDate},</if>
+            <if test="acceptMode != null and acceptMode != ''">accept_mode = #{acceptMode},</if>
+            <if test="fourHistoriesSituation != null">four_histories_situation = #{fourHistoriesSituation},</if>
+            <if test="sfgf != null">SFGF = #{sfgf},</if>
+            <if test="threeInvolveSituation != null">three_involve_situation = #{threeInvolveSituation},</if>
+            <if test="isBuildCorrectTeam != null and isBuildCorrectTeam != ''">is_build_correct_team =
+                #{isBuildCorrectTeam},
+            </if>
+            <if test="correctTeamSituation != null and correctTeamSituation != ''">correct_team_situation =
+                #{correctTeamSituation},
+            </if>
+            <if test="correctRemoveType != null">correct_remove_type = #{correctRemoveType},</if>
+            <if test="isTrusteeship != null and isTrusteeship != ''">is_trusteeship = #{isTrusteeship},</if>
+            <if test="trusteeshipReason != null">trusteeship_reason = #{trusteeshipReason},</if>
+            <if test="checkTrusteeshipSituation != null">check_trusteeship_situation = #{checkTrusteeshipSituation},
+            </if>
+            <if test="trusteeshipCorrectSituation != null">trusteeship_correct_situation =
+                #{trusteeshipCorrectSituation},
+            </if>
+            <if test="isLeak != null and isLeak != ''">is_leak = #{isLeak},</if>
+            <if test="leakReason != null">leak_reason = #{leakReason},</if>
+            <if test="checkLeakSituation != null">check_leak_situation = #{checkLeakSituation},</if>
+            <if test="correctSituation != null">correct_situation = #{correctSituation},</if>
+            <if test="rewardPunishmentSituation != null">reward_punishment_situation = #{rewardPunishmentSituation},
+            </if>
+            <if test="punishmentChangeSituation != null">punishment_change_situation = #{punishmentChangeSituation},
+            </if>
+            <if test="crimeName != null">crime_name = #{crimeName},</if>
+            <if test="isAgainCrime != null and isAgainCrime != ''">is_again_crime = #{isAgainCrime},</if>
+            <if test="correctOffice != null">correct_office = #{correctOffice},</if>
+            <if test="correctTerm != null">correct_term = #{correctTerm},</if>
+            <if test="documentReceiptDate != null">document_receipt_date = #{documentReceiptDate},</if>
+            <if test="receivedTime != null">received_time = #{receivedTime},</if>
+            <if test="specificTime != null">specific_time = #{specificTime},</if>
+            <if test="mainCrime != null">main_crime = #{mainCrime},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpeciaCorrectById" parameterType="String">
+        delete from t_specia_correct where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpeciaCorrectByIds" parameterType="String">
+        delete from t_specia_correct where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTSpeciaCorrectByIds" parameterType="String">
+        update t_specia_correct set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateTSpeciaCorrectByPersonIds" parameterType="String">
+        update t_specia_correct set del_flag = '1'  where personnel_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TEpidemicIsolationFamilyMapper">
+
+    <resultMap type="TEpidemicIsolationFamily" id="TEpidemicIsolationFamilyResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityName" column="community_name"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityChildName" column="community_child_name"/>
+        <result property="communityBuildingId" column="community_building_id"/>
+        <result property="serialNumber" column="serial_number"/>
+        <result property="buildingName" column="building_name"/>
+        <result property="unit" column="unit"/>
+        <result property="floor" column="floor"/>
+        <result property="houseNumber" column="house_number"/>
+        <result property="personinfo" column="personInfo"/>
+        <result property="isolatioStartTime" column="isolatio_start_time"/>
+        <result property="isolationEndTime" column="isolation_end_time"/>
+        <result property="isolationDayNum" column="isolation_day_num"/>
+        <result property="suppliesPurchaseRecord" column="supplies_purchase_record"/>
+        <result property="lastSuppliesPurchase" column="last_supplies_purchase"/>
+        <result property="stat" column="stat"/>
+        <result property="needOut" column="need_out"/>
+        <result property="nucleicAcidTestingRecord" column="nucleic_acid_testing_record"/>
+        <result property="nextNucleicAcidTestingData" column="next_nucleic_acid_testing_data"/>
+        <result property="outRecord" column="out_record"/>
+        <result property="isolationReason" column="isolation_reason"/>
+    </resultMap>
+
+    <sql id="selectTEpidemicIsolationFamilyVo">
+        select id, create_by, create_time, update_by, update_time, del_flag, remark, community_id, community_child_id, community_building_id, serial_number, building_name,
+        unit, floor, house_number, personInfo, isolatio_start_time, isolation_end_time, isolation_day_num, supplies_purchase_record, last_supplies_purchase, stat,
+        need_out, nucleic_acid_testing_record, next_nucleic_acid_testing_data, out_record, isolation_reason from t_epidemic_isolation_family
+    </sql>
+    <sql id="queryTEpidemicIsolationFamilyVo">
+        select teif.id, teif.create_by,teif.create_time, teif.update_by, teif.update_time, teif.del_flag, teif.remark, teif.community_id,
+        bc.name community_name, teif.community_child_id,bcc.name community_child_name ,teif.community_building_id,
+        teif.serial_number, teif.building_name, teif.unit, teif.floor, teif.house_number, teif.personInfo, teif.isolatio_start_time,
+        teif.isolation_end_time, teif.isolation_day_num, teif.supplies_purchase_record, teif.last_supplies_purchase, teif.stat,
+        teif.need_out,teif.nucleic_acid_testing_record, teif.next_nucleic_acid_testing_data, teif.out_record, teif.isolation_reason
+        from t_epidemic_isolation_family teif ,base_community bc ,base_community_child bcc
+    </sql>
+
+    <select id="selectTEpidemicIsolationFamilyList" parameterType="TEpidemicIsolationFamily"
+            resultMap="TEpidemicIsolationFamilyResult">
+        <include refid="selectTEpidemicIsolationFamilyVo"/>
+        <where>
+            del_flag = '0'
+            <if test="remark != null  and remark != ''">and remark = #{remark}</if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">and community_building_id like
+                concat('%', #{communityBuildingId}, '%')
+            </if>
+            <if test="serialNumber != null  and serialNumber != ''">and serial_number like concat('%', #{serialNumber},
+                '%')
+            </if>
+            <if test="buildingName != null  and buildingName != ''">and building_name like concat('%', #{buildingName},
+                '%')
+            </if>
+            <if test="unit != null  and unit != ''">and unit = #{unit}</if>
+            <if test="floor != null  and floor != ''">and floor = #{floor}</if>
+            <if test="houseNumber != null  and houseNumber != ''">and house_number like concat('%', #{houseNumber},
+                '%')
+            </if>
+            <if test="personinfo != null  and personinfo != ''">and personInfo like concat('%', #{personinfo}, '%')</if>
+            <if test="params.beginIsolatioStartTime != null and params.beginIsolatioStartTime != '' and params.endIsolatioStartTime != null and params.endIsolatioStartTime != ''">
+                and isolatio_start_time between #{params.beginIsolatioStartTime} and #{params.endIsolatioStartTime}
+            </if>
+            <if test="params.beginIsolationEndTime != null and params.beginIsolationEndTime != '' and params.endIsolationEndTime != null and params.endIsolationEndTime != ''">
+                and isolation_end_time between #{params.beginIsolationEndTime} and #{params.endIsolationEndTime}
+            </if>
+            <if test="isolationDayNum != null ">and isolation_day_num &lt;= #{isolationDayNum}</if>
+            <if test="suppliesPurchaseRecord != null  and suppliesPurchaseRecord != ''">and supplies_purchase_record
+                like concat('%', #{suppliesPurchaseRecord}, '%')
+            </if>
+            <if test="lastSuppliesPurchase != null ">and last_supplies_purchase &lt;= #{lastSuppliesPurchase}</if>
+            <if test="stat != null  and stat != ''">and stat = #{stat}</if>
+            <if test="needOut != null  and needOut != ''">and need_out = #{needOut}</if>
+            <if test="nucleicAcidTestingRecord != null  and nucleicAcidTestingRecord != ''">and
+                nucleic_acid_testing_record like concat('%', #{nucleicAcidTestingRecord}, '%')
+            </if>
+            <if test="params.beginNextNucleicAcidTestingData != null and params.beginNextNucleicAcidTestingData != '' and params.endNextNucleicAcidTestingData != null and params.endNextNucleicAcidTestingData != ''">
+                and next_nucleic_acid_testing_data between #{params.beginNextNucleicAcidTestingData} and
+                #{params.endNextNucleicAcidTestingData}
+            </if>
+            <if test="outRecord != null  and outRecord != ''">and out_record like concat('%', #{outRecord}, '%')</if>
+            <if test="isolationReason != null  and isolationReason != ''">and isolation_reason like concat('%',
+                #{isolationReason}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryTEpidemicIsolationFamilyList" parameterType="TEpidemicIsolationFamily"
+            resultMap="TEpidemicIsolationFamilyResult">
+        <include refid="queryTEpidemicIsolationFamilyVo"/>
+        <where>
+            bc.id = teif.community_id and bcc.id = teif.community_child_id
+            and teif.del_flag = '0' and bc.del_flag = '0' and bcc.del_flag = '0'
+            <if test="remark != null  and remark != ''">and teif.remark = #{remark}</if>
+            <if test="communityId != null  and communityId != ''">and teif.community_id = #{communityId}</if>
+            <if test="communityChildId != null  and communityChildId != ''">and teif.community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">and teif.community_building_id like
+                concat('%', #{communityBuildingId}, '%')
+            </if>
+            <if test="serialNumber != null  and serialNumber != ''">and teif.serial_number like concat('%', #{serialNumber},
+                '%')
+            </if>
+            <if test="buildingName != null  and buildingName != ''">and teif.building_name like concat('%', #{buildingName},
+                '%')
+            </if>
+            <if test="unit != null  and unit != ''">and teif.unit = #{unit}</if>
+            <if test="floor != null  and floor != ''">and teif.floor = #{floor}</if>
+            <if test="houseNumber != null  and houseNumber != ''">and teif.house_number like concat('%', #{houseNumber},
+                '%')
+            </if>
+            <if test="personinfo != null  and personinfo != ''">and teif.personInfo like concat('%', #{personinfo}, '%')</if>
+            <if test="params.beginIsolatioStartTime != null and params.beginIsolatioStartTime != '' and params.endIsolatioStartTime != null and params.endIsolatioStartTime != ''">
+                and teif.isolatio_start_time between #{params.beginIsolatioStartTime} and #{params.endIsolatioStartTime}
+            </if>
+            <if test="params.beginIsolationEndTime != null and params.beginIsolationEndTime != '' and params.endIsolationEndTime != null and params.endIsolationEndTime != ''">
+                and teif.isolation_end_time between #{params.beginIsolationEndTime} and #{params.endIsolationEndTime}
+            </if>
+            <if test="isolationDayNum != null ">and teif.isolation_day_num &lt;= #{isolationDayNum}</if>
+            <if test="suppliesPurchaseRecord != null  and suppliesPurchaseRecord != ''">and teif.supplies_purchase_record
+                like concat('%', #{suppliesPurchaseRecord}, '%')
+            </if>
+            <if test="lastSuppliesPurchase != null ">and teif.last_supplies_purchase &lt;= #{lastSuppliesPurchase}</if>
+            <if test="stat != null  and stat != ''">and teif.stat = #{stat}</if>
+            <if test="needOut != null  and needOut != ''">and teif.need_out = #{needOut}</if>
+            <if test="nucleicAcidTestingRecord != null  and nucleicAcidTestingRecord != ''">and
+                teif.nucleic_acid_testing_record like concat('%', #{nucleicAcidTestingRecord}, '%')
+            </if>
+            <if test="params.beginNextNucleicAcidTestingData != null and params.beginNextNucleicAcidTestingData != '' and params.endNextNucleicAcidTestingData != null and params.endNextNucleicAcidTestingData != ''">
+                and teif.next_nucleic_acid_testing_data between #{params.beginNextNucleicAcidTestingData} and
+                #{params.endNextNucleicAcidTestingData}
+            </if>
+            <if test="outRecord != null  and outRecord != ''">and teif.out_record like concat('%', #{outRecord}, '%')</if>
+            <if test="isolationReason != null  and isolationReason != ''">and teif.isolation_reason like concat('%',
+                #{isolationReason}, '%')
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and teif.community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and teif.community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTEpidemicIsolationFamilyById" parameterType="String" resultMap="TEpidemicIsolationFamilyResult">
+        <include refid="selectTEpidemicIsolationFamilyVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertTEpidemicIsolationFamily" parameterType="TEpidemicIsolationFamily">
+        insert into t_epidemic_isolation_family
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="remark != null">remark,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="communityBuildingId != null">community_building_id,</if>
+            <if test="serialNumber != null">serial_number,</if>
+            <if test="buildingName != null">building_name,</if>
+            <if test="unit != null">unit,</if>
+            <if test="floor != null">floor,</if>
+            <if test="houseNumber != null">house_number,</if>
+            <if test="personinfo != null">personInfo,</if>
+            <if test="isolatioStartTime != null">isolatio_start_time,</if>
+            <if test="isolationEndTime != null">isolation_end_time,</if>
+            <if test="isolationDayNum != null">isolation_day_num,</if>
+            <if test="suppliesPurchaseRecord != null">supplies_purchase_record,</if>
+            <if test="lastSuppliesPurchase != null">last_supplies_purchase,</if>
+            <if test="stat != null">stat,</if>
+            <if test="needOut != null">need_out,</if>
+            <if test="nucleicAcidTestingRecord != null">nucleic_acid_testing_record,</if>
+            <if test="nextNucleicAcidTestingData != null">next_nucleic_acid_testing_data,</if>
+            <if test="outRecord != null">out_record,</if>
+            <if test="isolationReason != null">isolation_reason,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="communityBuildingId != null">#{communityBuildingId},</if>
+            <if test="serialNumber != null">#{serialNumber},</if>
+            <if test="buildingName != null">#{buildingName},</if>
+            <if test="unit != null">#{unit},</if>
+            <if test="floor != null">#{floor},</if>
+            <if test="houseNumber != null">#{houseNumber},</if>
+            <if test="personinfo != null">#{personinfo},</if>
+            <if test="isolatioStartTime != null">#{isolatioStartTime},</if>
+            <if test="isolationEndTime != null">#{isolationEndTime},</if>
+            <if test="isolationDayNum != null">#{isolationDayNum},</if>
+            <if test="suppliesPurchaseRecord != null">#{suppliesPurchaseRecord},</if>
+            <if test="lastSuppliesPurchase != null">#{lastSuppliesPurchase},</if>
+            <if test="stat != null">#{stat},</if>
+            <if test="needOut != null">#{needOut},</if>
+            <if test="nucleicAcidTestingRecord != null">#{nucleicAcidTestingRecord},</if>
+            <if test="nextNucleicAcidTestingData != null">#{nextNucleicAcidTestingData},</if>
+            <if test="outRecord != null">#{outRecord},</if>
+            <if test="isolationReason != null">#{isolationReason},</if>
+        </trim>
+    </insert>
+
+    <update id="updateTEpidemicIsolationFamily" parameterType="TEpidemicIsolationFamily">
+        update t_epidemic_isolation_family
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="communityBuildingId != null">community_building_id = #{communityBuildingId},</if>
+            <if test="serialNumber != null">serial_number = #{serialNumber},</if>
+            <if test="buildingName != null">building_name = #{buildingName},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="floor != null">floor = #{floor},</if>
+            <if test="houseNumber != null">house_number = #{houseNumber},</if>
+            <if test="personinfo != null">personInfo = #{personinfo},</if>
+            <if test="isolatioStartTime != null">isolatio_start_time = #{isolatioStartTime},</if>
+            <if test="isolationEndTime != null">isolation_end_time = #{isolationEndTime},</if>
+            <if test="isolationDayNum != null">isolation_day_num = #{isolationDayNum},</if>
+            <if test="suppliesPurchaseRecord != null">supplies_purchase_record = #{suppliesPurchaseRecord},</if>
+            <if test="lastSuppliesPurchase != null">last_supplies_purchase = #{lastSuppliesPurchase},</if>
+            <if test="stat != null">stat = #{stat},</if>
+            <if test="needOut != null">need_out = #{needOut},</if>
+            <if test="nucleicAcidTestingRecord != null">nucleic_acid_testing_record = #{nucleicAcidTestingRecord},</if>
+            <if test="nextNucleicAcidTestingData != null">next_nucleic_acid_testing_data =
+                #{nextNucleicAcidTestingData},
+            </if>
+            <if test="outRecord != null">out_record = #{outRecord},</if>
+            <if test="isolationReason != null">isolation_reason = #{isolationReason},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTEpidemicIsolationFamilyById" parameterType="String">
+        delete from t_epidemic_isolation_family where id = #{id}
+    </delete>
+
+    <delete id="deleteTEpidemicIsolationFamilyByIds" parameterType="String">
+        delete from t_epidemic_isolation_family where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTEpidemicIsolationFamilyByIds" parameterType="String">
+        update t_epidemic_isolation_family set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

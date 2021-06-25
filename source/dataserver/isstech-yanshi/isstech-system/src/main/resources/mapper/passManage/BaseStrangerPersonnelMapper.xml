@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseStrangerPersonnelMapper">
+
+    <resultMap type="BaseStrangerPersonnel" id="BaseStrangerPersonnelResult">
+        <result property="id" column="id"/>
+        <result property="faceId" column="face_id"/>
+        <result property="communityBuildingId" column="community_building_id"/>
+        <result property="communityBuildingName" column="community_building_name"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityChildName" column="community_child_name"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+        <result property="communityHousesName" column="community_houses_name"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityName" column="community_name"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="faceAppearTime" column="face_appear_time"/>
+        <result property="faceDisAppearTime" column="face_dis_appear_time"/>
+        <result property="faceStyle" column="face_style"/>
+        <result property="facialFeature" column="facial_feature"/>
+        <result property="gender" column="gender"/>
+        <result property="idnumber" column="idnumber"/>
+        <result property="idType" column="id_type"/>
+        <result property="expression" column="expression"/>
+        <result property="locationMarkTime" column="location_mark_time"/>
+        <result property="locationMarkAddr" column="location_mark_addr"/>
+        <result property="agevalue" column="ageValue"/>
+        <result property="eyeglass" column="eyeglass"/>
+        <result property="mouthmask" column="mouthmask"/>
+        <result property="age" column="age"/>
+        <result property="sourceId" column="source_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="sourceTableName" column="source_table_name"/>
+        <result property="pics" column="pics"/>
+        <result property="eyebrowStyle" column="eyebrow_style"/>
+        <result property="freckleBirthmark" column="freckle_birthmark"/>
+        <result property="glassColor" column="glass_color"/>
+        <result property="glassStyle" column="glass_style"/>
+        <result property="hairColor" column="hair_color"/>
+        <result property="hairStyle" column="hair_style"/>
+        <result property="infoKind" column="info_kind"/>
+        <result property="accompanyNumber" column="accompany_number"/>
+        <result property="acneStain" column="acne_stain"/>
+        <result property="attitude" column="attitude"/>
+        <result property="bodySpeciallMark" column="body_speciall_mark"/>
+        <result property="capColor" column="cap_color"/>
+        <result property="capStyle" column="cap_style"/>
+        <result property="leftTopX" column="left_top_x"/>
+        <result property="leftTopY" column="left_top_y"/>
+        <result property="lipStyle" column="lip_style"/>
+        <result property="memberTypeCode" column="member_type_code"/>
+        <result property="mustacheStyle" column="mustache_style"/>
+        <result property="noseStyle" column="nose_style"/>
+        <result property="otherFeature" column="other_feature"/>
+        <result property="physicalFeature" column="physical_feature"/>
+        <result property="respiratorColor" column="respirator_color"/>
+        <result property="rightBtmX" column="right_btm_x"/>
+        <result property="rightBtmY" column="right_btm_y"/>
+        <result property="scarDimple" column="scar_dimple"/>
+        <result property="skinColor" column="skin_color"/>
+    </resultMap>
+
+    <sql id="selectBaseStrangerPersonnelVo">
+        select id, face_id, community_building_id, community_building_name, community_child_id, community_child_name, community_houses_id, community_houses_name, community_id, community_name, device_id, face_appear_time, face_dis_appear_time, face_style, facial_feature, gender, idnumber, id_type, expression, location_mark_time, location_mark_addr, ageValue, eyeglass, mouthmask, age, source_id, person_id, del_flag, source_table_name, pics, eyebrow_style, freckle_birthmark, glass_color, glass_style, hair_color, hair_style, info_kind, accompany_number, acne_stain, attitude, body_speciall_mark, cap_color, cap_style, left_top_x, left_top_y, lip_style, member_type_code, mustache_style, nose_style, other_feature, physical_feature, respirator_color, right_btm_x, right_btm_y, scar_dimple, skin_color from base_stranger_personnel
+    </sql>
+
+    <select id="selectBaseStrangerPersonnelList" parameterType="BaseStrangerPersonnel"
+            resultMap="BaseStrangerPersonnelResult">
+        <include refid="selectBaseStrangerPersonnelVo"/>
+        <where>
+            del_flag = '0'
+            <if test="faceId != null  and faceId != ''">and face_id = #{faceId}</if>
+            <if test="communityBuildingId != null  and communityBuildingId != ''">and community_building_id =
+                #{communityBuildingId}
+            </if>
+            <if test="communityBuildingName != null  and communityBuildingName != ''">and community_building_name like
+                concat('%', #{communityBuildingName}, '%')
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">and community_child_id =
+                #{communityChildId}
+            </if>
+            <if test="communityChildName != null  and communityChildName != ''">and community_child_name like
+                concat('%', #{communityChildName}, '%')
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">and community_houses_id =
+                #{communityHousesId}
+            </if>
+            <if test="communityHousesName != null  and communityHousesName != ''">and community_houses_name like
+                concat('%', #{communityHousesName}, '%')
+            </if>
+            <if test="communityId != null  and communityId != ''">and community_id = #{communityId}</if>
+            <if test="communityName != null  and communityName != ''">and community_name like concat('%',
+                #{communityName}, '%')
+            </if>
+            <if test="deviceId != null  and deviceId != ''">and device_id = #{deviceId}</if>
+            <if test="faceAppearTime != null ">and face_appear_time = #{faceAppearTime}</if>
+            <if test="faceDisAppearTime != null ">and face_dis_appear_time = #{faceDisAppearTime}</if>
+            <if test="faceStyle != null  and faceStyle != ''">and face_style = #{faceStyle}</if>
+            <if test="facialFeature != null  and facialFeature != ''">and facial_feature = #{facialFeature}</if>
+            <if test="gender != null  and gender != ''">and gender = #{gender}</if>
+            <if test="idnumber != null  and idnumber != ''">and idnumber = #{idnumber}</if>
+            <if test="idType != null  and idType != ''">and id_type = #{idType}</if>
+            <if test="expression != null  and expression != ''">and expression = #{expression}</if>
+            <if test="locationMarkTime != null ">and location_mark_time = #{locationMarkTime}</if>
+            <if test="locationMarkAddr != null  and locationMarkAddr != ''">and location_mark_addr =
+                #{locationMarkAddr}
+            </if>
+            <if test="agevalue != null  and agevalue != ''">and ageValue = #{agevalue}</if>
+            <if test="eyeglass != null  and eyeglass != ''">and eyeglass = #{eyeglass}</if>
+            <if test="mouthmask != null  and mouthmask != ''">and mouthmask = #{mouthmask}</if>
+            <if test="age != null  and age != ''">and age = #{age}</if>
+            <if test="sourceId != null  and sourceId != ''">and source_id = #{sourceId}</if>
+            <if test="personId != null  and personId != ''">and person_id = #{personId}</if>
+            <if test="sourceTableName != null  and sourceTableName != ''">and source_table_name like concat('%',
+                #{sourceTableName}, '%')
+            </if>
+            <if test="pics != null  and pics != ''">and pics = #{pics}</if>
+            <if test="eyebrowStyle != null  and eyebrowStyle != ''">and eyebrow_style = #{eyebrowStyle}</if>
+            <if test="freckleBirthmark != null  and freckleBirthmark != ''">and freckle_birthmark =
+                #{freckleBirthmark}
+            </if>
+            <if test="glassColor != null  and glassColor != ''">and glass_color = #{glassColor}</if>
+            <if test="glassStyle != null  and glassStyle != ''">and glass_style = #{glassStyle}</if>
+            <if test="hairColor != null  and hairColor != ''">and hair_color = #{hairColor}</if>
+            <if test="hairStyle != null  and hairStyle != ''">and hair_style = #{hairStyle}</if>
+            <if test="infoKind != null  and infoKind != ''">and info_kind = #{infoKind}</if>
+            <if test="accompanyNumber != null  and accompanyNumber != ''">and accompany_number = #{accompanyNumber}</if>
+            <if test="acneStain != null  and acneStain != ''">and acne_stain = #{acneStain}</if>
+            <if test="attitude != null  and attitude != ''">and attitude = #{attitude}</if>
+            <if test="bodySpeciallMark != null  and bodySpeciallMark != ''">and body_speciall_mark =
+                #{bodySpeciallMark}
+            </if>
+            <if test="capColor != null  and capColor != ''">and cap_color = #{capColor}</if>
+            <if test="capStyle != null  and capStyle != ''">and cap_style = #{capStyle}</if>
+            <if test="leftTopX != null  and leftTopX != ''">and left_top_x = #{leftTopX}</if>
+            <if test="leftTopY != null  and leftTopY != ''">and left_top_y = #{leftTopY}</if>
+            <if test="lipStyle != null  and lipStyle != ''">and lip_style = #{lipStyle}</if>
+            <if test="memberTypeCode != null  and memberTypeCode != ''">and member_type_code = #{memberTypeCode}</if>
+            <if test="mustacheStyle != null  and mustacheStyle != ''">and mustache_style = #{mustacheStyle}</if>
+            <if test="noseStyle != null  and noseStyle != ''">and nose_style = #{noseStyle}</if>
+            <if test="otherFeature != null  and otherFeature != ''">and other_feature = #{otherFeature}</if>
+            <if test="physicalFeature != null  and physicalFeature != ''">and physical_feature = #{physicalFeature}</if>
+            <if test="respiratorColor != null  and respiratorColor != ''">and respirator_color = #{respiratorColor}</if>
+            <if test="rightBtmX != null  and rightBtmX != ''">and right_btm_x = #{rightBtmX}</if>
+            <if test="rightBtmY != null  and rightBtmY != ''">and right_btm_y = #{rightBtmY}</if>
+            <if test="scarDimple != null  and scarDimple != ''">and scar_dimple = #{scarDimple}</if>
+            <if test="skinColor != null  and skinColor != ''">and skin_color = #{skinColor}</if>
+        </where>
+    </select>
+
+    <select id="selectBaseStrangerPersonnelById" parameterType="String" resultMap="BaseStrangerPersonnelResult">
+        <include refid="selectBaseStrangerPersonnelVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertBaseStrangerPersonnel" parameterType="BaseStrangerPersonnel">
+        insert into base_stranger_personnel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,</if>
+            <if test="faceId != null and faceId != ''">face_id,</if>
+            <if test="communityBuildingId != null">community_building_id,</if>
+            <if test="communityBuildingName != null">community_building_name,</if>
+            <if test="communityChildId != null">community_child_id,</if>
+            <if test="communityChildName != null">community_child_name,</if>
+            <if test="communityHousesId != null">community_houses_id,</if>
+            <if test="communityHousesName != null">community_houses_name,</if>
+            <if test="communityId != null">community_id,</if>
+            <if test="communityName != null">community_name,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="faceAppearTime != null">face_appear_time,</if>
+            <if test="faceDisAppearTime != null">face_dis_appear_time,</if>
+            <if test="faceStyle != null">face_style,</if>
+            <if test="facialFeature != null">facial_feature,</if>
+            <if test="gender != null">gender,</if>
+            <if test="idnumber != null">idnumber,</if>
+            <if test="idType != null">id_type,</if>
+            <if test="expression != null">expression,</if>
+            <if test="locationMarkTime != null">location_mark_time,</if>
+            <if test="locationMarkAddr != null">location_mark_addr,</if>
+            <if test="agevalue != null">ageValue,</if>
+            <if test="eyeglass != null">eyeglass,</if>
+            <if test="mouthmask != null">mouthmask,</if>
+            <if test="age != null">age,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="personId != null and personId != ''">person_id,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="sourceTableName != null">source_table_name,</if>
+            <if test="pics != null">pics,</if>
+            <if test="eyebrowStyle != null">eyebrow_style,</if>
+            <if test="freckleBirthmark != null">freckle_birthmark,</if>
+            <if test="glassColor != null">glass_color,</if>
+            <if test="glassStyle != null">glass_style,</if>
+            <if test="hairColor != null">hair_color,</if>
+            <if test="hairStyle != null">hair_style,</if>
+            <if test="infoKind != null">info_kind,</if>
+            <if test="accompanyNumber != null">accompany_number,</if>
+            <if test="acneStain != null">acne_stain,</if>
+            <if test="attitude != null">attitude,</if>
+            <if test="bodySpeciallMark != null">body_speciall_mark,</if>
+            <if test="capColor != null">cap_color,</if>
+            <if test="capStyle != null">cap_style,</if>
+            <if test="leftTopX != null">left_top_x,</if>
+            <if test="leftTopY != null">left_top_y,</if>
+            <if test="lipStyle != null">lip_style,</if>
+            <if test="memberTypeCode != null">member_type_code,</if>
+            <if test="mustacheStyle != null">mustache_style,</if>
+            <if test="noseStyle != null">nose_style,</if>
+            <if test="otherFeature != null">other_feature,</if>
+            <if test="physicalFeature != null">physical_feature,</if>
+            <if test="respiratorColor != null">respirator_color,</if>
+            <if test="rightBtmX != null">right_btm_x,</if>
+            <if test="rightBtmY != null">right_btm_y,</if>
+            <if test="scarDimple != null">scar_dimple,</if>
+            <if test="skinColor != null">skin_color,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},</if>
+            <if test="faceId != null and faceId != ''">#{faceId},</if>
+            <if test="communityBuildingId != null">#{communityBuildingId},</if>
+            <if test="communityBuildingName != null">#{communityBuildingName},</if>
+            <if test="communityChildId != null">#{communityChildId},</if>
+            <if test="communityChildName != null">#{communityChildName},</if>
+            <if test="communityHousesId != null">#{communityHousesId},</if>
+            <if test="communityHousesName != null">#{communityHousesName},</if>
+            <if test="communityId != null">#{communityId},</if>
+            <if test="communityName != null">#{communityName},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="faceAppearTime != null">#{faceAppearTime},</if>
+            <if test="faceDisAppearTime != null">#{faceDisAppearTime},</if>
+            <if test="faceStyle != null">#{faceStyle},</if>
+            <if test="facialFeature != null">#{facialFeature},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="idnumber != null">#{idnumber},</if>
+            <if test="idType != null">#{idType},</if>
+            <if test="expression != null">#{expression},</if>
+            <if test="locationMarkTime != null">#{locationMarkTime},</if>
+            <if test="locationMarkAddr != null">#{locationMarkAddr},</if>
+            <if test="agevalue != null">#{agevalue},</if>
+            <if test="eyeglass != null">#{eyeglass},</if>
+            <if test="mouthmask != null">#{mouthmask},</if>
+            <if test="age != null">#{age},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="personId != null and personId != ''">#{personId},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="sourceTableName != null">#{sourceTableName},</if>
+            <if test="pics != null">#{pics},</if>
+            <if test="eyebrowStyle != null">#{eyebrowStyle},</if>
+            <if test="freckleBirthmark != null">#{freckleBirthmark},</if>
+            <if test="glassColor != null">#{glassColor},</if>
+            <if test="glassStyle != null">#{glassStyle},</if>
+            <if test="hairColor != null">#{hairColor},</if>
+            <if test="hairStyle != null">#{hairStyle},</if>
+            <if test="infoKind != null">#{infoKind},</if>
+            <if test="accompanyNumber != null">#{accompanyNumber},</if>
+            <if test="acneStain != null">#{acneStain},</if>
+            <if test="attitude != null">#{attitude},</if>
+            <if test="bodySpeciallMark != null">#{bodySpeciallMark},</if>
+            <if test="capColor != null">#{capColor},</if>
+            <if test="capStyle != null">#{capStyle},</if>
+            <if test="leftTopX != null">#{leftTopX},</if>
+            <if test="leftTopY != null">#{leftTopY},</if>
+            <if test="lipStyle != null">#{lipStyle},</if>
+            <if test="memberTypeCode != null">#{memberTypeCode},</if>
+            <if test="mustacheStyle != null">#{mustacheStyle},</if>
+            <if test="noseStyle != null">#{noseStyle},</if>
+            <if test="otherFeature != null">#{otherFeature},</if>
+            <if test="physicalFeature != null">#{physicalFeature},</if>
+            <if test="respiratorColor != null">#{respiratorColor},</if>
+            <if test="rightBtmX != null">#{rightBtmX},</if>
+            <if test="rightBtmY != null">#{rightBtmY},</if>
+            <if test="scarDimple != null">#{scarDimple},</if>
+            <if test="skinColor != null">#{skinColor},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseStrangerPersonnel" parameterType="BaseStrangerPersonnel">
+        update base_stranger_personnel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="faceId != null and faceId != ''">face_id = #{faceId},</if>
+            <if test="communityBuildingId != null">community_building_id = #{communityBuildingId},</if>
+            <if test="communityBuildingName != null">community_building_name = #{communityBuildingName},</if>
+            <if test="communityChildId != null">community_child_id = #{communityChildId},</if>
+            <if test="communityChildName != null">community_child_name = #{communityChildName},</if>
+            <if test="communityHousesId != null">community_houses_id = #{communityHousesId},</if>
+            <if test="communityHousesName != null">community_houses_name = #{communityHousesName},</if>
+            <if test="communityId != null">community_id = #{communityId},</if>
+            <if test="communityName != null">community_name = #{communityName},</if>
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="faceAppearTime != null">face_appear_time = #{faceAppearTime},</if>
+            <if test="faceDisAppearTime != null">face_dis_appear_time = #{faceDisAppearTime},</if>
+            <if test="faceStyle != null">face_style = #{faceStyle},</if>
+            <if test="facialFeature != null">facial_feature = #{facialFeature},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="idnumber != null">idnumber = #{idnumber},</if>
+            <if test="idType != null">id_type = #{idType},</if>
+            <if test="expression != null">expression = #{expression},</if>
+            <if test="locationMarkTime != null">location_mark_time = #{locationMarkTime},</if>
+            <if test="locationMarkAddr != null">location_mark_addr = #{locationMarkAddr},</if>
+            <if test="agevalue != null">ageValue = #{agevalue},</if>
+            <if test="eyeglass != null">eyeglass = #{eyeglass},</if>
+            <if test="mouthmask != null">mouthmask = #{mouthmask},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="personId != null and personId != ''">person_id = #{personId},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="sourceTableName != null">source_table_name = #{sourceTableName},</if>
+            <if test="pics != null">pics = #{pics},</if>
+            <if test="eyebrowStyle != null">eyebrow_style = #{eyebrowStyle},</if>
+            <if test="freckleBirthmark != null">freckle_birthmark = #{freckleBirthmark},</if>
+            <if test="glassColor != null">glass_color = #{glassColor},</if>
+            <if test="glassStyle != null">glass_style = #{glassStyle},</if>
+            <if test="hairColor != null">hair_color = #{hairColor},</if>
+            <if test="hairStyle != null">hair_style = #{hairStyle},</if>
+            <if test="infoKind != null">info_kind = #{infoKind},</if>
+            <if test="accompanyNumber != null">accompany_number = #{accompanyNumber},</if>
+            <if test="acneStain != null">acne_stain = #{acneStain},</if>
+            <if test="attitude != null">attitude = #{attitude},</if>
+            <if test="bodySpeciallMark != null">body_speciall_mark = #{bodySpeciallMark},</if>
+            <if test="capColor != null">cap_color = #{capColor},</if>
+            <if test="capStyle != null">cap_style = #{capStyle},</if>
+            <if test="leftTopX != null">left_top_x = #{leftTopX},</if>
+            <if test="leftTopY != null">left_top_y = #{leftTopY},</if>
+            <if test="lipStyle != null">lip_style = #{lipStyle},</if>
+            <if test="memberTypeCode != null">member_type_code = #{memberTypeCode},</if>
+            <if test="mustacheStyle != null">mustache_style = #{mustacheStyle},</if>
+            <if test="noseStyle != null">nose_style = #{noseStyle},</if>
+            <if test="otherFeature != null">other_feature = #{otherFeature},</if>
+            <if test="physicalFeature != null">physical_feature = #{physicalFeature},</if>
+            <if test="respiratorColor != null">respirator_color = #{respiratorColor},</if>
+            <if test="rightBtmX != null">right_btm_x = #{rightBtmX},</if>
+            <if test="rightBtmY != null">right_btm_y = #{rightBtmY},</if>
+            <if test="scarDimple != null">scar_dimple = #{scarDimple},</if>
+            <if test="skinColor != null">skin_color = #{skinColor},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseStrangerPersonnelById" parameterType="String">
+        delete from base_stranger_personnel where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseStrangerPersonnelByIds" parameterType="String">
+        delete from base_stranger_personnel where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseStrangerPersonnelByIds" parameterType="String">
+        update base_stranger_personnel set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,11 @@
+{
+  "DBRestAPIEndPointUri": "http://10.112.253.4:7090",
+  "FileUpLoadUri": "http://10.112.253.4:7089/upload/image/sample",
+  "epidemicDeclareUrl":"http://10.112.253.2:7514/h5/index.html#/",
+  "VideoBasicsRestAPIEndPointUri": "http://10.112.253.3:10089/api/open/V1.0.0/vss/",
+  "StreamingMediaUrl": "http://10.112.253.3:10089/api/open/V1.0.0/",
+  "DBHuaWeiVcnRestAPIEndPointUri": "http://10.112.253.3:10089/api/open/V1.0.0/vcn/",
+  "DBHuaWeiVcmRestAPIEndPointUri": "http://10.112.253.3:10089/api/open/V1.0.0/vcm/",
+  "vcmImageUrl": "http://10.112.253.3:10089/api/open/V1.0.0/vcm/intelligent_analysis/image_Download?imageUrl=",
+  "videoType": 1
+}

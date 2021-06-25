@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.BaseSocialOrganizationMapper">
+
+    <resultMap type="CommunitySocialOrganizationVo" id="BaseSocialOrganizationResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="name" column="name"/>
+        <result property="unifiedSocialCreditCode" column="unified_social_credit_code"/>
+        <result property="registrationCode" column="registration_code"/>
+        <result property="registeredAddress" column="registered_address"/>
+        <result property="dateOfEstablishment" column="date_of_establishment"/>
+        <result property="legalRepresentative" column="legal_representative"/>
+        <result property="nameOfPersonInCharge" column="name_of_person_in_charge"/>
+        <result property="identificationNumberOfPersonInCharge" column="identification_number_of_person_in_charge"/>
+        <result property="sexOfPersonInCharge" column="sex_of_person_in_charge"/>
+        <result property="phonenumOfPersonInCharge" column="phoneNum_of_person_in_charge"/>
+        <result property="addressOfPersonInCharge" column="address_of_person_in_charge"/>
+        <result property="securityResponsibleName" column="security_responsible_name"/>
+        <result property="securityResponsiblePhone" column="security_responsible_phone"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="haveForeignRelationship" column="have_foreign_relationship"/>
+        <result property="registeredCapital" column="registered_capital"/>
+        <result property="numberOfEmployees" column="number_of_employees"/>
+        <result property="socialOrganizationType" column="social_organization_type"/>
+        <result property="status" column="status"/>
+        <result property="caringLevel" column="caring_level"/>
+        <result property="canCreateChineseCommunistPartyBranch" column="can_create_chinese_communist_party_branch"/>
+        <result property="haveChineseCommunistPartyBranch" column="have_chinese_communist_party_branch"/>
+        <result property="chineseCommunistPartyBranchPeopleNum" column="chinese_communist_party_branch_people_num"/>
+        <result property="haveUnion" column="have_union"/>
+        <result property="unionPeopleNum" column="union_people_num"/>
+        <result property="haveCommunistYouthLeague" column="have_communist_youth_league"/>
+        <result property="communistYouthLeaguePeopleNum" column="communist_youth_league_people_num"/>
+        <result property="haveWomenSFederation" column="have_women_s_federation"/>
+        <result property="womenSFederationPeopleNum" column="women_s_federation_people_num"/>
+        <result property="sourcesOfFunds" column="sources_of_funds"/>
+        <result property="communityId" column="community_id"/>
+        <result property="communityChildId" column="community_child_id"/>
+        <result property="communityHousesId" column="community_houses_id"/>
+    </resultMap>
+
+    <sql id="selectBaseSocialOrganizationVo">
+        select zz.id, zz.create_by, zz.create_time, zz.update_by, zz.update_time, zz.del_flag, zz.remark, name, unified_social_credit_code, registration_code, registered_address, date_of_establishment, legal_representative, name_of_person_in_charge, identification_number_of_person_in_charge, sex_of_person_in_charge, phoneNum_of_person_in_charge, address_of_person_in_charge, security_responsible_name, security_responsible_phone, longitude, latitude, have_foreign_relationship, registered_capital, number_of_employees, social_organization_type, status, caring_level, can_create_chinese_communist_party_branch, have_chinese_communist_party_branch, chinese_communist_party_branch_people_num, have_union, union_people_num, have_communist_youth_league, communist_youth_league_people_num, have_women_s_federation, women_s_federation_people_num, sources_of_funds,co.community_id,co.community_child_id,co.community_houses_id from base_social_organization zz left join base_community_organization co on co.social_organization_id = zz.id and co.del_flag = '0'
+    </sql>
+
+    <select id="selectBaseSocialOrganizationList" parameterType="CommunitySocialOrganizationVo"
+            resultMap="BaseSocialOrganizationResult">
+        <include refid="selectBaseSocialOrganizationVo"/>
+        <where>
+            zz.del_flag = '0'
+            <if test="communityId != null  and communityId != ''">
+                and community_id = #{communityId}
+            </if>
+            <if test="communityChildId != null  and communityChildId != ''">
+                and community_child_id = #{communityChildId}
+            </if>
+            <if test="communityHousesId != null  and communityHousesId != ''">
+                and community_houses_id like concat('%', #{communityHousesId}, '%')
+            </if>
+            <if test="name != null  and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="unifiedSocialCreditCode != null  and unifiedSocialCreditCode != ''">
+                and unified_social_credit_code like concat('%', #{unifiedSocialCreditCode}, '%')
+            </if>
+            <if test="registrationCode != null  and registrationCode != ''">
+                and registration_code like concat('%', #{registrationCode}, '%')
+            </if>
+            <if test="registeredAddress != null  and registeredAddress != ''">
+                and registered_address like concat('%', #{registeredAddress}, '%')
+            </if>
+            <if test="dateOfEstablishment != null ">
+                and date_of_establishment like concat('%', #{dateOfEstablishment}, '%')
+            </if>
+            <if test="legalRepresentative != null  and legalRepresentative != ''">
+                and legal_representative like concat('%', #{legalRepresentative}, '%')
+            </if>
+            <if test="nameOfPersonInCharge != null  and nameOfPersonInCharge != ''">
+                and name_of_person_in_charge like concat('%', #{nameOfPersonInCharge}, '%')
+            </if>
+            <if test="identificationNumberOfPersonInCharge != null  and identificationNumberOfPersonInCharge != ''">
+                and identification_number_of_person_in_charge like concat('%', #{identificationNumberOfPersonInCharge},
+                '%')
+            </if>
+            <if test="sexOfPersonInCharge != null  and sexOfPersonInCharge != ''">
+                and sex_of_person_in_charge = #{sexOfPersonInCharge}
+            </if>
+            <if test="phonenumOfPersonInCharge != null  and phonenumOfPersonInCharge != ''">
+                and phoneNum_of_person_in_charge like concat('%', #{phonenumOfPersonInCharge}, '%')
+            </if>
+            <if test="addressOfPersonInCharge != null  and addressOfPersonInCharge != ''">
+                and address_of_person_in_charge like concat('%', #{addressOfPersonInCharge}, '%')
+            </if>
+            <if test="securityResponsibleName != null  and securityResponsibleName != ''">
+                and security_responsible_name like concat('%', #{securityResponsibleName}, '%')
+            </if>
+            <if test="securityResponsiblePhone != null  and securityResponsiblePhone != ''">
+                and security_responsible_phone like concat('%', #{securityResponsiblePhone}, '%')
+            </if>
+            <if test="haveForeignRelationship != null  and haveForeignRelationship != ''">
+                and have_foreign_relationship = #{haveForeignRelationship}
+            </if>
+            <if test="numberOfEmployees != null  and numberOfEmployees != ''">
+                and number_of_employees = #{numberOfEmployees}
+            </if>
+            <if test="socialOrganizationType != null  and socialOrganizationType != ''">
+                and social_organization_type = #{socialOrganizationType}
+            </if>
+            <if test="status != null  and status != ''">
+                and status = #{status}
+            </if>
+            <if test="caringLevel != null ">
+                and caring_level = #{caringLevel}
+            </if>
+            <if test="canCreateChineseCommunistPartyBranch != null  and canCreateChineseCommunistPartyBranch != ''">
+                and can_create_chinese_communist_party_branch = #{canCreateChineseCommunistPartyBranch}
+            </if>
+            <if test="haveChineseCommunistPartyBranch != null  and haveChineseCommunistPartyBranch != ''">
+                and have_chinese_communist_party_branch = #{haveChineseCommunistPartyBranch}
+            </if>
+            <if test="chineseCommunistPartyBranchPeopleNum != null ">
+                and chinese_communist_party_branch_people_num &gt; #{chineseCommunistPartyBranchPeopleNum}
+            </if>
+            <if test="haveUnion != null  and haveUnion != ''">
+                and have_union = #{haveUnion}
+            </if>
+            <if test="unionPeopleNum != null ">
+                and union_people_num &gt; #{unionPeopleNum}
+            </if>
+            <if test="haveCommunistYouthLeague != null  and haveCommunistYouthLeague != ''">
+                and have_communist_youth_league = #{haveCommunistYouthLeague}
+            </if>
+            <if test="communistYouthLeaguePeopleNum != null ">
+                and communist_youth_league_people_num &gt; #{communistYouthLeaguePeopleNum}
+            </if>
+            <if test="haveWomenSFederation != null  and haveWomenSFederation != ''">
+                and have_women_s_federation = #{haveWomenSFederation}
+            </if>
+            <if test="womenSFederationPeopleNum != null ">
+                and women_s_federation_people_num &gt; #{womenSFederationPeopleNum}
+            </if>
+            <if test="isAllDataAccess !=null and !isAllDataAccess and dataAccessList !=null and dataAccessList.size > 0">
+                <if test="communityId == null  or communityId == ''">
+                    and community_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityId}
+                    </foreach>
+                </if>
+                <if test="communityChildId == null  or communityChildId == ''">
+                    and community_child_id in
+                    <foreach item="dataAccess" collection="dataAccessList" open="(" separator="," close=")">
+                        #{dataAccess.communityChildId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBaseSocialOrganizationById" parameterType="String" resultMap="BaseSocialOrganizationResult">
+        <include refid="selectBaseSocialOrganizationVo"/>
+        where zz.id = #{id}
+    </select>
+
+    <insert id="insertBaseSocialOrganization" parameterType="BaseSocialOrganization">
+        insert into base_social_organization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null">del_flag,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="name != null">name,
+            </if>
+            <if test="unifiedSocialCreditCode != null">unified_social_credit_code,
+            </if>
+            <if test="registrationCode != null">registration_code,
+            </if>
+            <if test="registeredAddress != null">registered_address,
+            </if>
+            <if test="dateOfEstablishment != null">date_of_establishment,
+            </if>
+            <if test="legalRepresentative != null">legal_representative,
+            </if>
+            <if test="nameOfPersonInCharge != null">name_of_person_in_charge,
+            </if>
+            <if test="identificationNumberOfPersonInCharge != null">identification_number_of_person_in_charge,
+            </if>
+            <if test="sexOfPersonInCharge != null">sex_of_person_in_charge,
+            </if>
+            <if test="phonenumOfPersonInCharge != null">phoneNum_of_person_in_charge,
+            </if>
+            <if test="addressOfPersonInCharge != null">address_of_person_in_charge,
+            </if>
+            <if test="securityResponsibleName != null">security_responsible_name,
+            </if>
+            <if test="securityResponsiblePhone != null">security_responsible_phone,
+            </if>
+            <if test="longitude != null">longitude,
+            </if>
+            <if test="latitude != null">latitude,
+            </if>
+            <if test="haveForeignRelationship != null">have_foreign_relationship,
+            </if>
+            <if test="registeredCapital != null">registered_capital,
+            </if>
+            <if test="numberOfEmployees != null">number_of_employees,
+            </if>
+            <if test="socialOrganizationType != null">social_organization_type,
+            </if>
+            <if test="status != null">status,
+            </if>
+            <if test="caringLevel != null">caring_level,
+            </if>
+            <if test="canCreateChineseCommunistPartyBranch != null">can_create_chinese_communist_party_branch,
+            </if>
+            <if test="haveChineseCommunistPartyBranch != null">have_chinese_communist_party_branch,
+            </if>
+            <if test="chineseCommunistPartyBranchPeopleNum != null">chinese_communist_party_branch_people_num,
+            </if>
+            <if test="haveUnion != null">have_union,
+            </if>
+            <if test="unionPeopleNum != null">union_people_num,
+            </if>
+            <if test="haveCommunistYouthLeague != null">have_communist_youth_league,
+            </if>
+            <if test="communistYouthLeaguePeopleNum != null">communist_youth_league_people_num,
+            </if>
+            <if test="haveWomenSFederation != null">have_women_s_federation,
+            </if>
+            <if test="womenSFederationPeopleNum != null">women_s_federation_people_num,
+            </if>
+            <if test="sourcesOfFunds != null">sources_of_funds,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null">#{delFlag},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="name != null">#{name},
+            </if>
+            <if test="unifiedSocialCreditCode != null">#{unifiedSocialCreditCode},
+            </if>
+            <if test="registrationCode != null">#{registrationCode},
+            </if>
+            <if test="registeredAddress != null">#{registeredAddress},
+            </if>
+            <if test="dateOfEstablishment != null">#{dateOfEstablishment},
+            </if>
+            <if test="legalRepresentative != null">#{legalRepresentative},
+            </if>
+            <if test="nameOfPersonInCharge != null">#{nameOfPersonInCharge},
+            </if>
+            <if test="identificationNumberOfPersonInCharge != null">#{identificationNumberOfPersonInCharge},
+            </if>
+            <if test="sexOfPersonInCharge != null">#{sexOfPersonInCharge},
+            </if>
+            <if test="phonenumOfPersonInCharge != null">#{phonenumOfPersonInCharge},
+            </if>
+            <if test="addressOfPersonInCharge != null">#{addressOfPersonInCharge},
+            </if>
+            <if test="securityResponsibleName != null">#{securityResponsibleName},
+            </if>
+            <if test="securityResponsiblePhone != null">#{securityResponsiblePhone},
+            </if>
+            <if test="longitude != null">#{longitude},
+            </if>
+            <if test="latitude != null">#{latitude},
+            </if>
+            <if test="haveForeignRelationship != null">#{haveForeignRelationship},
+            </if>
+            <if test="registeredCapital != null">#{registeredCapital},
+            </if>
+            <if test="numberOfEmployees != null">#{numberOfEmployees},
+            </if>
+            <if test="socialOrganizationType != null">#{socialOrganizationType},
+            </if>
+            <if test="status != null">#{status},
+            </if>
+            <if test="caringLevel != null">#{caringLevel},
+            </if>
+            <if test="canCreateChineseCommunistPartyBranch != null">#{canCreateChineseCommunistPartyBranch},
+            </if>
+            <if test="haveChineseCommunistPartyBranch != null">#{haveChineseCommunistPartyBranch},
+            </if>
+            <if test="chineseCommunistPartyBranchPeopleNum != null">#{chineseCommunistPartyBranchPeopleNum},
+            </if>
+            <if test="haveUnion != null">#{haveUnion},
+            </if>
+            <if test="unionPeopleNum != null">#{unionPeopleNum},
+            </if>
+            <if test="haveCommunistYouthLeague != null">#{haveCommunistYouthLeague},
+            </if>
+            <if test="communistYouthLeaguePeopleNum != null">#{communistYouthLeaguePeopleNum},
+            </if>
+            <if test="haveWomenSFederation != null">#{haveWomenSFederation},
+            </if>
+            <if test="womenSFederationPeopleNum != null">#{womenSFederationPeopleNum},
+            </if>
+            <if test="sourcesOfFunds != null">#{sourcesOfFunds},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBaseSocialOrganization" parameterType="BaseSocialOrganization">
+        update base_social_organization
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null">del_flag =
+                #{delFlag},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="name != null">name =
+                #{name},
+            </if>
+            <if test="unifiedSocialCreditCode != null">unified_social_credit_code =
+                #{unifiedSocialCreditCode},
+            </if>
+            <if test="registrationCode != null">registration_code =
+                #{registrationCode},
+            </if>
+            <if test="registeredAddress != null">registered_address =
+                #{registeredAddress},
+            </if>
+            <if test="dateOfEstablishment != null">date_of_establishment =
+                #{dateOfEstablishment},
+            </if>
+            <if test="legalRepresentative != null">legal_representative =
+                #{legalRepresentative},
+            </if>
+            <if test="nameOfPersonInCharge != null">name_of_person_in_charge =
+                #{nameOfPersonInCharge},
+            </if>
+            <if test="identificationNumberOfPersonInCharge != null">identification_number_of_person_in_charge =
+                #{identificationNumberOfPersonInCharge},
+            </if>
+            <if test="sexOfPersonInCharge != null">sex_of_person_in_charge =
+                #{sexOfPersonInCharge},
+            </if>
+            <if test="phonenumOfPersonInCharge != null">phoneNum_of_person_in_charge =
+                #{phonenumOfPersonInCharge},
+            </if>
+            <if test="addressOfPersonInCharge != null">address_of_person_in_charge =
+                #{addressOfPersonInCharge},
+            </if>
+            <if test="securityResponsibleName != null">security_responsible_name =
+                #{securityResponsibleName},
+            </if>
+            <if test="securityResponsiblePhone != null">security_responsible_phone =
+                #{securityResponsiblePhone},
+            </if>
+            <if test="longitude != null">longitude =
+                #{longitude},
+            </if>
+            <if test="latitude != null">latitude =
+                #{latitude},
+            </if>
+            <if test="haveForeignRelationship != null">have_foreign_relationship =
+                #{haveForeignRelationship},
+            </if>
+            <if test="registeredCapital != null">registered_capital =
+                #{registeredCapital},
+            </if>
+            <if test="numberOfEmployees != null">number_of_employees =
+                #{numberOfEmployees},
+            </if>
+            <if test="socialOrganizationType != null">social_organization_type =
+                #{socialOrganizationType},
+            </if>
+            <if test="status != null">status =
+                #{status},
+            </if>
+            <if test="caringLevel != null">caring_level =
+                #{caringLevel},
+            </if>
+            <if test="canCreateChineseCommunistPartyBranch != null">can_create_chinese_communist_party_branch =
+                #{canCreateChineseCommunistPartyBranch},
+            </if>
+            <if test="haveChineseCommunistPartyBranch != null">have_chinese_communist_party_branch =
+                #{haveChineseCommunistPartyBranch},
+            </if>
+            <if test="chineseCommunistPartyBranchPeopleNum != null">chinese_communist_party_branch_people_num =
+                #{chineseCommunistPartyBranchPeopleNum},
+            </if>
+            <if test="haveUnion != null">have_union =
+                #{haveUnion},
+            </if>
+            <if test="unionPeopleNum != null">union_people_num =
+                #{unionPeopleNum},
+            </if>
+            <if test="haveCommunistYouthLeague != null">have_communist_youth_league =
+                #{haveCommunistYouthLeague},
+            </if>
+            <if test="communistYouthLeaguePeopleNum != null">communist_youth_league_people_num =
+                #{communistYouthLeaguePeopleNum},
+            </if>
+            <if test="haveWomenSFederation != null">have_women_s_federation =
+                #{haveWomenSFederation},
+            </if>
+            <if test="womenSFederationPeopleNum != null">women_s_federation_people_num =
+                #{womenSFederationPeopleNum},
+            </if>
+            <if test="sourcesOfFunds != null">sources_of_funds =
+                #{sourcesOfFunds},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBaseSocialOrganizationById" parameterType="String">
+        delete from base_social_organization where id = #{id}
+    </delete>
+
+    <delete id="deleteBaseSocialOrganizationByIds" parameterType="String">
+        delete from base_social_organization where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBaseSocialOrganizationByIds" parameterType="String">
+        update base_social_organization set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

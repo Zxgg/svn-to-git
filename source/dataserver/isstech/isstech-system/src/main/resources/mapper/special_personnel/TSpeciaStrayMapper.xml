@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpeciaStrayMapper">
+
+    <resultMap type="TSpeciaStray" id="TSpeciaStrayResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="isStayChildren" column="is_stay_children"/>
+        <result property="isEnjoySubsidy" column="is_enjoy_subsidy"/>
+        <result property="studySituation" column="study_situation"/>
+        <result property="unenrolledReason" column="unenrolled_reason"/>
+        <result property="dropReason" column="drop_reason"/>
+        <result property="dropOtherReason" column="drop_other_reason"/>
+        <result property="jobSituation" column="job_situation"/>
+        <result property="jobSituationOther" column="job_situation_other"/>
+        <result property="notJobReason" column="not_job_reason"/>
+        <result property="notJobOtherReason" column="not_job_other_reason"/>
+        <result property="custodySituation" column="custody_situation"/>
+        <result property="custodySituationReason" column="custody_situation_reason"/>
+        <result property="isUnhealthyAction" column="is_unhealthy_action"/>
+        <result property="unhealthyActionType" column="unhealthy_action_type"/>
+        <result property="isCrimeExperience" column="is_crime_experience"/>
+        <result property="mainSource" column="main_source"/>
+        <result property="otherSource" column="other_source"/>
+        <result property="type" column="type"/>
+        <result property="otherProblem" column="other_problem"/>
+        <result property="memberSituation" column="member_situation"/>
+    </resultMap>
+
+    <sql id="selectTSpeciaStrayVo">
+        select id, create_by, dept_id, create_time, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, is_stay_children, is_enjoy_subsidy, study_situation, unenrolled_reason, drop_reason, drop_other_reason, job_situation, job_situation_other, not_job_reason, not_job_other_reason, custody_situation, custody_situation_reason, is_unhealthy_action, unhealthy_action_type, is_crime_experience, main_source, other_source, type, other_problem, member_situation from t_specia_stray
+    </sql>
+
+    <select id="selectTSpeciaStrayList" parameterType="TSpeciaStray" resultMap="TSpeciaStrayResult">
+        <include refid="selectTSpeciaStrayVo"/>
+        <where>
+                del_flag = '0'
+            <if test="createBy != null  and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="updateBy != null  and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and personnel_id = #{personnelId}
+            </if>
+            <if test="sourceType != null  and sourceType != ''">
+                and source_type = #{sourceType}
+            </if>
+            <if test="enable != null  and enable != ''">
+                and enable = #{enable}
+            </if>
+            <if test="remark != null  and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="isStayChildren != null  and isStayChildren != ''">
+                and is_stay_children = #{isStayChildren}
+            </if>
+            <if test="isEnjoySubsidy != null  and isEnjoySubsidy != ''">
+                and is_enjoy_subsidy = #{isEnjoySubsidy}
+            </if>
+            <if test="studySituation != null  and studySituation != ''">
+                and study_situation = #{studySituation}
+            </if>
+            <if test="unenrolledReason != null  and unenrolledReason != ''">
+                and unenrolled_reason = #{unenrolledReason}
+            </if>
+            <if test="dropReason != null  and dropReason != ''">
+                and drop_reason = #{dropReason}
+            </if>
+            <if test="dropOtherReason != null  and dropOtherReason != ''">
+                and drop_other_reason = #{dropOtherReason}
+            </if>
+            <if test="jobSituation != null  and jobSituation != ''">
+                and job_situation = #{jobSituation}
+            </if>
+            <if test="jobSituationOther != null  and jobSituationOther != ''">
+                and job_situation_other = #{jobSituationOther}
+            </if>
+            <if test="notJobReason != null  and notJobReason != ''">
+                and not_job_reason = #{notJobReason}
+            </if>
+            <if test="notJobOtherReason != null  and notJobOtherReason != ''">
+                and not_job_other_reason = #{notJobOtherReason}
+            </if>
+            <if test="custodySituation != null  and custodySituation != ''">
+                and custody_situation = #{custodySituation}
+            </if>
+            <if test="custodySituationReason != null  and custodySituationReason != ''">
+                and custody_situation_reason = #{custodySituationReason}
+            </if>
+            <if test="isUnhealthyAction != null  and isUnhealthyAction != ''">
+                and is_unhealthy_action = #{isUnhealthyAction}
+            </if>
+            <if test="unhealthyActionType != null  and unhealthyActionType != ''">
+                and unhealthy_action_type = #{unhealthyActionType}
+            </if>
+            <if test="isCrimeExperience != null  and isCrimeExperience != ''">
+                and is_crime_experience = #{isCrimeExperience}
+            </if>
+            <if test="mainSource != null  and mainSource != ''">
+                and main_source = #{mainSource}
+            </if>
+            <if test="otherSource != null  and otherSource != ''">
+                and other_source = #{otherSource}
+            </if>
+            <if test="type != null  and type != ''">
+                and type = #{type}
+            </if>
+            <if test="otherProblem != null  and otherProblem != ''">
+                and other_problem = #{otherProblem}
+            </if>
+            <if test="memberSituation != null  and memberSituation != ''">
+                and member_situation = #{memberSituation}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpeciaStrayById" parameterType="String" resultMap="TSpeciaStrayResult">
+        <include refid="selectTSpeciaStrayVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTSpeciaStray" parameterType="TSpeciaStray">
+        insert into t_specia_stray
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="deptId != null">dept_id,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateDeptId != null">update_dept_id,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,
+            </if>
+            <if test="sourceType != null">source_type,
+            </if>
+            <if test="enable != null and enable != ''">enable,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="isStayChildren != null">is_stay_children,
+            </if>
+            <if test="isEnjoySubsidy != null">is_enjoy_subsidy,
+            </if>
+            <if test="studySituation != null">study_situation,
+            </if>
+            <if test="unenrolledReason != null">unenrolled_reason,
+            </if>
+            <if test="dropReason != null">drop_reason,
+            </if>
+            <if test="dropOtherReason != null">drop_other_reason,
+            </if>
+            <if test="jobSituation != null">job_situation,
+            </if>
+            <if test="jobSituationOther != null">job_situation_other,
+            </if>
+            <if test="notJobReason != null">not_job_reason,
+            </if>
+            <if test="notJobOtherReason != null">not_job_other_reason,
+            </if>
+            <if test="custodySituation != null">custody_situation,
+            </if>
+            <if test="custodySituationReason != null">custody_situation_reason,
+            </if>
+            <if test="isUnhealthyAction != null">is_unhealthy_action,
+            </if>
+            <if test="unhealthyActionType != null">unhealthy_action_type,
+            </if>
+            <if test="isCrimeExperience != null">is_crime_experience,
+            </if>
+            <if test="mainSource != null">main_source,
+            </if>
+            <if test="otherSource != null">other_source,
+            </if>
+            <if test="type != null">type,
+            </if>
+            <if test="otherProblem != null">other_problem,
+            </if>
+            <if test="memberSituation != null">member_situation,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="deptId != null">#{deptId},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateDeptId != null">#{updateDeptId},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},
+            </if>
+            <if test="sourceType != null">#{sourceType},
+            </if>
+            <if test="enable != null and enable != ''">#{enable},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="isStayChildren != null">#{isStayChildren},
+            </if>
+            <if test="isEnjoySubsidy != null">#{isEnjoySubsidy},
+            </if>
+            <if test="studySituation != null">#{studySituation},
+            </if>
+            <if test="unenrolledReason != null">#{unenrolledReason},
+            </if>
+            <if test="dropReason != null">#{dropReason},
+            </if>
+            <if test="dropOtherReason != null">#{dropOtherReason},
+            </if>
+            <if test="jobSituation != null">#{jobSituation},
+            </if>
+            <if test="jobSituationOther != null">#{jobSituationOther},
+            </if>
+            <if test="notJobReason != null">#{notJobReason},
+            </if>
+            <if test="notJobOtherReason != null">#{notJobOtherReason},
+            </if>
+            <if test="custodySituation != null">#{custodySituation},
+            </if>
+            <if test="custodySituationReason != null">#{custodySituationReason},
+            </if>
+            <if test="isUnhealthyAction != null">#{isUnhealthyAction},
+            </if>
+            <if test="unhealthyActionType != null">#{unhealthyActionType},
+            </if>
+            <if test="isCrimeExperience != null">#{isCrimeExperience},
+            </if>
+            <if test="mainSource != null">#{mainSource},
+            </if>
+            <if test="otherSource != null">#{otherSource},
+            </if>
+            <if test="type != null">#{type},
+            </if>
+            <if test="otherProblem != null">#{otherProblem},
+            </if>
+            <if test="memberSituation != null">#{memberSituation},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpeciaStray" parameterType="TSpeciaStray">
+        update t_specia_stray
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="deptId != null">dept_id =
+                #{deptId},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateDeptId != null">update_dept_id =
+                #{updateDeptId},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="personnelId != null and personnelId != ''">personnel_id =
+                #{personnelId},
+            </if>
+            <if test="sourceType != null">source_type =
+                #{sourceType},
+            </if>
+            <if test="enable != null and enable != ''">enable =
+                #{enable},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="isStayChildren != null">is_stay_children =
+                #{isStayChildren},
+            </if>
+            <if test="isEnjoySubsidy != null">is_enjoy_subsidy =
+                #{isEnjoySubsidy},
+            </if>
+            <if test="studySituation != null">study_situation =
+                #{studySituation},
+            </if>
+            <if test="unenrolledReason != null">unenrolled_reason =
+                #{unenrolledReason},
+            </if>
+            <if test="dropReason != null">drop_reason =
+                #{dropReason},
+            </if>
+            <if test="dropOtherReason != null">drop_other_reason =
+                #{dropOtherReason},
+            </if>
+            <if test="jobSituation != null">job_situation =
+                #{jobSituation},
+            </if>
+            <if test="jobSituationOther != null">job_situation_other =
+                #{jobSituationOther},
+            </if>
+            <if test="notJobReason != null">not_job_reason =
+                #{notJobReason},
+            </if>
+            <if test="notJobOtherReason != null">not_job_other_reason =
+                #{notJobOtherReason},
+            </if>
+            <if test="custodySituation != null">custody_situation =
+                #{custodySituation},
+            </if>
+            <if test="custodySituationReason != null">custody_situation_reason =
+                #{custodySituationReason},
+            </if>
+            <if test="isUnhealthyAction != null">is_unhealthy_action =
+                #{isUnhealthyAction},
+            </if>
+            <if test="unhealthyActionType != null">unhealthy_action_type =
+                #{unhealthyActionType},
+            </if>
+            <if test="isCrimeExperience != null">is_crime_experience =
+                #{isCrimeExperience},
+            </if>
+            <if test="mainSource != null">main_source =
+                #{mainSource},
+            </if>
+            <if test="otherSource != null">other_source =
+                #{otherSource},
+            </if>
+            <if test="type != null">type =
+                #{type},
+            </if>
+            <if test="otherProblem != null">other_problem =
+                #{otherProblem},
+            </if>
+            <if test="memberSituation != null">member_situation =
+                #{memberSituation},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpeciaStrayById" parameterType="String">
+        delete from t_specia_stray where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpeciaStrayByIds" parameterType="String">
+        delete from t_specia_stray where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="updateTSpeciaStrayByIds" parameterType="String">
+        update t_specia_stray set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

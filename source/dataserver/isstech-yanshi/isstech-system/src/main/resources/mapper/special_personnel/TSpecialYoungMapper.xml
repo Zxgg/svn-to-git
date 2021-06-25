@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.mapper.TSpecialYoungMapper">
+
+    <resultMap type="TSpecialYoung" id="TSpecialYoungResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDeptId" column="update_dept_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="personnelId" column="personnel_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="enable" column="enable"/>
+        <result property="remark" column="remark"/>
+        <result property="youngType" column="young_type"/>
+        <result property="familyType" column="family_type"/>
+        <result property="guardianIdcard" column="guardian_idcard"/>
+        <result property="guardianName" column="guardian_name"/>
+        <result property="isGuardianRel" column="is_guardian_rel"/>
+        <result property="guardianTel" column="guardian_tel"/>
+        <result property="guardianAddressDetail" column="guardian_address_detail"/>
+        <result property="isCrime" column="is_crime"/>
+        <result property="crimeCase" column="crime_case"/>
+        <result property="helperName" column="helper_name"/>
+        <result property="helperTel" column="helper_tel"/>
+        <result property="helperMeans" column="helper_means"/>
+        <result property="helperCase" column="helper_case"/>
+    </resultMap>
+
+    <sql id="selectTSpecialYoungVo">
+        select id, create_by, dept_id, create_time, update_by, update_dept_id, update_time, del_flag, personnel_id, source_type, enable, remark, young_type, family_type, guardian_idcard, guardian_name, is_guardian_rel, guardian_tel, guardian_address_detail, is_crime, crime_case, helper_name, helper_tel, helper_means, helper_case from t_special_young
+    </sql>
+
+    <select id="selectTSpecialYoungList" parameterType="TSpecialYoung" resultMap="TSpecialYoungResult">
+        <include refid="selectTSpecialYoungVo"/>
+        <where>
+                del_flag = '0'
+            <if test="createBy != null  and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="updateBy != null  and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="personnelId != null  and personnelId != ''">
+                and personnel_id = #{personnelId}
+            </if>
+            <if test="sourceType != null  and sourceType != ''">
+                and source_type = #{sourceType}
+            </if>
+            <if test="enable != null  and enable != ''">
+                and enable = #{enable}
+            </if>
+            <if test="remark != null  and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="youngType != null  and youngType != ''">
+                and young_type = #{youngType}
+            </if>
+            <if test="familyType != null  and familyType != ''">
+                and family_type = #{familyType}
+            </if>
+            <if test="guardianIdcard != null  and guardianIdcard != ''">
+                and guardian_idcard = #{guardianIdcard}
+            </if>
+            <if test="guardianName != null  and guardianName != ''">
+                and guardian_name like concat('%', #{guardianName}, '%')
+            </if>
+            <if test="isGuardianRel != null  and isGuardianRel != ''">
+                and is_guardian_rel = #{isGuardianRel}
+            </if>
+            <if test="guardianTel != null  and guardianTel != ''">
+                and guardian_tel = #{guardianTel}
+            </if>
+            <if test="guardianAddressDetail != null  and guardianAddressDetail != ''">
+                and guardian_address_detail = #{guardianAddressDetail}
+            </if>
+            <if test="isCrime != null  and isCrime != ''">
+                and is_crime = #{isCrime}
+            </if>
+            <if test="crimeCase != null  and crimeCase != ''">
+                and crime_case = #{crimeCase}
+            </if>
+            <if test="helperName != null  and helperName != ''">
+                and helper_name like concat('%', #{helperName}, '%')
+            </if>
+            <if test="helperTel != null  and helperTel != ''">
+                and helper_tel = #{helperTel}
+            </if>
+            <if test="helperMeans != null  and helperMeans != ''">
+                and helper_means = #{helperMeans}
+            </if>
+            <if test="helperCase != null  and helperCase != ''">
+                and helper_case = #{helperCase}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTSpecialYoungById" parameterType="String" resultMap="TSpecialYoungResult">
+        <include refid="selectTSpecialYoungVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTSpecialYoung" parameterType="TSpecialYoung">
+        insert into t_special_young
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="id != null">id,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="deptId != null">dept_id,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateDeptId != null">update_dept_id,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag,
+            </if>
+            <if test="personnelId != null and personnelId != ''">personnel_id,
+            </if>
+            <if test="sourceType != null">source_type,
+            </if>
+            <if test="enable != null and enable != ''">enable,
+            </if>
+            <if test="remark != null">remark,
+            </if>
+            <if test="youngType != null">young_type,
+            </if>
+            <if test="familyType != null">family_type,
+            </if>
+            <if test="guardianIdcard != null">guardian_idcard,
+            </if>
+            <if test="guardianName != null">guardian_name,
+            </if>
+            <if test="isGuardianRel != null">is_guardian_rel,
+            </if>
+            <if test="guardianTel != null">guardian_tel,
+            </if>
+            <if test="guardianAddressDetail != null">guardian_address_detail,
+            </if>
+            <if test="isCrime != null">is_crime,
+            </if>
+            <if test="crimeCase != null">crime_case,
+            </if>
+            <if test="helperName != null">helper_name,
+            </if>
+            <if test="helperTel != null">helper_tel,
+            </if>
+            <if test="helperMeans != null">helper_means,
+            </if>
+            <if test="helperCase != null">helper_case,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            uuid(),
+            <if test="id != null">#{id},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="deptId != null">#{deptId},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateDeptId != null">#{updateDeptId},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},
+            </if>
+            <if test="personnelId != null and personnelId != ''">#{personnelId},
+            </if>
+            <if test="sourceType != null">#{sourceType},
+            </if>
+            <if test="enable != null and enable != ''">#{enable},
+            </if>
+            <if test="remark != null">#{remark},
+            </if>
+            <if test="youngType != null">#{youngType},
+            </if>
+            <if test="familyType != null">#{familyType},
+            </if>
+            <if test="guardianIdcard != null">#{guardianIdcard},
+            </if>
+            <if test="guardianName != null">#{guardianName},
+            </if>
+            <if test="isGuardianRel != null">#{isGuardianRel},
+            </if>
+            <if test="guardianTel != null">#{guardianTel},
+            </if>
+            <if test="guardianAddressDetail != null">#{guardianAddressDetail},
+            </if>
+            <if test="isCrime != null">#{isCrime},
+            </if>
+            <if test="crimeCase != null">#{crimeCase},
+            </if>
+            <if test="helperName != null">#{helperName},
+            </if>
+            <if test="helperTel != null">#{helperTel},
+            </if>
+            <if test="helperMeans != null">#{helperMeans},
+            </if>
+            <if test="helperCase != null">#{helperCase},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTSpecialYoung" parameterType="TSpecialYoung">
+        update t_special_young
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="deptId != null">dept_id =
+                #{deptId},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateDeptId != null">update_dept_id =
+                #{updateDeptId},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+            <if test="delFlag != null and delFlag != ''">del_flag =
+                #{delFlag},
+            </if>
+            <if test="personnelId != null and personnelId != ''">personnel_id =
+                #{personnelId},
+            </if>
+            <if test="sourceType != null">source_type =
+                #{sourceType},
+            </if>
+            <if test="enable != null and enable != ''">enable =
+                #{enable},
+            </if>
+            <if test="remark != null">remark =
+                #{remark},
+            </if>
+            <if test="youngType != null">young_type =
+                #{youngType},
+            </if>
+            <if test="familyType != null">family_type =
+                #{familyType},
+            </if>
+            <if test="guardianIdcard != null">guardian_idcard =
+                #{guardianIdcard},
+            </if>
+            <if test="guardianName != null">guardian_name =
+                #{guardianName},
+            </if>
+            <if test="isGuardianRel != null">is_guardian_rel =
+                #{isGuardianRel},
+            </if>
+            <if test="guardianTel != null">guardian_tel =
+                #{guardianTel},
+            </if>
+            <if test="guardianAddressDetail != null">guardian_address_detail =
+                #{guardianAddressDetail},
+            </if>
+            <if test="isCrime != null">is_crime =
+                #{isCrime},
+            </if>
+            <if test="crimeCase != null">crime_case =
+                #{crimeCase},
+            </if>
+            <if test="helperName != null">helper_name =
+                #{helperName},
+            </if>
+            <if test="helperTel != null">helper_tel =
+                #{helperTel},
+            </if>
+            <if test="helperMeans != null">helper_means =
+                #{helperMeans},
+            </if>
+            <if test="helperCase != null">helper_case =
+                #{helperCase},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTSpecialYoungById" parameterType="String">
+        delete from t_special_young where id = #{id}
+    </delete>
+
+    <delete id="deleteTSpecialYoungByIds" parameterType="String">
+        delete from t_special_young where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateTSpecialYoungByIds" parameterType="String">
+        update t_special_young set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isstech.isstechadmin.utils.mapper.SysDeptIpMapper">
+
+    <resultMap type="SysDeptIp" id="SysDeptIpResult">
+        <result property="id" column="id"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="deptIp" column="dept_ip"/>
+        <result property="deptType" column="dept_type"/>
+        <result property="deptCode" column="dept_code"/>
+    </resultMap>
+
+    <select id="selectUuid" resultType="String">
+        select uuid()
+    </select>
+
+    <sql id="selectSysDeptIpVo">
+        select id, dept_name, dept_id, dept_ip, dept_type, dept_code from sys_dept_ip
+    </sql>
+
+    <select id="selectSysDeptIpList" parameterType="SysDeptIp" resultMap="SysDeptIpResult">
+        <include refid="selectSysDeptIpVo"/>
+        <where>
+            del_flag = '0'
+            <if test="deptName != null  and deptName != ''">and dept_name like concat('%', #{deptName}, '%')</if>
+            <if test="deptId != null  and deptId != ''">and dept_id = #{deptId}</if>
+            <if test="deptIp != null  and deptIp != ''">and dept_ip = #{deptIp}</if>
+            <if test="deptType != null  and deptType != ''">and dept_type = #{deptType}</if>
+            <if test="deptCode != null  and deptCode != ''">and dept_code = #{deptCode}</if>
+        </where>
+    </select>
+
+    <select id="selectSysDeptIpById" parameterType="String" resultMap="SysDeptIpResult">
+        <include refid="selectSysDeptIpVo"/>
+        where id = #{id} and del_flag = '0'
+    </select>
+
+    <insert id="insertSysDeptIp" parameterType="SysDeptIp">
+        insert into sys_dept_ip
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="deptName != null">dept_name,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="deptIp != null">dept_ip,</if>
+            <if test="deptType != null">dept_type,</if>
+            <if test="deptCode != null">dept_code,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="deptName != null">#{deptName},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="deptIp != null">#{deptIp},</if>
+            <if test="deptType != null">#{deptType},</if>
+            <if test="deptCode != null">#{deptCode},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysDeptIp" parameterType="SysDeptIp">
+        update sys_dept_ip
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deptName != null">dept_name = #{deptName},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="deptIp != null">dept_ip = #{deptIp},</if>
+            <if test="deptType != null">dept_type = #{deptType},</if>
+            <if test="deptCode != null">dept_code = #{deptCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysDeptIpById" parameterType="String">
+        delete from sys_dept_ip where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDeptIpByIds" parameterType="String">
+        delete from sys_dept_ip where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateSysDeptIpByIds" parameterType="String">
+        update sys_dept_ip set del_flag = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>
